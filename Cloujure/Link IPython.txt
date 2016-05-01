@@ -1,0 +1,2 @@
+El HTML del tutorial en IPython lo pueden encontrar en:
+https://gist.github.com/SpaceCode4/64bca8ef0a8680702ab8869cfcad9d43
