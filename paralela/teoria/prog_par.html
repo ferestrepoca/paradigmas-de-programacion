@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Programación Paralela</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="css/starter-template.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Lenguajes de Programación</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#intro">Introducción</a></li>
+                <li><a href="#historia">Historia</a></li>
+                <li><a href="#paradigma">Paradigma</a></li>
+                <li><a href="#arch">Arquitectura</a></li>
+                <li><a href="#lenguajes">Lenguajes</a></li>
+                <li><a href="#aplicaciones">Aplicaciones</a></li>
+                <li><a href="#biblio">Bibliografía</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1 id="inicio">Programación Paralela</h1>
+    </div>
+
+    <div>
+        <h2 id="intro">Introducción</h2>
+        <p>La computación paralela es el uso de múltiples recursos computacionales para resolver un problema. Se
+            distingue de la computación secuencial en que varias operaciones pueden ocurrir simultáneamente.</p>
+        <p>El paralelismo clásico, o puesto de otra manera, el clásico uso del paralelismo, es el de diseño de programas
+            eficientes en el ámbito científico. La simulación de problemas científicos es un área de gran importancia,
+            los cuales requieren de una gran capacidad de procesamiento y de espacio de memoria, debido a las complejas
+            operaciones que se deben realizar. </p>
+
+        <p>Otro uso clásico es el de las gráficas generadas por computadora. La generación de fotogramas requiere de una
+            gran cantidad de cálculos matemáticos. Una escena de una película, por ejemplo, puede contener miles de
+            polígonos, texturas, iluminación, etc., que deben ser renderizados. Esto supone una tarea muy compleja para
+            un solo procesador, luego es necesario que haya algún tipo de paralelismo, para distribuir la tarea para que
+            esta sea realizada eficiente y eficazmente. </p>
+
+        <p>Los fabricantes de procesadores solían aumentar el número de transistores y la frecuencia de reloj de estos
+            para aumentar su rendimiento. Sin embargo, se llegó a un punto en el que hacer esto implicaba un mayor
+            consumo de energía y un sobrecalentamiento en el chip. Debido a esto se decidió cambiar de estrategia para
+            alcanzar mayor rendimiento en el procesamiento. En vez de fabricar chips muy complejos, a frecuencias muy
+            altas, se empezaron a fabricar chips con múltiples unidades de procesamiento más sencillas.</p>
+    </div>
+    <br>
+    <div>
+        <h2 id="historia">Breve historia</h2>
+        <p>El interés por la computación paralela se remonta a finales de los años 50. Este interés se vio expresado en
+            forma de supercomputadores, que aparecieron en los años 60 y 70. Estos computadores tenían procesadores de
+            memoria compartida, con múltiples procesadores trabajando lado a lado con datos compartidos.
+        </p>
+        <p>
+            A mediados de los 80, un nuevo tipo de computador paralelo fue creado cuando el proyecto “Concurrent
+            Computation” de Caltech construyó un supercomputador para aplicaciones científicas. El sistema mostró que se
+            podría lograr un rendimiento extremo usando microprocesadores regulares, disponibles en el mercado.
+        </p>
+        <p>Empezando a los finales de los 80, los clusters surgieron para competir y con los MPP. Un cluster es un tipo
+            de computador paralelo, construido usando múltiples computadores “off-the-shelf”, conectados usando una red
+            “off-the-shelf”. Hoy en día, los clusters son la arquitectura dominante en los datacenters.
+        </p>
+
+        <p>
+            En la actualidad, la computación paralela se ha vuelto mainstream prácticamente, con la llegada de los
+            procesadores de varios núcleos casi por defecto en la mayoría de dispositivos computacionales.
+        </p>
+
+        <p>
+            El software ha sido una parte activa en la evolución de la programación paralela. Los programas paralelos
+            son más difíciles de escribir que los programas secuenciales, ya que se requiere que haya una comunicación y
+            sincronización entre las tareas que se han paralelizado.
+        </p>
+
+        <p>
+            Para los MPP y clusters surgió el estándar MPI a mediados de los 90, que convergió de otras API. Para los
+            multiprocesadores con memoria compartida, un proceso de convergencia similar se observó a finales de los 90,
+            con el surgimiento de pthreads y OpenMP.
+        </p>
+    </div>
+    <br>
+    <div>
+        <h2 id="paradigma">Paradigma</h2>
+        <p>
+            La mejor situación para un desarrollador es que exista un transformador automático, que tome un programa
+            secuencial y lo paralelice, para así obtener beneficio de los múltiples procesadores. Sin embargo, la
+            experiencia de los últimos 20 años en compiladores que paralelicen han mostrado que para muchos programas
+            secuenciales no es posible paralelizarlos automáticamente. Entonces es necesaria la ayuda del programador
+            para que el programa sea estructurado adecuadamente.
+        </p>
+
+        <p>
+            El desarrollo de nuevo hardware supone un desafío para el programador, ya que el software existente debe ser
+            restructurado para aprovechar las ventajas de los multiprocesadores, es decir, no se puede esperar que el
+            incremento de potencia computacional incremente automáticamente el desempeño de un programa.
+        </p>
+
+        <p>
+            Como todos los paradigmas, es necesario cambiar la manera de pensar respecto a la representación de los
+            datos y al flujo del programa.
+        </p>
+    </div>
+    <br>
+    <div>
+        <h2>Conceptos clave</h2>
+        <p>
+            El primer paso en la programación paralela es el diseño del algoritmo o del programa. El diseño empieza por
+            la descomposición de la aplicación en varias partes, llamadas tareas, las cuales pueden ser computadas en
+            paralelo por las unidades de procesamiento. A continuación, las definiciones de los conceptos clave.
+        </p>
+
+        <ul>
+            <li>
+                <p>
+                    <b>Tarea:</b>
+                    La descomposición de las tareas puede
+                    ser una tarea complicada, ya que suelen haber varias formas de descomponer el mismo algoritmo.
+                    Definir las tareas para una aplicación apropiadamente es una del trabajo más difícil en el proceso
+                    de creación de un programa paralelizable, y difícil de automatizar.
+
+                </p>
+            </li>
+
+            <li>
+                <p>
+                    <b>Granularidad:</b>
+                    El tamaño de cada tarea, en término del número de instrucciones. Cada tarea puede tener un tamaño
+                    diferente.
+                </p>
+            </li>
+
+            <li>
+                <p>
+                    <b>Scheduling:</b>
+                    Las tareas de una aplicación son asignadas a procesos o hilos, que a su vez son asignados a unidades
+                    de procesamiento. El proceso mediante el cual las tareas son asignadas a los procesos o hilos, y se
+                    les da un orden de ejecución. Este puede ser especificado en el código, en tiempo de compilación o
+                    dinámicamente en tiempo de ejecución. El proceso de scheduling debe tener en cuenta la dependencia
+                    entre tareas, ya que, aunque muchas pueden ser independientes, otras pueden requerir los datos
+                    producidos por otras tareas.
+                </p>
+            </li>
+
+            <li>
+                <p>
+                    <b>Mapping:</b>
+                    Es la asignación de procesos e hilos a unidades de procesamiento, procesadores o núcleos.
+                    Usualmente el mapping se hace por el sistema en tiempo de ejecución, aunque en ocasiones puede ser
+                    influenciado por el programador.
+
+                </p>
+            </li>
+
+            <li>
+                <p>
+                    <b>Sincronización y cooperación:</b>
+                    Los programas en paralelo necesitan la sincronización y la coordinación de procesos e hilos, para
+                    que haya una ejecución correcta. Los métodos de coordinación y sincronización en la programación
+                    paralela están fuertemente asociados a la manera en que los procesos o hilos intercambian
+                    información, y esto depende de cómo está organizada la memoria en el hardware.
+
+                </p>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <div>
+        <h2 id="arch">Arquitectura del computador paralelo</h2>
+        <p>
+            En general, un computador paralelo puede ser caracterizado como una colección de procesadores que se pueden
+            comunicar y cooperar para resolver problemas grandes rápido. Sin embargo, esta definición es un poco vaga,
+            ya
+            que no incluye detalles como el número y la complejidad de los procesadores, la conexión entre los
+            elementos, la
+            coordinación, etc.
+        </p>
+        <p>
+            Un modelo que permite hacer una clasificación es de la Taxonomía de Flynn. Esta taxonomía caracteriza los
+            computadores paralelos de acuerdo al control global y los datos resultantes y el control de flujo. Se
+            compone de
+            cuatro categorías:
+        </p>
+
+        <ol>
+            <li>
+                <p>
+                    <b>Single Instruction, Single Data (SISD):</b> hay un elemento de procesamiento, que tiene acceso a
+                    un
+                    único
+                    programa y a un almacenamiento de datos. En cada paso, el elemento de procesamiento carga una
+                    instrucción y la
+                    información correspondiente y ejecuta esta instrucción. El resultado es guardado de vuelta en el
+                    almacenamiento
+                    de datos. Luego SISD es el computador secuencial convencional, de acuerdo al modelo de von Neumann.
+                </p>
+            </li>
+
+            <li>
+                <p>
+                    <b>Multiple Instruction, Single Data (MISD):</b> hay múltiples elementos de procesamiento, en el que
+                    cada
+                    cual tiene memoria privada del programa, pero se tiene acceso común a una memoria global de
+                    información.
+                    En cada paso, cada elemento de procesamiento de obtiene la misma información de la memoria y carga
+                    una
+                    instrucción de la memoria privada del programa. Luego, las instrucciones posiblemente diferentes de
+                    cada
+                    unidad, son ejecutadas en paralelo, usando la información (idéntica) recibida anteriormente. Este
+                    modelo
+                    es muy restrictivo y no se ha usado en ningún computador de tipo comercial.
+                </p>
+            </li>
+
+            <li>
+                <p>
+                    <b>Single Instruction, Multiple Data (SIMD): </b> hay múltiples elementos de procesamiento, en el
+                    que
+                    cada cual tiene acceso privado a la memoria de información (compartida o distribuida). Sin embargo,
+                    hay una sola memoria de programa, desde la cual una unidad de procesamiento especial obtiene y
+                    despacha instrucciones. En cada paso, cada unidad de procesamiento obtiene la misma instrucción y
+                    carga desde su memoria privada un elemento de información y ejecuta esta instrucción en dicho
+                    elemento. Entonces, la instrucción es síncronamente aplicada en paralelo por todos los elementos de
+                    proceso a diferentes elementos de información. Para aplicaciones con un grado significante de
+                    paralelismo de información, este acercamiento puede ser muy eficiente. Ejemplos pueden ser
+                    aplicaciones multimedia y algoritmos de gráficos de computadora.
+                </p>
+            </li>
+
+            <li>
+                <p>
+                    <b>Multiple Instruction, Multiple Data (MIMD):</b> hay múltiples unidades de procesamiento, en la
+                    cual
+                    cada una tiene tanto instrucciones como información separada. Cada elemento ejecuta una instrucción
+                    distinta en un elemento de información distinto. Los elementos de proceso trabajan asíncronamente.
+                    Los clusters son ejemplo son ejemplos del modelo MIMD.
+                </p>
+            </li>
+        </ol>
+    </div>
+
+    <br>
+    <div>
+        <h2 id="lenguajes">Lenguajes y librerías</h2>
+        <ul>
+            <li>Julia</li>
+            <li>Golang</li>
+            <li>CUDA</li>
+            <li>pthreads</li>
+            <li>OpenMP</li>
+        </ul>
+    </div>
+    <br>
+
+    <div>
+        <h2 id="aplicaciones">Aplicaciones</h2>
+        <ul>
+            <li>Computación gráfica</li>
+            <li>Computación científica</li>
+            <li>Big Data</li>
+            <li>Bolsa de valores</li>
+            <li>Etc...</li>
+        </ul>
+    </div>
+
+    <br>
+    <div>
+        <h2 id="biblio">Bibliografía</h2>
+        <ol>
+            <li>
+                <a href="http://proparalelaydistribuida.blogdiario.com/tags/lenguajes-paralelos/">http://proparalelaydistribuida.blogdiario.com/tags/lenguajes-paralelos/</a>
+            </li>
+            <li>
+                <a href="http://informatica.uv.es/iiguia/ALP/materiales/1_1_a_ComputacionParalela.pdf">http://informatica.uv.es/iiguia/ALP/materiales/1_1_a_ComputacionParalela.pdf</a>
+            </li>
+            <li>
+                <a href="http://lahuen.dcc.uchile.cl/mm_wiki/lib/exe/fetch.php?media=cpar:1-modelos.pdf">http://lahuen.dcc.uchile.cl/mm_wiki/lib/exe/fetch.php?media=cpar:1-modelos.pdf</a>
+            </li>
+
+            <li>
+                <a href="http://www.cs.buap.mx/~mtovar/doc/ProgConc/ProgramacionParalela.pdf">http://www.cs.buap.mx/~mtovar/doc/ProgConc/ProgramacionParalela.pdf</a>
+            </li>
+
+            <li>
+                <a href="http://www.saber.ula.ve/bitstream/123456789/15969/1/com_par.pdf">http://www.saber.ula.ve/bitstream/123456789/15969/1/com_par.pdf</a>
+            </li>
+
+            <li>
+                <a href="https://computing.llnl.gov/tutorials/parallel_comp/">https://computing.llnl.gov/tutorials/parallel_comp/</a>
+            </li>
+
+            <li>
+                <a href="http://lsi.ugr.es/jmantas/pdp/tutoriales/tutorial_mpi.php?tuto=03_pi">http://lsi.ugr.es/jmantas/pdp/tutoriales/tutorial_mpi.php?tuto=03_pi</a>
+            </li>
+
+            <li>
+                Rauber, T., & Runger, G. (n.d.). Parallel programming: For multicore and cluster systems. Springer
+                Books.
+            </li>
+
+            <li>
+                Intro to parallel programming. <a
+                    href="https://www.udacity.com/course/intro-to-parallel-programming--cs344">Udacity course</a>.
+            </li>
+        </ol>
+    </div>
+
+    <div>
+        <p class="lead">
+            Solo hemos arañado la superficie de la programación paralela. Si es de su interés, recomendamos
+            echar un vistazo a la bibliografía para ahondar en los temas tratados.
+        </p>
+    </div>
+
+    <p>
+        Integrantes: Fabián Bernal, Camilo Albarracín y Juan Gaona
+    </p>
+    
+</div><!-- /.container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+</body>
+</html>
