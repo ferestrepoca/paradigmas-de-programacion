@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Prolog by mppinedav</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Prolog</h1>
+      <h2 class="project-tagline"></h2>
+      <a href="https://github.com/mppinedav/prolog" class="btn">View on GitHub</a>
+      <a href="https://github.com/mppinedav/prolog/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/mppinedav/prolog/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p align="center">
+<img src="https://avatars2.githubusercontent.com/u/6884283?v=3&amp;s=200">
+</p>
+
+<hr>
+
+<h1>
+<a id="1-introducción-a-prolog" class="anchor" href="#1-introducci%C3%B3n-a-prolog" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Introducción a Prolog</h1>
+
+<p>Prolog es un lenguaje de programación declarativo que se utiliza para resolver problemas en los que existen objetos y las relaciones entre ellos.  Los lenguajes declarativos se diferencian de los lenguajes imperativos en que están basados en
+formalismos abstractos (Prolog tiene sus fundamentos en la lógica de predicados o de primer orden), por lo tanto su semántica no depende de la máquina en la que se ejecutan. Busca obtener conocimiento declarando hechos sobre los objetos y sus relaciones, creando reglas sobre dichos objetos y relaciones y realizando preguntas en ese dominio. Está basado en los siguientes mecanismos básicos: unificación, estructuras de datos basadas en árboles y backtracking.</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/fig1.png?raw=true">
+</p>
+
+<p>Antes de comenzar el tutorial es importante  hacer una recomendación. Prolog es diferente a cualquier otro lenguaje de bajo o alto nivel, por tanto, no es recomendable intentar resolver un problema en otro lenguaje para luego traducirlo a Prolog. No hay que buscar un algoritmo que resuelva el problema, sólo es necesario dar las bases para que Prolog lo resuelva.</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/06_16_15_MANOSOBRACS5-01.png?raw=true">
+</p>
+
+<h1>
+<a id="2-sintaxis" class="anchor" href="#2-sintaxis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Sintaxis</h1>
+
+<h2>
+<a id="21-términos" class="anchor" href="#21-t%C3%A9rminos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.1 Términos</h2>
+
+<p>Los términos son el único elemento del lenguaje, un término se compone de un <strong>functor</strong> seguido de cero a N <strong>argumentos</strong> entre paréntesis y separados por comas. </p>
+
+<p>En Lógica de primer orden, los términos se clasifican en tres categorías: constantes, variables y términos compuestos:</p>
+
+<ul>
+<li>
+<p><strong>Constantes</strong>:
+En Prolog se distinguen dos tipos de constantes:</p>
+
+<ul>
+<li>
+<em>Números</em>: Este tipo de constantes se utiliza para representar números enteros y números reales, para poder realizar operaciones aritméticas entre ellos.
+Los números enteros se expresan con la notación decimal habitual, ejemplo (0,1,-2124,332,etc).
+Los números reales se pueden representar con la notación decimal (ejemplo 1.34, -0.345, etc) o también en notación exponencial (por ejemplo 4.3E6, -0.1e+3, 12.03e-2). </li>
+<li>
+<em>Atomos o functores</em>: Se utilizan para nombrar objetos, propiedades o relaciones. Deben empezar en minúscula (ejemplo luis, pedro, gato, edad, :-, ?-).</li>
+</ul>
+</li>
+<li><p><strong>Variables:</strong> Las variables en Prolog se representan mediante cadenas formadas por letras, dígitos y el símbolo
+de subrayado, pero es importante que inicien por una letra minúscula o por el símbolo de subrayado _ (ejemplo X, Y, Resultado, _nombre, _).</p></li>
+<li><p><strong>Estructuras:</strong> Son términos compuestos por otros términos. Se construyen mediante un símbolo de función, denominado
+<strong>functor</strong> que se define con un átomo, seguido entre paréntesis, por una conjunto de términos separados por comas, denominados argumentos (Ejemplos: fecha(10,mayo,2011), punto(X,Y), recta(punto(11,21), punto(31,25))).
+OJO!: Al escribir una estructura, no puede haber ningún espacio entre el functor y el paréntesis abierto antes de los argumentos. Por ejemplo, <em>punto (X,Y)</em> no es una estructura compuesta correcta y generará un error de compilación.</p></li>
+</ul>
+
+<h2>
+<a id="22-programa" class="anchor" href="#22-programa" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.2 Programa</h2>
+
+<p>Los programas en Prolog son programas lógicos definidos, y están compuestos por una serie de cláusulas de Horn positivas, es decir, hechos y reglas. </p>
+
+<p>La mayoría de los programas Prolog están organizados en cuatro secciones principales:</p>
+
+<ul>
+<li>
+<strong>Dominio</strong>: donde se declaran los argumentos que utilizarán los predicados.</li>
+<li>
+<strong>Predicados</strong>: donde se declaran todos los predicados no predefinidos que se utilizarán en las siguientes secciones. </li>
+<li>
+<strong>Objetivos</strong>: esta sección permite ejecutar los programas de forma no interactiva, y por tanto, buscará la solución deseada tan pronto como se ejecute el programa. Como también es habitual usar Prolog de forma interactiva es frecuente ejecutar un programa y luego esperar a que se nos pregunte por los objetivos.</li>
+<li>
+<strong>Clausulas</strong>: donde se escriben los hechos y las reglas que conocemos del dominio.</li>
+</ul>
+
+<p>Para el desarrollo de este tutorial usaremos la herramienta online de Prolog. <a href="http://swish.swi-prolog.org/">swi Prolog</a></p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/prolog2.png?raw=true">
+</p>
+
+<h1>
+<a id="3-hechos" class="anchor" href="#3-hechos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Hechos</h1>
+
+<p>Un hecho es una relación entre objetos. Son el tipo de sentencia más sencillo de Prolog y declaran los valores que son verdaderos para un predicado. No tienen que reflejar el mundo real necesariamente, pero será única y exclusivamente lo que Prolog tomará como verdadero. Están conformados por un predicado y un argumento u objetos como se puede observar en la siguiente imagen. </p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/hechos.png?raw=true">
+</p>
+
+<p>Los hechos pueden construir propiedades o relaciones. Cuando están compuestos por un único argumento (monádicos), se dice que es una propiedad. Cuando se forman con dos o más argumentos (poliádicos), construyen relaciones. Existe una serie de reglas que se deben tener presentes al momento de definir un predicado.</p>
+
+<ul>
+<li>Los nombres de los hechos (predicado) deben iniciar con minúscula.</li>
+<li>Los argumentos se escriben separados por comas, en minúscula y encerrados entre paréntesis.</li>
+<li>Todos los hechos deben terminar en punto.</li>
+</ul>
+
+<p>Un ejemplo de un hecho es:</p>
+
+<pre><code>     persona(juan,27).
+</code></pre>
+
+<h2>
+<a id="ejemplo-práctico" class="anchor" href="#ejemplo-pr%C3%A1ctico" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ejemplo práctico</h2>
+
+<p>Para entender un poco mejor la función de los hechos en Prolog,iniciaremos con un primer ejemplo. Observe el siguiente árbol genealógico. </p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/arbol.png?raw=true"></p>
+
+<p>Podemos observar que el tipo de hechos que se presentan en la imagen son relaciones. Tenemos la relación entre dos personas, esta relación podremos llamarla progenitor. Por tanto los hechos que describen el árbol de la imagen quedan definidos como:</p>
+
+<pre><code>     progenitor(clara,jose).        %Hecho 1
+     progenitor(tomas, jose).       %Hecho 2
+     progenitor(tomas,isabel).      %Hecho 3
+     progenitor(jose, ana).         %Hecho 4
+     progenitor(jose, patricia).    %Hecho 5
+     progenitor(patricia,jaime).    %Hecho 6
+</code></pre>
+
+<h1>
+<a id="4-consultas" class="anchor" href="#4-consultas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Consultas</h1>
+
+<p>Sobre un conjunto de hechos se pueden definir realizar una serie de preguntas para extraer conocimiento de la base de datos generada por los hechos. Comienzan con un signo de interrogación seguido de un guión <strong>?-</strong> y terminan en punto.
+Ante una consulta, Prolog intenta hacer un <em>matching</em> sobre la base de conocimiento. </p>
+
+<p>Las respuestas a una consulta puede ser <strong>true</strong>, <strong>false</strong> o los elementos que pueden tomar una variable definida. Un ejemplo simple de una consulta puede ser:</p>
+
+<pre><code>     ?-progenitor(patricia,jaime).
+</code></pre>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/pregunta1.png?raw=true"></p>
+
+<p>Se puede observar que la respuesta a la pregunta fue <strong>true</strong>, ya que la consulta pudo ser unificada con el Hecho 6 de la base de conocimiento.</p>
+
+<h3>
+<a id="variables" class="anchor" href="#variables" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Variables</h3>
+
+<p>Para realizar consultas más interesantes se puede hacer el uso de variables. Es importante recordar que las variables deben iniciar con letra mayúscula o con el carácter (<strong>_</strong>). Existe una variable especial, la variable anónima o blanca. Esta variable se utiliza de la misma manera que las demás variables pero nunca toma ningún valor. </p>
+
+<h2>
+<a id="41-conjunciones-de-objetivos" class="anchor" href="#41-conjunciones-de-objetivos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.1 Conjunciones de objetivos</h2>
+
+<p>Se usan para resolver preguntas complejas que requieren varios hechos. Están compuestas por dos o más objetivos separados por una coma y finalizan en punto. </p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/pregunta2.png?raw=true"></p>
+
+<h2>
+<a id="ejemplo-práctico-1" class="anchor" href="#ejemplo-pr%C3%A1ctico-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ejemplo práctico</h2>
+
+<p>Siguiendo con el ejemplo del árbol genealógico definido anteriormente, vamos a responder las siguientes preguntas:</p>
+
+<ul>
+<li>
+<p>a). ¿Qué arroja la siguiente consulta?: <code>?-progenitor(jaime,X).</code> </p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/pregunta4.png?raw=true"></p>
+
+<p>Como se puede observar la respuesta es <strong>false</strong> ya que no existe en la base de conocimiento un hecho para el cual jaime sea progenitor de alguien. Esto se puede verificar en el árbol genealógico.</p>
+</li>
+<li>
+<p>b). ¿Qué arroja la siguiente consulta?: <code>?-progenitor(X,jaime).</code></p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/pregunta5.png?raw=true"></p>
+
+<p>Esta consulta arroja todos los progenitores de jaime. Según el árbol genealógico de la figura y los hechos definidos para el árbol, la única progenitora de jaime es patricia.</p>
+</li>
+<li>
+<p>c). ¿Qué arroja la siguiente consulta?: <code>?-progenitor(tomas,X), progenitor(X,Y),progenitor(Y,Z).</code></p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/pregunta6.png?raw=true"></p>
+
+<p>Arroja la información de los bisnietos de tomas, con su respectivos padres y abuelos. En este caso sólo tenemos una opción para X,Y,Z ya que sólo existe un bisnieto para tomas que es jaime.</p>
+</li>
+<li>
+<p>d). Defina una consulta que permita determinar si clara es bisabuela de jaime.
+Teniendo en cuenta la consulta del punto c). podemos usarlo como referencia. Necesitamos construir un árbol con 3 niveles de profundidad,uno para la relación de bisabuelo y abuelo, otro para la relación de abuelo y padre y finalmente el nivel de la relación de padre e hijo. Sabemos que la bisabuela es clara y el bisnieto es jaime, por tanto existen dos variables que no conocemos: el abuelo y el padre. Podemos definir X= abuelo, Y= padre. La consulta quedaría como se muestra a continuación.</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/pregunta3.png?raw=true"></p>
+
+<p>Si clara no fuera bisabuela de jaime, la consulta arrojaría false, pero Prolog logró unificar la consulta con dos hechos:
+<code>?-progenitor(tomas,jose)</code>, <code>?-progenitor(jose,patricia).</code> y <code>?-progenitor(patricia,jaime).</code> Por lo tanto X= jose y Y= patricia.</p>
+</li>
+</ul>
+
+<h1>
+<a id="5-reglas" class="anchor" href="#5-reglas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5. Reglas</h1>
+
+<p>Cuando la verdad de un hecho depende de la verdad de otro hecho o de un grupo de hechos se usa una regla. Declaran las condiciones para que un predicado sea cierto, con una implicación que pueden relacionar hechos para dar los valores de verdad a un predicado (la cabeza se cumple si el cuerpo se cumple). Funcionan como las fórmulas condicionales habituales en lógica. Una regla está compuesta por una cabeza y una cuerpo. El cuerpo puede estar formado por varios hechos y objetivos.
+Su sintaxis general es:</p>
+
+<p><strong><p align="center"> cabeza :- objetivo1, objetivo2, ..., objetivon.</p></strong></p>
+
+<p>Formalmente, desde un punto de vista lógico, se interpretaría de la siguiente forma:
+<em><p align="center"> objetivo1 ∧ ⋯ ∧ objetivon → cabeza</p></em></p>
+
+<p>Los objetivos van separados por comas, especificando conjunción y al final debe de ir un punto. Por ejemplo:</p>
+
+<pre><code>            animal_carnívoro( X ):- animal( X ), carnívoro( X ).
+</code></pre>
+
+<p>Existen dos tipos de reglas:</p>
+
+<ul>
+<li>
+<p><strong>Conjunciones</strong></p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/conjuncion.png?raw=true"></p>
+</li>
+<li>
+<p><strong>Disyunciones</strong></p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/disyuncion.png?raw=true"></p>
+</li>
+</ul>
+
+<h2>
+<a id="51-reglas-recursivas" class="anchor" href="#51-reglas-recursivas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1 Reglas recursivas</h2>
+
+<p>Con la definición del tipo de reglas simple se pueden resolver diferentes problemas, sin embargo, la gran potencia de Prolog está en la definición de reglas recursivas. Siguiendo con el ejemplo del árbol genealógico,se puede definir relaciones para el abuelo, bisabuelo, tatarabuelo, etc. Podría ser interesante definir la relación predecesor(X,Y). Un predecesor de X podrá ser el progenitor de X. También será predecesor si es abuelo/a, si es tatarabuelo/a, etc., es decir, podríamos definir un conjunto de reglas como:</p>
+
+<pre><code>     predecesor(X,Y):-progenitor(X,Y).                                   %padre
+     predecesor(X,Y):-progenitor(X,Z), progenitor(Z,Y).                  %abuelo
+     predecesor(X,Y):-progenitor(X,Z), progenitor(Z,V), progenitor(V,Y). %bisabuelo
+</code></pre>
+
+<p>Resulta engorroso tener que definir una nueva regla para cada vínculo con un predecesor, ¿qué pasaría si queremos conocer a un predecesor 10 niveles atrás en el árbol genealógico?, ¿necesitaremos definir 10 reglas diferentes?. No. Podemos hacer uso de las reglas recursivas.</p>
+
+<p>Para hacer uso de reglas recursivas se debe considerar 2 casos:</p>
+
+<ul>
+<li>
+<strong>Caso básico:</strong> Define cuándo se detiene el cálculo.</li>
+<li>
+<strong>Caso recursivo:</strong> Suponiendo que ya se ha solucionado un caso más simple, define cómo descomponer el caso actual hasta llegar al caso básico.</li>
+</ul>
+
+<p>Reescribiendo la relación predecesor de forma recursiva quedaría:</p>
+
+<pre><code>     predecesor(X,Y):-progenitor(X,Y).                    %caso base
+     predecesor(X,Y):-progenitor(X,Z), predecesor(Z,Y).   %caso recursivo
+</code></pre>
+
+<h2>
+<a id="ejemplo-práctico-2" class="anchor" href="#ejemplo-pr%C3%A1ctico-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ejemplo práctico.</h2>
+
+<p>Siguiendo con el árbol genealógico que hemos venido trabajando, resolver:</p>
+
+<ul>
+<li>a). Defina las reglas y consultas para encontrar a la madre y el padre de un elemento o todos los elementos del árbol.
+Los padres son progenitores, lo único que cambia entre el padre y la madre es el sexo. Por eso es necesario definir nuevos hechos para representar el sexo de cada persona en el árbol.
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/madrepadre.png?raw=true"></p>
+Con la siguiente consulta podemos consultar quién es madre de quién. X= madre, Y=hijo.
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/madre.png?raw=true"></p>
+Las filas de la tabla de resultados son las relaciones que se forman según el árbol.</li>
+<li>clara es madre de jose</li>
+<li>patricia es madre de jaime
+De la misma forma podemos consultar los padres y sus hijos en el árbol.
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/padre.png?raw=true"></p>
+Como se puede observar en la tabla anterior, se obtie el resultado de todas las parejas que se pueden formar entre padres e hijos según el árbol genealógico.</li>
+<li>tomas es padre de jose</li>
+<li>tomás es padre de isabel</li>
+<li>jose es padre de ana</li>
+<li><p>jose es padre de patricia</p></li>
+<li>
+<p>b). Defina las reglas y consultas para encontrar un abuelo.
+Sabemos que un abuelo tiene dos niveles de relación con un nieto: <code>progenitor(Abuelo,Padre).</code> y <code>progenitor(Padre,Nieto).</code>
+Por tanto podemos definir la siguiente relación:</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/abuelo.png?raw=true"></p>
+</li>
+<li>
+<p>c). Defina las reglas y consultas para encontrar los antepasados usando reglas recursivas.
+Para determinar un antepasado de forma recursiva necesitamos dos casos: El caso base y el caso recursivo. Por tanto la regla queda definida de la siguiente forma:</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/antepasado.png?raw=true"></p>
+</li>
+</ul>
+
+<h1>
+<a id="6--backtracking" class="anchor" href="#6--backtracking" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6.  Backtracking</h1>
+
+<p>Considerando el siguiente ejemplo, vamos a entender cómo hace Prolog para verificar cuándo se cumple una regla.</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/recursiva.png?raw=true"></p>
+
+<p>Prolog intenta satisfacer los objetivos de la consulta de izquierda a derecha y para
+cada uno va probando las cláusulas correspondientes.</p>
+
+<h3>
+<a id="primer-intento" class="anchor" href="#primer-intento" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Primer intento</h3>
+
+<p>Prolog trabaja analizando los objetivos de izquierda a derecha los objetivos de la regla. Y verificando los hechos de arriba hacia abajo.
+El primer objetivo que intentará analizar es <code>sevende(Y).</code></p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/arbol1.png?raw=true"></p>
+
+<p>Como el orden en que se definan los hechos importa, el primer hecho que encuentra en la base de conocimiento es <code>sevende(vestido).</code> Así que la variable Y queda instanciada como vestido.</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/arbol2.png?raw=true"></p>
+
+<p>Ahora debe verificar para cuales hechos se cumple que <code>gusta(X,vestido).</code></p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/arbol3.png?raw=true"></p>
+
+<p>Como se puede observar en la imagen, la X queda instanciada como maria porque es el primer hecho para el cual se cumple el objetivo.</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/arbol4.png?raw=true"></p>
+
+<p>Finalmente debe verificar el último objetivo <code>bueno(vestido).</code>. Este objetivo no está definido en la base de conocimiento por tanto este camino en el árbol se rechaza porque ha seleccionado una cláusula que no conduce a la solución. Por esta razón es necesario aplicar un retroceso <strong>backtracking</strong>.</p>
+
+<h3>
+<a id="segundo-intento" class="anchor" href="#segundo-intento" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Segundo intento</h3>
+
+<p>Prolog se devuelve hasta el punto donde instanció Y= vestido. Y busca el siguiente hecho que pueda unificar con  <code>sevende(X).</code> obteniendo como resultado X= sombrero. Se repiten los demás pasos, llegando finalmente al hecho <code>sevende(sombrero).</code> como una verdad, por tanto el camino se acepta obteniendo una posibilidad a la regla con Y= sombrero y X= maria.</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/arbol5.png?raw=true"></p>
+
+<h1>
+<a id="7-expresiones" class="anchor" href="#7-expresiones" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7. Expresiones</h1>
+
+<h2>
+<a id="71-construcción-de-expresiones-aritméticas" class="anchor" href="#71-construcci%C3%B3n-de-expresiones-aritm%C3%A9ticas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7.1 Construcción de expresiones aritméticas</h2>
+
+<p>Prolog tiene predefinidos los operadores aritméticos más habituales, mediante los que se pueden formar expresiones aritméticas. A continuación se enumeran algunos de los más importantes:</p>
+
+<table>
+<thead>
+<tr>
+<th>Expresión</th>
+<th>Operación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X+Y</td>
+<td>suma de X e Y</td>
+</tr>
+<tr>
+<td>X-Y</td>
+<td>X menos Y</td>
+</tr>
+<tr>
+<td>X*Y</td>
+<td>producto de X por Y</td>
+</tr>
+<tr>
+<td>X/Y</td>
+<td>cociente real de la división de X por Y</td>
+</tr>
+<tr>
+<td>X//Y</td>
+<td>cociente entero de la división de X por Y</td>
+</tr>
+<tr>
+<td>X mod Y</td>
+<td>resto de la división entera de X por Y</td>
+</tr>
+<tr>
+<td>abs(X)</td>
+<td>valor absoluto de X</td>
+</tr>
+<tr>
+<td>abs(X)</td>
+<td>valor absoluto de X</td>
+</tr>
+<tr>
+<td>acos(X)</td>
+<td>arco coseno de X</td>
+</tr>
+<tr>
+<td>asen(X)</td>
+<td>arco seno de X</td>
+</tr>
+<tr>
+<td>atan(X)</td>
+<td>arco tangente de X</td>
+</tr>
+<tr>
+<td>cos(X)</td>
+<td>coseno de X</td>
+</tr>
+<tr>
+<td>exp(X)</td>
+<td>exponencial de X; [eX]</td>
+</tr>
+<tr>
+<td>ln(X)</td>
+<td>logaritmo neperiano de X</td>
+</tr>
+<tr>
+<td>log(X)</td>
+<td>logaritmo en base 2 de X</td>
+</tr>
+<tr>
+<td>sin(X)</td>
+<td>seno de X</td>
+</tr>
+<tr>
+<td>sqrt(X)</td>
+<td>raíz cuadrada de X</td>
+</tr>
+<tr>
+<td>tan(X)</td>
+<td>tangente de X</td>
+</tr>
+<tr>
+<td>round(X,N)</td>
+<td>redondeo del real X con N decimales</td>
+</tr>
+</tbody>
+</table>
+
+<p>Es importante tener en cuenta que los operadores anteriores sólo permiten construir expresiones aritméticas, pero estas  son estructuras (términos compuestos) que no representan ningún valor. Por ejemplo, la expresión 13+5 no es otra cosa  que el término compuesto +(3,5) escrito en <em>notación infija</em>. No se pueden realizar consultas del estilo “ ?- 13+5.”, porque “+” no es un predicado.
+¿Qué pasa si hacemos la consulta “ ?- 13+5 = 8.”? </p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/consulta.png?raw=true"></p>
+
+<p>Como se puede observar a pesar de que al realizar la operación 13+5 obtenemos como resultado 18, para Prolog esto es falso dado que el término compuesto +(3,5) no es unificable con el término constante 8. Para poder evaluar expresiones aritméticas en Prolog hay que utilizar los predicados aritméticos que se describen a continuación.</p>
+
+<h2>
+<a id="72-comparación-de-términos" class="anchor" href="#72-comparaci%C3%B3n-de-t%C3%A9rminos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7.2 Comparación de términos</h2>
+
+<p>Los siguientes operadores son los que permiten comparar términos en Prolog.</p>
+
+<table>
+<thead>
+<tr>
+<th>Expresión</th>
+<th>Operación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X&lt;Y</td>
+<td>cierto si el valor numérico de X es menor que el de Y</td>
+</tr>
+<tr>
+<td>X&gt;Y</td>
+<td>cierto si el valor numérico de X es mayor que el de Y</td>
+</tr>
+<tr>
+<td>X=&lt;Y</td>
+<td>cierto si el valor numérico de X es menor o igual que el de Y</td>
+</tr>
+<tr>
+<td>X&gt;=Y</td>
+<td>cierto si el valor numérico de X es mayor o igual que el de Y</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="73-comparación-de-expresiones" class="anchor" href="#73-comparaci%C3%B3n-de-expresiones" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7.3 Comparación de expresiones</h2>
+
+<p>Los siguientes predicados predefinidos comparan expresiones sin evaluarlas, mediante una comparación sintáctica siguiendo el siguiente orden:</p>
+
+<ul>
+<li>variables,</li>
+<li>enteros y reales,</li>
+<li>átomos en orden alfabético,</li>
+<li>términos complejos: aridad, nombre y orden según la definición recursiva.</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>Expresión</th>
+<th>Operación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X==Y</td>
+<td>la expresión X es igual que la expresión Y</td>
+</tr>
+<tr>
+<td>X\==Y</td>
+<td>la expresión X es distinta que la expresión Y</td>
+</tr>
+<tr>
+<td>X@&lt;Y</td>
+<td>la expresión X es menor que la expresión Y</td>
+</tr>
+<tr>
+<td>X@&gt;Y</td>
+<td>la expresión X es mayor que la expresión Y</td>
+</tr>
+<tr>
+<td>X@=&lt;Y</td>
+<td>la expresión X es menor o igual que la expresión Y</td>
+</tr>
+<tr>
+<td>X@&gt;=Y</td>
+<td>la expresión X es mayor o igual que la expresión Y</td>
+</tr>
+<tr>
+<td>X is Y</td>
+<td>Si Y es una expresión aritmética, ésta se evalúa y el resultado se intenta unificar con X.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Ejemplo:</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/aritmetico.png?raw=true"></p>
+         
+
+<p>Los siguientes predicados predefinidos comparan términos haciendo una evaluación
+de expresiones:</p>
+
+<table>
+<thead>
+<tr>
+<th>Expresión</th>
+<th>Operación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X =:= Y</td>
+<td>cierto si los valores numéricos de X e Y son iguales</td>
+</tr>
+<tr>
+<td>X =\= Y</td>
+<td>cierto si los valores numéricos de X e Y son distintos</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<a id="8-predicados-predefinidos" class="anchor" href="#8-predicados-predefinidos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>8. Predicados predefinidos</h1>
+
+<p>Los predicados predefinidos son aquellos que ya están definidos en PROLOG, es decir, no necesitamos especificarlos mediante cláusulas. Existen dos tipos de predicados predefinidos:</p>
+
+<ul>
+<li>Aquellos predicados de uso frecuente que ya los proporciona PROLOG, aunque podríamos definirlos nosotros.</li>
+<li>Predicados con un efecto colateral distinto a la instanciación de variables a valores (funcionamiento normal del PROLOG).</li>
+</ul>
+
+<p>Este conjunto de predicados permiten determinar el tipo de términos que estamos usando.</p>
+
+<table>
+<thead>
+<tr>
+<th>Predicado</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>var</td>
+<td>El objetivo var(X) se cumple si X es una variable no instanciada.</td>
+</tr>
+<tr>
+<td>novar</td>
+<td>El objetivo novar(X) se cumple si X es una variable instanciada</td>
+</tr>
+<tr>
+<td>atom</td>
+<td>El objetivo atom(X) se cumple si X representa un átomo.</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>El objetivo integer(X) se cumple si X representa un número entero.</td>
+</tr>
+<tr>
+<td>atomic</td>
+<td>El objetivo atomic(X) se cumple si X representa un entero o un átomo.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Los siguientes son predicados predefinidos que permiten controlar otros predicados.</p>
+
+<table>
+<thead>
+<tr>
+<th>Predicado</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>!(cut)</td>
+<td>Fuerza al sistema a mantener ciertas elecciones que ha realizado.</td>
+</tr>
+<tr>
+<td>true</td>
+<td>Este objetivo siempre se cumple.</td>
+</tr>
+<tr>
+<td>fail</td>
+<td>Este objetivo siempre fracasa.</td>
+</tr>
+<tr>
+<td>not</td>
+<td>El objetivo not(X) se cumple si fracasa el intento de satisfacer X. El objetivo not(X) fracasa si el intento de satisfacer X tiene éxito. Es similar a la negación en la lógica de predicados.</td>
+</tr>
+<tr>
+<td>repeat</td>
+<td>forma auxiliar para generar soluciones múltiples mediante el mecanismo de reevaluación.</td>
+</tr>
+<tr>
+<td>call</td>
+<td>Se cumple si tiene éxito el intento de satisfacer X.</td>
+</tr>
+<tr>
+<td>;</td>
+<td>Especifica una disyunción de objetivos</td>
+</tr>
+<tr>
+<td>,</td>
+<td>Especifica una conjunción de objetivos</td>
+</tr>
+</tbody>
+</table>
+
+<p>Predicados de lectura y escritura</p>
+
+<table>
+<thead>
+<tr>
+<th>Predicado</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>write</td>
+<td>escribe el término X en la consola de salida.</td>
+</tr>
+<tr>
+<td>nl</td>
+<td>genera una nueva línea en la consola de salida.</td>
+</tr>
+<tr>
+<td>read</td>
+<td>lee el siguiente término en la consola de entrada.</td>
+</tr>
+<tr>
+<td>display</td>
+<td>funciona exactamente igual que write, excepto que</td>
+</tr>
+</tbody>
+</table>
+
+<p>pasa por alto las declaraciones de operadores</p>
+
+<h1>
+<a id="9-listas" class="anchor" href="#9-listas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>9. Listas</h1>
+
+<p>Una lista es una tipo concreto de estructura de datos simple. Es una secuencia ordenada de elementos que puede tener cualquier longitud. Un elemento puede ser cualquier tipo de dato e incluso otra lista.  En Prolog las listas están formadas por cabeza y cola.  Se representan como una serie de elementos separados por comas y encerrados entre corchetes. Por ejemplo en la lista:</p>
+
+<pre><code>     [a, b, c, d]
+</code></pre>
+
+<p>Se tiene que <strong>a</strong> es la cabeza de la lista y [b, c, d] la cola.</p>
+
+<table>
+<thead>
+<tr>
+<th>Lista</th>
+<th>Cabeza</th>
+<th>COla</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[a,b,c,d]</td>
+<td>a</td>
+<td>[b,c,d]</td>
+</tr>
+<tr>
+<td>[a]</td>
+<td>a</td>
+<td><a href="lista%20vac%C3%ADa"></a></td>
+</tr>
+<tr>
+<td>[]</td>
+<td>no tiene</td>
+<td>no tiene</td>
+</tr>
+<tr>
+<td>[[a,b],c]</td>
+<td>[a,b]</td>
+<td>[c]</td>
+</tr>
+<tr>
+<td>[a,[b,c]]</td>
+<td>a</td>
+<td>[[b,c]]</td>
+</tr>
+<tr>
+<td>[a,b,[c,d]]</td>
+<td>a</td>
+<td>[b,[c,d]]</td>
+</tr>
+</tbody>
+</table>
+
+<p>Una lista cuya cabeza es A y la cola es B, en prolog se denota como:</p>
+
+<pre><code>     [A | B]
+</code></pre>
+
+<h2>
+<a id="91-unificación-y-listas" class="anchor" href="#91-unificaci%C3%B3n-y-listas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>9.1 Unificación y listas</h2>
+
+<p>En Prolog se puede unificar una lista con otra.</p>
+
+<pre><code>     [X,Y,Z]= [a,b,c]
+     X = a
+     Y = b
+     Z = c
+</code></pre>
+
+<p>Una variable que no está instanciada se puede unificar con cualquier objeto, por tanto se puede unificar una lista con una variable.</p>
+
+<pre><code>     X= [a,b,c]
+</code></pre>
+
+<p>Para unificar una variable con una lista pero separando su cabeza y cola se debe hacer de la forma  [A | B] donde el símbolo (|) separará la cabeza de la cola. Ejemplo:</p>
+
+<pre><code>     [a,b,c] = [Cabeza|Cola]
+     Cabeza = a
+     Cola = [b,c]
+
+
+     [a,b,c] = [X,Y|Z]
+     X = a
+     Y = b
+     Z = [c] 
+
+     [a,b,c] = [X,Y,Z|Cola] 
+     X = a
+     Y = b
+     Z = c
+     Cola = [ ] 
+</code></pre>
+
+<h2>
+<a id="92-listas-y-recursión" class="anchor" href="#92-listas-y-recursi%C3%B3n" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>9.2 Listas y recursión</h2>
+
+<p>En Prolog existen tres criterios de terminación importantes:</p>
+
+<ul>
+<li>
+<p>Cuando la lista es vacía.
+El esquema general es:</p>
+
+<pre><code> /* Regla de terminacion */
+ predicado([ ]):- procesar([ ]).
+ /* Regla recursiva */
+ predicado([Cabeza | Cola]):- procesar(Cabeza), predicado(Cola).
+</code></pre>
+</li>
+<li>
+<p>Cuando un elemento es encontrado.
+El esquema general es:</p>
+
+<pre><code> /* Regla de terminación */
+ predicado(Cabeza, [Cabeza | Cola]):- procesar algo.
+ /* Regla recursiva */
+ predicado(X, [Cabeza | Cola]):- procesar algo, predicado(X, Cola).
+</code></pre>
+</li>
+<li>
+<p>Cuando una posición es encontrada.
+El esquema general es:</p>
+
+<pre><code> /* Regla de terminacion */
+ predicado(1,Cabeza, [Cabeza | Cola]):- procesar algo.
+ /* Regla recursiva */
+ predicado(P, X, [ | L]):- P1=P-1, predicado(P1,X, L).
+</code></pre>
+</li>
+</ul>
+
+<h3>
+<a id="ejemplos-prácticos" class="anchor" href="#ejemplos-pr%C3%A1cticos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ejemplos prácticos:</h3>
+
+<ul>
+<li><p>a). Encontrar el último elemento de una lista.
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/lista1.png?raw=true"></p></li>
+<li><p>b). Encontrar el k-ésimo elemento de una lista.
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/lista2.png?raw=true"></p></li>
+<li><p>c). Calcular la longitud de la lista.
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/lista4.png?raw=true"></p></li>
+<li><p>d). Verifica si una lista es palíndroma o no.
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/lista5.png?raw=true"></p></li>
+<li><p>e). Crear una lista que contenga los enteros de un rango dado.
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/lista6.png?raw=true"></p></li>
+<li><p>f). Sumar los elementos de una lista
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/lista7.png?raw=true"></p></li>
+</ul>
+
+<h1>
+<a id="10-arboles" class="anchor" href="#10-arboles" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>10. Arboles</h1>
+
+<p>Un árbol binario es una estructura que contiene un nodo padre y dos nodos hijos; uno izquierdo y uno derecho. Se puede decir que un árbol es una estructura con una definición puramente recursiva, ya que se puede definir como el elemento raíz cuyos hijos son a su vez árboles. </p>
+
+<h4>
+<a id="representación-en-prolog-de-árboles" class="anchor" href="#representaci%C3%B3n-en-prolog-de-%C3%A1rboles" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Representación en Prolog de árboles</h4>
+
+<p>Como un árbol es una estructura recursiva, necesitaremos un caso base y un caso recursivo. </p>
+
+<ul>
+<li>X es un árbol vacío</li>
+<li>
+<p>X es un árbol con hijos</p>
+
+<pre><code> binary_tree(void).                       %caso base
+ binary_tree(t(K,L,R)) :-                 %caso recursivo
+                         binary_tree(L), 
+                         binary_tree(R).
+</code></pre>
+</li>
+</ul>
+
+<p>Como se puede observar se necesitan 3 elementos para definir un árbol: la raíz, el subárbol izquierdo y el subárbol derecho. Veamos un ejemplo:</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/tree1.png?raw=true"></p>
+
+<p>El árbol de la imagen en la relación t(K,L,R) queda definido como:</p>
+
+<pre><code>     tree1(t(6, t(4, t(2, nil, nil), t(5, nil, nil)), t(9, t(7, nil, nil), nil))).
+</code></pre>
+
+<p>También podemos definir reglas para realizar los posibles recorridos en el árbol:</p>
+
+<ul>
+<li>
+<p><strong>Inorder:</strong></p>
+
+<pre><code> inorder(nil, []).
+ inorder(t(K,L,R), List):-inorder(L,LL), 
+                          inorder(R, LR),
+                          append(LL, [K|LR],List).
+</code></pre>
+</li>
+<li>
+<p><strong>Preorder:</strong></p>
+
+<pre><code> preorder(nil, []). 
+ preorder(t(K,L,R), List):-preorder(L,LL),
+                           preorder(R, LR),
+                           append([K|LL], LR, List).
+</code></pre>
+</li>
+<li>
+<p><strong>Postorder:</strong></p>
+
+<pre><code> postorder(nil, []). 
+ postorder(t(K,L,R), List):-postorder(L,LL), 
+                            postorder(R, LR),
+                            append(LL, LR,R1), 
+                            append(R1, [K], List).
+</code></pre>
+</li>
+</ul>
+
+<p>Al realizar las pruebas con el árbol del ejemplo y los diferentes recorridos obtenemos como resultado:</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/arbolrecorrido.png?raw=true"></p>
+
+<h1>
+<a id="11-ejemplo-grafos" class="anchor" href="#11-ejemplo-grafos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>11. Ejemplo Grafos</h1>
+
+<p>Implementar el siguiente grafo en Prolog y definir una regla para encontrar los caminos de un nodo.</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/grafo.png?raw=true"></p>
+
+<p>Todas las uniones entre dos nodos pueden ser representadas como hechos de relaciones, por tanto quedaría definido como:</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/grafo1.png?raw=true"></p>
+
+<h1>
+<a id="12-ejemplo-autómatas" class="anchor" href="#12-ejemplo-aut%C3%B3matas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>12. Ejemplo Autómatas</h1>
+
+<p>Implementar un AFD en prolog que acepte el lenguaje determinado por el siguiente autómata:</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/automata.png?raw=true"></p>
+
+<p>Un autómata puede verse como un grafo dirigido con un estado de inicio y otro de finalización. Podemos representar la unión entre estados como un hecho de relación y es importante hacer la definición del estado inicial y el estado final. El autómata quedaría definido como:</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/automata1.png?raw=true"></p>
+ 
+
+<p>Vamos a verificar la anterior definición con una cadena que sí sea aceptada por el autómata. En este caso probaremos para la cadena <strong>[b,b,a,a,b,a,b]</strong>, verificando que es una cadena aceptada.</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/automata2.png?raw=true"></p>
+
+<p>Finalmente realizaremos la prueba con la cadena <strong>[b,b,a]</strong>, la cual debería ser rechazada.</p>
+
+<p align="center">
+<img src="https://github.com/mppinedav/prologtutorial/blob/master/automata3.png?raw=true"></p>
+
+<hr>
+
+<h2>
+<a id="esperamos-que-el-tutorial-haya-sido-de-su-agrado-todos-los-ejercicios-trabajados-pueden-encontrarlos-en-este-notebook" class="anchor" href="#esperamos-que-el-tutorial-haya-sido-de-su-agrado-todos-los-ejercicios-trabajados-pueden-encontrarlos-en-este-notebook" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Esperamos que el tutorial haya sido de su agrado. Todos los ejercicios trabajados pueden encontrarlos en este <a href="http://swish.swi-prolog.org/p/tutorialprolog.swinb">notebook</a>
+</h2>
+
+<p>Este tutorial fue desarrollado por Mónica Pineda, Jorge Bonilla y Diego Poveda.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/mppinedav/prolog">Prolog</a> is maintained by <a href="https://github.com/mppinedav">mppinedav</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>

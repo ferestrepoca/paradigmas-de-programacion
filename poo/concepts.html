@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <meta charset='utf-8'>
+    <title> POO </title>
+</head>
+
+<body>
+    <ul class="menu">
+        <li><a class="menu-item" href="index.html">Programación Orientada a Objetos</a>
+            <ul>
+                <li><a class="menu-item" href="index.html#history">Historia</a></li>
+                <li><a class="menu-item" href="index.html#evolution">Evolución</a></li>
+                <li><a class="menu-item" href="index.html#philosophy">Filosofía y Principios</a></li>
+                <li><a class="menu-item" href="index.html#advantage_disadvantage">Ventajas y Desventajas</a></li>
+                <li><a class="menu-item" href="index.html#languages">Lenguajes</a></li>
+                <li><a class="menu-item" href="index.html#applications">Aplicaciones</a></li>
+            </ul>
+        </li>
+        <li><a class="menu-item" href="concepts.html">Conceptos Clave</a>
+        </li>
+        <li><a class="menu-item" href="good-practices.html">Buenas Prácticas</a></li>
+        <li><a class="menu-item" href="examples.html">Ejemplos</a></li>
+        <li><a class="menu-item" href="slides.html">Presentación</a></li>
+    </ul>
+
+
+    <div class="empty">Empty</div>
+    <div class="container">
+        <h1><strong><center>Paradigma de Programación Orientada a Objectos </center></strong><br>
+        </h1>
+
+
+        <section id="concepts">
+            <h2><strong>Conceptos clave</strong></h2>
+            <ul style="list-style-type: circle;">
+                <li>Clases</li>
+                <li>Objeto</li>
+                <li>Abstracción</li>
+                <li>Encapsulamiento</li>
+                <li>Herencia</li>
+                <li>Polimorfismo</li>
+                <li>Modularidad</li>
+                <li>Interfaz</li>
+                <li>Modificadores de Acceso</li>
+                <li>Sobrecarga de métodos</li>
+            </ul>
+            <br />
+
+            <br />
+            <div align="justify"><strong>Clase: </strong>La clase es un modelo o prototipo que define las variables y métodos comunes a todos los objetos de cierta clase. También se puede decir que una clase es una plantilla genérica para un conjunto de objetos de similares características.
+                <br />
+            </div>
+            <br>
+            <center><img src="images/clase.png" alt="Photo" height=220 border=0 hspace=0> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <img src="images/clase2.png" alt="Photo" height=220 border=0 hspace=0></center>
+            <br>
+
+            <br />
+            <div align="justify"><strong>Constructor: </strong>Cuando se construye un objeto es necesario inicializar sus variables con valores coherentes. Esto se hace por medio de un constructor que tiene las siguientes características: Se llama igual que la clase. No devuelve nada. Pueden existir varios, pero siguiendo las reglas de la sobrecarga de funciones. De entre los que existan, tan sólo uno se ejecutará al crear un objeto de la clase.
+                <br /> </div>
+            <br>
+            <center><img src="images/ConsPy.png" alt="Photo" height=200 border=0 hspace=0>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <img src="images/ConsPhp.png" alt="Photo" height=200 border=0 hspace=0>
+                <p>Constructor en Python y Constructor en PHP</p>
+                <br>
+            </center>
+            <br>
+
+            <br />
+            <div align="justify"><strong>Clase Abstracta: </strong> Este Tipo de Clases nos permiten crear "métodos generales", que recrean un comportamiento común, pero sin especificar cómo lo hacen. A nivel de código tiene por particularidad que algunos de sus métodos no tienen &ldquo;cuerpo de declaración.
+                <br /> </div>
+
+
+            <br />
+            <div align="justify"><strong>Interface: </strong> Una interfaz es un conjunto de métodos abstractos y de constantes cuya funcionalidad es la de determinar el funcionamiento de una clase, es decir, funciona como un molde o como una plantilla.
+                <br /> </div>
+            <br>
+            <center><img src="images/AbsInt.png" alt="Photo" border=0 hspace=0>
+                <p>Clases abstractas vs Interfaces</p>
+            </center>
+
+            <br />
+            <div align="justify"><strong> Objeto: </strong> Los Objetos de Software, al igual que los objetos del mundo real, también tienen características y comportamientos. Un objeto de software mantiene sus características en una o más &ldquo;atributos&rdquo;, e implementa su comportamiento con "métodos".
+                <br /> </div>
+            <br>
+            <center>
+                <iframe width="420" height="315" src="https://www.youtube.com/embed/2Oz7Z6Lwf70" frameborder="0" allowfullscreen></iframe>
+            </center>
+            <br>
+
+            <br />
+            <div align="justify"><strong>Abstracción: </strong> Denota las características esenciales de un objeto, donde se capturan sus comportamientos. Además de ser clave en el proceso de análisis y dise&ntilde;o orientado a objetos, ya que nos permite llegar a armar un conjunto de clases que modelan la realidad o problema.
+                <br /> </div>
+            <br>
+            <center><img src="images/Abstraccion.jpg" alt="Photo" border=0 hspace=0></center>
+
+            <br />
+            <div align="justify"><strong>Encapsulamiento: </strong> Es el proceso de almacenar en una misma sección los elementos de una abstracción que constituyen su estructura y su comportamiento; sirve para separar el interfaz contractual de una abstracci&oacute;n y su implantación.
+                <br /> </div>
+            <br>
+            <center><img src="images/Encapsulamiento.jpg" alt="Photo" border=0 hspace=0></center>
+
+            <br />
+            <div align="justify"><strong> Herencia: </strong>La herencia básicamente consiste en que una clase puede heredar sus variables y métodos a varias subclases (la clase que hereda es llamada superclase o clase padre).
+                <br /> </div>
+            <br>
+            <center><img src="images/Herencia.jpg" alt="Photo" border=0 hspace=0></center>
+
+            <br />
+            <div align="justify"><strong>Polimorfismo: </strong>Son comportamientos diferentes, asociados a objetos distintos, pueden compartir el mismo nombre; al llamarlos por ese nombre se utilizará el comportamiento correspondiente al objeto que se est&eacute; usando.
+                <br /> </div>
+            <br>
+            <center><img src="images/Polimorfismo.png" alt="Photo" border=0 hspace=0></center>
+
+            <br />
+            <div align="justify"><strong>Modularidad: </strong> La modularidad es la propiedad que permite dividir una aplicación en partes más pequeñas ( llamadas módulos ), cada una de las cuales debe ser tan independiente como sea posible de la aplicación en sí y de las restantes partes.
+                <br /> </div>
+
+            <br />
+            <div align="justify"><strong>Modificadores de acceso: </strong> Son palabras claves de los lenguajes de programación orientado a objetos para configurar la accesibilidad a las clases, m&eacute;todos o propiedades.
+                <br /> </div>
+            <br>
+            <center><img src="images/Acceso.png" alt="Photo" border=0 hspace=0></center>
+
+            <br />
+            <div align="justify"><strong>Sobrecarga de métodos: </strong> Es la definición de varios métodos con el mismo nombre pero con diferentes firmas.</div>
+            <br>
+            <center><img src="images/Sobre.jpg" alt="Photo" border=0 hspace=0></center>
+
+        </section>
+    </div>
+
+
+    <div class="footer">
+        <center>
+            <a href="index.html">Paradigma</a> |
+            <a href="concepts.html">Conceptos</a> |
+            <a href="examples.html">Ejemplos</a> |
+            <a href="slides.html">Presentación</a> |
+            <a href="references.html">Referencias</a>
+        </center>
+        <br> Creado por: Laura Álvarez, Helmer Avendaño, Yeison García, Sebastián Morales.
+    </div>
+
+    <script src="js/jquery.js">
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

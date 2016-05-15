@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Paradigmas de programación by raulramirezp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Paradigmas de programación</h1>
+      <h2 class="project-tagline">Paradigmas de programación UNAL</h2>
+      <a href="https://github.com/raulramirezp/paradigmas-de-programacion" class="btn">View on GitHub</a>
+      <a href="https://github.com/raulramirezp/paradigmas-de-programacion/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/raulramirezp/paradigmas-de-programacion/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h2>
+<a id="paradigmas-de-programación" class="anchor" href="#paradigmas-de-programaci%C3%B3n" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Paradigmas de programación</h2>
+
+<p>Este sitio está dedicado a presentar diferentes <strong>paradigmas de programación</strong> y algunos tutoriales de los <strong>lenguajes de programación</strong> más representativos de cada paradigma. </p>
+
+<p>Los colaboradores que han hecho posible este sitio son los estudiantes de la asignatura <a href="https://sites.google.com/a/unal.edu.co/lenguajes-de-programacion-2016-1/">Lenguajes de Programación</a> en la <a href="http://unal.edu.co/">Universidad Nacional de Colombia</a> - Sede Bogotá.</p>
+
+<h4>
+<a id="programación-orientada-a-objetos" class="anchor" href="#programaci%C3%B3n-orientada-a-objetos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Programación Orientada a objetos</h4>
+
+<h4>
+<a id="programación-funcional" class="anchor" href="#programaci%C3%B3n-funcional" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Programación Funcional</h4>
+
+<h4>
+<a id="programación-lógica" class="anchor" href="#programaci%C3%B3n-l%C3%B3gica" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Programación Lógica</h4>
+
+<h4>
+<a id="programación-paralela" class="anchor" href="#programaci%C3%B3n-paralela" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Programación Paralela</h4>
+
+<h4>
+<a id="programación-concurrente" class="anchor" href="#programaci%C3%B3n-concurrente" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Programación Concurrente</h4>
+
+<h1>
+<a id="programacion-concurrente" class="anchor" href="#programacion-concurrente" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PROGRAMACION CONCURRENTE</h1>
+
+<h1>
+<a id="programación-concurrente-1" class="anchor" href="#programaci%C3%B3n-concurrente-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Programación Concurrente</h1>
+
+<h1>
+<a id="filosofía" class="anchor" href="#filosof%C3%ADa" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Filosofía</h1>
+
+<p>Es la división de  un problema en subproblemas  que se solucionan de forma individual, para crear un programa o aplicación que no se vea afectada en tiempo real</p>
+
+<h1>
+<a id="definición" class="anchor" href="#definici%C3%B3n" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Definición:</h1>
+
+<p>Hace referencia a las técnicas de programación que son utilizadas para expresar la concurrencia entre tareas y solución de los problemas de comunicación y sincronización entre procesos</p>
+
+<h1>
+<a id="conceptos-clave" class="anchor" href="#conceptos-clave" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conceptos clave</h1>
+
+<p>Para entender el funcionamiento, a nivel de sistema operativo,de la programación concurrente, es necesario tener claro que es un proceso, y como se representa en la máquina, para ello vamos a ver que es un proceso:</p>
+
+<h1>
+<a id="proceso" class="anchor" href="#proceso" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Proceso</h1>
+
+<p>Un proceso no solamente es el código de un programa,un proceso tiene un <strong>contador de programa</strong> el cual es un registro del computador que indica la dirección de la siguiente instrucción que será ejecutada por el proceso, <strong>Pila de proceso</strong> Esta contiene datos temporales tales como: Los parametros de las funciones, direcciones de retorno, variables locales , … , <strong>Sección de datos</strong> la cual contiene datos tales como las variables locales, Heap: Cúmulo de memoria que es la memoria que se asigna dinámicamente al proceso n tiempo de ejecución</p>
+
+<p><img src="https://www.cs.uic.edu/%7Ejbell/CourseNotes/OperatingSystems/images/Chapter3/3_01_Process_Memory.jpg" alt=""></p>
+
+<p><strong>Note</strong> que un programa por sí sólo no es un proceso, ya que este es una entidad pasiva que contiene una lista de instrucciones almacenadas en disco ( archivo ejecutable),  mientras que un proceso es una entidad activa, el cual cumple todas las características descritas anteriormente.</p>
+
+<p><strong>Estados del proceso</strong>
+Cuando un proceso es ejecutado este cambia de estados, los estados que todo proceso tiene por lo general son:</p>
+
+<ul>
+<li><p><strong>Nuevo</strong>:        El proceso se está creando.</p></li>
+<li><p><strong>Corriendo</strong>:        Se están ejecutando las instrucciones.</p></li>
+<li><p><strong>Espera</strong>:        El proceso está esperando que algún evento ocurra.</p></li>
+<li><p><strong>Preparado</strong>:    El proceso está esperando ser asignado al procesador.</p></li>
+<li><p><strong>Terminado</strong>:    El proceso a terminado la ejecución.
+<img src="https://www.cs.uic.edu/%7Ejbell/CourseNotes/OperatingSystems/images/Chapter3/3_02_ProcessState.jpg" alt=""></p></li>
+</ul>
+
+<p><strong>PCB ( Bloque de control de proceso )</strong>
+Cada proceso se representa en el sistema operativo mediante el PCB, entre los elementos de información que este contiene se encuentran:</p>
+
+<ul>
+<li><p><strong>Estado del proceso</strong>:  New, ready, running, waiting, halted, ...</p></li>
+<li><p><strong>Contador del programa</strong>: </p></li>
+<li><p><strong>Registros de la CPU</strong>:    Estos varían en cuanto a número y tipo dependiendo  de la arquitectura del procesador</p></li>
+<li><p><strong>Información de planificación de la CPU</strong>: Parametros de planificación como prioridad de procesos, punteros  a las colas de planificación ...</p></li>
+<li><p><strong>Información de gestión de memoria</strong>: Tablas de paginas , tablas de segmentos, dependiendo los mecanismos de gestión del S.O</p></li>
+</ul>
+
+<p><img src="https://www.cs.uic.edu/%7Ejbell/CourseNotes/OperatingSystems/images/Chapter3/3_03_PCB.jpg" alt=""></p>
+
+<h1>
+<a id="hilo" class="anchor" href="#hilo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hilo</h1>
+
+<p>Se puede definir como una unidad básica de utilización del CPU. Cada hilo tiene:
+Id de hilo,  Contador de programa,  Registros, Pila.
+Los hilos que pertenecen a un mismo proceso comparten:
+Sección de código, sección de datos, entre otros recursos del sistema.</p>
+
+<h1>
+<a id="multiprogramación" class="anchor" href="#multiprogramaci%C3%B3n" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multiprogramación</h1>
+
+<p>Es una técnica de multiplexación que permite de múltiples procesos en un único procesador.
+Es importante resaltar que los procesos nunca corren en paralelo en el procesador, ya que en cada instante de tiempo solo se ejecuta un proceso en el procesador.</p>
+
+<h1>
+<a id="multiproceso" class="anchor" href="#multiproceso" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multiproceso</h1>
+
+<p>Es una técnica en la cual se hace uso de dos o más procesadores en una computadora para ejecutar uno o varios procesos.</p>
+
+<h1>
+<a id="procesamiento-distribuido" class="anchor" href="#procesamiento-distribuido" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Procesamiento distribuido</h1>
+
+<p>Es cuando uno o varios procesos son ejecutados en una o más computadores</p>
+
+<h1>
+<a id="programacion-paralela-y-concurrente" class="anchor" href="#programacion-paralela-y-concurrente" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Programacion Paralela y Concurrente</h1>
+
+<h2>
+<a id="relacion" class="anchor" href="#relacion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Relacion</h2>
+
+<p>Multiples procesos pueden ser ejecutados al mismo tiempo. En otra palabras, la programacion concurrente se comporta igual que la paralela cuando tenemos un sistema multiprocesador en el cual cada unidad de procesamiento ejecuta un proceso o hilo. En la imagen inferior podemos ver que el la unidad de procesamiento 2 y 3 se comportan igual.</p>
+
+<p><img src="http://s32.postimg.org/s503ixn05/paralellismo.jpg" alt=""></p>
+
+<p>Hay que aclarar la concurrencia no solo es paralelismo, ya que, cuando hay mas procesos o hilos el scheduler del sistema operativo interviene y divide la ejecucion de los procesos, <strong>caracteristica que la programacion paralela NO tiene</strong> cada proceso tiene que ser ejecutado exclusivamente en una unidad de procesamiento. En la parte inferior podemos apreciar mejor la diferencia.</p>
+
+<p><img src="http://joearms.github.io/images/con_and_par.jpg" alt=""></p>
+
+<h1>
+<a id="sincronizacion" class="anchor" href="#sincronizacion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sincronizacion</h1>
+
+<p>Cuando tenemos varios procesos o hilos en la ejecucion, en muchos casos no queremos que estos se ejecuten al mismo tiempo. El mecanismo que controla el orden de ejecucion de determinadas tareas lo llamamos <strong>SINCRONIZACION</strong>.</p>
+
+<p><em><strong>Porque el algunos casos no queremos que los hilos se ejecuten al mismo tiempo?</strong></em></p>
+
+<p><img src="http://www.blogdepsicologia.com/wp-content/uploads/2015/06/ansiedad-2.jpg" alt=""></p>
+
+<h2>
+<a id="problema-del-lector---escritor" class="anchor" href="#problema-del-lector---escritor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problema del Lector - Escritor</h2>
+
+<p>Cuando tenemos varios lectores y escritores, por ejemplo, en un base de datos, muchos procesos van a intentar leer o escribir al mismo tiempo, lo cual no podemos permitir, ya que, nuestra informacion se podria perder, duplicar, corromper entre otros. Solo es posible que un proceso leo o escriba y que los demas esperen su turno. </p>
+
+<h2>
+<a id="problema-de-los-filosofos-que-cenan" class="anchor" href="#problema-de-los-filosofos-que-cenan" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problema de los filosofos que cenan</h2>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/An_illustration_of_the_dining_philosophers_problem.png/200px-An_illustration_of_the_dining_philosophers_problem.png" alt=""></p>
+
+<p>Cada filósofo pueda tomar los tenedores que están a su izquierda o derecha, para poder comer el filósofo de tener los dos tenedores. Si cualquier filósofo toma los dos tenedores entonces los que están al lado queda en espera. Hay un tenedor y los dos filósofos compiten por tomarlo y uno queda sin tenedores. </p>
+
+<p>Si todos los filósofos toman el tenedor que está a su derecha entonces todos se quedaran esperando infinitamente. Nadie va a ceder su tenedor porque todos están en la misma situación.</p>
+
+<p>Como podemos hacer para que los filósofos no se mueran de hambre?. Interesante no, el problema en sí tiene muchas soluciones pero solo vamos a enunciar una: Un filosofo toma los dos tenedores y se los demas hacen una cola alrededor de la mesa para saber cual es el siguiente hasta que todos acaban.</p>
+
+<h1>
+<a id="metodos-de-sincronización" class="anchor" href="#metodos-de-sincronizaci%C3%B3n" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Metodos de Sincronización</h1>
+
+<p>Hay muchos metodos de sincronizacion vamos a mostrar los mas importantes.</p>
+
+<ul>
+<li>Semaforos</li>
+<li>Tuberias</li>
+<li>Paso de mensaje</li>
+</ul>
+
+<h2>
+<a id="semaforos" class="anchor" href="#semaforos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Semaforos</h2>
+
+<p>Son variables que almacenan un valor entero y en la que hay tres operaciones básicas: inicialización, incremento y decremento. Las tres operaciones son atómicas, lo que significa que durante la ejecución nunca se va a interrumpir el proceso. Con estas operaciones constituyen unos métodos para permitir o restringir el acceso a la sección crítica.</p>
+
+<ul>
+<li>Se inicializa con un valor entero mayor que cero generalmente uno</li>
+<li>Se hace un decremento. Después se evalúa si el valor del semáforo es menor o igual a cero esta función se bloquea</li>
+<li>Se hace un incremento. Si el valor del semáforo es mayor que cero, el proceso bloqueado será desbloqueado</li>
+</ul>
+
+<h2>
+<a id="mutex" class="anchor" href="#mutex" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mutex</h2>
+
+<p>Es la implementación a más alto nivel teniendo en cuenta el software y hardware se suele utilizar:</p>
+
+<ul>
+<li>Semaforos</li>
+<li>Monitores</li>
+<li>Paso de mensajes</li>
+<li>Pipes</li>
+<li>Bloqueos recursivo</li>
+<li>Bloqueos temporizados</li>
+</ul>
+
+<p>Se suelen utilizar los siguientes métodos generales:</p>
+
+<ul>
+<li>Iniciar Mutex</li>
+<li>Bloquear seccion critica</li>
+<li>Desbloquear seccion critica</li>
+<li>Destruir Mutex</li>
+</ul>
+
+<h1>
+<a id="ventajas" class="anchor" href="#ventajas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ventajas</h1>
+
+<ul>
+<li>Mejor rendimiento en un sistema monoprocesador</li>
+<li>Fiable administración de los datos en sistemas con gran información</li>
+<li>Permite el desarrollo de aplicaciones que no se vean afectadas en tiempo real</li>
+<li>Mejor aprovechamiento de la CPU</li>
+</ul>
+
+<h1>
+<a id="desventajas" class="anchor" href="#desventajas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Desventajas</h1>
+
+<ul>
+<li>Consumos de recursos cuando hay excesos de hilos o procesos</li>
+<li>En programas con pocas instrucciones en mas lento</li>
+<li>Desarrollo</li>
+</ul>
+
+<h1>
+<a id="aplicaciones" class="anchor" href="#aplicaciones" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Aplicaciones</h1>
+
+<ol>
+<li>Servidores Web</li>
+<li>Sistema multimedia</li>
+<li>Calculo numerico</li>
+<li>Interaccion por GUI</li>
+<li>Sistemas gestores de bases de datos</li>
+<li>Sistemas Operativos</li>
+</ol>
+
+<h1>
+<a id="lenguajes" class="anchor" href="#lenguajes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lenguajes</h1>
+
+<ul>
+<li>Ejemplo en <strong>python</strong>: Este es un pequeño ejemplo con el fin de ilustrar como podemos lanzar un hilo en python</li>
+</ul>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> threading <span class="pl-k">import</span> Thread
+<span class="pl-k">import</span> time
+
+<span class="pl-k">def</span> <span class="pl-en">say_hello</span>(<span class="pl-smi">name</span>):
+    <span class="pl-c1">print</span> (name, <span class="pl-s"><span class="pl-pds">"</span>Hola<span class="pl-pds">"</span></span>)
+
+t <span class="pl-k">=</span> Thread(<span class="pl-v">target</span><span class="pl-k">=</span>say_hello, <span class="pl-v">args</span><span class="pl-k">=</span>(<span class="pl-s"><span class="pl-pds">"</span>world<span class="pl-pds">"</span></span>,))
+t.start()
+t.join()</pre></div>
+
+<p><strong>Ejecucion:</strong> python archivo.py</p>
+
+<blockquote>
+<p>('world', 'Hola')</p>
+</blockquote>
+
+<ul>
+<li>Ejemplo en <em>GO</em>: En este ejemplo podemos visualizar que los hilos no se ejecutan en el orden ascedente si no esto lo decide el scheduler del sistema operativo</li>
+</ul>
+
+<div class="highlight highlight-source-go"><pre><span class="pl-k">package</span> main
+
+<span class="pl-k">import</span> (
+    <span class="pl-s"><span class="pl-pds">"</span>fmt<span class="pl-pds">"</span></span>
+    <span class="pl-s"><span class="pl-pds">"</span>time<span class="pl-pds">"</span></span>
+)
+
+<span class="pl-k">const</span> <span class="pl-v">FINAL</span> = <span class="pl-c1">100</span> * time.<span class="pl-smi">Millisecond</span>
+
+<span class="pl-k">func</span> <span class="pl-en">saluda</span>(<span class="pl-v">i</span> <span class="pl-v">int</span>) {
+    time.<span class="pl-c1">Sleep</span>(<span class="pl-c1">10</span> * time.<span class="pl-c1">Duration</span>(i%<span class="pl-c1">5</span>) * time.<span class="pl-smi">Millisecond</span> )
+    fmt.<span class="pl-c1">Println</span>(<span class="pl-s"><span class="pl-pds">"</span>Hola a todos<span class="pl-pds">"</span></span>, i)
+}
+
+<span class="pl-k">func</span> <span class="pl-en">main</span>() {
+    <span class="pl-k">for</span> <span class="pl-smi">i</span> <span class="pl-k">:=</span> <span class="pl-c1">1</span>; i &lt;= <span class="pl-c1">6</span>; i++ {
+        <span class="pl-c">// Lanzamos nuestro hilo solo anteponiendo la palabra go a la funcion</span>
+        <span class="pl-k">go</span> <span class="pl-c1">saluda</span>(i)
+    }
+    time.<span class="pl-c1">Sleep</span>(FINAL)
+}</pre></div>
+
+<p><strong>Ejecucion:</strong> go run archivo.go</p>
+
+<blockquote>
+<p>Hola a todos 5</p>
+
+<p>Hola a todos 6</p>
+
+<p>Hola a todos 1</p>
+
+<p>Hola a todos 2</p>
+
+<p>Hola a todos 3</p>
+
+<p>Hola a todos 4</p>
+</blockquote>
+
+<ul>
+<li>Ejemplos semaforo en <strong>C</strong>: El siguiente codigo fuente solo sirve sistemas operativos basado en unix.</li>
+</ul>
+
+<div class="highlight highlight-source-c"><pre>#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>stdlib.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>stdio.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>pthread.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>unistd.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>sys/types.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>fcntl.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>sys/stat.h<span class="pl-pds">&gt;</span></span>      
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>semaphore.h<span class="pl-pds">&gt;</span></span>
+
+#<span class="pl-k">define</span> <span class="pl-en">NUMHILOS</span> <span class="pl-c1">5</span>
+
+<span class="pl-c1">sem_t</span> *semaforo;
+<span class="pl-k">int</span> error, i, parametro, a;
+<span class="pl-k">char</span> t;
+<span class="pl-k">void</span> *z;
+
+<span class="pl-k">void</span> *<span class="pl-en">fun</span>(<span class="pl-k">void</span> *ap )
+{
+    <span class="pl-c1">sem_t</span> *sem = ap;
+    <span class="pl-k">char</span> t;
+    <span class="pl-c1">sem_wait</span>( sem ); <span class="pl-c">// Bloqueamos seccion critica</span>
+    <span class="pl-c1">printf</span>( <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span> Hilo ENTRO a seccion critica<span class="pl-pds">"</span></span> );
+    <span class="pl-c1">fflush</span>( stdout );
+    <span class="pl-c1">sleep</span>( <span class="pl-c1">1</span> );
+    <span class="pl-c1">printf</span>( <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span> Hilo SALIO a seccion critica<span class="pl-cce">\n\n</span><span class="pl-pds">"</span></span> );
+    <span class="pl-c1">fflush</span>( stdout );
+    <span class="pl-c1">sem_post</span>( sem ); <span class="pl-c">// Desbloqueamos seccion critica</span>
+}
+
+<span class="pl-k">int</span> <span class="pl-en">main</span>()
+{
+    <span class="pl-c">// Creamos nuestro semaforo</span>
+    semaforo = <span class="pl-c1">sem_open</span>( <span class="pl-s"><span class="pl-pds">"</span>sema<span class="pl-pds">"</span></span>, O_CREAT, <span class="pl-c1">0666</span>, <span class="pl-c1">1</span> );
+
+    <span class="pl-c">// Declaramos el descritor de los hilos</span>
+    <span class="pl-c1">pthread_t</span> hilos[NUMHILOS];
+
+    <span class="pl-c">// Creamos nuestros hilos</span>
+    <span class="pl-k">for</span>( i = <span class="pl-c1">0</span>; i &lt; NUMHILOS; i++ )
+        <span class="pl-c1">pthread_create</span>( &amp;hilos[i], <span class="pl-c1">NULL</span>, (<span class="pl-k">void</span> *)fun, semaforo );
+
+    <span class="pl-c">// Esperamos a que nuestro hilos de ejecutan antes de terminar el programa</span>
+    <span class="pl-k">for</span>( i = <span class="pl-c1">0</span>; i &lt; NUMHILOS; i++ )
+        <span class="pl-c1">pthread_join</span>( hilos[i], (<span class="pl-k">void</span> *)&amp;z );
+
+    <span class="pl-c">// Destruimos nuestro semaforo</span>
+    <span class="pl-c1">sem_unlink</span>( <span class="pl-s"><span class="pl-pds">"</span>sema<span class="pl-pds">"</span></span> );
+    <span class="pl-c1">sem_close</span>( semaforo );
+    <span class="pl-k">return</span> <span class="pl-c1">0</span>;
+}</pre></div>
+
+<p>Compilamos: <strong>gcc semaforo.c -o semaforo -pthread</strong></p>
+
+<p>Ejecutamos: <strong>./semaforo</strong></p>
+
+<blockquote>
+<p>Hilo ENTRO a seccion critica</p>
+
+<p>Hilo SALIO a seccion critica</p>
+
+<p>Hilo ENTRO a seccion critica</p>
+
+<p>Hilo SALIO a seccion critica</p>
+
+<p>Hilo ENTRO a seccion critica</p>
+
+<p>Hilo SALIO a seccion critica</p>
+</blockquote>
+
+<ul>
+<li>Ejemplo en <strong>C++</strong>: Calculamos el numero pi con 4 hilos con la ayuda de <a href="https://es.wikipedia.org/wiki/Serie_de_Leibniz">Serie de Leibniz</a> </li>
+</ul>
+
+<div class="highlight highlight-source-c++"><pre>#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>iostream<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>thread<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>vector<span class="pl-pds">&gt;</span></span>
+
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
+vector&lt;<span class="pl-k">double</span>&gt; <span class="pl-en">valorCal</span>( <span class="pl-c1">4</span>, <span class="pl-c1">0.0</span> ), limites;
+
+<span class="pl-k">void</span> <span class="pl-en">calcularIntervalo</span> (<span class="pl-k">int</span> index)
+{
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = limites[<span class="pl-c1">index</span>]; i &lt; limites[<span class="pl-c1">index</span>+<span class="pl-c1">1</span>]; i++)
+        <span class="pl-k">if</span> (i % <span class="pl-c1">2</span> == <span class="pl-c1">0</span>)
+            valorCal[<span class="pl-c1">index</span>] += <span class="pl-c1">1.0</span>/(<span class="pl-c1">2</span>*i+<span class="pl-c1">1</span>);
+        <span class="pl-k">else</span>
+            valorCal[<span class="pl-c1">index</span>] -= <span class="pl-c1">1.0</span>/(<span class="pl-c1">2</span>*i+<span class="pl-c1">1</span>);
+}
+
+<span class="pl-k">int</span> <span class="pl-en">main</span>()
+{
+    <span class="pl-c">// Creamos nuestro limites</span>
+    <span class="pl-k">int</span> numeroSerie = <span class="pl-c1">1000000000</span>;
+    limites.<span class="pl-c1">push_back</span>( <span class="pl-c1">0</span> );
+    limites.<span class="pl-c1">push_back</span>( numeroSerie/<span class="pl-c1">4</span> );
+    limites.<span class="pl-c1">push_back</span>( numeroSerie/<span class="pl-c1">2</span> );
+    limites.<span class="pl-c1">push_back</span>( <span class="pl-c1">3</span>*(numeroSerie/<span class="pl-c1">4</span>) );
+    limites.<span class="pl-c1">push_back</span>( numeroSerie );
+
+    <span class="pl-c">// Creamos a hilos</span>
+    thread hilos[<span class="pl-c1">4</span>];
+
+    <span class="pl-c">// Inicializamos nuestros hilos</span>
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; <span class="pl-c1">4</span>; i++)
+        hilos[i] = <span class="pl-c1">thread</span>( calcularIntervalo, i );
+
+    <span class="pl-c">// Esperemos a que nuestros hilos terminen</span>
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; <span class="pl-c1">4</span>; i++)
+        hilos[i].<span class="pl-c1">join</span>();
+
+    <span class="pl-c">// Calculamos nuestra respuesta</span>
+    <span class="pl-k">double</span> answer = <span class="pl-c1">0</span>;
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; <span class="pl-c1">4</span>; i++)
+        answer += valorCal[i];
+    answer *= <span class="pl-c1">4</span>;
+    <span class="pl-c1">printf</span>( <span class="pl-s"><span class="pl-pds">"</span>EL valor de pi es:<span class="pl-cce">\t</span><span class="pl-c1">%.20f</span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>, answer );
+    <span class="pl-k">return</span> <span class="pl-c1">0</span>;
+}</pre></div>
+
+<p>Compilar: <strong>g++ pi.cpp -o pi -std=c++11 -pthread</strong></p>
+
+<p>Ejecutar: <strong>./pi</strong></p>
+
+<blockquote>
+<p>EL valor de pi es:    3.14159265258921038821</p>
+</blockquote>
+
+<h1>
+<a id="referencias" class="anchor" href="#referencias" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Referencias</h1>
+
+<ul>
+<li><a href="https://go-tour-es.appspot.com/#1">https://go-tour-es.appspot.com/#1</a></li>
+<li><a href="https://geekytheory.com/concurrencia-en-javascript/">https://geekytheory.com/concurrencia-en-javascript/</a></li>
+<li><a href="http://www.ctr.unican.es/asignaturas/procodis_3_ii/doc/procodis_3_01.pdf">http://www.ctr.unican.es/asignaturas/procodis_3_ii/doc/procodis_3_01.pdf</a></li>
+<li><a href="http://www.genbetadev.com/python/multiprocesamiento-en-python-threads-a-fondo-introduccion">http://www.genbetadev.com/python/multiprocesamiento-en-python-threads-a-fondo-introduccion</a></li>
+<li><a href="http://www.ctr.unican.es/asignaturas/procodis_3_ii/doc/procodis_1_01.pdf">http://www.ctr.unican.es/asignaturas/procodis_3_ii/doc/procodis_1_01.pdf</a></li>
+<li><a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-189-multicore-programming-primer-january-iap-2007/lecture-notes-and-video/l4-introduction-to-concurrent-programming/">http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-189-multicore-programming-primer-january-iap-2007/lecture-notes-and-video/l4-introduction-to-concurrent-programming/</a></li>
+<li><a href="https://sites.google.com/a/unal.edu.co/sistemas-operativos/">https://sites.google.com/a/unal.edu.co/sistemas-operativos/</a></li>
+<li><a href="https://www.fing.edu.uy/tecnoinf/mvd/cursos/so/material/teo/so07-concurrencia.pdf">https://www.fing.edu.uy/tecnoinf/mvd/cursos/so/material/teo/so07-concurrencia.pdf</a></li>
+<li>Abraham Silberschatz-Operating System Concepts (9th,2012.12)</li>
+</ul>
+
+<h1>
+<a id="intregrantes" class="anchor" href="#intregrantes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Intregrantes</h1>
+
+<ul>
+<li>Jhon Emmanuel Torres</li>
+<li>Raul Ramirez Penagos</li>
+<li>Diego Rodriguez</li>
+</ul>
+
+<h4>
+<a id="programación-orientada-a-aspectos" class="anchor" href="#programaci%C3%B3n-orientada-a-aspectos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Programación Orientada a Aspectos</h4>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/raulramirezp/paradigmas-de-programacion">Paradigmas de programación</a> is maintained by <a href="https://github.com/raulramirezp">raulramirezp</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>

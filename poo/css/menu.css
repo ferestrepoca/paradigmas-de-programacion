@@ -1,0 +1,86 @@
+.menu {
+    position: fixed;
+    list-style: none;
+    background: #f4f4f4;
+    z-index: 90;
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+    width: 100%;
+    box-shadow: 0px 1px 8px #636363;
+}
+
+.empty {
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 20px;
+    opacity: 0;
+    width: 100%;
+}
+
+.menu > li {
+    list-style: none;
+    float: left;
+    position: relative;
+    padding: 0 10px;
+}
+
+.menu >li:hover {}
+
+.menu li ul {
+    transition: opacity 1s;
+    opacity: 0;
+    height: 0;
+    width: 100%;
+    position: absolute;
+    background: #f4f4f4;
+    box-shadow: 0px 2px 10px #636363;
+    z-index: 80;
+    font-size: 15px;
+    overflow: hidden;
+    padding: 0px 5px;
+}
+
+.menu li:hover > ul {
+    opacity: 1;
+    height: auto;
+    list-style: none;
+    font-size: 15px;
+}
+
+.menu:hover {}
+
+.menu li ul li {
+    position: relative;
+    min-width: 100%;
+}
+
+.menu-item:link,
+.menu-item:visited {
+    display: block;
+    transition: color 0.8s;
+    color: #4c4c4c;
+    text-decoration: none;
+    margin: 3px 0px;
+}
+
+.menu-item:hover,
+.menu-item:active {
+    color: #000;
+    text-decoration: none;
+}
+
+.menu li > .menu-item {
+    padding: .5em .9em;
+}
+
+.menu-text {
+    padding: .5em 0;
+    color: #4c4c4c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}

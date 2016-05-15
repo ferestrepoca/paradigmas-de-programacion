@@ -1,0 +1,105 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <meta charset='utf-8'>
+    <title> POO </title>
+</head>
+
+<body>
+    <ul class="menu">
+        <li><a class="menu-item" href="index.html">Programación Orientada a Objetos</a>
+            <ul>
+                <li><a class="menu-item" href="index.html#history">Historia</a></li>
+                <li><a class="menu-item" href="index.html#evolution">Evolución</a></li>
+                <li><a class="menu-item" href="index.html#philosophy">Filosofía y Principios</a></li>
+                <li><a class="menu-item" href="index.html#advantage_disadvantage">Ventajas y Desventajas</a></li>
+                <li><a class="menu-item" href="index.html#languages">Lenguajes</a></li>
+                <li><a class="menu-item" href="index.html#applications">Aplicaciones</a></li>
+            </ul>
+        </li>
+        <li><a class="menu-item" href="concepts.html">Conceptos Clave</a></li>
+        <li><a class="menu-item" href="good-practices.html">Buenas Prácticas</a></li>
+        <li><a class="menu-item" href="examples.html">Ejemplos</a></li>
+        <li><a class="menu-item" href="slides.html">Presentación</a></li>
+    </ul>
+
+    <div class="empty">Empty</div>
+    <div class="container">
+        <h1><strong><center>  Paradigma de Programación Orientada a Objectos </center></strong><br>
+        </h1>
+
+        <section id="slides">
+            <center>
+                <h2> <strong>Buenas Prácticas</strong> </h2></center>
+            <h3><b>Patrones de Diseño</b></h3> Los patrones de diseño buscan dar solución a problemas comunes en la programación.
+            <h3><b>Tipos de patrones</b></h3>
+            <ul>
+                <li>Patrones creacionales.</li>
+                <li>Patrones estructurales.</li>
+                <li>Patrones de comportamiento.</li>
+            </ul>
+
+            <center>
+                <h3><b>Patrones creacionales</b></h3></center>
+            <h3><b>Singleton</b></h3>
+            <h4><b>Problema:</b></h4>
+            <br>
+            <img src="images/singleton.png">
+            <br>
+            <br> Si cada objeto de la clase <i>Session</i> crea una instancia de <i>Database</i> se puede sobrecargar la base de datos.
+            <br>
+            <br>
+            <h4><b>Solución 1:</b></h4> Usar una variable global del tipo <i>Database</i> a la que todos tengan acceso.
+            <br>
+            <img src="images/x_icon.jpg" class="symbol" width="15px"> Las variables globales no son deseadas.
+            <br>
+            <br>
+            <h4><b>Solución 2:</b></h4>
+            <img src="images/solucion-singleton.png" width="450px">
+            <br>
+            <img src="images/check.png" class="symbol" width="15px"> Garantiza que sólo haya una instancia.
+            <br>
+            <img src="images/check.png" class="symbol" width="15px"> El código es intuitivo.
+            <br>
+            <img src="images/x_icon.jpg" class="symbol" width="15px"> Se debe evitar la clonación.
+            <br>
+            <img src="images/x_icon.jpg" class="symbol" width="15px"> El constructor debe ser privado o protegido.
+
+            <br>
+            <br>
+            <center>
+                <h3><b>Patrones estructurales</b></h3></center>
+            <h3><b>Proxy</b></h3>
+            <h4><b>Problema:</b></h4>
+            <br> Un editor que puede incluir imágenes dentro de un documento.
+            <br> Se requiere que la apertura del documento sea rápida pero las imágenes son muy grandes para ser cargadas rápidamente.
+            <br>
+            <br>
+            <h4><b>Solución:</b></h4>
+            <img src="images/solucion-proxy.png" width="450px">
+            <br>
+        </section>
+
+    </div>
+
+    <div class="footer">
+        <center>
+            <a href="index.html">Paradigma</a> |
+            <a href="concepts.html">Conceptos</a> |
+            <a href="examples.html">Ejemplos</a> |
+            <a href="slides.html">Presentación</a> |
+            <a href="references.html">Referencias</a>
+        </center>
+        <br> Creado por: Laura Álvarez, Helmer Avendaño, Yeison García, Sebastián Morales.
+    </div>
+
+    <script src="js/jquery.js">
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
