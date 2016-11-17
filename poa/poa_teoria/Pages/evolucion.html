@@ -14,13 +14,17 @@
 <section class="page-header">
     <h1 class="project-name">Programacion Orientada a Aspectos</h1>
     <h2 class="project-tagline"></h2>
-     <a href="../index.html" class="btn">Inicio</a>
-    <a href="historia.html" class="btn">Historia</a>
-    <a href="filosofia.html" class="btn">Filosofía del Paradigma</a>
-    <a href="evolucion.html" class="btn">Conceptos Claves</a>
-    <a href="lenguajes.html" class="btn">Lenguajes</a>
-    <a href="aplicaciones.html" class="btn">Aplicaciones</a>
-
+	
+	<a href="../index.html" class="btn">Inicio</a>
+	<a href="historia.html" class="btn">Historia</a>
+	<a href="filosofia.html" class="btn">Filosofía del Paradigma</a>
+	<a class="btn btn-actual">Conceptos Claves</a>
+	<a href="ventajasydesventajas.html" class="btn">Ventajas y desventajas</a>
+	<a href="lenguajes.html" class="btn">Lenguajes</a>
+	<a href="aplicaciones.html" class="btn">Aplicaciones</a>
+	<a href="presentaciones.html" class="btn">Presentaciones</a>
+	<a href="practicas.html" class="btn">Practica</a>
+	<a href="ejemplos.html" class="btn">Ejemplos</a>
 </section>
 
 <section class="main-content">
@@ -34,15 +38,15 @@
 <a id="aspectoaspect" class="anchor" href="#aspectoaspect" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>ASPECTO(Aspect):</strong>
 </h3>
 
-<p>“Un aspecto es una <strong>unidad modular que se disemina por la estructura de otras unidades funcionales.</strong> Un aspecto de diseño es una unidad modular del diseño que se entremezcla en la estructura de otras partes del diseño. (G. Kiczales).“</p>
+<p align="justify">“Un aspecto es una <strong>unidad modular que se disemina por la estructura de otras unidades funcionales.</strong> Un aspecto de diseño es una unidad modular del diseño que se entremezcla en la estructura de otras partes del diseño. (G. Kiczales).“</p>
 
-<p><img src="https://github.com/japrietov/POA_teoria-1/blob/gh-pages/Images/Aspecto.png?raw=true" alt=""></p>
+<p align="justify"><img src="https://github.com/japrietov/POA_teoria-1/blob/gh-pages/Images/Aspecto.png?raw=true" alt=""></p>
 
 <h3>
 <a id="punto-de-uniÓnenlacejoint-point" class="anchor" href="#punto-de-uni%C3%93nenlacejoint-point" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>PUNTO DE UNIÓN/ENLACE(Joint point):</strong>
 </h3>
 
-<p>Punto de ejecución dentro del sistema donde un aspecto puede ser conectado:</p>
+<p align="justify">Punto de ejecución dentro del sistema donde un aspecto puede ser conectado:</p>
 
 <ul>
 <li>Llamada a un método</li>
@@ -50,13 +54,13 @@
 <li>Modificación de un campo.</li>
 </ul>
 
-<p><img src="https://github.com/japrietov/POA_teoria-1/blob/gh-pages/Images/Joinpoints.png?raw=true" alt=""></p>
+<p align="justify"><img src="https://github.com/japrietov/POA_teoria-1/blob/gh-pages/Images/Joinpoints.png?raw=true" alt=""></p>
 
 <h3>
 <a id="consejoadvice" class="anchor" href="#consejoadvice" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>CONSEJO(Advice):</strong>
 </h3>
 
-<p>Es la implementación del aspecto, es decir, contiene el <strong>código que implementa la nueva funcionalidad</strong>. Se insertan en la aplicación en los Puntos de unión.
+<p align="justify">Es la implementación del aspecto, es decir, contiene el <strong>código que implementa la nueva funcionalidad</strong>. Se insertan en la aplicación en los Puntos de unión.
 Dentro de ellos podemos encontrar:</p>
 
 <ul>
@@ -76,31 +80,31 @@ Dentro de ellos podemos encontrar:</p>
 <a id="puntos-de-cortepointcut" class="anchor" href="#puntos-de-cortepointcut" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>PUNTOS DE CORTE(Pointcut):</strong>
 </h3>
 
-<p>Define los Consejos que se aplicarán a cada Punto de Cruce. Un pointcut es un <strong>predicado o condición para la aplicación de un aspecto.</strong></p>
+<p align="justify">Define los Consejos que se aplicarán a cada Punto de Cruce. Un pointcut es un <strong>predicado o condición para la aplicación de un aspecto.</strong></p>
 
-<p><em>Se puede entender mas claramente en la siguiente imagen, donde el programa hace un llamado a un advice, el cual se definirá atravez de un pointcut, el cual tendrá diferentes joinpoints del cual podrá escoger uno o varios aspectos para ser ejecutados (Algo enredado, pero mas adelante se explica mejor esa diferenciación entre pointcut y joinpoint..)</em></p>
+<p align="justify"><em>Se puede entender mas claramente en la siguiente imagen, donde el programa hace un llamado a un advice, el cual se definirá atravez de un pointcut, el cual tendrá diferentes joinpoints del cual podrá escoger uno o varios aspectos para ser ejecutados (Algo enredado, pero mas adelante se explica mejor esa diferenciación entre pointcut y joinpoint..)</em></p>
 
-<p><img src="https://github.com/japrietov/POA_teoria-1/blob/gh-pages/Images/advice_pointcut.png?raw=true" alt=""></p>
-
-<hr>
-
-<p><em><strong>VAMOS CON EL EJEMPLO...</strong></em></p>
-
-<p><em>Cuando sales a comer a un restaurante, estando en él, miras el menú y hay varias opciones que se pueden escoger de platos fuertes, ensaladas, postres, etc. Después de ver que hay en el menú escoges uno o mas de estos platos, pero hasta que estos no sean ordenados y el mesero no te los traiga son solo "oportunidades para cenar".</em></p>
-
-<p><img src="https://github.com/japrietov/POA_teoria-1/blob/gh-pages/Images/example_restaurant.png?raw=true" alt=""></p>
-
-<p><em>Los <strong>joinpoints</strong> son las opciones que hay en el menu y los <strong>pointcuts</strong> son los platos que se ordenan. Hablando dentro del ámbito de la programación. Un <strong>joinpoint</strong> es una oportunidad dentro del código para la aplicación de un ASPECTO; una vez se toma esa oportunidad y se selecciona uno o mas joinpoints, al aplicar un ASPECTO de ellos se tendrá un <strong>pointcut</strong>.</em></p>
+<p align="justify"><img src="https://github.com/japrietov/POA_teoria-1/blob/gh-pages/Images/advice_pointcut.png?raw=true" alt=""></p>
 
 <hr>
 
-<p><em>Pero bueno, a nosotros nos gusta ver como se verían todos estos conceptos aplicados ya en un programa. Supongamos que tenemos una tienda, la cual tendrá diferentes empleados. El administrador de la tienda va a tener todo el manejo de los empleados, incluyendo todas las operaciones CRUD (Create, Read, Update, Delete), hasta Como sera el inicio de sesión a la aplicación por parte de los empleados. Este inicio de sesión o Loggin sera el Aspecto que tendrá nuestra aplicación.</em></p>
+<p align="justify"><em><strong>VAMOS CON EL EJEMPLO...</strong></em></p>
 
-<p><em>La imagen a continuación explicara claramente donde estarían cada uno de los conceptos anteriormente mencionados dentro de un programa. Este programa fue implementado utilizando <strong>Spring AOP + AspectJ</strong>.</em></p>
+<p align="justify"><em>Cuando sales a comer a un restaurante, estando en él, miras el menú y hay varias opciones que se pueden escoger de platos fuertes, ensaladas, postres, etc. Después de ver que hay en el menú escoges uno o mas de estos platos, pero hasta que estos no sean ordenados y el mesero no te los traiga son solo "oportunidades para cenar".</em></p>
 
-<p><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/example_code.png?raw=true" alt=""></p>
+<p align="justify"><img src="https://github.com/japrietov/POA_teoria-1/blob/gh-pages/Images/example_restaurant.png?raw=true" alt=""></p>
 
-<p><em>Tal vez aun no quede claro estos conceptos mencionados anteriormente, pero en secciones posteriores encontraran mas ejemplos que ayudaran a entender mejor el paradigma de <strong>Programación Orientada a Aspectos</strong></em></p>
+<p align="justify"><em>Los <strong>joinpoints</strong> son las opciones que hay en el menu y los <strong>pointcuts</strong> son los platos que se ordenan. Hablando dentro del ámbito de la programación. Un <strong>joinpoint</strong> es una oportunidad dentro del código para la aplicación de un ASPECTO; una vez se toma esa oportunidad y se selecciona uno o mas joinpoints, al aplicar un ASPECTO de ellos se tendrá un <strong>pointcut</strong>.</em></p>
+
+<hr>
+
+<p align="justify"><em>Pero bueno, a nosotros nos gusta ver como se verían todos estos conceptos aplicados ya en un programa. Supongamos que tenemos una tienda, la cual tendrá diferentes empleados. El administrador de la tienda va a tener todo el manejo de los empleados, incluyendo todas las operaciones CRUD (Create, Read, Update, Delete), hasta Como sera el inicio de sesión a la aplicación por parte de los empleados. Este inicio de sesión o Loggin sera el Aspecto que tendrá nuestra aplicación.</em></p>
+
+<p align="justify"><em>La imagen a continuación explicara claramente donde estarían cada uno de los conceptos anteriormente mencionados dentro de un programa. Este programa fue implementado utilizando <strong>Spring AOP + AspectJ</strong>.</em></p>
+
+<p align="justify"><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/example_code.png?raw=true" alt=""></p>
+
+<p align="justify"><em>Tal vez aun no quede claro estos conceptos mencionados anteriormente, pero en secciones posteriores encontraran mas ejemplos que ayudaran a entender mejor el paradigma de <strong>Programación Orientada a Aspectos</strong></em></p>
 
 <hr>
 
@@ -108,25 +112,25 @@ Dentro de ellos podemos encontrar:</p>
 <a id="introducciÓnintroduction" class="anchor" href="#introducci%C3%93nintroduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>INTRODUCCIÓN(Introduction):</strong>
 </h3>
 
-<p>Permite añadir métodos o atributos a clases ya existentes. Un ejemplo en el que resultaría útil es la creación de un Consejo de Auditoría que mantenga la fecha de la última modificación de un objeto, mediante una variable y un método setUltimaModificacion(fecha), que podrían ser introducidos en todas las clases (o sólo en algunas) para proporcionarles esta nueva funcionalidad. </p>
+<p align="justify">Permite añadir métodos o atributos a clases ya existentes. Un ejemplo en el que resultaría útil es la creación de un Consejo de Auditoría que mantenga la fecha de la última modificación de un objeto, mediante una variable y un método setUltimaModificacion(fecha), que podrían ser introducidos en todas las clases (o sólo en algunas) para proporcionarles esta nueva funcionalidad. </p>
 
 <h3>
 <a id="destinatariotarget" class="anchor" href="#destinatariotarget" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>DESTINATARIO(Target):</strong>
 </h3>
 
-<p>Es la clase aconsejada, la clase que es objeto de un consejo.</p>
+<p align="justify">Es la clase aconsejada, la clase que es objeto de un consejo.</p>
 
 <h3>
 <a id="resultanteproxy" class="anchor" href="#resultanteproxy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>RESULTANTE(Proxy):</strong>
 </h3>
 
-<p>Es el objeto creado después de aplicar el Consejo al Objeto Destinatario.</p>
+<p align="justify">Es el objeto creado después de aplicar el Consejo al Objeto Destinatario.</p>
 
 <hr>
 
-<p><em>Estas definiciones de Target y proxy se entienden mejor en la siguiente imagen, donde claramente se ve que la clase aconsejada o Target es la clase <strong>FooService</strong> y el objeto creado Proxy despues de aplicar ese Concejo es <strong>FooServiceProxy</strong></em></p>
+<p align="justify"><em>Estas definiciones de Target y proxy se entienden mejor en la siguiente imagen, donde claramente se ve que la clase aconsejada o Target es la clase <strong>FooService</strong> y el objeto creado Proxy despues de aplicar ese Concejo es <strong>FooServiceProxy</strong></em></p>
 
-<p><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/proxy_target.png?raw=true" alt=""></p>
+<p align="justify"><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/proxy_target.png?raw=true" alt=""></p>
 
 <hr>
 
@@ -134,9 +138,9 @@ Dentro de ellos podemos encontrar:</p>
 <a id="tejedorweaving" class="anchor" href="#tejedorweaving" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>TEJEDOR(Weaving):</strong>
 </h3>
 
-<p>El tejedor se encarga de <strong>mezclar los diferentes mecanismos de abstracción y composición</strong> que aparecen en los lenguajes de aspectos y componentes ayudándose de los puntos de enlace.</p>
+<p align="justify">El tejedor se encarga de <strong>mezclar los diferentes mecanismos de abstracción y composición</strong> que aparecen en los lenguajes de aspectos y componentes ayudándose de los puntos de enlace.</p>
 
-<p>Este proceso puede ocurrir a lo largo del ciclo de vida del programa:</p>
+<p align="justify">Este proceso puede ocurrir a lo largo del ciclo de vida del programa:</p>
 
 <ul>
 <li>Aspectos en Tiempo de Compilación.</li>
@@ -144,17 +148,17 @@ Dentro de ellos podemos encontrar:</p>
 <li>Aspectos en Tiempo de Ejecución.</li>
 </ul>
 
-<p><em>Este concepto de Tejedor es muy importante dentro de la Programación Orientada a Aspectos, este es el que nos va a mezclar el <strong>Programa de componentes</strong> descrito por un Lenguaje base, y  los diferentes <strong>Programas de Aspectos</strong>, cada uno descrito por su propio Lenguaje de aspectos</em></p>
+<p align="justify"><em>Este concepto de Tejedor es muy importante dentro de la Programación Orientada a Aspectos, este es el que nos va a mezclar el <strong>Programa de componentes</strong> descrito por un Lenguaje base, y  los diferentes <strong>Programas de Aspectos</strong>, cada uno descrito por su propio Lenguaje de aspectos</em></p>
 
-<p><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/Tejedor.png?raw=true" alt=""></p>
+<p align="justify"><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/Tejedor.png?raw=true" alt=""></p>
 
 <hr>
 
-<p>VIENDO TODOS ESTOS CONCEPTOS ANTERIORMENTE MENCIONADOS, SE PUEDE PUEDE VER LA DIFERENCIA EN LA ESTRUCTURA DE LA IMPLEMENTACIÓN ENTRE <strong>LOS LENGUAJES TRADICIONALES</strong> Y <strong>LOS LENGUAJES DE ASPECTOS</strong></p>
+<p align="justify">VIENDO TODOS ESTOS CONCEPTOS ANTERIORMENTE MENCIONADOS, SE PUEDE PUEDE VER LA DIFERENCIA EN LA ESTRUCTURA DE LA IMPLEMENTACIÓN ENTRE <strong>LOS LENGUAJES TRADICIONALES</strong> Y <strong>LOS LENGUAJES DE ASPECTOS</strong></p>
 
-<p><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/Diferencia_tradicional_aspectos.png?raw=true" alt=""></p>
+<p align="justify"><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/Diferencia_tradicional_aspectos.png?raw=true" alt=""></p>
 
-<p>COMO SE VE, EL CONCEPTO DEL <em>TEJEDOR</em> SE VUELVE FUNDAMENTAL EN LA PROGRAMACIÓN ORIENTADA A ASPECTOS. ADEMÁS QUE LA IMPLEMENTACIÓN DEJA DE SER UNA IMPLEMENTACIÓN SECUENCIAL Y PASA A SER UNA IMPLEMENTACIÓN MODULARIZADA.</p>
+<p align="justify">COMO SE VE, EL CONCEPTO DEL <em>TEJEDOR</em> SE VUELVE FUNDAMENTAL EN LA PROGRAMACIÓN ORIENTADA A ASPECTOS. ADEMÁS QUE LA IMPLEMENTACIÓN DEJA DE SER UNA IMPLEMENTACIÓN SECUENCIAL Y PASA A SER UNA IMPLEMENTACIÓN MODULARIZADA.</p>
 
 </section>
 

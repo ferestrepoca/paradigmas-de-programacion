@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <title>Programacion Orientada a Aspectos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../stylesheets/normalize.css" media="screen">
@@ -14,13 +14,18 @@
 <section class="page-header">
     <h1 class="project-name">Programacion Orientada a Aspectos</h1>
     <h2 class="project-tagline"></h2>
-
-     <a href="../index.html" class="btn">Inicio</a>
-    <a href="historia.html" class="btn">Historia</a>
-    <a href="filosofia.html" class="btn">Filosofía del Paradigma</a>
-    <a href="evolucion.html" class="btn">Conceptos Claves</a>
-    <a href="lenguajes.html" class="btn">Lenguajes</a>
-    <a href="aplicaciones.html" class="btn">Aplicaciones</a>
+	
+	<a href="../index.html" class="btn">Inicio</a>
+	<a href="historia.html" class="btn">Historia</a>
+	<a href="filosofia.html" class="btn">Filosofía del Paradigma</a>
+	<a href="evolucion.html" class="btn">Conceptos Claves</a>
+	<a href="ventajasydesventajas.html" class="btn">Ventajas y desventajas</a>
+	<a class="btn btn-actual">Lenguajes</a>
+	<a href="aplicaciones.html" class="btn">Aplicaciones</a>
+	<a href="presentaciones.html" class="btn">Presentaciones</a>
+	<a href="practicas.html" class="btn">Practica</a>
+	<a href="ejemplos.html" class="btn">Ejemplos</a>
+	
 </section>
 
 <section class="main-content">
@@ -29,18 +34,61 @@
             <span aria-hidden="true" class="octicon octicon-link"></span>
         </a>LENGUAJES DE PROGRAMACIÓN.
     </h1>
+	
+	<p align="justify">
+		Los LOA son  aquellos  lenguajes  que permiten separar  la definición de  la  funcionalidad 
+		“principal” de la definición de los diferentes aspectos. Los LOA deben satisfacer varias propiedades deseables:
+	</p>
+	 <ul>
+        <li>Debe  ser  claramente  identificable.</li>
+        <li>Debe  auto  contenerse.</li>
+        <li>Debe ser ser  fácilmente  modificable.</li>
+		<li>No  deben  interferir  entre  ellos</li>
+		<li>No  deben interferir  con  los  mecanismos  usados para definir o mejorar la funcionalidad principal como la herencia</li>
+    </ul>
+	<p align="justify">
+		Los  LOA  distinguen  dos  enfoques  diferentes en  el  diseño  de  los  lenguajes orientados a aspectos: los lenguajes orientados a 
+		aspectos de dominio específico y los lenguajes orientados a aspectos de propósito general.
+	</p>
+	<p align="justify">
+		Los LOA  de  dominio  específico han  sido  diseñados  para  soportar  algún  tipo particular  de  aspectos,  como  por  ejemplo  la  concurrencia,
+		sincronización  o  distribución.  Este  tipo  de  lenguajes  suelen  tener  un  nivel  de  abstracción  mayor que el  lenguaje base  y permiten 
+		representar los conceptos específicos del aspecto a un nivel de representación más elevado.
+	</p>
+	<p align="justify">
+		Algunos de estos lenguajes necesitan imponer restricciones en el lenguaje base, para garantizar que las incumbencias que son tratadas 
+		en los aspectos no puedan   ser   programadas   en   los   componentes,   evitando   de   esta   manera inconsistencias  o  funcionamientos  no  deseados. 
+		Por  ejemplo,  si  el  lenguaje  de aspectos  se  especializa  en  la  concurrencia  o  sincronización,  puede  requerir  que sean deshabilitadas las 
+		primitivas del lenguaje base que puedan ser utilizadas para estas  funciones  (un  ejemplo  de  este  tipo  de  LOA  es  COOL,  el  cual  se  describirá más adelante).
+	</p>
+	<p align="justify">
+		Los LOA  de  propósitos  generales han  sido  diseñados  para  soportar  cualquier tipo  de  aspectos.  Este  tipo  de  lenguajes  no  pueden  imponer  
+		restricciones  en  el lenguaje base. Generalmente tienen el mismo nivel de abstracción que el lenguaje base,  y  soportan  las  mismas  instrucciones  
+		o  primitivas dellenguaje base,  ya  que,  en  principio, cualquier  código  debería  poderse  escribir  en  los  aspectos  desarrollados  con  estos lenguajes  
+		(un  ejemplo  de  este  tipo  de  LOA  es  AspectJ,  el  cual  se  describirá  más adelante).
+	</p>
+	<p align="justify">
+		Los LOA de propósitos general tienen la clara ventaja de tener la capacidad de ser  utilizados  para  desarrollar 
+		con  ellos  cualquier tipo de aspecto. Sin embargo, tienen también una desventaja ya que no garantizan la  separación  de  funcionalidades.  Al  no  poder 
+		restringir  las  instrucciones  o primitivas en la programación de los componentes, no puede garantizarse que los aspectos  no  serán  programados  dentro  
+		de los componentes. Esto queda a libertad del programador.
+	</p>
+	<p align="justify">
+		Los LOA de dominio específico fuerzan a programar las tareas de aspectos dentro de  éstos,  ya  que  en  el  lenguaje  base  se  restringe  el  uso  de  las  
+		instrucciones que tienen relación con la funcionalidad de los aspectos.
+	</p>
     <h2>
         <a id="JPAL" class="anchor" href="#jpal" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a> JPAL</h2>
-    <p>
+    <p align="justify">
         Esta herramienta enfatiza en los <strong>puntos de enlace</strong>, ya que  son especificados
         independientemente del lenguaje base. Debido al término en inglés <strong>Junction Point</strong>,
         JPAL significa <strong>Junction Point Aspect Language</strong>, en español, Lenguaje de Aspectos basados
         en Puntos de Enlace.</p>
-    <p>
+    <p align="justify">
         El tejedor JPAL  genera un esquema  llamado <strong>Esquema del Tejedor</strong>. El cual desarrolló un mecanismo que automáticamente
         conecta el código base con los programas de aspectos en puntos de control(<strong>acciones</strong>).</p>
 
-    <p> El Esquema del Tejedor genera código que invoca, cuando es alcanzado en ejecución, las acciones
+    <p align="justify"> El Esquema del Tejedor genera código que invoca, cuando es alcanzado en ejecución, las acciones
         correspondientes para permitir la ejecución de los programas de aspectos. Con lo cual se genera una vinculación
         dinámica con los programas de aspectos, y hace posible modificar en tiempos de ejecución los
         programas de aspectos. Sin embargo, esta solución no es lo suficientemente poderosa como para agregar
@@ -49,74 +97,74 @@
         de una aplicación y  llamar a métodos de aspectos registrados. Es implementado como una librería dinámica
         que almacena los aspectos y permite dinámicamente agregar, quitar o modificar aspectos, y mandar mensajes a
         dichos aspectos. </p>
-    <p>
+    <p align="justify">
         El Esquema Tejedor y APA se comunican mediante protocolo de comunicación entre procesos. La arquitectura  de este lenguaje es la
         siguiente:
     </p>
     <img src="https://github.com/ferestrepoca/paradigmas-de-programacion/blob/master/poa/poa_teoria/Images/JPAL.png?raw=true">
     <h2>
         <a id="D" class="anchor" href="#D" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>D</h2>
-    <p>D es un <strong>ambiente de lenguajes de aspectos</strong> para la programación distribuida.  Se denomina ambiente de lenguajes debido a
+    <p align="justify">D es un <strong>ambiente de lenguajes de aspectos</strong> para la programación distribuida.  Se denomina ambiente de lenguajes debido a
         que integra dos lenguajes,
         <strong>COOL</strong>, para controlar la sincronización de hilos, y <strong>RIDL</strong>, para programar la interacción
         entre componentes remotos. Estos dos lenguajes se diseñaron de manera independiente de un lenguaje componente.
         Sin embargo establecen un número de condiciones sobre este.</p>
 
-    <p>El diseño de D es semi-independiente del lenguaje componente, debido a que impone requerimientos
+    <p align="justify">El diseño de D es semi-independiente del lenguaje componente, debido a que impone requerimientos
         sobre el lenguaje que también satisfacen los lenguajes orientados a objetos. Gracias a esto,
         el lenguaje componente puede ser cualquiera mientras sea orientado a objetos. Por lo tanto,
         podría ser implementado con C++, Smalltalk, CLOS, Java o Eiffel. </p>
     <h3>
         <a id="COOL" class="anchor" href="#COOL" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>COOL</h3>
-    <p>
+    <p align="justify">
         Los programas en <strong>COOL</strong> son comprendidos por un conjunto de módulos <strong>coordinadores</strong>.
         Estos módulos se asocian a las clases por medio del nombre, sin embargo, un mismo coordinador podría coordinar más de una clase.
         Mínimamente se puede sincronizar un método, y para declarar un corrdinador, se debe describir la estrategia de coordinación.</p>
 
-    <p>
+    <p align="justify">
         Los coordinadores no son clases, utilizan un lenguaje diferente, por lo tanto tampoco pueden ser instanciados. Su asociación
         a las instancias de las clases se realiza automáticamente, utilizando un protocolo bien definido para su relación.</p>
 
-    <p>Los coordinadores tienen conocimiento de las clases que coordinan para definir la mejor estrategia
+    <p align="justify">Los coordinadores tienen conocimiento de las clases que coordinan para definir la mejor estrategia
         de coordinación posible. Sin embargo, las clases no tienen conocimiento de los aspectos,
         es decir que dentro de una clase no es posible nombrar a un coordinador.</p>
 
-    <p> La asociación entre los objetos y los coordinadores es uno-a-uno por defecto y recibe
+    <p align="justify"> La asociación entre los objetos y los coordinadores es uno-a-uno por defecto y recibe
         el nombre de coordinación “<strong>per object</strong>”. Sin embargo, un coordinador también puede asociarse
         con todos los objetos de una o más clases y recibe el nombre de coordinación “<strong>per class</strong>”. .</p>
-    <p>
+    <p align="justify">
         Protocolo de coordinación entre un módulo coordinador y un objeto.
     </p>
 
     <img src="https://github.com/ferestrepoca/paradigmas-de-programacion/blob/master/poa/poa_teoria/Images/COOL.png?raw=true">
-    <p>
+    <p align="justify">
         El siguiente sería un aspecto implementado en COOL para la verificación en una cola circular.
     </p>
 
     <img src="https://github.com/ferestrepoca/paradigmas-de-programacion/blob/master/poa/poa_teoria/Images/COOLE.png?raw=true">
     <h3>
         <a id="RIDL" class="anchor" href="#RIDL" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RIDL</h3>
-    <p>
+    <p align="justify">
         RIDL (<strong>Remote Interaction and Data transfers aspect Language</strong>) es un lenguaje de aspectos de
         dominio específico que maneja la transferencia de datos entre diferentes espacios de ejecución.</p>
-    <p>
+    <p align="justify">
         Un programa RIDL consiste de un conjunto de módulos de <strong>portales</strong>. Los módulos de portales o directamente
         portales se asocian con las clases por el nombre. Un portal es el encargado de manejar la interacción remota
         y la transferencia de datos de la clase asociada a él, y puede asociarse como máximo a una clase.
         La unidad mínima de interacción remota es el método.</p>
-    <p>
+    <p align="justify">
         La declaración de los portales identifica clases cuyas instancias pueden
         invocarse desde <strong>espacios remotos</strong>. Dichas instancias se llaman objetos remotos.
         La declaración de un portal identifica qué métodos de una clase serán exportados sobre￼￼
         la red. En el portal estos métodos se llaman operaciones remotas. Para cada una de
         estas operaciones se describe qué objetos remotos esperan y qué datos enviarán a los llamadores.</p>
-    <p>
+    <p align="justify">
         Los portales no son clases, al igual que los coordinadores en COOL, no pueden ser instanciados
         y sirven para un propósito muy específico. Tampoco son tipos en el sentido estricto de la palabra.
         Un portal se asocia automáticamente con una instancia de la clase en el momento que una referencia
         a esa instancia se exporta fuera del espacio donde la instancia fue creada. Durante el tiempo de vida
         de la instancia esta relación se mantiene mediante un protocolo bien definido.</p>
-    <p>
+    <p align="justify">
         Este último punto establece una dependencia explícita entre los portales y la
         relaciones estructurales completas de las clases. Esta dependencia expone la necesidad
         de controlar la transferencia de datos entre los distintos espacios de ejecución.
@@ -126,14 +174,14 @@
 
     <h2>
         <a id="AspectC" class="anchor" href="#AspectC" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AspectC</h2>
-    <p>
+    <p align="justify">
         AspectC es un lenguaje de aspectos de propósito general que extiende C, es un subconjunto de
         AspectJ <strong>sin ningún soporte para la programación orientada a objetos o módulos explícitos</strong>.
         El código de aspectos, conocido como <strong>aviso</strong>, interactúa con la funcionalidad básica en los límites
         de una llamada a una función, y puede ejecutarse antes, después, o durante dicha llamada. Los elementos
         centrales del lenguaje tienen como objetivo señalar llamadas de funciones particulares, acceder a los
         parámetros de dichas llamadas, y adherir avisos a ellas.</p>
-    <p>
+    <p align="justify">
         Los <strong>puntos de corte</strong> en AspectC toman las siguientes formas:
     <ul>
         <li><strong>Llamadas a una función</strong>: call(f(arg)), captura todas las llamadas a la
@@ -154,22 +202,26 @@
         lamadas a la función f o las llamadas a la función g.
 
     </p>
-    <p>
+	
+	
+	
+	
+    <p align="justify">
         Como el lenguaje C es de naturaleza estática, el tejedor de AspectC es estático.
     </p>
     <h2>
         <a id="AspectC++" class="anchor" href="#AspectC++" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AspectC++</h2>
-    <p>
+    <p align="justify">
         AspectC++ es un lenguaje de aspectos de propósito general que extiende el lenguaje C++ para soportar el manejo de aspectos.
         En este lenguaje los <strong>puntos de enlace</strong> son puntos en el código componente donde los aspectos pueden interferir.
         Los puntos de
         enlaces son capaces de referir a <strong>código, tipos, objetos, y flujos de control.</strong></p>
-    <p>
+    <p align="justify">
         Las <strong>expresiones de corte</strong> son utilizadas para identificar un conjunto de puntos de enlaces.
         Se componen a partir de los <strong>designadores de corte</strong> y un conjunto de operadores algebraicos.
         La declaración de los avisos es utilizada para especificar código que debe ejecutarse en
         los puntos de enlace determinados por la expresión de corte.</p>
-    <p>
+    <p align="justify">
         La información del contexto del punto de enlace puede exponerse mediante cortes con argumentos
         y expresiones que contienen identificadores en vez de nombres de tipos, todas las veces que se necesite.
         Diferentes tipos de aviso pueden ser declarados, permitiendo que el aspecto introduzca comportamiento
@@ -182,7 +234,7 @@
     <img src="https://github.com/ferestrepoca/paradigmas-de-programacion/blob/master/poa/poa_teoria/Images/Aspectc++.png?raw=true">
     <h2>
         <a id="AspectJ" class="anchor" href="#AspectJ" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AspectJ</h2>
-<p>
+<p align="justify">
     Extensión Java del proyecto Eclipse para soportar el manejo de aspectos agregando a la semántica de Java las cuatro entidades ya descritas:
     <ul>
     <li>
@@ -202,7 +254,7 @@
 
 
 </p>
-    <p>Algunas ventajas de este lenguaje son:
+    <p align="justify">Algunas ventajas de este lenguaje son:
         <ul>
     <li>
         Permite modelar referencias transversales.
@@ -225,7 +277,7 @@
 </ul>
 
     <img src="https://github.com/ferestrepoca/paradigmas-de-programacion/blob/master/poa/poa_teoria/Images/ASPECTJ.png?raw=true">
-    <p>
+    <p align="justify">
         El siguiente es un ejemplo implementado en AspectJ para registro de transacciones bancarias.
     </p>
 
@@ -233,19 +285,19 @@
 
     <h2>
         <a id="AspectS" class="anchor" href="#Aspects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AspectS</h2>
-    <p>
+    <p align="justify">
         AspectS, un lenguaje de aspectos de propósito general, utiliza el modelo de
         lenguaje de <strong>AspectJ</strong> y ayuda a descubrir la relación que hay entre los aspectos y
         los ambientes dinámicos. Soporta programación en un <strong>metanivel</strong>, manejando el fenómeno
         de <strong>Código Mezclado</strong> a través de módulos de <strong>aspectos relacionados</strong>. Está implementado en
         <strong>Squeak </strong>sin cambiar la sintaxis, ni la máquina virtual.</p>
-    <p>
+    <p align="justify">
         En este lenguaje los aspectos se implementan a través de clases y sus instancias actúan
         como un objeto, respetando el principio de uniformidad. Un aspecto puede contener un conjunto
         de receptores, enviadores o clases enviadoras. Estos objetos se agregan o se remueven por el
         cliente y serán usados por el proceso de tejer en ejecución para determinar si el comportamiento debe activarse o no.
     </p>
-    <p>
+    <p align="justify">
         Los tipos de <strong>avisos</strong> definibles en AspectS son:
     <ul>
         <li>Antes y después de la invocación a un
@@ -259,20 +311,117 @@
         </li>
     </ul>
     </p>
-    <p>
+    <p align="justify">
         Un <strong>calificador de avisos (AsAdviceQualifier)</strong> es usado para controlar la selección del aviso apropiado.
         Es similar al concepto de designadores de cortes de AspectJ.</p>
-    <p>
+    <p align="justify">
         Utiliza un tejedor dinámico que transforma el sistema base de acuerdo a lo especificado en los aspectos.
         El código tejido se basa en el <strong>MethodWrapper</strong> y la meta-programación. MethodWrapper es un mecanismo que
         permite introducir código que es ejecutado antes, después o durante la ejecución de un método.</p>
-    <p>
+    <p align="justify">
         El proceso de tejer sucede cada vez que una instancia de aspectos es instalada.
         Para revertir los efectos de un aspecto al sistema, el aspecto debe ser desinstalado.
         A este proceso se lo conoce como “destejer”, del inglés unweaving. El tejido de AspectS
         es completamente dinámico ya que ocurre en ejecución.
     </p>
+		
+		
+	<h2>
+        <a id="MALAJ" class="anchor" href="#Aspects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MALAJ</h2>
+		<p align="justify">
+			MALAJ (Multi  Aspect  Language  for  Java)  es   un   lenguaje   orientado   a   aspectos   de   dominio   específico. 
+			Define constructores lingüísticos separados para cada aspecto de dominio específico, 
+			donde  el  código  de  los  aspectos  tiene  una  visibilidad  limitada  del  código  funcional,  
+			reduciendo  los  posibles  conflictos  con  las  características  lingüísticas  tradicionales  y  
+			también, con el principio de encapsulación. 
+		</p>
+		<p align="justify">			
+			Se concentra principalmente en  dos  aspectos:  sincronización  y  relocación.  Puede  verse  como  un  
+			sucesor de los lenguajes COOL y RIDL por su filosofía, enfatizando la necesidad de 
+			restringir  la  visibilidad  de  los  aspectos,  y  reglas  claras  de  composición  con  los  
+			constructores  tradicionales.  Para  cada  aspecto,  provee  un    constructor  lingüístico  
+			distinto, limitando así la visibilidad del aspecto sobre el módulo funcional asociado a 
+			él.  Esto  último  se  logra  al  estudiar  cuidadosamente  la  relación  entre  el  código  
+			funcional y un aspecto dado. 
+		</p>    
+		<p align="justify">			
+		    El  lenguaje  base  de  Malaj  es  una  versión  restringida  de  Java,  donde  se  han  
+			removido   los   servicios   que   proveen   los   aspectos   mencionados.   Los   servicios   
+			removidos  son:  la  palabra  clave  synchronized,  y  los  métodos  <i>wait</i>,  <i>notify</i>,  and  
+			<i>notifyAll</i>.
+		</p>
+		<p align="justify">						
+			Para el aspecto de sincronización Malaj provee el constructor <i><strong>guardian</strong></i>. Cada 
+			guardián  es  una  unidad  distinta  con  su  propio  nombre,  y  se  asocia  con  una  clase  en  
+			particular  (esto  es,  “vigila”  esa  clase)  y  expresa  la  sincronización  de  un  conjunto  
+			relacionado  de  métodos  de  esa  clase,  es  decir,  que  el  guardián  de  una  clase <i>V</i> 
+			representa  básicamente  el  conjunto  de  métodos  sincronizados  de <i>V</i> .  
+		</p>
+		<p align="justify">						
+			Los guardianes no pueden acceder a los elementos privados de la clase que vigilan, y el acceso a los 
+			atributos   públicos   y   protegidos   se   limita   a   un   acceso   de   sólo   lectura.   El   
+			comportamiento adicional en un guardián para un método  <i>m</i> de  la clase asociada se 
+			especifica introduciendo código que se ejecutará antes o después de  <i>m</i>, a través de las 
+			cláusulas  before  y  after.  Una  última  característica  de  los  guardianes  es  que    pueden  
+			heredarse. Para reducir el problema de anomalía de herencia las cláusulas before 
+			y after en una clase pueden referirse a las cláusulas before y after de su clase padre a 
+			través de la sentencia  <i>super</i>. 
+		</p>
+		<p align="justify">	
+			El aspecto de relocación involucra el movimiento de objetos entre sitios en un 
+			ambiente  de  redes.  Este  tipo  de  relación  es  claramente  dinámico.  Para  este  aspecto  
+			Malaj  provee  el  constructor  <i><strong>relocator</strong></i>,  que  llamaremos  relocador.
+			Un  relocador  será  una  unidad  diferente  con  su  propio  nombre,  y  se  asocia  con  una  clase  en  particular.  
+			Las  acciones  de  relocación  pueden  ejecutarse  antes  o  después  de  la  ejecución  de  un  
+			método.  Para  modelar  este  comportamiento,  el  relocador  brinda  cláusulas  before  y  
+			after, que permiten la especificación deseada. También la visibilidad del relocator es 
+			limitada. Como el constructor guardián, un relocador puede heredarse, y las cláusulas 
+			before y after en una clase pueden referirse a las cláusulas before y after de su clase 
+			padre  a  través  de  la  sentencia <i>super</i>,  y  así  reducir  el  impacto  de  la  anomalía  de  
+			herencia. 
+		</p>
+		<p align="justify">	
+			Como  conclusión  Malaj  provee  una  solución  intermedia  entre  flexibilidad  y  
+			poder  por  un  lado,  y  entendimiento  y  facilidad  de  cambio  por  el  otro.  No  permite  
+			describir  cualquier  aspecto,  pero  sí  captura  el  comportamiento  de  dos  conceptos  
+			relacionados  con  el  código  funcional. 
+		</p>				
 
+	
+	
+	<h2>
+        <a id="HyperJ" class="anchor" href="#Aspects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HyperJ</h2>
+    <p align="justify">
+		La aproximación por Ossher y Tarr sobre la separación multidimensional de conceptos (MDSOC)  
+		es llamada hyperspaces, y como soporte se construyó la herramienta HyperJ en Java (ver <a src="https://github.com/ferestrepoca/paradigmas-de-programacion/blob/master/poa/poa_teoria/filosofia.html#msdoc">Separación multidimensional de conceptos</a>) .
+	</p>
+	<p align="justify">
+		En HyperJ un hiperespacio (hyperspace) es un espacio de concepto especialmente estructurado para soportar la 
+		múltiple separación de conceptos. Su principal característica es que sus unidades se organizan en una 
+		matriz multidimensional donde cada eje representa una dimensión de concepto y cada punto en el eje es un concepto en esa dimensión.
+	</p>
+	
+	<p align="justify">
+		Los hiperslices son bloques constructores pueden integrarse para formar un bloque constructor más grande y eventualmente un 
+		sistema completo.
+	</p>
+	
+	<p align="justify">
+		Un hipermódulo consiste de un conjunto de hiperslices y conjunto de reglas de integración, las cuales especifican cómo los 
+		hiperslices se relacionan entre ellos y cómo deben integrarse.
+	</p>
+
+	<p align="justify">
+		Una vez introducida la terminología se puede continuar con el análisis de HyperJ. Esta herramienta permite componer un conjunto 
+		de modelos separados donde cada uno encapsula un concepto definiendo e implementando una jerarquía de 20 clases apropiada 
+		para ese concepto. Generalmente los modelos se superponen y pueden o no referenciarse entre ellos. Cada modelo debe entenderse 
+		por sí solo. En la siguiente tabla se encuentran resumidas las principales características de las herramientas orientadas a aspectos 
+		descriptas en los párrafos anteriores:
+	</p>
+	<footer class="site-footer">
+		<span class="site-footer-owner"><a href="https://github.com/ProgramacionOrientadaAspectos/POA_teoria">Programacion Orientada a Aspectos</a> is maintained by <a href="https://github.com/ProgramacionOrientadaAspectos">ProgramacionOrientadaAspectos</a>.</span>
+		<span class="site-footer-credits">This page was created by Jenny Sánchez Cruz, Felipe Moreno, Jeisson Prieto, Diego Rojas, Gustavo Galvis y Dorian Tovar.</span>
+	</footer>
 </section>
 </body>
 </html>

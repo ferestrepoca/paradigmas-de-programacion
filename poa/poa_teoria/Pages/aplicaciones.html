@@ -14,14 +14,17 @@
 <section class="page-header">
     <h1 class="project-name">Programacion Orientada a Aspectos</h1>
     <h2 class="project-tagline"></h2>
-
-     <a href="../index.html" class="btn">Inicio</a>
-    <a href="historia.html" class="btn">Historia</a>
-    <a href="filosofia.html" class="btn">Filosofía del Paradigma</a>
-    <a href="evolucion.html" class="btn">Conceptos Claves</a>
-    <a href="lenguajes.html" class="btn">Lenguajes</a>
-    <a href="aplicaciones.html" class="btn">Aplicaciones</a>
-
+	
+	<a href="../index.html" class="btn">Inicio</a>
+	<a href="historia.html" class="btn">Historia</a>
+	<a href="filosofia.html" class="btn">Filosofía del Paradigma</a>
+	<a href="evolucion.html" class="btn">Conceptos Claves</a>
+	<a href="ventajasydesventajas.html" class="btn">Ventajas y desventajas</a>
+	<a href="lenguajes.html" class="btn">Lenguajes</a>
+	<a class="btn btn-actual">Aplicaciones</a>
+	<a href="presentaciones.html" class="btn">Presentaciones</a>
+	<a href="practicas.html" class="btn">Practica</a>
+	<a href="ejemplos.html" class="btn">Ejemplos</a>
 </section>
 <section class="main-content">
     <h1><b> APLICACIONES DE ESTE PARADIGMA</b></h1>
@@ -46,8 +49,9 @@
             <p align="justify">Lo anterior permite que nuestra información, ya sea que se una única base de datos o no, esté
                 íntegra, y no exista posibilidad de datos corruptos por errores o fallas en la ejecución de
                 nuestros métodos.</p>
-            <p> Spring:AOP e Hibernate han implementado el manejo transaccional a partir de la Programación Orientada a Aspectos debido al acceso de datos y funciones transversales</p>
-            </br></li>
+            <p align="justify"> Spring:AOP e Hibernate han implementado el manejo transaccional a partir de la Programación Orientada a Aspectos debido al acceso de datos y funciones transversales</p>
+            </br>
+		</li>
         <LI> <h2><ins>Sincronización</ins></h2>
             <p align="justify"> La sincronización expuesta aquí se basa en los procesos y nos referimos a ella por el hecho de que esta otorga varias técnicas de coordinación de hilos que se ejecutan en forma simultánea y procesos para poder completar una determinada tarea con el objetivo de que estas se ejecuten en un orden establecido y que no se dé lugar a eventos inesperados.</p>
 
@@ -64,7 +68,7 @@
             </br>
             </br></LI>
         <LI> <h2><ins>Perfiles</ins></h2>
-            <p> Tomaremos como ejemplo la Extensión de UML usando Perdiles:</p>
+            <p align="justify"> Tomaremos como ejemplo la Extensión de UML usando Perdiles:</p>
             <p align="justify">En la actualidad, UML (Unified Modeling Language) es uno de los lenguajes de modelado más
                 utilizados para el diseño de sistemas. Este lenguaje permite especificar, construir, visualizar y
                 documentar artefactos de un sistema de software de manera sencilla.</p>
@@ -87,7 +91,7 @@
             <p align="justify">Además, al haber solamente un bloque de código de datos importantes y confidenciales, habrá menos riesgo de encontrar dichos datos. Y es más sencillo controlar el acceso a esos datos si solamente están confinados a un control de acceso y no de manera múltiple.</p>
             </br></LI>
         <LI> <h2><ins>Logging</ins></h2>
-            <p> De manera similar al Control de Acceso, el <i>Logging</i> es una forma menos generalizada, pero cumple con las mismas características. </p>
+            <p align="justify"> De manera similar al Control de Acceso, el <i>Logging</i> es una forma menos generalizada, pero cumple con las mismas características. </p>
             </br></LI>
         <LI> <h2><ins>Manejo de Excepciones</ins></h2>
             <p align="justify"> A través del enfoque de AOP, es posible interceptar las llamadas a los métodos y determinar cuando estos han generado una excepción para posteriormente aplicar la política de manejo más apropiada. Estas políticas puede ser parte del propio aspecto de gestión de excepciones. Como en el caso del registro de eventos, la implementación de este aspecto buscará reducir su implementación (y aplicación) a un atributo que decore el método cuyas posibles excepciones se quieren gestionar.</p>
@@ -101,8 +105,35 @@
             <p align="justify">Es importante que si no han leido las primeras partes de esta serie de artículos, aprovechen este momento para hacerlo, sobre todo la parte 1. A partir de este momento mis explicaciones considerarán que el conocimiento y los detalles técnicos explicados en esa parte ya son conocidos.</p>
 
             <p align="justify">El primer paso es crear el atributo (Attribute) que decorará las clases/interfaces para capturar su ejecución e inyectar el código de manejo de excepciones. Nuestro atributo se llamará ExceptionHandlingAttribute y extiende de InterceptableAttribute, la clase base en el framework de AOP que sirve para definir atributos de intercepción. </p>
-    </LI>
+		</LI>
+		</br></br>
+		<li> <h2><ins>Software que emplea programación orientada a aspectos.</ins></h2>  
+            </br>
+			<b>WebSphere Application Server (WAS)</b>						
+            <p align="justify">
+				Es una plataforma de IBM que actúa como un servidor de aplicaciones diseñado para configurar, operar e integrar aplicaciones empresariales.
+				WebSphere se distribuye en distintas ediciones donde cada edición soporta diferentes funcionalidades y usan AspectJ internamente para
+				aislar las funcionalidades asociadas a cada edición.
+			</p></br>
+			<b>JBoss Application Server (JBoss AS)</b>						
+            <p align="justify">
+				Es un servidor de aplicaciones Java EE. Es un software libre y de código abierto, como está basado en java se puede usar en cualquier 
+				sistema operativo donde haya una máquina virtual de java. El núcleo de JBoss está integrado con programacion orientada a aspectos donde 
+				se usa principalmente para desplegar servicios tales como seguridad y administración de transacciones.
+			</p></br>
+			<b>Oracle TopLink</b>						
+            <p align="justify">
+				Es un framework para almacenar objetos Java en una base de datos relacional (Object-Relational mapping) o convertir estos objetos en formato 
+				XML. TopLink logra altos niveles de persistencia y transparencia usando Spring AOP (Componente del framework Spring usado para  aplicar AOP).
+			</p>			
+
+		</li>
+	
     </UL>
+	<footer class="site-footer">
+		<span class="site-footer-owner"><a href="https://github.com/ProgramacionOrientadaAspectos/POA_teoria">Programacion Orientada a Aspectos</a> is maintained by <a href="https://github.com/ProgramacionOrientadaAspectos">ProgramacionOrientadaAspectos</a>.</span>
+		<span class="site-footer-credits">This page was created by Diego Rojas, Gustavo Galvis y Dorian Tovar.</span>
+	</footer>
 </section>
 
 <hr size="8px" color="#151157" />

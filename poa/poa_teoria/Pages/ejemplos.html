@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Programacion Orientada a Aspectos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+		<h1 class="project-name">Programacion Orientada a Aspectos</h1>
+		<h2 class="project-tagline"></h2>
+
+		<a href="../index.html" class="btn">Inicio</a>
+		<a href="historia.html" class="btn">Historia</a>
+		<a href="filosofia.html" class="btn">Filosofía del Paradigma</a>
+		<a href="evolucion.html" class="btn">Conceptos Claves</a>
+		<a href="ventajasydesventajas.html" class="btn">Ventajas y desventajas</a>
+		<a href="lenguajes.html" class="btn">Lenguajes</a>
+		<a href="aplicaciones.html" class="btn">Aplicaciones</a>
+		<a href="presentaciones.html" class="btn">Presentaciones</a>
+		<a href="practicas.html" class="btn">Practica</a>
+		<a class="btn btn-actual">Ejemplos</a>
+    </section>
+
+    <section class="main-content">
+	<h1>
+		<a id="programaciÓn-orientada-a-aspectos" class="anchor" href="#programaci%C3%93n-orientada-a-aspectos" aria-hidden="true">
+		<span aria-hidden="true" class="octicon octicon-link"></span></a>PROGRAMACIÓN ORIENTADA A ASPECTOS.
+	</h1>
+
+	<h1>
+		<span aria-hidden="true" class="octicon octicon-link"></span></a>Ejemplos
+	</h1>
+
+	<p align="justify">
+		En esa sección encontrarás ejemplos del uso de lenguajes utilizando programación orientada a aspectos
+	</p>
+	
+	
+	<h2>
+		<span aria-hidden="true" class="octicon octicon-link"></span></a>Ejemplo 1 - Cola Circular - AspectJ
+	</h2>
+	
+	<p align="justify">
+		En el siguiente codigo se desarrolla la estructura de una cola circular, a la cual van a acceder multiples hilos. 
+		Cuando varios hilos acceden a modificar un mismo elemento, se debe implementar sincronizacion entre estos ya que 
+		solo uno puede acceder al elemento a la vez.
+	</p>
+	<script src="http://ideone.com/e.js/toOzyP" type="text/javascript"></script>
+	
+	<p align="justify">
+		Aqui podemos observar como el hecho de implementar aspectos que son necesarios pero que no corresponden a la funcionalidad 
+		basica dificultan la lectura del codigo, ya que se mezclan las funcionalidades. Para solucionar este problema se hace uso de 
+		la programacion orientada a aspectos, en donde vamos a separar la parte de sincronizacion(aspecto) de la cola circular(funcionalidad basica).
+	</p>
+	<script src="http://ideone.com/e.js/5A3Sdv" type="text/javascript"></script>
+	
+	<p align="justify">
+		El resultado de utilizar este paradigma es una mayor modularidad en el codigo y mas claridad en este. Al separar la sincronizacion del codigo 
+		la clase resultante quedaria de la siguiente manera
+	</p>
+	<script src="http://ideone.com/e.js/g0PhhN" type="text/javascript"></script>
+	
+	<h2>
+		<span aria-hidden="true" class="octicon octicon-link"></span></a>Ejemplo 2 - Cuenta Bancaria - AspectJ
+	</h2>
+	
+	<p align="justify">
+		Para el siguiente ejemplo vamos a implementar una clase que será una version sencilla de una cuenta de banco. 
+		Esta clase tiene un atributo que indica el saldo actual de la cuenta, y tres metodos que realizan un deposito, 
+		una transaccion y un retiro. Ademas se requiere que cada vez que se realice un movimiento bancario se registre 
+		el tiempo en el que se realizó.
+	</p>
+	<script src="http://ideone.com/e.js/d5l1Wa" type="text/javascript"></script>
+	
+	<p align="justify">
+		Nuevamente podemos ver la mezcla de las funcionalidades en el codigo, ya que los metodos no solo estan haciendo 
+		su funcionalidad(realizar un movimiento bancario) sino que tambien estan tomando el tiempo en el que se realizan. 
+		Para solucionar esto vamos a implementar un aspecto que va a cumplir con la funcion de registrar cada movimiento 
+		que se realice y el tiempo de este.
+	</p>
+	<script src="http://ideone.com/e.js/0zEkZT" type="text/javascript"></script>
+	
+	<p align="justify">
+		Y asi logramos abstraer esos conceptos que son transversales a la funcionalidad basica del programa y conseguimos 
+		dejar mas limpio el codigo principal.
+	</p>
+	<script src="http://ideone.com/e.js/nj1iuv" type="text/javascript"></script>
+	
+	<footer class="site-footer">
+		<span class="site-footer-owner"><a href="https://github.com/ProgramacionOrientadaAspectos/POA_teoria">Programacion Orientada a Aspectos</a> is maintained by <a href="https://github.com/ProgramacionOrientadaAspectos">ProgramacionOrientadaAspectos</a>.</span>
+		<span class="site-footer-credits">This page was created by Diego Rojas, Gustavo Galvis y Dorian Tovar.</span>
+	</footer>
+	
+	
+    </section>
+  </body>
+</html>

@@ -14,13 +14,17 @@
 <section class="page-header">
     <h1 class="project-name">Programacion Orientada a Aspectos</h1>
     <h2 class="project-tagline"></h2>
-
-     <a href="../index.html" class="btn">Inicio</a>
-    <a href="historia.html" class="btn">Historia</a>
-    <a href="filosofia.html" class="btn">Filosofía del Paradigma</a>
-    <a href="evolucion.html" class="btn">Conceptos Claves</a>
-    <a href="lenguajes.html" class="btn">Lenguajes</a>
-    <a href="aplicaciones.html" class="btn">Aplicaciones</a>
+	
+	<a href="../index.html" class="btn">Inicio</a>
+	<a href="historia.html" class="btn">Historia</a>
+	<a class="btn btn-actual">Filosofía del Paradigma</a>
+	<a href="evolucion.html" class="btn">Conceptos Claves</a>
+	<a href="ventajasydesventajas.html" class="btn">Ventajas y desventajas</a>
+	<a href="lenguajes.html" class="btn">Lenguajes</a>
+	<a href="aplicaciones.html" class="btn">Aplicaciones</a>
+	<a href="presentaciones.html" class="btn">Presentaciones</a>
+	<a href="practicas.html" class="btn">Practica</a>
+	<a href="ejemplos.html" class="btn">Ejemplos</a>
 </section>
 
 <section class="main-content">
@@ -30,19 +34,19 @@
 <h2>
 <a id="generalidades" class="anchor" href="#generalidades" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Generalidades</h2>
 
-<p>Debemos comenzar con el hecho de que existe un gran debate en cuanto a si la <em>programación orientada a aspectos</em> es o no un paradigma, muchas personas afirman el que es solamente una extensión de la <em>programación orientada a objetos</em>. Por contraparte, existen las personas que definen la <em>programación orientada a aspectos</em> como un paradigma nuevo que, aunque sigue a <em>POO</em> y por ende soporta la clasificación por objetos, no necesariamente debe hacerlo, es decir, idealmente <em>POA</em> es aplicable a otros paradigmas como podría ser la descomposición funcional. En nuestro caso, decidimos tomar la <em>programación orientada a aspectos</em> como un paradigma.</p>
+<p align="justify">Debemos comenzar con el hecho de que existe un gran debate en cuanto a si la <em>programación orientada a aspectos</em> es o no un paradigma, muchas personas afirman el que es solamente una extensión de la <em>programación orientada a objetos</em>. Por contraparte, existen las personas que definen la <em>programación orientada a aspectos</em> como un paradigma nuevo que, aunque sigue a <em>POO</em> y por ende soporta la clasificación por objetos, no necesariamente debe hacerlo, es decir, idealmente <em>POA</em> es aplicable a otros paradigmas como podría ser la descomposición funcional. En nuestro caso, decidimos tomar la <em>programación orientada a aspectos</em> como un paradigma.</p>
 
 <h3>
 <a id="objetivo-principal" class="anchor" href="#objetivo-principal" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Objetivo Principal</h3>
 
-<p>La <em>programación orientada a aspectos</em> tiene como objetivo principal: "brindar un contexto al programador que permita separar claramente componentes y aspectos, separando componentes entre sí, aspectos entre sí, y aspectos de componentes, a través de mecanismos que hagan posible abstraerlos y componerlos para producir el sistema completo."</p>
+<p align="justify">La <em>programación orientada a aspectos</em> tiene como objetivo principal: "brindar un contexto al programador que permita separar claramente componentes y aspectos, separando componentes entre sí, aspectos entre sí, y aspectos de componentes, a través de mecanismos que hagan posible abstraerlos y componerlos para producir el sistema completo."</p>
 
-<p><img src="https://raw.githubusercontent.com/anfmorenoso/Archivos/master/Table.jpg" alt=""></p>
+<p align="justify"><img src="https://raw.githubusercontent.com/anfmorenoso/Archivos/master/Table.jpg" alt=""></p>
 
 <h3>
 <a id="las-6-cs-de-mehmet-aksit" class="anchor" href="#las-6-cs-de-mehmet-aksit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Las "6 C's" de Mehmet Aksit</h3>
 
-<p>Las 6 "C's" son un conjunto de conceptos propuestos por Mehmet Aksit y son las bases a la hora de generar software con programación orientada a aspectos. Una primera aproximación a lo que son los conceptos base de la misma:</p>
+<p align="justify">Las 6 "C's" son un conjunto de conceptos propuestos por Mehmet Aksit y son las bases a la hora de generar software con programación orientada a aspectos. Una primera aproximación a lo que son los conceptos base de la misma:</p>
 
 <ol>
 <li>Entrecruzado (<strong>C</strong>rosscutting): El entrecruzado se basa en encapsular los conceptos transversales que existen en el código tradicional para luego entrecruzarlo con la funcionalidad principal que por ende también queda encapsulada. Éste entrecruzado hace que ambas, funcionalidad y aspectos queden totalmente funcionales sin necesidad de repetición de código.
@@ -63,7 +67,7 @@
 <h3>
 <a id="las-4-ss-de-harold-ossher" class="anchor" href="#las-4-ss-de-harold-ossher" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Las "4 S's" de Harold Ossher:</h3>
 
-<p>Las 4 S's se refieren a separación exitosa de conceptos por Harold Ossher y son las siguientes:</p>
+<p align="justify">Las 4 S's se refieren a separación exitosa de conceptos por Harold Ossher y son las siguientes:</p>
 
 <ol>
 <li>
@@ -74,6 +78,68 @@
 <li>Espontáneo (<strong>S</strong>pontaneous): Al agregar nuevos conceptos, la encapsulación, integración e identificación debe ser sencilla, incluyendo los conceptos que surjan en la etapa de implementación.</li>
 </ol>
 
+<h3>
+<a id="las-4-ss-de-harold-ossher" class="anchor" href="#las-4-ss-de-harold-ossher" aria-hidden="true">
+<span aria-hidden="true" class="octicon octicon-link"></span></a>Separación de conceptos (SoC)
+</h3>
+<p align="justify">
+	La separación de conceptos o separación de intereses es un principio de diseño para separar un programa informático en secciones distintas,
+	tal que cada sección enfoca un interés delimitado. Un interés o una preocupación es un conjunto de información que afecta al código de un 
+	programa. Una preocupación puede ser algo tan general como los detalles del hardware para el que se va a optimizar el código, 
+	o tan concreto como el nombre de una clase que se pretende instanciar. Un programa que utiliza una buena separación de intereses 
+	es un programa modular
+</p>
+<p align="justify">
+	La modularidad, y por tanto la separación de intereses, se consigue a través de la encapsulación de información en una sección de 
+	código que tiene una interfaz bien definida. La encapsulación es una manera de ocultar información que consigue que cada capa no 
+	conozca el estado de las demás.2  Otro ejemplo de separación de intereses es la división de un sistema de información en capas 
+	(p. ej., capa de presentación, capa de lógica de negocio, capa de acceso a datos, capa de persistencia).
+</p>
+<p align="justify">
+	El valor de la separación de intereses es simplificar el desarrollo y mantenimiento de programas informáticos. Cuando los intereses 
+	están bien separados, se pueden reutilizar, desarrollar y actualizar las distintas secciones individuales de forma independiente. 
+	La posibilidad de modificar una parte del código del programa sin tener que revisar y modificar las demás es de gran valor en el mantenimiento de software.
+</p>
+<h3>
+<a id="msdoc" class="anchor" href="#mdsoc" aria-hidden="true">
+<span aria-hidden="true" class="octicon octicon-link"></span></a>Separación multidimensional de conceptos (MDSoC)
+</h3>
+<p align="justify">
+	La separación multidimensional de conceptos es una aproximación al problema de la separación de conceptos utilizando 
+	una estructura llamada el <i><strong>hiperespacio</strong></i>, desarrollada por Harold Ossher y Peri Tarr en los
+	laboratorios de investigación IBM Thomas Watson publicado en 1998.
+</p>
+<p align="justify">
+	Esta aproximación es utilizada en el desarrollo de lenguajes de programación orientados a aspectos como HyperJ
+</p>
+<p align="justify">
+	El documento inicia con un breve ejemplo de la derivación de los paradigmas de programación, indicando el nacimiento de
+	la separación de conceptos y cuales de los paradigmas derivan de ella:
+</p>
+<img width="500" height="300" src="../Images/separation-concerns.png?raw=true" hspace="150"> </img>
+
+<p align="justify">
+	Los hiperespacios permiten la identificación explícita de cualquier concepto de importancia, la encapsulación de estos conceptos,
+	identificación y administración de las relaciones que tengan cada uno de estos conceptos y su integración. Muchas de las decisiones
+	que se toman al definir los hiperespacios son tomadas para lograr un impacto limitado en el cambio y lograr una evolución simplificada
+</p>
+<p align="justify">
+	Un espacio  de  concepto concentra  todas  las  unidades,  es  decir  todos  los constructores sintácticos 
+	del lenguaje, en un cuerpo de software, como una librería. Organiza las unidades en ese cuerpo de software
+	para separar todos los conceptos importantes, describe las interrelaciones entre los conceptos e indica cómo los 
+	componentes del software y el resto del sistema pueden construirse a partir de las unidades que especifican los conceptos.
+</p>
+<p align="justify">
+	Los hiperespacios son un espacio de concepto especialmente estructurado para soportar la aproximación a la separación multidimensional
+	de conceptos, su primera característica distintiva es que sus unidades están organizadas en una matriz multidimensional, donde cada eje 
+	representa una dimensión de concepto, y cada punto en ese eje es un concepto en esa dimensión, esto hace explicitas a todas las dimensiones
+	de interés, los conceptos que pertenecen a cada dimensión y qué conceptos son afectados por qué unidades 
+</p>
+
+<footer class="site-footer">
+		<span class="site-footer-owner"><a href="https://github.com/ProgramacionOrientadaAspectos/POA_teoria">Programacion Orientada a Aspectos</a> is maintained by <a href="https://github.com/ProgramacionOrientadaAspectos">ProgramacionOrientadaAspectos</a>.</span>
+		<span class="site-footer-credits">This page was created by Diego Rojas, Gustavo Galvis y Dorian Tovar.</span>
+	</footer>
 
 </section>
 
