@@ -306,10 +306,20 @@
                 <li>La principal diferencia entre interface y abstract es que una interface proporciona un mecanismo de encapsulación de los protocolos de los métodos sin forzar al usuario a utilizar la herencia.</li>
             </ul>  
             Ejemplo:<br/><br>
-            <center><img src="images/interfaz.png" id="ventajas" ></center>
+            <center>
+				<img src="images/interfaz.png" id="ventajas" >
+			</center>
             </div>
             <br/>
             <br />
+			Un ejemplo de uso de una interfaz se presenta en la siguiente imagen a través de un diagrama de clases, donde 
+			las clases <i>InstrumentoMusical</i> y <i>Sirena</i> implementan de la interfaz <i>Sonoro</i> que cuenta con la declaración del
+			método <b>sonar(volumen: int)</b>.<br><br>			
+			<center>
+				<img src="images/interface2.png" id="ventajas" >
+			</center>
+			<br>
+			<br>
             
             <div align="justify"><strong>Modificadores de acceso: </strong> Son palabras claves de los lenguajes de programación orientado
 			a objetos para configurar la accesibilidad a las clases, m&eacute;todos o propiedades.
@@ -340,15 +350,6 @@
             <br/> 
             </div>
             <br/>
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			
 			
             <div align="justify" ><strong id="encapsulamiento">Encapsulamiento: </strong><br/> 
@@ -397,19 +398,23 @@
             <b>Herencia simple</b>: Es cuando una clase hereda de sólo una clase base.<br/><br>
             <center>
                 <img src="images/hsimple.png" id="ventajas">
+				<h5>La clase B hereda de la clase A.</h5>
             </center><br/>
             Ejemplo: <br/><br>
             <center>
                 <img src="images/ejemplohsimple.png" id="ventajas">
+				<h5>La clases <i>Circle, Line y Triangle</i>  heredan todos los atributos y métodos de la clase <i>Shape</i>.</h5>
             </center><br/>
 			<br>
             <b>Herencia múltiple</b>: Es cuando una clase hereda de dos o más clases base.<br/><br>
             <center>
                 <img src="images/hmultiple.png" id="ventajas">
+				<h5>La clase C hereda tanto de la clase A como de la clase B.</h5>
             </center><br/><br/>
             Ejemplo: <br/><br/>
             <center>
                 <img src="images/ejemplohmultiple.png" id="ventajas">
+				<h5>En este ejemplo, las clases <i>Passenger y Employee</i> heredan de la clase <i>Human</i> y las clases <i>FlyingPlane y GroundPlane</i> heredan de la clase <i>Plane</i>.
             </center>
             </div>
             <br/>
@@ -418,21 +423,47 @@
                 <br />
             </div>
             <br>
-            <center><img src="images/Polimorfismo.png" id="ventajas"></center>
+            <center>
+			<img src="images/Polimorfismo.png" id="ventajas">
+			<h5>El método hablar puede ser sobreescrito por cualquier entidad (humano, perro, pato, gato).</h5>
+			</center>
             Ejemplo:<br/><br/>
-            <center><img src="images/ejemplopoli.png" id="ventajas"></center><br/>
-            Tipos de polimorfismo:<br/>
+            <center><img src="images/ejemplopoli.png" id="ventajas">
+			<h5>Ambas clases deben sobreescribir el método getArea() puesto que se calculan de diferentes maneras en cada caso.</h5>
+			</center><br/>
+			<br><br>
+			<b>Tipos de polimorfismo:</b><br/>
             <ul style="list-style-type: circle;">
                 <li>Polimorfismo Ad Hoc</li>
                 <li>Polimorfismo paramétrico</li>
                 <li>Polimorfismo de subtipos</li>
             </ul>
+			<br>
             <div align="justify">
-            <b>Polimorfismo Ad Hoc</b>: Se refiere a funciones que cambian su comportamiento dependiendo del tipo de argumentos que reciben (sobrecarga de funciones).<br/>
+            <b>Polimorfismo Ad Hoc</b>: Se refiere a funciones que cambian su comportamiento dependiendo del tipo de argumentos que reciben (sobrecarga de métodos o funciones).<br/>
             La sobrecarga de métodos hace referencia a varios métodos con el mismo nombre pero con diferentes firmas.<br/>
-            Ejemplo:<br/><br/>
-            <center><img src="images/Sobre.jpg" id="ventajas"></center>
+            <br>Ejemplo:<br/><br/>
+            <center>
+				<img src="images/Sobre.jpg" id="ventajas">
+			</center>
             <br/><br/>
+			En el lenguaje de programación <b>ABAP4</b> también se permite la sobrecarga de métodos como un tipo de polimorfismo.
+			<br><br>
+			 <center>
+				<img src="images/abap1.png" id="ventajas">
+			</center>
+			<br>
+			En el ejemplo anterior tenemos la clase <i>Empleado</i> y se desea realizar la sobrecarga del método <b>modificarNombre</b>. Este tipo de 
+			polimorfismo se implementa como se muestra en la siguiente imagen, el método recibe un parámetro <u>i_nombre</u> para una funcionalidad 
+			específica y como segunda medida, el método recibe dos parámetros <u>i_nombre</u> y <u>i_apellido</u> para otro procedimiento en particular.
+			<br><br>
+			 <center>
+				<img src="images/abap2.png" id="ventajas">
+			</center>
+			
+			
+			<br><br>
+            
             <b>Polimorfismo paramétrico</b>: El polimorfismo paramétrico permite que las funciones y las clases puedan escribirse de forma genérica, de tal manera que pueda manipular los datos de la misma manera sin importar el tipo.Ejemplos: 
             <ul style="list-style-type: circle;">
                 <li>C++ - Templates</li>
