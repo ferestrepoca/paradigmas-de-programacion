@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Tutorial de OpenMP</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+      body {
+        font: 30px Ubuntu, sans-serif;
+        line-height: 1.8;
+        color: #f5f6f7;
+      }
+      p {font-size: 20px;}
+        .margin {margin-bottom: 45px;}
+        .bg-1 { 
+        background-color: #1abc9c; /* Green */
+        color: #ffffff;
+      }
+      .bg-2 { 
+        background-color: #474e5d; /* Dark Blue */
+        color: #ffffff;
+      }
+      .bg-3 { 
+        background-color: #ffffff; /* White */
+        color: #555555;
+      }
+      .bg-4 { 
+        background-color: #2f2f2f; /* Black Gray */
+        color: #fff;
+      }
+      .container-fluid {
+        padding-top: 70px;
+        padding-bottom: 70px;
+      }
+      .navbar {
+        padding-top: 25px;
+        padding-bottom: 15px;
+        border: 0;
+        border-radius: 0;
+        margin-bottom: 0;
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
+      .navbar-nav  li a:hover {
+        color: #ffffff !important;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="./index.html" class="btn btn-primary btn-lg"><font color="white"><span class="glyphicon glyphicon-home"></span> INICIO</font></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><p>
+              <a href="./instalacion.html" class="btn btn-success btn-lg"><font color="white">INSTALACIÓN <span class="glyphicon glyphicon-cd"></span></font></a>
+              <a href="./repaso.html" class="btn btn-success btn-lg"><font color="white">REPASO <span class="glyphicon glyphicon-book"></span></font></a>
+              <a href="./tutorial.html" class="btn btn-success btn-lg"><font color="white">TUTORIAL <span class="glyphicon glyphicon-pushpin"></span></font></a>
+              <a href="./ejercicios.html" class="btn btn-success btn-lg"><font color="white">EJERCICIOS <span class="glyphicon glyphicon-pencil"></span></font></a>
+            </p></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid bg-3 text-center">
+      <img src="./images/openMPLogo.jpg" class="img-responsive img-rounded margin" style="display:inline" alt="Bird" width="350" height="350">
+      <h1 class="margin">Tutorial de OpenMP</h1>
+      <p>Sean bienvenidos a un tutorial de OpenMP. El contenido de esta página, se divide en las siguientes secciones:</p><br>
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="glyphicon glyphicon-cd"></span>
+          <h3>INSTALACIÓN</h3>
+          <p>Se explica cómo instalar OpenMP en los sistemas operativos Windows y Linux (Para la distribución Ubuntu 14.04).</p>
+        </div>
+        <div class="col-sm-3">
+          <span class="glyphicon glyphicon-book"></span>
+          <h3>REPASO</h3>
+          <p>Se introduce la definición de OpenMP, su modelo de construcción y un recorrido sobre algunos de los elementos característicos de OpenMP.</p>
+        </div>
+        <div class="col-sm-3">
+          <span class="glyphicon glyphicon-pushpin"></span>
+          <h3>TUTORIAL</h3>
+          <p>Se muestran unos ejemplos a nivel básico, intermedio y avanzado, donde se aplican elementos característicos de OpenMP; se explican detalles de implementación, análisis a nivel de programación secuencial y paralela, y un análisis de resultados en la ejecución de estos programas.</p>
+        </div>
+        <div class="col-sm-3">
+          <span class="glyphicon glyphicon-pencil"></span>
+          <h3>EJERCICIOS</h3>
+          <p>Se propone una serie de ejercicios, donde se aplican elementos característicos de OpenMP, y estos ejercicios se basan en los ejemplos mostrados en el tutorial.</p>
+        </div>
+      </div>
+      <br>
+      <h2 class="margin">Bibliografía</h2>
+      <p>OpenMP. Wikipedia. Disponible en: <a href="https://es.wikipedia.org/wiki/OpenMP">https://es.wikipedia.org/wiki/OpenMP</a></p>
+      <p>Milk (programming language). Wikipedia. Disponible en: <a href="https://en.wikipedia.org/wiki/Milk_(programming_language)">https://en.wikipedia.org/wiki/Milk_(programming_language)</a></p>
+      <p>Salazar, D. Descargar e instalar OpenMP en Windows. Youtube. Disponible en: <a href="https://www.youtube.com/watch?v=As0TCeLtaPI">https://www.youtube.com/watch?v=As0TCeLtaPI</a></p>
+      <p>Mattson, T. Introduction to OpenMP. Youtube. Disponible en: <a href="https://www.youtube.com/playlist?list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG">https://www.youtube.com/playlist?list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG</a></p>
+      <p>Kiriansky, V. Zhang, Y. Amarasinghe, S. Optimizing Indirect Memory References with milk. ACM Digital Library. Disponible en: <a href="http://delivery.acm.org/10.1145/2970000/2967948/p299-kiriansky.pdf?ip=190.25.6.6&id=2967948&acc=OA&key=4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E8A5020286FF324D0&CFID=934522620&CFTOKEN=20846843&__acm__=1494395122_548f3c6aa72766ad55a15163c2bd830a">http://delivery.acm.org/10.1145/2970000/2967948/p299-kiriansky.pdf?ip=190.25.6.6&id=2967948&acc=OA&key=4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E8A5020286FF324D0&CFID=934522620&CFTOKEN=20846843&__acm__=1494395122_548f3c6aa72766ad55a15163c2bd830a</a></p>
+      <p>OpenMP by example. Disponible en: <a href="http://sc.tamu.edu/shortcourses/SC-openmp/OpenMPSlides_tamu_sc.pdf">http://sc.tamu.edu/shortcourses/SC-openmp/OpenMPSlides_tamu_sc.pdf</a></p>
+      <p>Fork-join model. Wikipedia. Disponible en: <a href="https://en.wikipedia.org/wiki/Fork%E2%80%93join_model">https://en.wikipedia.org/wiki/Fork%E2%80%93join_model</a></p>
+      <p>Hernández, M. Conejo, F. Programación Concurrente. Disponible en: <a href="https://drive.google.com/file/d/0B7IRdmOoUVf5SjVadkFpajRPcjA/view">https://drive.google.com/file/d/0B7IRdmOoUVf5SjVadkFpajRPcjA/view</a></p>
+      <p>Blaise Barney, Lawrence Livermore National Laboratory. OpenMP. Disponible en: <a href="https://computing.llnl.gov/tutorials/openMP/">https://computing.llnl.gov/tutorials/openMP/</a></p>
+      <p>OpenMP 4.5 API C/C++ Syntax Reference Guide. Disponible en: <a href="http://www.openmp.org/wp-content/uploads/OpenMP-4.5-1115-CPP-web.pdf">http://www.openmp.org/wp-content/uploads/OpenMP-4.5-1115-CPP-web.pdf</a></p>
+      <p>Serie de Leibniz. Wikipedia. Disponible en: <a href="https://es.wikipedia.org/wiki/Serie_de_Leibniz">https://es.wikipedia.org/wiki/Serie_de_Leibniz</a></p>
+      <p>Sucesión de Fibonacci. Wikipedia. Disponible en: <a href="https://es.wikipedia.org/wiki/Sucesi%C3%B3n_de_Fibonacci">https://es.wikipedia.org/wiki/Sucesi%C3%B3n_de_Fibonacci</a></p>
+    </div>
+
+    <footer class="container-fluid bg-4 text-center">
+      <p>Universidad Nacional de Colombia</p>
+      <p>Lenguajes de Programación 2017 - 1</p>
+      <p>Integrantes: Michael Andrés Murcia Contreras, Manuel Antonio Zambrano Quintero</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Tutorial de OpenMP</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+      body {
+        font: 30px Ubuntu, sans-serif;
+        line-height: 1.8;
+        color: #f5f6f7;
+      }
+      p {font-size: 20px;}
+        .margin {margin-bottom: 45px;}
+        .bg-1 { 
+        background-color: #1abc9c; /* Green */
+        color: #ffffff;
+      }
+      .bg-2 { 
+        background-color: #474e5d; /* Dark Blue */
+        color: #ffffff;
+      }
+      .bg-3 { 
+        background-color: #ffffff; /* White */
+        color: #555555;
+      }
+      .bg-4 { 
+        background-color: #2f2f2f; /* Black Gray */
+        color: #fff;
+      }
+      .container-fluid {
+        padding-top: 70px;
+        padding-bottom: 70px;
+      }
+      .navbar {
+        padding-top: 25px;
+        padding-bottom: 15px;
+        border: 0;
+        border-radius: 0;
+        margin-bottom: 0;
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
+      .navbar-nav  li a:hover {
+        color: #ffffff !important;
+      }
+      pre {
+        background: #303030;
+        color: #ffffff;
+        border-radius: 2px;
+        margin: 0.5cm 3cm 0.5cm 3cm;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="./index.html" class="btn btn-primary btn-lg"><font color="white"><span class="glyphicon glyphicon-home"></span> INICIO</font></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><p>
+              <a href="./instalacion.html" class="btn btn-success btn-lg"><font color="white">INSTALACIÓN <span class="glyphicon glyphicon-cd"></span></font></a>
+              <a href="./repaso.html" class="btn btn-success btn-lg"><font color="white">REPASO <span class="glyphicon glyphicon-book"></span></font></a>
+              <a href="./tutorial.html" class="btn btn-success btn-lg"><font color="white">TUTORIAL <span class="glyphicon glyphicon-pushpin"></span></font></a>
+              <a href="./ejercicios.html" class="btn btn-success btn-lg"><font color="white">EJERCICIOS <span class="glyphicon glyphicon-pencil"></span></font></a>
+            </p></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid bg-3 text-center">
+      <h1 class="margin">Repaso previo al Tutorial de OpenMP <span class="glyphicon glyphicon-book"></span></h1>
+      <p>Antes de proceder con el tutorial, en esta sección se explicará lo que es OpenMP, el modelo de ejecución fork-join como base de OpenMP y se realizará un recorrido por algunos de los elementos que componen OpenMP (Directivas de Compilador y Variables de Entorno).</p>
+      <br>
+      <h1 class="margin">¿Qué es OpenMP?</h1>
+      <p>OpenMP es una API (Interfaz de Programación de Aplicaciones) para programación en múltiples procesos y usa memoria compartida como forma de comunicación entre procesos. OpenMP permite añadir concurrencia a programas escritos en los lenguajes de C, C++ y Fortran sobre la base del modelo de ejecución fork-join.</p>
+      <br>
+      <h1 class="margin">¿Qué es el modelo de ejecución fork-join?</h1>
+      <p>El modelo de ejecución fork-join es un paradigma proveniente de los sistemas Unix, en el cual se tiene una tarea muy pesada que se puede dividir en subtareas independientes más sencillas (<i>fork</i>), para que después de haber resuelto dichas subtareas, al final estos resultados se combinan de alguna forma (<i>join</i>) para obtener la solución a la tarea original.</p>
+      <br>
+      <p>En términos de implementación, los programas en OpenMP inician con un solo hilo, denominado <i>Hilo Maestro</i>. Cuando se entran a secciones paralelas en la ejecución del programa, se crean cuantos hilos sean necesarios para completar las tareas de estas secciones que se ejecutan simultáneamente por cada hilo; y cuando se salen de secciones paralelas en la ejecución del programa, en una barrera implícita se espera a que todos los hilos terminen sus tareas asignadas, esto permite sincronizar los hilos con el hilo maestro y posteriormente continuar con la ejecución del programa.</p>
+      <img src="./images/forkJoin.jpg" class="img-responsive img-rounded margin" style="display:inline" alt="Bird" width="900" height="350">
+      <p><b>Ejemplo 1 (Sumatoria):</b> Se tiene como problema original, realizar el cálculo de una sumatoria de 10<sup>6</sup> términos a<sub>1</sub>, a<sub>2</sub>, a<sub>3</sub>, ... , a<sub>1000000</sub>; este problema se puede dividir en 5 subsumatorias independientes más sencillas (<i>fork</i>), cada subsumatoria se puede realizar de forma simultánea. Cuando se hayan resuelto estos 5 subproblemas, para combinar resultados (<i>join</i>), simplemente se toma la suma del resultado de cada subproblema (Usando la propiedad asociativa de la suma de números reales), para obtener la solución al problema original.</p>
+      <p><b>Ejemplo 2 (Ordenamiento de un arreglo de números):</b> Se tiene como problema original, realizar el ordenamiento ascendente de un arreglo de 100 números a<sub>1</sub>, a<sub>2</sub>, a<sub>3</sub>, ... , a<sub>100</sub>; este problema se puede dividir en 5 tareas independientes más sencillas (<i>fork</i>), las tareas consisten en ordenar ascendentemente 5 subarreglos de 20 elementos, cada tarea se puede realizar de forma simultánea. Cuando se hayan resuelto estos 5 subproblemas, para combinar resultados (<i>join</i>), se concatenan estos 5 subarreglos, para obtener un nuevo arreglo y finalmente se ordena ascendentemente este nuevo arreglo para obtener la solución al problema original.</p>
+      <br>
+      <h1 class="margin">Recorrido por algunos elementos de OpenMP</h1>
+      <p></p>
+      <h2 class="margin">Variables de Entorno</h2>
+      <p>OpenMP usa un conjunto de variables propias que permiten afectar el comportamiento de un programa, estas variables no se pueden manipular directamente, pero como solución, se usan métodos de acceso y modificación para evitar que estas variables se accedan por error. Estos métodos que usa OpenMP son:</p>
+      <br>
+      <p align="left"><b>omp_set_num_threads</b>: Permite fijar el número máximo de hilos que usará el programa.</p>
+      <p align="left"><b>omp_get_num_threads</b>: Retorna el número de hilos que están en ejecución en el momento de su llamada.</p>
+      <p align="left"><b>omp_get_max_threads</b>: Retorna el número máximo de hilos que usará el programa.</p>
+      <p align="left"><b>omp_get_thread_num</b>: Retorna el número del hilo (Identificador del hilo), este valor es un número entero entre 0 y n - 1, siendo n el número de hilos que usará el programa.</p>
+      <p align="left"><b>omp_get_num_procs</b>: Retorna el número de núcleos o de procesadores del computador.</p>
+      <br>
+      <h2 class="margin">Directivas de Compilador</h2>
+      <p>También denominadas constructores, una directiva de compilador es una forma de sincronización de un bloque de código que se ejecuta de forma paralela, donde se crean hilos según sea necesario, se permite añadir algunas restricciones en la forma de ejecución de dicho bloque de código, y al final se presenta una barrera para la sincronización de los hilos. Las directivas que usa OpenMP son:</p>
+      <br>
+      <p align="left"><b>parallel</b>: Indica que el bloque del código puede ser ejecutado por varios hilos. La sintaxis para el uso de esta directiva es la siguiente:</p>
+      <pre align="left">#pragma omp parallel
+{
+  &ltBLOQUE DE CÓDIGO&gt
+}</pre>
+      <p align="left"><b>for</b>: Esta directiva es igual a la directiva <i>parallel</i> pero está optimizada para el uso de ciclos for. La sintaxis para el uso de esta directiva es la siguiente:</p>
+      <pre align="left">#pragma omp for
+for(&ltINICIALIZACIÓN&gt ; &ltCONDICIÓN DE PARADA&gt ; &ltACTUALIZACIÓN&gt){
+  &ltBLOQUE DE CÓDIGO&gt
+}</pre>
+      <p align="left"><b>section</b> y <b>sections</b>: Indica que el bloque de código se puede ejecutar en paralelo, pero por un único hilo. La sintaxis para el uso de esta directiva es la siguiente:</p>
+      <pre align="left">#pragma omp sections
+{
+  #pragma omp section
+  {
+    &ltBLOQUE DE CÓDIGO SECCIÓN 1&gt
+  }
+                  ...
+  #pragma omp section
+  {
+    &ltBLOQUE DE CÓDIGO SECCIÓN N&gt
+  }
+}</pre>
+      <p align="left"><b>single</b>: Indica que el bloque de código solo puede ser ejecutado por un hilo. La sintaxis para el uso de esta directiva es la siguiente:</p>
+      <pre align="left">#pragma omp single
+{
+  &ltBLOQUE DE CÓDIGO&gt
+}</pre>
+      <p align="left"><b>master</b>: Indica que el bloque de código solo puede ser ejecutado por el hilo maestro. La sintaxis para el uso de esta directiva es la siguiente:</p>
+      <pre align="left">#pragma omp master
+{
+  &ltBLOQUE DE CÓDIGO&gt
+}</pre>
+      <p align="left"><b>critical</b>: Indica que solo un hilo puede ejecutar el bloque de código. La sintaxis para el uso de esta directiva es la siguiente:</p>
+      <pre align="left">#pragma omp critical
+{
+  &ltBLOQUE DE CÓDIGO&gt
+}</pre>
+      <p align="left"><b>atomic</b>: Indica que un solo hilo puede ejecutar una sola instrucción que afecta solamente a una variable (Como instrucciones de la forma i++ o i--). La sintaxis para el uso de esta directiva es la siguiente:</p>
+      <pre align="left">#pragma omp atomic
+  &ltINSTRUCCIÓN DE ACTUALIZACIÓN&gt</pre>
+      <p align="left"><b>reduction</b>: Hace una operación privada (Suma, resta, multiplicación, división, entre otras) en cada ejecución del bloque de código y al final suma cada resultado. La sintaxis para el uso de esta directiva es la siguiente:</p>
+      <pre align="left">#pragma omp parallel reduction(&ltSÍMBOLO DE OPERACIÓN&gt : &ltVARIABLE&gt)
+{
+  &ltBLOQUE DE CÓDIGO&gt
+}</pre>
+      <p align="left"><b>shared</b>: Indica qué variables son compartidas o globales en la región paralela, esto permite que cualquier hilo pueda acceder a alguna de estas variables. La sintaxis para el uso de esta directiva es la siguiente:</p>
+      <pre align="left">#pragma omp parallel shared(&ltVARIABLE 1&gt, ... , &ltVARIABLE N&gt)
+{
+  &ltBLOQUE DE CÓDIGO&gt
+}</pre>
+      <p align="left"><b>private</b>: Indica qué variables serán privadas para cada hilo, esto significa que cada hilo tendrá una copia local usada como variable temporal que no se usará fuera de la región paralela. La sintaxis para el uso de esta directiva es la siguiente:</p>
+      <pre align="left">#pragma omp parallel private(&ltVARIABLE 1&gt, ... , &ltVARIABLE N&gt)
+{
+  &ltBLOQUE DE CÓDIGO&gt
+}</pre>
+      <br>
+      <p>Es posible especificar que solo se ejecute la región paralela cuando se cumpla una condición dada, para esto, se usa la siguiente sintaxis:</p>
+      <pre align="left">#pragma omp parallel if(&ltCONDICIÓN&gt)
+{
+  &ltBLOQUE DE CÓDIGO&gt
+}</pre>
+    </div>
+
+    <footer class="container-fluid bg-4 text-center">
+      <p>Universidad Nacional de Colombia</p>
+      <p>Lenguajes de Programación 2017 - 1</p>
+      <p>Integrantes: Michael Andrés Murcia Contreras, Manuel Antonio Zambrano Quintero</p>
+    </footer>
+  </body>
+</html>
