@@ -233,6 +233,25 @@
     }</pre></div>
 
 <h3>
+<a id="joinpoint" class="anchor" href="#joinpoint" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JoinPoint</h3>
+
+<p>Instrucción de código que permite interceptar las clases para hacer llamados a métodos o tener acceso a atributos,
+representando un punto en el flujo de ejecución, que suele ser interesante para definir en donde aplicar un cierto aspecto.Un
+	ejemplo que ayuda a diferenciar un joinpoint de un cutpoint es el siguiente:
+ </p>	
+<p>	Cuando usted va a un restaurante, mira un menú y observa varias opciones para elegir. 
+	Puede ordenar uno o más de cualquiera de los elementos del menú. 
+	Pero hasta que realmente elija y pida, son sólo "oportunidades para cenar". 
+	Una vez que ordene y el camarero lleve a su mesa lo que pidió, es una comida.
+</p>
+<p>
+	Los puntos de unión (joinpoint) son las opciones del menú y los puntos de corte son los elementos que selecciona.
+	Un joinpoint es una oportunidad dentro del código para que usted aplique un aspecto ... apenas una oportunidad.
+	Una vez que usted toma esa oportunidad y selecciona uno o más joinpoints y los aplica, usted tiene un punto de corte(cutpoint).
+</p>	
+	
+	
+<h3>
 <a id="pointcut" class="anchor" href="#pointcut" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PointCut</h3>
 
 <p>Una palabra del lenguaje que selecciona los puntos interesantes (join points) y colecta el contexto de este punto.
