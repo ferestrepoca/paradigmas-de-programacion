@@ -1,0 +1,236 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <meta charset='utf-8'>
+    <title>Programación funcional </title>
+</head>
+
+<body>
+	<div class="todo">
+
+    <ul class="menu">
+        <li><a class="menu-item" href="index.html">Programación Funcional </a>
+            <ul>
+                <li><a class="menu-item1" href="index.html#intro">Motivaci&oacute;n</a></li>
+                <li><a class="menu-item1" href="index.html#history">Historia</a></li>
+                <li><a class="menu-item1" href="index.html#lambdacalc">C&aacute;lculo Lambda</a></li>
+                <li><a class="menu-item1" href="index.html#advantage_disadvantage">Ventajas y desventajas</a></li>
+                <li><a class="menu-item1" href="index.html#languages">Lenguajes</a></li>
+            </ul>
+        </li>
+        
+        <li><a class="menu-item" href="test.html">Test your knowledge!</a></li>
+        <li><a class="menu-item" href="http://nbviewer.jupyter.org/url/ferestrepoca.github.io/paradigmas-de-programacion/progfun/funcional_teoria/Programacion-Funcional.ipynb">NoteBook</a></li>
+        <li><a class="menu-item" href="../../index.html">Volver a Index</a></li>
+    </ul>
+
+
+	<div class="head">
+		<div class="titulo-principal">
+			<strong><center>Programación Funcional</strong>
+			</center>
+        </div>
+	</div>
+
+	<div class="container">
+	<!--<div class="empty">Empty</div> -->
+		<hr>
+		<br>
+		<section id="intro">
+			<h2 id="intro1"><center><strong>Motivación</strong></center></h2>
+			<h3>
+				<div align="justify">
+					Para entender mejor la programación funcional, debemos tener claro que con ella resolvemos a la pregunta <em>¿Qué?</em> mientras que la programación imperativa responde a la pregunta ¿Cómo? <br> <br>
+
+					Al responder la pregunta del “¿Qué?”, nos enfocamos en el resultado y no en el procedimiento. Esto implica un nivel mayor de abstracción, pero también que la programación es independiente del contexto. <br> <br> 
+
+					Uno de los principios del paradigma es hacer que las funciones sean lo m&aacute;s espec&iacute;ficas posible. De esta manera se cumple otro de los principios de este paradigma: la reutilizacion de c&oacute;digo -pues, como veremos, las funciones retornarán lo mismo siempre a lo largo de toda la ejecuci&oacute;n del programa-.
+				</div>
+			</h3>
+		</section>
+
+
+        <section id="history">
+            <h2 id="history1"> <strong>Historia</strong> </h2>
+            <h3>
+				<div align="justify">
+					Todo empiez&oacute; con Gottfried Leibniz, quien creó la máquina mecánica de cálculo en el siglo XVII. Esta máquina fue el primer prototipo del dispositivo soñado por Leibniz: una máquina capaz de manipular símbolos y determinar si una frase matemática era o no un teorema, es decir, si una proposición que partía de un supuesto (hipótesis), afirmaba una verdad (tesis) que no es evidente por sí misma.
+				</div>
+            </h3>
+            <br>
+            <img class="center-block" src="images/Leibniz.jpg" alt="Photo">
+			<br><br>
+            <img class="center-block" src="images/maquinaCalculo.jpeg" alt="Photo">
+            <h3>
+            <div align="justify">
+				Para el año de 1928, los matemáticos David Hilbert y Wilhelm Ackermann propusieron el problema de la decisión, que consiste en encontrar un proceso o algoritmo (aún no se tenía la definición formal de algoritmo como tal) general, que decidiera si una fórmula de cálculo de primer orden es un teorema retomando la idea desarrollada por Leibniz.<br>
+			<br>
+
+			<img class="center-block" src="images/DavidHilbert.jpg" alt="Photo">
+			<br><br>
+            <img class="center-block" src="images/Ackermann_Wilhelm.jpg" alt="Photo">
+            <br>
+
+            En 1936, Alonzo Church desarrolló la definición formal de algoritmo bajo el concepto de “calculabilidad efectiva” y diseñó una solución al problema planteado por Hilbert y Ackermann utilizando un modelo de computación denominado por él mismo como Cálculo Lambda, la base fundamental de este paradigma. 
+
+            <br>
+            <img class="center-block" src="images/Alonzo_Church.jpg" alt="Photo">
+            <br>
+            <img class="center-block" src="images/Turing.jpg" alt="Photo">
+            <br>
+            En este mismo año, Alan Turing -al igual que Church- desarrollaba una definición de algoritmo y daba solución al problema de la decisión, pero usando las <em>máquinas de Turing</em>, otro modelo de computación que se convertiría en la base de la computación actual, bajo un concepto completamente diferente al cálculo lambda: el problema de la parada. Cabe aclarar que los dos modelos computacionales son equivalentes ya que ambos pueden dar solución a los mismos tipos de problemas.
+            <br>
+            <br>
+            <img class="center-block" src="images/IBM704-1954.jpg" alt="Photo">
+            <br>
+            El paradigma funcional se empezó a desarrollar por el matemático John McCarthy en 1956, para programar los primeros proyectos de inteligencia artificial sobre un computador IBM 704, esto se realizó mediante la implementación de LISP en 1958, lenguaje que aunque no era puramente funcional(Primer lenguaje multiparadigma), todas las características introducidas por él, se convirtieron en las bases para lo que hoy llamamos Paradigma funcional.
+            <br>
+            <img class="center-block" src="images/lisp.jpg" alt="Photo">
+            <br>
+  
+            </div>
+            </h3>
+
+        </section>
+
+        <section id="lambdacalc">
+            <h2 id="lambdacalc1"> <strong>Cálculo Lambda</strong></h2>
+            <br>
+            <img class="center-block" src="images/logo.jpg" alt="Photo" id="logo">
+            <h3>
+			<br>
+            <div align="justify">Es el más pequeño lenguaje universal de programación, consiste en en una regla de transformación simple (sustituir variables) y un esquema simple para definir funciones. 
+
+            <br>
+            <br> 
+            El cálculo lambda se puede decir que es equivalente a las máquinas Turing porque es capaz de evaluar y expresar cualquier función computable. Originalmente, Church había tratado de construir un sistema formal completo para modelar la Matemática; pero cuando éste se volvió susceptible a la paradoja de Russell, separó del sistema al cálculo lambda y lo usó para estudiar la computabilidad, culminando en la respuesta negativa al problema de la parada.
+            <br>
+            <br>
+            Considérese las siguientes dos funciones. Por un lado, la función identidad <em>I(x)=xI(x)=x</em>, que toma un único argumento, <em>xx</em>, e inmediatamente devuelve <em>xx</em>. Por otro lado, la función suma <em>S(x,y)=x+yS(x,y)=x+y</em>, que toma dos argumentos, <em>xx</em> e <em>yy</em>, y devuelve la suma de ambos: <em>x+yx+y</em>, usando estas dos funciones como ejemplo podemos decir:
+            <br> <br>
+            <img class="center-block" src="images/lambdacalc.png" alt="Photo" id="ventajas">
+
+            	
+            </div>
+            </h3>
+
+        </section>
+
+
+        <section id="advantage_disadvantage">
+
+            <h2 id="advantage_disadvantage1"> <strong>Ventajas</strong> </h2>
+            <h3>
+            <div align="justify">
+            <ol type="1">
+			<li>Altos niveles de abstracción: El código muestra un mayor énfasis en el "¿qué se hace?" en lugar del "¿cómo se hace?".</li>
+            <li>Código declarativo y comprensible: Debido a los altos niveles de abstracción, los programas que aplican este paradigma suelen ser más cortos y fáciles de entender que sus versiones en programación imperativa.</li>
+
+            <li>La evaluación perezosa: Esta estrategia de evaluación permite realizar cálculos por demanda, evitando gasto computacional innecesario. El ejemplo más claro está en la utilización de listas infinitas.</li>
+
+            <li>Las características del paradigma, en especial la utilización de funciones puras, permiten realizar ciertas optimizaciones particulares.</li>
+
+			<li>Mayor probabilidad de aplicar expansión en línea: Esta es una optimización del compilador que sustituye los llamados a una función por la definición directa de dicha función, de tal forma que se ahorre tiempo y espacio durante la ejecución. </li>
+
+            <li>Las características del paradigma, en especial la utilización de funciones puras, permiten realizar ciertas optimizaciones particulares.</li>
+
+
+            <li>Optimizaciones a partir de la utilización de funciones puras: Las funciones puras nos garantizan la ausencia de efectos secundarios. Esto a su vez nos permite aplicar las siguientes mejoras:
+                <ul style="list-style-type: circle;margin:0 30px;">
+                    <li>Se pueden eliminar las funciones cuyo resultado no sea utilizado.</li>
+                    <li>Una función retornará lo mismo siempre que se ejecute con los mismos parámetros, por lo cuál se puede evitar la repetición de cálculos mediante el uso de memoria caché.</li>
+                    <li>El orden de ejecución de las funciones puede ser cambiado o incluso se puede llegar a aplicar paralelismo cuando no exista dependencia de datos entre dichas funciones.</li>
+                </ul>
+                </li>
+   
+            </ol>
+
+		<h2 id="advantage_disadvantage1"> <strong>Desventajas</strong> </h2>
+            <h3>
+            <div align="justify">
+            <ol type="1">
+			<li>Dificultad inicial para producir buen código: Esto debido a que un programador suele estar acostumbrado al pensamiento de la programación imperativa, tomando un poco de tiempo que la persona logre adaptarse y generar código útil.</li>
+            <li>Generación de grandes cantidades de short-lived garbage: Esto se debe principalmente a la caracteristica de inmutabilidad. Los garbage collectors tienden a optimizar este aspecto.</li>
+			<li>Menor eficiencia en el uso de CPU comparados con su contraparte imperativa: Debido principalmente a que muchas estructuras de variables mutables (como los arreglos) tienen una sencilla implementación en un paradigma imperativo, mientras que en la programación funcional no es fácil crear componentes homólogos inmutables con la misma eficiencia.</li>
+
+            </div>
+            </h3>
+			
+
+        </section>
+
+        <section id="languages">
+            <h2 id="languages1">  <strong>Lenguajes de programación</strong> </h2>
+
+			<h3>
+				A continuación se mencionarán y se dará una breve introducción con algunos ejemplos de lenguajes que implementan características del paradigma de programación funcional:				
+			</h3>
+            <h3>
+			
+            <ul style="list-style-type: circle;" id="lenguajes">
+
+            	<br>
+            	<img class="center-block" src="images/Scala.gif" alt="Photo">
+            	<br><br>
+			
+				<li align="justify"><b>Scala</b>: Es un lenguaje de programación multi-paradigma diseñado para expresar patrones comunes de programación que integra características de lenguajes funcionales y orientados a objetos. La implementación actual corre en la máquina virtual de Java y es compatible con las aplicaciones Java existentes. En Scala las funciones son valores de primera clase, soportando funciones anónimas, orden superior, funciones anidadas y currificación. Scala viene integrado de fábrica con la técnica de pattern matching para modelar tipos algebraicos usados en muchos lenguajes funcionales. El siguiente código muestra una de las características de la programación funcional, el pasar funciones como argumentos de otras funciones.
+				</li>    
+				<br>
+				<br>
+            	<img class="center-block" src="images/Scheme_logo.png" alt="Photo">
+            	<br><br>
+                <li align="justify"><b>Scheme</b>: Es un lenguaje funcional (si bien impuro pues sus estructuras de datos no son inmutables) y un dialecto de Lisp. Fue desarrollado por Guy L. Steele y Gerald Jay Sussman en la década de los setenta e introducido en el mundo académico a través de una serie de artículos conocidos como los Lambda Papers de Sussman y Steele. La filosofía de Scheme es minimalista. Su objetivo no es acumular un gran número de funcionalidades, sino evitar las debilidades y restricciones que hacen necesaria su adición. Así, Scheme proporciona el mínimo número posible de nociones primitivas, construyendo todo lo demás a partir de un reducido número de abstracciones. Las listas son la estructura de datos básica del lenguaje, que también ofrece arrays entre sus tipos predefinidos. Debido a su especificación minimalista, no hay sintaxis explícita para crear registros o estructuras, o para programación orientada a objetos, pero muchas implementaciones ofrecen dichas funcionalidades. El siguiente ejemplo muestra porque Scheme es un lenguaje funcional impuro, permitiendo realizar estructuras como for, las cuales incumplen la regla de que los objetos son inmutables.</li>
+				<br>
+				<br>
+            	<img class="center-block" src="images/Haskell.png" alt="Photo">
+            	<br><br>
+				<li align="justify"><b>Haskell</b>: Es un lenguaje de programación estandarizado multi-propósito puramente funcional con semánticas no estrictas y fuerte tipificación estática. Su nombre se debe al lógico estadounidense Haskell Curry. En Haskell, "una función es un ciudadano de primera clase" del lenguaje de programación. Como lenguaje de programación funcional, el constructor de controles primario es la función. El lenguaje tiene sus orígenes en las observaciones de Haskell Curry y sus descendientes intelectuales. Las características más interesantes de Haskell incluyen el soporte para tipos de datos y funciones recursivas, listas, tuplas, guardas y calce de patrones. </li>
+               	<br>
+				<br>
+            	<img class="center-block" src="images/Clojure_logo.svg.png" alt="Photo">
+            	<br><br>	
+                <li align="justify"><b>Closure</b>: Es un lenguaje de programación de propósito general que maneja el dialecto de Lisp, está enfocado en el paradigma funcional y fue diseñado con el fin de eliminar la complejidad de la programación concurrente, se puede ejecutar sobre la máquina virtual de Java, la máquina de la de la plataforma .NET o compilado a JavaScript. Este lenguaje usa una gestión de referencias que pueden ser actualizadas aplicando funciones pras al estado actual, permitiendo un enfoque al cambio de estado de la programación imperativa promoviendo el uso de funciones puras como mejor forma de realizar cálculos. Fue diseñado por Rich Hickey, quien describe el desarrollo de Clojure como la búsqueda de un lenguaje funcional como el Lisp, pero por defecto, que estuviera integrado sobre un entorno robusto en lugar de ser su propia plataforma y que eliminara la programación concurrente. Así mismo rechaza por completo el paradigma de los objetos, expresando los programas como aplicación de funciones sobre datos mas que sobre interaccion e entidades. </li>
+				<br>
+				<br>
+            	<img class="center-block" src="images/ocaml.jpeg" alt="Photo">
+            	<br><br>	
+				<li align="justify"><b>OCaml</b>: Objective CAML, su etimología proviene de las siglas Objective Categorical Abstract Machine Language. Es un lenguaje de programación avanzado de la familia ML, desarrollado por INRIA en Francia, admite varios paradigmas, entre ellos el funcional. Nace de la evolución del del lenguaje CAML, al integrarse la operación con objetos. El código en Ocalm, se compila en código para una máquina virtual o en código de máquina para diferentes arquitecturas que permiten una eficiencia comparable con la producida por lenguajes como C o C++.</li>
+
+            </ul>
+            </h3>
+        </section>
+
+
+    </div>
+
+    <div class="footer" >
+        <center>
+            <a href="index.html">PF</a> |
+            <a href="test.html">Test your knowledge!</a> 
+        </center>
+        <br>
+        <div class="footer-text" >
+        <center>
+            Creado y modificado por: --
+            <br>
+            <br>
+             <p>Copyright &copy; Paradigmas de Programación - UNAL 2017</p>
+        
+        </center>
+        </div>
+    </div>
+
+    <script src="js/jquery.js">
+    </script>
+    <script src="js/bootstrap.min.js">
+	</script>
+
+	</div>
+	</div>
+</body>
+
+</html>

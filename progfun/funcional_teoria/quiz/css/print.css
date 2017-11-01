@@ -1,0 +1,17 @@
+* {
+    border-color: black;
+    color: black;
+}
+
+fieldset {
+    border-color: black;
+}
+
+input[type="radio"] {
+    page-break-after: avoid;
+    page-break-before: avoid;
+}
+
+input[type="submit"] {
+    display: none;
+}

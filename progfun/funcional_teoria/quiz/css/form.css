@@ -1,0 +1,96 @@
+body {
+    color: #36393D;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 90%;
+    margin: 1em auto;
+    width: 750px;
+}
+
+fieldset {
+    border-color: #356AA0;
+    margin-bottom: 1em;
+
+}
+
+    legend {
+        font-size: 105%;
+        font-weight: 600;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 15px;
+    }
+
+        label {
+            display: block;
+            line-height: 1.75em;
+        }
+
+            input[type="radio"] {
+                margin-right: 10px;
+            }
+
+input[type="submit"] {
+    background: #689DD3;
+    border: 1px solid #356AA0;
+    color: white;
+    display: block;
+    font-size: 120%;
+    font-weight: 600;
+    height: 2.5em;
+    margin-top: 2em;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+table {
+    color: white;
+    font-weight: bold;
+    margin: 1em auto 2em auto;
+    width: 360px;
+}
+
+    td {
+        padding: 5px 15px;
+        text-align: left;
+        width: 60px;
+    }
+
+    td.missing-label,
+    td.right-label,
+    td.wrong-label {
+        border-bottom: 1px solid;
+        border-left: 1px solid;
+        border-top: 1px solid;
+    }
+
+    td.missing-score,
+    td.right-score,
+    td.wrong-score {
+        border-bottom: 1px solid;
+        border-right: 1px solid;
+        border-top: 1px solid;
+        text-align: right;
+    }
+
+    td.missing-label,
+    td.missing-score {
+        background: #C79810;
+        border-bottom-color: #946500;
+        border-left-color: #946500;
+        border-top-color: #946500;
+    }
+
+    td.right-label,
+    td.right-score {
+        background: #6BBA70;
+        border-bottom-color: #38873D;
+        border-top-color: #38873D;
+    }
+
+    td.wrong-label,
+    td.wrong-score {
+        background: #D01F3C;
+        border-bottom-color: #9D0009;
+        border-right-color: #9D0009;
+        border-top-color: #9D0009;
+    }

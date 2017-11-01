@@ -1,0 +1,214 @@
+.todo{
+	background-color: FAFAFA;
+}
+
+.menu {
+    position: fixed;
+    list-style: none;
+    background: #1C1C1C;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+	font-size: 14;
+    margin-top: 0px;
+    width: 100%;
+    box-shadow: 0px 1px 1px #636363;
+}
+
+.empty {
+	background-color: black;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 20px;
+    opacity: 0;
+    width: 100%;
+}
+
+.left {
+	margin-left:60px;
+    float: left;
+    width: 50%;
+}
+
+.right {
+    margin-left: 50%;
+	margin-right:20px;
+}
+
+.menu > li {
+    list-style: none;
+    float: left;
+    position: relative;
+    padding: 0 10px;
+}
+
+.menu >li:hover {
+	color: black;
+	background-color: #5D9BF2;
+}
+
+.menu li ul {
+    transition: opacity 1s;
+    opacity: 0;
+    height: 0;
+    width: 100%;
+    position: absolute;
+    background: #f4f4f4;
+    box-shadow: 0px 2px 10px #636363;
+    z-index: 80;
+    font-size: 100px;
+    overflow: hidden;
+    padding: 0px 5px;
+}
+
+.menu li:hover > ul {
+    opacity: 1;
+    height: auto;
+    list-style: none;
+    font-size: 15px;
+}
+
+.menu:hover {}
+
+.menu li ul li {
+    position: relative;
+    min-width: 100%;
+}
+
+.menu-item:link,
+.menu-item:visited {
+    display: block;
+    transition: color 0.8s;
+    color: white;
+    text-decoration: none;
+    margin: 3px 0px;
+}
+
+.menu-item1:link,
+.menu-item1:visited {
+    display: block;
+    transition: color 0.8s;
+    color: black;
+    text-decoration: none;
+    margin: 3px 0px;
+}
+
+.menu-item:hover,
+.menu-item:active{
+    color: black;
+    text-decoration: none;
+}
+
+.menu-item1:hover,
+.menu-item1:active{
+	font-weight: bold;
+    text-decoration: none;
+}
+
+.menu li > .menu-item {
+    padding: .5em .9em;
+}
+
+.menu li > .menu-item1 {
+    padding: .5em .9em;
+}
+
+.menu-text {
+    padding: .5em 0;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+	background-color: black
+}
+
+.titulo-principal{
+	color: white;
+	font-size:75px;
+	font-family:serif;
+	padding-top: 170px;
+	border-color: black;
+	border-width: 5px;
+	margin-left: 120px;
+	margin-right: 120px;
+	margin-bottom:5px;
+}
+
+.titulo{
+
+	color: 7399FF;
+	font-size: 70px;
+	font-family: serif;
+	margin-left: 110px;
+	margin-right: 100px;
+}
+
+
+#intro1, #history1, #evolution1, #philosophy1,
+#advantage_disadvantage1, #desventajas,
+#principios, #languages1, #concepts1, #examples,
+#applications1, #abstraccion, #modularidad,
+#polimorfismo, #herencia, #encapsulamiento,
+#buenaspracticas{
+	color: gray;
+}
+
+.head{
+	height: 535px;
+	width: 100%;
+	background: url(images/77.png);
+	opacity: 0.8;
+	background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.container {
+	color: black;
+	/*background-color: green;*/
+
+}
+
+#ventajas{
+	border-color: black;
+	border-width: 5;
+	border-style: solid;
+}
+
+#lenguajes{
+	margin-left:30px;
+}
+
+#lenguajes1{
+	border-color: black;
+	border-width: 4;
+	border-style: solid;
+	height: 55%;
+	width: 80%;
+}
+.footer-text{
+	/*width: 400px;*/
+}
+
+.btn-circle {
+  width: 50px;
+  height: 50px;
+  margin-top: 40px;
+  padding: 0px 0;
+  border: 3px solid white;
+  border-radius: 100% !important;
+  font-size: 26px;
+  color: white;
+  background: transparent;
+  -webkit-transition: background .3s ease-in-out;
+  -moz-transition: background .3s ease-in-out;
+  transition: background .3s ease-in-out; }
+  .btn-circle:hover, .btn-circle:focus {
+    outline: none;
+    color: white;
+    background: rgba(255, 255, 255, 0.1); }

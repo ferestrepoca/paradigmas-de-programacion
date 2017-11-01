@@ -1,0 +1,262 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <meta charset='utf-8'>
+    <title> Paradigma de la programación orientada a objetos  </title>
+</head>
+
+<body>
+<div class="todo">
+     <ul class="menu">
+        <li><a class="menu-item" href="index.html">Programación Orientada a Objetos</a>
+            <ul>
+				<li><a class="menu-item1" href="index.html#intro">¿Qué es?</a></li>
+                <li><a class="menu-item1" href="index.html#history">Historia</a></li>
+                <li><a class="menu-item1" href="index.html#evolution">Evolución</a></li>
+                <li><a class="menu-item1" href="index.html#advantage_disadvantage">Ventajas y desventajas</a></li>
+                <li><a class="menu-item1" href="index.html#languages">Lenguajes</a></li>
+            </ul>
+        </li>
+        <li><a class="menu-item" href="concepts.html">Conceptos Clave</a>
+			<ul>
+				<li><a class="menu-item1" href="concepts.html#abstraccion">Abstracción</a></li>
+                <li><a class="menu-item1" href="concepts.html#modularidad">Modularidad</a></li>
+                <li><a class="menu-item1" href="concepts.html#encapsulamiento">Encapsulamiento</a></li>
+                <li><a class="menu-item1" href="concepts.html#herencia">Herencia</a></li>
+                <li><a class="menu-item1" href="concepts.html#polimorfismo">Polimorfismo</a></li>
+            </ul>
+		</li>
+		<li><a class="menu-item" href="philosophy.html">Filosofía y Principios</a>
+			<ul>
+				<li><a class="menu-item1" href="philosophy.html#filosofia">Filosofía</a></li>
+                <li><a class="menu-item1" href="philosophy.html#principios">Principios</a></li>
+                <li><a class="menu-item1" href="philosophy.html#buenaspracticas">Buenas prácticas</a></li>
+            </ul>
+		</li>
+		<li><a class="menu-item" href="examples.html" id="">Ejemplos interactivos</a>
+			<ul>
+				<li><a class="menu-item1" href="examples.html#clases">Clases</a></li>
+				<li><a class="menu-item1" href="examples.html#encapsulamiento">Encapsulamiento</a></li>
+				<li><a class="menu-item1" href="examples.html#herencia">Herencia</a></li>
+				<li><a class="menu-item1" href="examples.html#polimorfismo">Polimorfismo</a></li>
+			</ul>
+		</li>
+
+		<li><a class="menu-item" href="applications.html">Aplicaciones</a></li>
+        <li><a class="menu-item" href="slides.html">Presentaciones y referencias</a>
+			<ul>
+				<li><a class="menu-item1" href="slides.html#slides">Presentaciones</a></li>
+				<li><a class="menu-item1" href="slides.html#referencias">Referencias y bibliografía</a></li>
+			</ul>
+		</li>
+    </ul>
+
+    <div class="empty">Empty</div>
+    <div class="container">
+        <h1 class="titulo">
+			<strong><center>Programación Orientada a Objetos </center></strong>
+        </h1>
+		<hr>
+		<br>
+
+        <section id="applications">
+            <h2 id="applications1"> <strong>Aplicaciones</strong> </h2>
+            <h3>
+            <div align="justify">
+
+				Teniendo en cuenta la siguiente frase: <i>“cada elemento en el mundo real puede ser modelado e implementado como un objeto”</i>, las aplicaciones
+				del paradigma de la programación orientada a objetos son muy variadas puesto que cualquier entidad real puede ser transformada a un objeto
+				en el campo de la programación. Algunas de las aplicaciones del paradigma son descritas en seguida.
+				<br><br>
+
+            <ul>
+                <li><b>Bases de datos orientadas a objetos</b><br><br>
+                En las DB(<i>DataBases</i>) la información es representada en forma de objetos. Una base de datos orientada a objetos es una base
+				de datos que incorpora todos los conceptos importantes del paradigma de objetos: encapsulamiento, herencia y polimorfismo.<br><br>
+                En estas bases de datos, los usuarios pueden definir operaciones sobre los datos como parte de la definición de la
+				base de datos. Una operación (llamada función) se especifica en dos partes, la interfaz (o signatura) de una operación incluye el
+				nombre de la operación y los tipos de datos de sus argumentos (o parámetros) y la implementación (o método), que hace referencia a la operación
+				de descripción, especificación y modificación sin afectar la interfaz.
+
+
+				<br><br>Los programas de aplicación de los usuarios pueden operar
+				sobre los datos invocando a dichas operaciones a través de sus nombres y argumentos, sea cual sea la forma en la que se han
+				implementado. Esto podría denominarse independencia entre programas y operaciones.<br/><br/>
+                </li>
+                Ejemplo: Modelo orientado a objetos:
+                <br/><br/>
+                <br>
+                <center>
+                <img src="images/model.png">
+                </center><br/><br/>
+                A partir de este modelo presentado se desarrollara una base de datos en DB4O.
+				<br><br>
+
+				<center>
+                <img src="images/db4o.png" id="ventajas">
+                </center><br/><br/>
+
+				DB4O es un novedoso motor de base de datos orientada a objetos. Sus siglas se corresponden con la expresión "DataBase 4 (for) Objects",
+				que a su vez es el nombre de la compañía que lo desarrolla: db4objects Inc.   SQL:2003 es el estándar de SQL92 ampliado, el cual soporta los conceptos orientados a objetos y mantiene la compatibilidad con SQL92.<br/><br/>
+                Almacenar objetos en la base de datos:<br/><br/>
+                <center>
+                    <img src="images/store.png">
+                </center><br/>
+                Actualización de objetos en la base de datos:<br/><br/>
+                <center>
+                    <img src="images/update.png">
+                </center><br/>
+                Eliminación de objetos en la base de datos:<br/><br/>
+                <center>
+                    <img src="images/delete.png">
+                </center><br/>
+                Consulta de objetos en la base de datos:<br/>
+                Para hacer consultas primero se insertan los siguientes objetos a la base de datos<br/><br/>
+                <center>
+                    <img src="images/insert.png">
+                </center><br/>
+                Luego se hacen las consultas sobre los objetos que acabamos de almacenar en la base de datos:<br/><br/>
+                <center>
+                    <img src="images/query.png">
+                </center><br/>
+                </div>
+
+
+                <li><b>Modelamiento y simulación de agentes</b><br><br/>
+                <div align="justify">
+                Los agentes son modelados como objetos. Es decir, estos van a tener asociados unos atributos, un comportamiento,
+				unas reglas para modificar su comportamiento y también van a poder interactuar con otros agentes como lo vemos
+				en la siguiente imagen:
+                <div/>
+                </li>
+				<br>
+                <center>
+                    <img src="images/agents.png" alt="Photo" height=400 border=0 hspace=0>
+                </center>
+                <br>
+
+				Algunos de los software que nos permiten hacer modelamiento y simulación de agentes y que tienen principios orientados
+				a objetos son los siguientes:
+				<br>
+				<br>
+				<ul>
+				<b>AnyLogic</b>
+				<div align="justify"> Es una herramienta tecnológica desarrollada por The AnyLogic Company que incluye todos los métodos
+				de simulación más comunes en practica hoy. El nuevo software lanzado en 2000 se basó en las ventajas de las más recientes
+				tecnologías de la información: un enfoque <u>orientado a objetos</u>, los elementos del estándar UML, el lenguaje Java, una moderna interfaz
+				gráfica, etc.
+				<br>
+				<br>
+				<center>
+                    <img src="images/anylogic.png" alt="Photo" id="ventajas">
+				</center>
+				<br>
+				La siguiente imagen nos muestra una representación visual en 3D de un modelamiento basado en objetos (vehículos, mesas, estantes)
+				y demás, con unas propiedades y atributos específicos.
+				<br>
+				<br>
+				<center>
+					<img src="images/anylogic2.png" alt="Photo" >
+                </center>
+                <br>
+				<br>
+				<b>NetLogo</b>
+				<div align="justify"> Es un agente de simulación multiparadigma con un entorno de modelado integrado. Aplica algunos conceptos y principios
+				de la programación orientada a objetos con el fin de simular objetos(agentes) en diferentes ámbitos.
+				<br>
+				<br>
+				<center>
+                    <img src="images/netlogo.png" alt="Photo" id="ventajas">
+				</center>
+				<br>
+				</div>
+				</ul>
+
+
+                <li><b>Diseño de interfaz de usuario</b><br/><br/>
+
+                <div align="justify">
+                Cada elemento dentro de una interfaz de usuario se puede considerar como un objeto, por ejemplo: un botón,
+				el campo de texto, el área de texto, una etiqueta puesto que tienen atributos y funciones particulares para
+				cada uno.<br/><br/>
+                <center>
+                    <img src="images/gui.png" alt="Photo" height=400 border=0 hspace=0>
+                </center><br/><br/>
+                Ejemplo: Diseño de una interfaz gráfica en java <br/><br/>
+                </div>
+                <center>
+                    <img src="images/guijava.png" alt="Photo" height=400 border=0 hspace=0>
+                </center>
+                </li>
+				<br>
+				<li><b>Serialización</b><br/><br/>
+
+                <div align="justify">
+                La serialización consiste en un proceso de codificación de un objeto en un medio de almacenamiento con el fin
+				de transmitirlo a través de un canal de comunicación o una conexión en red como una serie de bytes o en un formato más legible (XML, JSON).
+				Se realiza con el fin de que el objeto serializado pueda guardarse en un fichero o puede enviarse a través de red
+				para reconstruirlo en otro lugar con la característica de que el objeto copiado o replicado tiene la estructura, atributos
+				y comportamientos del objeto original. Esta aplicación permite trasladar y manipular los objetos en diferentes sistemas para hacer
+				persistente el objeto y mantener integridad en los datos.<br/><br/>
+
+				<center>
+                    <img src="images/serialization.png" alt="Photo" id="ventajas">
+                </center>
+				<br>
+				En el ejemplo anterior se puede observar la codificación de los objetos <i>Person</i> cuyos nombres son <u>Jack</u> y <u>Sunny</u> respectivamente.
+				Estos objetos son llevados a un archivo de texto plano con todas sus propiedades y comportamientos, además de algunas instancias de otras
+				clases <i>(Carreer)</i>.
+				<br><br>
+				<li><b>Vídeojuegos</b><br/><br/>
+				MineCraft, es un videojuego de construcción, de tipo «mundo abierto» o sandbox creado originalmente por el sueco Markus «Notch» Persson.
+				Fue lanzado públicamente el 17 de mayo de 2009, después de diversos cambios fue lanzada su versión completa el 18 de noviembre de 2011.
+				Está enfocado en la interacción de los objetos con el usuario mediante diferentes actividades y procedimientos.
+
+				<br><br>
+				<center>
+                    <img src="images/minecraft.png" alt="Photo" id="ventajas"><br>
+
+                </center>
+
+
+
+            </ul>
+            </h3>
+        </section>
+
+
+    </div>
+
+    <div class="footer" >
+        <center>
+            <a href="index.html">Paradigma</a> |
+            <a href="concepts.html">Conceptos </a> |
+			<a href="philosophy.html">Filosofía</a> |
+            <a href="examples.html">Ejemplos</a> |
+            <a href="applications.html">Aplicaciones</a> |
+			<a href="slides.html">Referencias</a>
+        </center>
+        <br>
+		<div class="footer-text" >
+		<center>
+			Creado y modificado por: Laura Álvarez, Helmer Avendaño, Yeison García, Sebastián Morales, <br>
+			Edwin Bohórquez, Santiago Hernandez, Sebastián Moreno, Cristian Orjuela
+			<br>
+			<br>
+			 <p>Copyright &copy; Paradigmas de Programación - UNAL 2017</p>
+
+		</center>
+		</div>
+    </div>
+
+    <script src="js/jquery.js">
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+	</div>
+</body>
+
+</html>

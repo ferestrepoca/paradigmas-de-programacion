@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/form.css">
+   
+
+    <meta charset='utf-8'>
+    <title> Programación funcional  </title>
+
+
+</head>
+
+<body>
+<div class="todo">
+    <ul class="menu">
+        <li><a class="menu-item" href="index.html">Programación Funcional </a>
+            <ul>
+                <li><a class="menu-item1" href="index.html#intro">Motivaci&oacute;n</a></li>
+                <li><a class="menu-item1" href="index.html#history">Historia</a></li>
+                <li><a class="menu-item1" href="index.html#lambdacalc">C&aacute;lculo Lambda</a></li>
+                <li><a class="menu-item1" href="index.html#advantage_disadvantage">Ventajas y desventajas</a></li>
+                <li><a class="menu-item1" href="index.html#languages">Lenguajes</a></li>
+            </ul>
+        </li>
+        
+        
+        <li><a class="menu-item" href="test.html">Test your knowledge!</a></li>
+        <li><a class="menu-item" href="http://nbviewer.jupyter.org/url/ferestrepoca.github.io/paradigmas-de-programacion/progfun/funcional_teoria/Programacion-Funcional.ipynb">NoteBook</a></li>
+        <li><a class="menu-item" href="../../index.html">Volver a Index</a></li>
+    </ul>
+
+    <div class="empty">Empty</div>
+
+
+    <script src="js/Result.js"></script>
+    <script src="js/Option.js"></script>
+    <script src="js/Quiz.js"></script>
+    <script src="js/Question.js"></script>
+    <script src="questions.js"></script>
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+        <h2 class="text-center">Test your knowledge!</h2>
+
+        <div id="test">
+        
+    </div>
+
+    <div id="results">
+        
+    </div>
+            
+        </div>
+    </div>
+    <script>
+        var quiz = new Quiz("Functional test", questions, {"shuffle": true});
+    </script>
+    
+
+    <div class="footer" >
+        <center>
+            <a href="index.html">PF</a> |
+			<a href="test.html">Test your knowledge!</a> 
+        </center>
+        <br>
+		<div class="footer-text" >
+		<center>
+			Creado y modificado por: --
+			<br>
+			<br>
+			 <p>Copyright &copy; Paradigmas de Programación - UNAL 2017</p>
+		
+		</center>
+		</div>
+    </div>
+
+    <script src="js/jquery.js">
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Functional test</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/form.css">
+    <link rel="stylesheet" type="text/css" media="print" href="css/print.css">
+</head>
+<body>
+    <script src="js/Result.js"></script>
+    <script src="js/Option.js"></script>
+    <script src="js/Quiz.js"></script>
+    <script src="js/Question.js"></script>
+    <script src="questions.js"></script>
+    <script>
+        var quiz = new Quiz("Functional test", questions, {"shuffle": true});
+    </script>
+</body>
+</html>
