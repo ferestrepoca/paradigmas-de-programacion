@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -49,6 +49,8 @@
     <title>Programación concurrente</title>
     <nav>
      <ul  style="text-align: center;
+     z-index: 1000;
+    position: fixed;
      list-style-type: none;
      margin: 0;
      padding: 0;
@@ -56,7 +58,8 @@
      background-color: #333333;
      float:right;
      text-align: center; ">
-       <li style="float: left;"><a href="#filosofia" class="active">Filosofia</a></li>
+       <li style="float: left;"><a href="#historia" class="active">Historia</a></li>
+         <li style="float: left;"><a href="#filosofía" class="active">Filosofia</a></li>
        <li style="float: left;"><a href="#definición">Definición</a></li>
        <li style="float: left;"><a href="#ventajas">Ventajas</a></li>
        <li style="float: left;"><a href="#desventajas">Desventajas</a></li>
@@ -65,6 +68,7 @@
        <li style="float: left;"><a href="#lenguajes">Lenguajes</a></li>
        <li style="float: left;"><a href="#ejemplos">Lenguajes ejemplos</a></li>
        <li style="float: left;"><a href="#referencias">Referencias</a></li>
+       <li style="float: left;"><a href="#Integrantes">Integrantes</a></li>
        <li style="float: left;"><a href="quiz/index.html">Test</a></li>
 
       </ul>
@@ -72,8 +76,12 @@
   </head>
 
   <body>
+
+
+
     <header>
       <div class="inner">
+	<br/>
         <h1>Programación concurrente</h1>
       </div>
     </header>
@@ -101,21 +109,42 @@
 </ol>-->
 
 <div class="text-justify">
+<div  id="historia">
+  <br>  <br>
+  <h1>
+  <a   class="anchor" href="#historia%C3%ADa" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Historia</h1>
+  <p>A menudo se asume que Dijkstra instigó el estudio de la programación concurrente en su ahora clásico artículo "Procesos secuenciales de cooperación", publicado en 1967. Ciertamente, en ese artículo vemos la introducción de algunos problemas ahora bien conocidos como "The Dining Philosophers "," The Sleeping Barber "y" The Dutch Flag Problem ", y quizás lo más importante, el problema de la sección crítica y su solución utilizando semáforos. Este artículo fue, de hecho, el primero en tener una visión de alto nivel de la programación concurrente. Como nota aparte, es interesante observar que el mismo artículo introduce la noción de interbloqueo y presenta un algoritmo que puede detectar la posible presencia de bloqueos.
+Sin embargo, a principios de la década de 1960, primero se presentó Conway y luego Dennis y Van Horn. La idea de múltiples hilos de control se introdujo en este momento, y es interesante observar que algunos de los problemas de acceso a recursos compartidos, como la memoria, también se abordaron en ese momento. Al igual que en el desarrollo de lenguajes de programación [secuencial] de alto nivel, los investigadores se dieron cuenta de los problemas asociados con el uso de estas construcciones de bajo nivel, principalmente en el área de tratar de escribir programas de manera correcta y rápida. y como resultado se inventaron construcciones de más alto nivel y más restrictivas. Por lo tanto, ahora vemos una plétora de diferentes técnicas para proporcionar programación concurrente controlada, muchas de las cuales examinaremos con mayor detalle en los últimos capítulos de este libro</p>
+
+</div>
+
+<div id="filosofía">
+  <br>  <br>
+  <h1>
+  <a  class="anchor" href="#filosof%C3%ADa" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Filosofía</h1>
+
+  <p>Es la división de  un problema en subproblemas  que se solucionan de forma individual, para crear un programa o aplicación que no se vea afectada en tiempo real.</p>
+
+</div>
+
+<div id="definición">
+  <br>  <br>
 
 <h1>
-<a id="filosofía" class="anchor" href="#filosof%C3%ADa" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Filosofía</h1>
-
-<p>Es la división de  un problema en subproblemas  que se solucionan de forma individual, para crear un programa o aplicación que no se vea afectada en tiempo real.</p>
-<h1>
-<a id="definición" class="anchor" href="#definici%C3%B3n" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Definición</h1>
+<a  class="anchor" href="#definici%C3%B3n" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Definición</h1>
 
 <p>Hace referencia a las técnicas de programación que son utilizadas para expresar la concurrencia entre tareas y solución de los problemas de comunicación y sincronización entre procesos.
   La programación concurrente es la ejecución simultánea de múltiples tareas interactivamente. Estas tareas pueden ser un conjunto de procesos o hilos de ejecución
   creados por un único programa. Las tareas se pueden ejecutar en una sola CPU (multiprogramación), en varios procesadores, o en una red de computadores distribuidos.</p>
+<!--
+<img src="https://s3.postimg.org/435ixtj2r/definicion.jpg" style="margin-left: 30px"> -->
 
-<img src="https://s3.postimg.org/435ixtj2r/definicion.jpg" style="margin-left: 30px">
-  <div>
-    <h1><a id="ventajas" class="anchor" href="#ventajas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ventajas</h1>
+<img src="images/concurrentProcess.png"  style="margin-left: 30px">
+
+</div>
+  <div  id="ventajas" >
+    <br><br>
+    <h1><a class="anchor" href="#ventajas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ventajas</h1>
 
     <ul>
       <li>Permite optimizar el uso de recursos en sistemas mono/multiprocesador.</li>
@@ -127,8 +156,9 @@
       <li>Menores tiempos de respuesta.</li>
     </ul>
   </div>
-  <div>
-    <h1><a id="desventajas" class="anchor" href="#desventajas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Desventajas</h1>
+  <div id="desventajas" >
+    <br><br>
+    <h1><a  class="anchor" href="#desventajas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Desventajas</h1>
     <ul>
       <li>Consumos de recursos cuando hay excesos de hilos o procesos</li>
       <li >Dificultad de desarrollo.</li>
@@ -138,10 +168,12 @@
     </ul>
   </div>
 
+<div id="conceptos">
+  <br><br>
 
-<h1 id="conceptos">Conceptos</h1>
 
-<h1><a id="proceso" class="anchor" href="#proceso" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Proceso</h1>
+<h1 >Conceptos</h1>
+<h2><a id="proceso" class="anchor" href="#proceso" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Proceso</h2>
 
 <p>Un proceso no solamente es el código de un programa,un proceso tiene un <strong>contador de programa</strong> el cual es un registro del computador que
   indica la dirección de la siguiente instrucción que será ejecutada por el proceso, <strong>Pila de proceso</strong> Esta contiene datos temporales
@@ -154,7 +186,8 @@
 
 <p><strong>Note</strong> que un programa por sí sólo no es un proceso, ya que este es una entidad pasiva que contiene una lista de instrucciones almacenadas en disco ( archivo ejecutable),  mientras que un proceso es una entidad activa, el cual cumple todas las características descritas anteriormente.</p>
 
-<p><strong>Estados del proceso</strong>
+<h3>Estados del proceso</h3>
+<p>
 Cuando un proceso es ejecutado este cambia de estados, los estados que todo proceso tiene por lo general son:</p>
 
 <ul>
@@ -166,8 +199,8 @@ Cuando un proceso es ejecutado este cambia de estados, los estados que todo proc
 </ul>
 
 <img src="https://www.cs.uic.edu/%7Ejbell/CourseNotes/OperatingSystems/images/Chapter3/3_02_ProcessState.jpg" alt=""></p></li>
-
-<p><strong>PCB ( Bloque de control de proceso )</strong>
+<h3>PCB ( Bloque de control de proceso )</h3>
+<p>
 Cada proceso se representa en el sistema operativo mediante el PCB, entre los elementos de información que este contiene se encuentran:</p>
 
 <ul>
@@ -181,19 +214,32 @@ Cada proceso se representa en el sistema operativo mediante el PCB, entre los el
 <div class="center">
 <p><img src="https://www.cs.uic.edu/%7Ejbell/CourseNotes/OperatingSystems/images/Chapter3/3_03_PCB.jpg" alt=""></p>
 </div>
-<h1>
-<a id="multiprogramación" class="anchor" href="#multiprogramaci%C3%B3n" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multiprogramación</h1>
+
+<h2>
+<a id="hilo" class="anchor" href="#hilo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hilo</h2>
+
+<p>Se puede definir como una unidad básica de utilización del CPU. Cada hilo tiene:
+Id de hilo,  Contador de programa,  Registros, Pila.
+Los hilos que pertenecen a un mismo proceso comparten:
+Sección de código, sección de datos, entre otros recursos del sistema.</p>
+<!--
+<p><img src="https://s3.postimg.org/z6m2055rn/procesoshilos.jpg" style="margin-left: 30px"></p> -->
+
+
+  <img src="images/hilo.PNG"  style="margin-left: 30px">
+<h2>
+<a id="multiprogramación" class="anchor" href="#multiprogramaci%C3%B3n" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multiprogramación</h2>
 
 <p>Es una técnica de multiplexación que permite de múltiples procesos en un único procesador.
 Es importante resaltar que los procesos nunca corren en paralelo en el procesador, ya que en cada instante de tiempo solo se ejecuta un proceso en el procesador.</p>
 
-<h1>
-<a id="multiproceso" class="anchor" href="#multiproceso" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multiproceso</h1>
+<h2>
+<a id="multiproceso" class="anchor" href="#multiproceso" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multiproceso</h2>
 
 <p>Es una técnica en la cual se hace uso de dos o más procesadores en una computadora para ejecutar uno o varios procesos.</p>
 
-<h1>
-<a id="procesamiento-distribuido" class="anchor" href="#procesamiento-distribuido" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Procesamiento distribuido</h1>
+<h2>
+<a id="procesamiento-distribuido" class="anchor" href="#procesamiento-distribuido" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Procesamiento distribuido</h2>
 
 <p>Es cuando uno o varios procesos son ejecutados en una o más computadores</p>
 
@@ -203,27 +249,27 @@ Es importante resaltar que los procesos nunca corren en paralelo en el procesado
 La calendarización es un manejo de colas con el objetivo de maximizar el uso de recursos y minimizar retardos.</p>
 
 <img src="https://s9.postimg.org/je2q58qmn/calendarizacion.jpg" style="margin-left: 30px">
-  <h2>Tipos de Calendarización</h2>
+  <h3>Tipos de Calendarización</h3>
 
-  <h3>Calendarización a corto plazo</h3>
+  <h4>Calendarización a corto plazo</h4>
   <ul>
   <li>Determina cuáles programas son admitidos al sistema para la ejecución.</li>
   <li>El objetivo principal es mantener una mezcla balanceada de tareas, como los límites de entrada/salida y de procesador.</li>
   <li>Controla el nivel de multiprogramación.</li>
   </ul>
 
-  <h3>Calendarización a mediano plazo</h3>
+  <h4>Calendarización a mediano plazo</h4>
   También conocido como CPU scheduler o dispatcher. Su principal objetivo es incrementar el rendimiento del sistema acorde a un criterio definido.
   <br><b>Dispatch latency:</b>  Tiempo que toma entre parar un proceso y empezar otro.
 
-  <h3>Calendarización a largo plazo</h3>
+  <h4>Calendarización a largo plazo</h4>
   <ul>
   <li>Hace parte del swapping del sistema.</li>
   <li>Agrega y remueve procesos de memoria.</li>
   <li>Reduce el nivel de multiprogramación del sistema.</li>
   </ul>
 
-  <h2>Cambios de contexto</h2>
+  <h3>Cambios de contexto</h3>
 
   Mecanismo para almacenar y restaurar el estado de un proceso.
 
@@ -237,7 +283,7 @@ La calendarización es un manejo de colas con el objetivo de maximizar el uso de
   <p><img src="https://www.tutorialspoint.com/operating_system/images/context_switch.jpg" alt="Cambio de contexto"></p>
   </div>
 
-  <h2>Criterios de Calendarización</h2>
+  <h3>Criterios de Calendarización</h3>
 
   <ul>
   <li><strong>Utilización de CPU:</strong> mantener el CPU lo más ocupado posible</li>
@@ -247,7 +293,7 @@ La calendarización es un manejo de colas con el objetivo de maximizar el uso de
   <li><strong>Tiempo de respuesta:</strong> tiempo que toma desde la creación del proceso hasta su primera respuesta</li>
   </ul>
 
-  <h2>Algoritmos de Calendarización</h2>
+  <h3>Algoritmos de Calendarización</h3>
 
   <div class="text-justify">
   <p>El principal objetivo de los algoritmos de calendarización es asignar tiempos de ejecución a los procesos del sistema para optimizar uno o más aspectos del mismo.</p>
@@ -257,14 +303,14 @@ La calendarización es un manejo de colas con el objetivo de maximizar el uso de
   <p>Algoritmo simple de calendarización, en el que asigna el procesador según el orden de llegada a la cola de ready y lo ejecuta hasta el final,
     como ventajas tienen un buen throughput y tiempo de vuelta, como desventajas malos tiempos de respuesta y de espera, en cuanto a utilización de CPU
   tiene la ventaja de que hace pocos cambios de contexto, mas se desaprovecha el CPU cuando los procesos tienen que esperar a entradas y/o salidas.</p>
-  <p><img src="https://s18.postimg.org/cvdn2v4ft/fcfs1.jpg" style="margin-left: 30px"></p>
-  <p><img src="https://s7.postimg.org/5ng6kqtx7/fcfs.jpg" style="margin-left: 30px"></p>
+  <!-- <p><img src="https://s18.postimg.org/cvdn2v4ft/fcfs1.jpg" style="margin-left: 30px"></p>
+  <p><img src="https://s7.postimg.org/5ng6kqtx7/fcfs.jpg" style="margin-left: 30px"></p> -->
   <li><strong>Shortest-Job-First (SJF)</strong></li>
   <p>con SJF se ejecuta primero el proceso con menor tiempo de ejecución que se encuentre en la cola de ready, a comparación de FCFS tiene
   mejor tiempo de respuesta, mejor throughput, menores tiempos de espera, en cuanto a uso del CPU se comporta igual a FCFS, como desventaja tiene
   la dificultad de predecir el tiempo de ejecución de un proceso. </p>
-  <p><img src="https://s24.postimg.org/mjnlamwp1/sjf1.jpg" style="margin-left: 30px"></p>
-  <p><img src="https://s12.postimg.org/guh11mzi5/sjf.jpg" style="margin-left: 30px"></p>
+  <!-- <p><img src="https://s24.postimg.org/mjnlamwp1/sjf1.jpg" style="margin-left: 30px"></p>
+  <p><img src="https://s12.postimg.org/guh11mzi5/sjf.jpg" style="margin-left: 30px"></p> -->
   <li><strong>Priority Scheduling</strong></li>
   <p>Introduce una necesidad en el que unos procesos deben tener prioridad sobre otros, para ello asocia un numero indicando el nivel de prioridad a cada proceso
   cuando están en la cola de ready selecciona el de mayor prioridad, como desventaja los procesos con baja prioridad podrían sufrir de starvation
@@ -273,8 +319,8 @@ La calendarización es un manejo de colas con el objetivo de maximizar el uso de
   que se le asignen a cada proceso puede tener buenos o malos tiempos. Hay que tener en cuenta que si ningún otro proceso está en la cola de ready ejecutara
   el único que haya en la cola, más en el momento que llegue un proceso con mayor prioridad se sacara de ejecución el de menor y el CPU lo ocupara el que acaba
   de llegar con mayor prioridad, esto se evidencia en el ejemplo a continuación:</p>
-  <p><img src="https://s28.postimg.org/o9zd19hod/priority.jpg" style="margin-left: 30px"></p>
-  <p><img src="https://s14.postimg.org/k1wtmwtq9/priority2.jpg" style="margin-left: 30px"></p>
+  <!-- <p><img src="https://s28.postimg.org/o9zd19hod/priority.jpg" style="margin-left: 30px"></p>
+  <p><img src="https://s14.postimg.org/k1wtmwtq9/priority2.jpg" style="margin-left: 30px"></p> -->
   <li><strong>Round Robin (RR)</strong></li>
   <p>Se asigna un tiempo de CPU (time quantum) para todos los procesos, estos se ejecutarán durante ese tiempo según el orden de llegada, en cuanto completan el tiempo
   asignado se sacan de ejecución y se regresan a la cola de ready, este procedimiento se repite hasta que el proceso complete toda su ejecución. Como
@@ -282,24 +328,17 @@ La calendarización es un manejo de colas con el objetivo de maximizar el uso de
   de cambios de contexto que debe hacer, por lo que es importante escoger un buen time quantum, si se escoge un tiempo muy corto habrá muchos cambios de contexto
   y los procesos tardaran mucho más en terminar, si se escoge muy grande se perderían las ventajas del algoritmo, se suele usar tiempos de 10ms a 100ms, también
   hay que tener en cuenta que para que sea optimo este tiempo debe ser mayor al que tarda el procesador en hacer un cambio de contexto. </p>
-  <p><img src="https://s14.postimg.org/b4jih3wzl/image.jpg" style="margin-left: 30px"></p>
-  <p><img src="https://s23.postimg.org/smstmzwnv/rr2.jpg" style="margin-left: 30px"></p>
+  <!-- <p><img src="https://s14.postimg.org/b4jih3wzl/image.jpg" style="margin-left: 30px"></p>
+  <p><img src="https://s23.postimg.org/smstmzwnv/rr2.jpg" style="margin-left: 30px"></p> -->
   <li><strong>Multiple-Level Queues</strong></li>
   <p>la cola de ready se parte en varias colas que determinan la prioridad de los procesos, cada cola implementa su propio algoritmo de calendarización y
   adicionalmente tambien se hace calendarización entre las colas</p>
-  <p><img src="https://s11.postimg.org/ac3tmerfn/multiqueue.jpg" style="margin-left: 30px"></p>
+  <!-- <p><img src="https://s11.postimg.org/ac3tmerfn/multiqueue.jpg" style="margin-left: 30px"></p> -->
   </ul>
 
-<h1>
-<a id="hilo" class="anchor" href="#hilo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hilo</h1>
-
-<p>Se puede definir como una unidad básica de utilización del CPU. Cada hilo tiene:
-Id de hilo,  Contador de programa,  Registros, Pila.
-Los hilos que pertenecen a un mismo proceso comparten:
-Sección de código, sección de datos, entre otros recursos del sistema.</p>
-<p><img src="https://s3.postimg.org/z6m2055rn/procesoshilos.jpg" style="margin-left: 30px"></p>
-
-
+<h3>Ejemplo Algoritmos de Calendarización</h3>
+<p>En la figura se puede ver cómo son atendidos 5 procesos según cada algoritmo.</p>
+  <img src="images/concurrentAl.png"  style="margin-left: 30px">
 <h1>
 <a id="programacion-paralela-y-concurrente" class="anchor" href="#programacion-paralela-y-concurrente" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Programacion Paralela y Concurrente</h1>
 <h2>Como diferenciarlas ?</h2>
@@ -309,6 +348,8 @@ En terminos sencillos, se puede explicar asi:
   Un programa es concurrente si puede soportar dos o más acciones<strong> en progreso.</strong><br><br>
   Un programa es paralelo si puede soportar dos o más acciones <strong>ejecutándose simultáneamente.</strong>"
 </blockquote>
+
+  <img src="images/diferent.PNG"  style="margin-left: 30px  "  height="400" width="1500">
 
 La palabra clave es <strong>en progreso</strong>.<br><br>
 Un programa es concurrente por que maneja varias tareas al mismo tiempo, define acciones que <strong>pueden</strong> ser ejecutadas al mismo tiempo.<br>
@@ -322,6 +363,17 @@ Para mayor claridad, este video lo explica en una mayor profundidad:
 <a id="relacion" class="anchor" href="#relacion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Relación</h2>
 
 <p>Multiples procesos pueden ser ejecutados al mismo tiempo. En otra palabras, la programacion concurrente se comporta igual que la paralela cuando tenemos un sistema multiprocesador en el cual cada unidad de procesamiento ejecuta un proceso o hilo. En la imagen inferior podemos ver que el la unidad de procesamiento 2 y 3 se comportan igual.</p>
+
+<h2>
+<a id="relacion" class="anchor" href="#relacion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Proceso o Hilo ?</h2>
+<p>Primero, los procesos son más pesados de crear y, por lo tanto, utilizan más capacidades de computadora que los hilos. Esto permite entonces de hacer tareas más pesadas.<br/><br/>
+
+En segundo lugar, los procesos son totalmente independientes entre ellos. No comparten ningún dato entre ellos; Mientras que, los hilos pueden compartir información fácilmente.<br/><br/>
+
+Desafortunadamente, esto crea un problema: si dos hilos trabajan con los mismos datos, se puede crear errores como, por ejemplo, la valor cambia sin entender por qué. De hecho, cuando se realizan dos tareas al mismo tiempo, si modificamos los datos en un hilo y hacemos lo mismo en la otra, será imposible predecir qué hilo modificarán primero la variable.<br/>
+Para esto, hay un sistema para "bloquear" los datos en un hilo. Una vez que este hilo desbloqueará los datos, el otro hilo recibirá una señal de que puede modificarlo.<br/>
+Para resumir, cuando se trabaja en los mismos datos con dos subprocesos diferentes, es necesario bloquear los datos en un hilo en el momento de modificarlo, y luego desbloquearlo.</p><br/>
+<p><img src="images/process_hilo.png" alt=""></p><br/><br/><br/>
 
 <p><img src="http://s32.postimg.org/s503ixn05/paralellismo.jpg" alt=""></p>
 
@@ -991,6 +1043,10 @@ Los Procesos interactuan solamente a través de la primitivas de sincronización
 
 Existen también en el mercado aplicaciones que nos permiten verificar computacionalmente modelos especificados con CSP y una de las más sobresalientes es FDR.
 
+</div>
+<div id="aplicaciones">
+  <br><br>
+
 <h1>
 <a id="aplicaciones" class="anchor" href="#aplicaciones" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Aplicaciones</h1>
 
@@ -1007,12 +1063,22 @@ Existen también en el mercado aplicaciones que nos permiten verificar computaci
 
 
 
-
-
 </ol>
+<p>En estos ejemplos, utilizamos la programación concurrente para :<br/>
+-	Los videos juegos o se usará para la recuperación de claves, la interfaz gráfica y el procesamiento de datos recibidos por el servidor para juegos en línea.<br/>
+- Servicios web, donde el servidor tendrá que lidiar con muchas solicitudes al mismo tiempo.<br/>
+- Bases de datos, o ésta, una vez más, tendrá que atender solicitudes al mismo tiempo.<br/>
+- Y, finalmente, cualquier interacción con una interfaz gráfica: de hecho, cuando realiza una acción que se mostrará en la pantalla, el programa tendrá que continuar mientras que la interfaz gráfica mostrará los cambios.<br/>
+</p>
+
+
+</div>
+
+<div id="lenguajes">
+  <br><br>
 
 <h1>
-<a id="lenguajes" class="anchor" href="#lenguajes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lenguajes</h1>
+<a  class="anchor" href="#lenguajes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lenguajes</h1>
 
 <ul><li><strong>Elixir</strong></li></ul>
 <center><img src="images/elixir.png" width="150px" height="150px"></center>
@@ -1042,11 +1108,22 @@ Haskell es un lenguaje polimórficamente tipificado, perezoso, puramente funcion
 
 <ul><li><strong>Crystal</strong></li></ul>
 <center><img src="images/crystal.png" width="150px" height="150px"></center>
-Haskell es un lenguaje polimórficamente tipificado, perezoso, puramente funcional, muy diferente a la mayoría de los otros lenguajes de programación.
+Crystal es uno de los nuevos lenguajes en la escena. Aunque no tan conocido como Rust, Elixir o Julia, tiene mucho que ofrecer. Iniciò en 2012, y según describen sus creadores, sus características principales son:
+<br/><br/>
+- Sintaxis similar a Ruby<br/>
+- Estáticamente tipado<br/>
+- Compilado<br/>
+- Self-hosted (Crystal está escrito en… crystal)
+<br/><br/><br/><br/><br/>
+<p>Es altamente recomendable de utilizar hilos con estos lenguajes. En cualquier caso, cuando, un lenguaje permite de hacer programación concurrente, debe usarlo. Además, cuando uses estos lenguajes, a menudo usarás hilos sin siquiera saberlo. De hecho, hay muchas funciones incluidas en los lenguajes que crean un hilo sin preguntarle al programador.</p>
 
+
+</div>
+<div id="ejemplos" >
+  <br><br>
 
 <h1>
-<a id="ejemplos" class="anchor" href="#ejemplos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lenguajes ejemplos</h1>
+<a class="anchor" href="#ejemplos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lenguajes ejemplos</h1>
 
 <ul>
 <li>Ejemplo en <strong>python</strong>: Este es un pequeño ejemplo con el fin de ilustrar como podemos lanzar un hilo en python</li>
@@ -1713,9 +1790,13 @@ func processExpensiveTransaction() chan string {
 <p>
   Podemos lanzar varios hilos dentro de un bucle
 </p>
-<p>
+<!--<p>
   Se crea un Vec donde se meten todos los hilos para luego poder hacer un join y esperar a que todos terminen. Dentro del hilo se imprime por pantalla el índice de la iteración.
-</p>
+</p>-->
+<p>Aquí, en cada vuelta del bucle, iniciaremos un hilo con un iterador asociado. El primer hilo se inicia con el número 0, el segundo con el número 1 y así sucesivamente.
+Podemos ver en el resultado lo que se dijo antes: los subprocesos se lanzaron en un orden específico y, sin embargo, al mostrar los resultados, vemos que está completamente desordenado: de hecho, la velocidad de la ejecución de cada uno de los hilos variará.
+
+Si reiniciamos este programa, su salida y la visualización de los números serán diferentes; es imposible de predecir el orden de los números que aparecerán. Pero, si utilizamos el sistema de bloqueo y desbloqueo, para que cada hilo espere hasta que el anterior termine, el orden será perfecto.</p>
 <pre class="prettyprint">
   use std::thread;
 
@@ -2001,7 +2082,45 @@ func processExpensiveTransaction() chan string {
 
 </blockquote>
 
+<ul>
+<li>Ejemplo en <strong>C</strong> con el juego de pacman:<br/>
+Aquí, el programa debe poder recibir la entrada teclado del usuario. Pero también, al mismo tiempo, tienes que:
+<br/>
+- Calcula los movimientos de los enemigos gracias a la inteligencia artificial.<br/>
+- Ver los diferentes desplazamientos.<br/>
+- Actualizar el mapa<br/>
+</li>
+</ul>
 
+<div class="highlight highlight-source-python"><pre>
+<span class="pl-k">int</span> <span class="pl-en">main_loop</span>(<span class="pl-smi">IGame *Game, IGui *curse</span>):
+  {
+    <span class="pl-k">board</span> game;
+    <span class="pl-k">t_orientation</span> dir;
+    <span class="pl-k">int</span> k = 0;
+
+    <span class="pl-s">while</span> (k == 0)
+    {
+      dir = curse-><span class="pl-c1">get_touch</span>();
+      <span class="pl-s">if</span> (dir > 4)
+        <span class="pl-c1">return</span> (dir);
+      k = Game-><span class="pl-c1">check_move</span>(dir);
+      game = Game-><span class="pl-c1">get_board</span>();
+      <span class="pl-s">if</span> (curse-><span class="pl-c1">display</span>(game) == -1)
+        <span class="pl-c1">return</span> (0);
+    }
+    <span class="pl-c1">delete</span> curse;
+    <span class="pl-c1">delete</span> Game;
+    <span class="pl-c1">return</span> (0);
+  }
+</pre></div>
+
+<p>Si observamos el código que se muestra, la función get_touch iniciará un hilo que se ocupará de recuperar la entrada del teclado pero no bloqueará el resto del programa: no esperará a recuperar una tecla para continuar.</p>
+
+<img src="images/Pacman.gif"><br/><br/><br/>
+
+
+</div>
 <h1>
 <a id="presentacion" class="anchor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Presentación</h1>
 <a href="https://drive.google.com/open?id=0B_B-BoNU4ZaIOTNrUWlWXzBjNmc">Enlace</a>
@@ -2015,9 +2134,11 @@ func processExpensiveTransaction() chan string {
 <a href="https://docs.google.com/a/unal.edu.co/document/d/1wLW-AtC3ap86P4z547Tqse0R3X7bGChVAk6QHdkfu4E/edit?usp=sharing">Enlace 2</a>
 
 
+<div id="referencias">
+  <br><br>
 
 <h1>
-<a id="referencias" class="anchor" href="#referencias" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Referencias</h1>
+<a  class="anchor" href="#referencias" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Referencias</h1>
 
 <ul>
 <li style="background-color: #FFFFFF;"><a style="background-color: #FFFFFF;color: blue; text-align: left;" href="https://go-tour-es.appspot.com/#1">https://go-tour-es.appspot.com/#1</a></li>
@@ -2069,14 +2190,20 @@ func processExpensiveTransaction() chan string {
 <li><a style="background-color: #FFFFFF;color: blue; text-align: left;" href="http://pegasus.javeriana.edu.co/~scada/concurrencia.html">http://pegasus.javeriana.edu.co/~scada/concurrencia.html </a></li>
 <li><a style="background-color: #FFFFFF;color: blue; text-align: left;" href="https://takuti.me/note/parallel-vs-concurrent/">Parallel programming vs. Concurrent Programming </a></li>
 <li><a style="background-color: #FFFFFF;color: blue; text-align: left;" href="http://repository.cmu.edu/cgi/viewcontent.cgi?article=1107&context=sei">Concepts of concurrent programming</a></li>
+<li><a style="background-color: #FFFFFF;color: blue; text-align: left;" href="https://books.google.com.co/books?id=k1cIQwg23vAC&pg=PA10&lpg=PA11&dq=Concurrent+computing+history&source=bl&ots=CqOM6TbQ8e&sig=A16KtMDjujSMg34iVx7RPnLE3tc&hl=es-419&sa=X&ved=2ahUKEwjA1JrumonfAhWNm1kKHfPFANUQ6AEwCHoECAkQAQ#v=onepage&q=Concurrent%20computing%20history&f=false">Historia Computacion concurrente</a></li>
+<li><a style="background-color: #FFFFFF;color: blue; text-align: left;" href="https://books.google.com.co/books?id=JeT9wlXhUTMC&pg=PA92&dq=Shortest+Process+next+(SPN)&hl=es-419&sa=X&ved=0ahUKEwjUzu2jpYnfAhXLq1kKHUcKAFoQ6AEILDAA#v=onepage&q=Shortest%20Process%20next%20(SPN)&f=false">Principles of Modern Operating Systems</a></li>
 
 
 
 </ul>
 </div>
 
+</div>
+<div id="Integrantes">
+  <br><br>
+
 <h1>
-<a id="intregrantes" class="anchor" href="#intregrantes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Intregrantes</h1>
+<a  class="anchor" href="#Integrantes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Integrantes</h1>
 
 <ul>
 <li>Bryam Diaz</li>
@@ -2092,7 +2219,11 @@ func processExpensiveTransaction() chan string {
 <li>Diego Felipe Rodriguez Chaparro</li>
 <li>Nicolas Ricardo Enciso</li>
 <li>Camilo Alfonso Mosquera Benavides</li>
+<li>Juan Sebastian Herrera Maldonado </li>
+<li>Florent Sebag</li>
+<li>Michael Tomas Velasquez Gordillo</li>
 </ul>
+</div>
         </section>
 
         <aside id="sidebar">
