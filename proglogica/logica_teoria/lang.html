@@ -47,7 +47,7 @@
                     </ol>
                     <li><a href="#LógicaProposicional">Lógica Proposicional</a></li>
                     <ol>
-                        <li><a href="#LógicaPrimerÓrden">Lógica de primer órden</a></li>
+                        <li><a href="#LógicaPrimerOrden">Lógica de primer orden</a></li>
                         <li><a href="#CláusulasDeHorn">Cláusulas de Horn</a></li>
                     </ol>
                     <li><a href="#ResoluciónSLD">Resolución SLD</a></li>
@@ -78,7 +78,7 @@
                         <div class="text_cell_render border-box-sizing rendered_html">
                             <h2 id="Filosofía">Filosofia del paradigma</h2>
                             <p>
-                                La mayoría de los Lenguajes de Programación se basan en la Teoría Lógica de Primer Orden, aunque también incorporan algunos
+                                La mayoría de los lenguajes de programación se basan en la teoría lógica de primer orden, aunque también incorporan algunos
                                 comportamientos de orden superior, en este sentido, destacan los lenguajes funcionales
                                 ya que se basan en el Calculo Lambda, es la única teoría lógica de orden superior.
                             </p>
@@ -95,15 +95,15 @@
                 </div>
                 <h2 id="QuéEs">¿Qué es?</h2>
                 <p>
-                    Paradigma de programación basado en la lógica de primer orden. La Programación Lógica estudia el uso de la lógica para el
+                    Paradigma de programación basado en la lógica de primer orden. La programación lógica estudia el uso de la lógica para el
                     planteamiento de problemas y el control sobre las reglas de inferencia para alcanzar la solución
                     automática.
                 </p>
                 <p>
-                    La Programación Lógica, junto con la funcional, forma parte de lo que se conoce como Programación Declarativa, es decir la
+                    La programación lógica, junto con la funcional, forma parte de lo que se conoce como Programación Declarativa, es decir la
                     programación consiste en indicar como resolver un problema mediante sentencias, en la Programación
                     Lógica, se trabaja en una forma descriptiva, estableciendo relaciones entre entidades, indicando
-                    no como, sino que hacer, entonces se dice que la idea esencial de la Programación Lógica es
+                    no como, sino que hacer, entonces se dice que la idea esencial de la programación lógica es
                 </p>
                 <p><img src="imagenes/001.png"></p>
                 <p>Se puede ver como una deducción controlada.</p>
@@ -114,13 +114,11 @@
                     queremos que los métodos sean implantados en maquinas de forma que la resolución del problema se
                     haga de forma automática</p>
                 <p><strong>La programación lógica construye base de conocimientos mediante reglas y hechos.</strong></p>
-                <h3 id="Características">Características del Paradigma</h3>
-                <ul>
-                    <li>Unificación de términos</li>
-                    <li>Mecanismos de inferencia automática</li>
-                    <li>Recursion como estructura de control básica</li>
-                    <li>Visión lógica de la computación</li>
-                </ul>
+                <h3 id="Características">Características del Paradigma</h3>                
+                    <li>Unificación de términos.</li>
+                    <li>Mecanismos de inferencia automática.</li>
+                    <li>Recursion como estructura de control básica.</li>
+                    <li>Visión lógica de la computación.</li>                
             </div>
         </div>
     </div>
@@ -161,9 +159,9 @@
         </div>
         <div class="inner_cell">
             <div class="text_cell_render border-box-sizing rendered_html">
-                <h3 id="LógicaPrimerÓrden">Lógica de primer orden</h3>
-                <p>También llamada <b><i>lógica de predicados</i></b>: es un sistema deductivo basado en un Lenguaje Lógico
-                    Matemático formal. Su estructura esta dada por:</p>
+                <h3 id="LógicaPrimerOrden">Lógica de primer orden</h3>
+                <p>También llamada <b><i>lógica de predicados</i></b>: es un sistema deductivo basado en un lenguaje lógico
+                    matemático formal. Su estructura esta dada por:</p>
                 <p><img src="imagenes/predi.PNG" style="max-width:100%; width: 50%; max-width: none"></p>
                 <p>Incluye proposiciones lógicas, predicados y cuantificadores.</p>
                 <p>Más expresiva de la Lógica proposicional.</p>
@@ -193,15 +191,15 @@
                 <ul>
                     <li><b>Cláusula ‘definite’:</b> Cláusula de Horn con exactamente un literal positivo.</li>
                     <li><b>Hecho:</b> Cláusula ‘definite’ sin literales negativos.</li>
-                    <li><b>Cláusula objetivo:</b> Sin ningún literal positivo. (consulta)</li>
+                    <li><b>Cláusula objetivo:</b> Sin ningún literal positivo (consulta).</li>
                 </ul>
                 <center> antecedente &rarr; consecuente
 
                     <b><i>"Si es verdad el antecedente, entonces es verdad el consecuente"</i></b></center>
                 <p>En Prolog Se escribe primero el consecuente luego el antecedente.</p>
-                <p><b>Ej:</b> Estructura de clúasulas de Horn
+                <p><b>Ej:</b> Estructura de clúasulas de Horn:
                     <img src="imagenes/horn002.PNG" style="max-width:100%; width: 50%; max-width: none"> Estructura de
-                    clúasulas de Horn en Prolog
+                    clásulas de Horn en Prolog:
                     <img src="imagenes/horn003.PNG" style="max-width:100%; width: 50%; max-width: none"></p>
 
             </div>
@@ -296,7 +294,7 @@
                     Una reina puede atacar horizontalmente, verticalmente y diagonalmente.</p>
                 <p><img src="imagenes/queen001.PNG" style="max-width:100%; width: 50%; max-width: none"></p>
                 <p> Inicialmente tenemos NxN celdas sin ataques donde necesitamos colocar N reinas.
-                    colocamos la primera reina en una celda (i, j), de modo que ahora el número de celdas
+                    Colocamos la primera reina en una celda (i, j), de modo que ahora el número de celdas
                     no atacadas se reduzca, y la cantidad de reinas que se ubicarán es N-1.
                     Colocamos la próxima reina en alguna celda no atacada. De nuevo, esto reduce
                     el número de celdas sin ataque, y el número de reinas que se colocarán
@@ -340,9 +338,9 @@
                     objetos presentes en su declaración, a partir de este concepto se pueden clasificar los hechos como:
                 </p>
                 <ul>
-                    <li><b>Enunciado:</b> Aridad = 0 <i>Ejm: Verdadero</i></li>
-                    <li><b>Propiead: </b> Aridad = 1 <i>Ejm: humano(Pepito), animal(Perro)</i></li>
-                    <li><b>Relación: </b> Aridad > 1 <i>Ejm: padre(Homero, Bart), aprobar(Juan, Lenguajes de Programación)</i></li>
+                    <li><b>Enunciado:</b> Aridad = 0. <i> Ejm: Verdadero.</i></li>
+                    <li><b>Propiead: </b> Aridad = 1. <i> Ejm: humano(Pepito), animal(Perro).</i></li>
+                    <li><b>Relación: </b> Aridad > 1. <i> Ejm: padre(Homero, Bart), aprobar(Juan, Lenguajes de Programación).</i></li>
                 </ul>
                 <p>
                     Los hechos son utilizados para declarar verdades desde el principio de la ejecucción de un programa,
@@ -392,22 +390,22 @@
                     en separar el problema en otros más pequeños y hallar la solución a estos para luego unirlos, como
                     es ususal en la programación lógica.</p>
                 <p>Lo que se ha estado mostrando hasta ahora es, este sistema de resolver problemas de la programación lógica
-                    mediante la modularidad, entonces ¿cómo puede ser aplicada ésta en la recursión?</p>
+                    mediante la modularidad, entonces, ¿cómo puede ser aplicada ésta en la recursión?</p>
                 <p>Si nuestro problema es obtener el área de un cuadrado, lo que se debe hacer no es separar esta área en
                     una de un triángulo o un círculo, sino en las áreas de otros cuadrados, por lo cual se puede dar
                     el valor del área del cuadrado con las medidas mínimas y de ahí empezar a llamar recursivamente la
-                    función con medidas mayores a ésta. por ejemplo:</p>
+                    función con medidas mayores a ésta. Por ejemplo:</p>
                 <p>El área de un cuadrado de área de 2 unidades cuadradas es igual a cuatro veces el área de un cuadrado
                     de 1 unidad cuadrada.
                 </p>
-                <p>Y así se puede obtener resultados de un problema con solo definir los casos base y de ahí realizar las
+                <p>De esta manera se pueden obtener resultados de un problema con solo definir los casos base y de ahí realizar las
                     operaciones recursivamente.
                 </p>
                 <p>En un ámbito más matemático ésta idea puede ser utilizada para resolver operaciones sencillas como es
                     el caso de las sumatorias o factoriales, en general cualquier operación que requiera información
                     del resultado que generan valores inferiores al dado. Un ejemplo de ésto podría ser el hallar las
                     potencias de dos dado el exponente en la función, lo cual puede ser hallado con el siguiente programa
-                    de prolog.</p>
+                    de Prolog.</p>
                 <p><img src="imagenes/recurs.PNG" style="max-width:100%; width: 25%; max-width: none"></p>
 
             </div>
