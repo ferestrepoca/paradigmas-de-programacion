@@ -35,18 +35,24 @@
 				<h3 id="indice" class="anchor" href="#indice" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Índice</h3>
 				<ol>
 					<li><a href="#two">Introducción/Filosofía</a></li>
+					<!-- CONTRIBUCION DE BRAYAN GARCIA A HISTORIA -->
 					<li><a href="#three">Historia</a></li>
 					<li><a href="#four">Ventajas y desventajas</a></li>
 					<li><a href="#five">Conceptos clave</a></li>
 					<!-- APORTE CAMILO MOSQUERA - SANTIAGO PEÑA -->
 					<li><a href="#eighteen">Concurrencia vs Paralelismo</a></li>
 					<li><a href="#nineteen">Arquitectura de Von Neumann</a></li>
+
+
+					<li><a href="#twentyone">Metodologías de diseño</a></li>
+
 					<!-- APORTE CAMILO MOSQUERA - SANTIAGO PEÑA -->
 					<li><a href="#six">Taxonomía de Flynn</a></li>
 					<li><a href="#seven">Arquitectura</a></li>
 					<!--APORTE MIGUEL CORTES-OSMAR CASTILLO-->
 					<li><a href="#thirteen">Tipos de paralelismo</a></li>
 					<!--APORTE DIEGO CHACÓN-SAMAEL SALCEDO-ANTONIO SUAREZ-->
+					<!-- APORTE NICOLAS RESTREPO -->
 					<li><a href="#twenty">Patrones de control paralelos </a></li>
 					<!-- APORTE CAMILO MOSQUERA - SANTIAGO PEÑA -->
 					<li><a href="#seventeen">Paralelizacion Manual vs Automatica</a></li>
@@ -99,7 +105,46 @@
 					<li>Las instrucciones de cada parte se ejecutan simultáneamente en diferentes procesadores</li>
 					<li>Se emplea un mecanismo global de control/coordinación</li>
 				</ul>
+				<h3>¿Por qué se hace programación paralela?</h3>
+
+				<div class="image">
+					<img src="images/why.jpg" alt="" />
+				</div>
+				<ul class="checklist">
+					<p> El hecho de que la progamación paralela sea un paradigma da cuenta de que existe una razón por la cual no ha dejado de ser necesaria
+						o no ha sido totalmente automatizable, igualmente hay otras razones interesantes detrás para entender la existencia, actualidad y contemporaneidad de la programación paralela:
+					</p>
+					<li><b>Ley de Moore:</b> Esta ley propuesta por Gordon E. Moore en 1965 dice resumidamente que el número de transistores en un chip determinado
+						 se doblaría cada dos años. Esto quiere decir un aumento del rendimiento en los procesadores del alrededor del 50%,
+						 esto se traduce en escalar la velocidad de reloj de los procesadores, pero esta ley no es fidenigna desde el 2002
+						 dónde solo ha habido un 20%, lo cuál sigue siendo un aumento considerable, sin embargo, no sería suficiente para que todos los
+						 avances en computación que se han logrado hasta el día y las necesidades de procesamiento en crecimiento exponencial puedan satisfacerse
+						 totalmente. Veamos en la gráfica adjunta que el problema principal es que la ley no puede continuar indeterminadamente
+						 porque esto implica un crecimiento exponencial, el cuál es imposible de mantener por espacio pero principalmente
+						 por el punto de la temperatura mismo, se puede ver que si esto fuese cierto llegaría muy pronto el año en que un solo procesador
+						 alcanzara la temperatura de la superficie del sol.
+						 <div class="image">
+			 				<img src="images/moore.jpg" alt="" />
+			 			</div>
+					 </li>
+					<li><b>Overclocking infinito: </b>El overclokcing tiene un límite a pesar de que existiera una refrigeración perpetúa
+						 y adecuada del procesador. Esto es debido a las corrientes parásitas que impiden una velocidad teoricamente inifinita
+						 a la cual los circuitos pueden cambiar entre estados, o de hecho sus transistres..</li>
+					<li><b>Automatización del paralelismo: </b>Se dice en este paradigma que el éxito es inversamente proporcional al número de cores
+						 precisamente porque existen complejidades en el corazón del paralelismo que implican cosas que todavía no se pueden predecir ni
+					 con inteligencia artificial, en este mismo artículo de heco se menciona cuales son las posibles estrategias para atacar un problema
+				 de forma paralela, esto da cuenta de que existe una forma prácticamente determinada de abordarlos pero no se automatizarlos, a pesar de que sí
+			 existan algunas partes que son automatizables en el proceso. </li>
+					<li><b>Solución en el hardware: </b>Un diseño adecuado del hardware permitiría que la paralelización siempre estuviera presente con respecto a los procesadores
+						que se están usando  de tal modo que alguno los problemas que son inherentes al paradigma pudieran evitarse.
+						Esto ha resultado imposible hasta la fecha, de hecho, solo diseñar solamente algo tan efectivo y tradicional
+						 como se ha hecho en programación secuencial es algo que no existe hasta ahora. Existen algunas aproximaciones como OpenMP de las que
+					 hablaremos más adelante </li>
+				</ul>
+
 			</section>
+
+
 		</div>
 	</section>
 
@@ -112,23 +157,18 @@
 			<section>
 				<h2>Historia</h2>
 				<ul>
-					<li>El interés por la computación paralela se remonta a finales de los años 50. Este interés se vio expresado en forma de
-						supercomputadores, que aparecieron en los años 60 y 70. Estos computadores tenían procesadores de memoria compartida,
-						con múltiples procesadores trabajando lado a lado con datos compartidos.</li>
-					<li>A mediados de los 80, un nuevo tipo de computador paralelo fue creado cuando el proyecto “Concurrent Computation” de
-						Caltech construyó un supercomputador para aplicaciones científicas. El sistema mostró que se podría lograr un rendimiento
-						extremo usando microprocesadores regulares, disponibles en el mercado.</li>
-					<li>Empezando a los finales de los 80, los clusters surgieron para competir y con los MPP. Un cluster es un tipo de computador
-						paralelo, construido usando múltiples computadores “off-the-shelf”, conectados usando una red “off-the-shelf”. Hoy
-						en día, los clusters son la arquitectura dominante en los datacenters.</li>
-					<li>Para los MPP y clusters surgió el estándar MPI a mediados de los 90, que convergió de otras API. Para los multiprocesadores
-						con memoria compartida, un proceso de convergencia similar se observó a finales de los 90, con el surgimiento de pthreads
-						y OpenMP.</li>
-					<li>En la actualidad, la computación paralela se ha vuelto mainstream prácticamente, con la llegada de los procesadores
-						de varios núcleos casi por defecto en la mayoría de dispositivos computacionales.</li>
-					<li>El software ha sido una parte activa en la evolución de la programación paralela. Los programas paralelos son más difíciles
-						de escribir que los programas secuenciales, ya que se requiere que haya una comunicación y sincronización entre las
-						tareas que se han paralelizado.</li>
+				    <li>En <b>1958</b> Luigi Federico Menabrea habló sobre programación paralela y la necesidad de “branching” y “waiting”.</li>
+				    <li>También en <b>1958</b> Investigadores de IBM discutieron el uso de paralelismo en cálculos numéricos por primera vez. </li>
+				    <li>El interés por la computación paralela se remonta a finales de los años 50. Este interés se vio expresado en forma de supercomputadores, que aparecieron en los años 60 y 70. Estos computadores tenían procesadores de memoria compartida, con múltiples procesadores trabajando lado a lado con datos compartidos.</li>
+				    <li>En <b>1962</b> Burroughs Corporation creó un computador de 4 procesadores que accedía a 16 módulos de memoria. </li>
+				    <li>Luego en <b>1964</b> La fuerza aérea estadounidense financió el diseño del primer computador paralelo masivo ILLIAC IV. (256 procesadores)</li>
+				    <li> Amdahl y Slotnick debatieron sobre la viabilidad del procesamiento en paralelo en <b>1967</b>. De estos debates surgió la ley de Amdahl</li>
+				    <li>Primera aplicación corriendo en ILLIAC IV<b>(1976)</b>. Por esta razón este computador fue llamado “the most infamous of the supercomputers”, ya que solo fue completado en un 25%, tomó 11 años y 4 veces más al costo estimado.</li>
+				    <li>A mediados de los 80, un nuevo tipo de computador paralelo fue creado cuando el proyecto “Concurrent Computation” de Caltech construyó un supercomputador para aplicaciones científicas. El sistema mostró que se podría lograr un rendimiento extremo usando microprocesadores regulares, disponibles en el mercado.</li>
+				    <li>Empezando a los finales de los 80, los clusters surgieron para competir y con los MPP. Un cluster es un tipo de computador paralelo, construido usando múltiples computadores “off-the-shelf”, conectados usando una red “off-the-shelf”. Hoy en día, los clusters son la arquitectura dominante en los datacenters.</li>
+				    <li>Para los MPP y clusters surgió el estándar MPI a mediados de los 90, que convergió de otras API. Para los multiprocesadores con memoria compartida, un proceso de convergencia similar se observó a finales de los 90, con el surgimiento de pthreads y OpenMP.</li>
+				    <li>En la actualidad, la computación paralela se ha vuelto mainstream prácticamente, con la llegada de los procesadores de varios núcleos casi por defecto en la mayoría de dispositivos computacionales.</li>
+				    <li>El software ha sido una parte activa en la evolución de la programación paralela. Los programas paralelos son más difíciles de escribir que los programas secuenciales, ya que se requiere que haya una comunicación y sincronización entre las tareas que se han paralelizado.</li>
 				</ul>
 		</div>
 	</section>
@@ -346,6 +386,47 @@
 		</div>
 	</section>
 
+
+	<section id="twentyone" class="wrapper style2 alt">
+		<center><h2>Metodologias de diseño</h2></center>
+
+
+
+
+
+			<section>
+
+				<p>
+					Cuando se diseña un algoritmo paralelo es necesario tener
+					en cuenta:
+					<ol>
+						<li>Los tiempos de las comunicaciones.</li>
+						<li>Maximizar el procesamiento en cada nodo o unidad de
+						procesamiento.</li>
+						<li>Los costes de implementar el algoritmo.</li>
+						<li>Tiempos de planificación (scheduler).</li>
+					</ol>
+					<center><h3>Metodologia foster</h3></center>
+					Consiste en cuatro etapas
+
+					<ol>
+						<li><b>Particionamiento: </b>En el dominio de los datos o de funciones.</li>
+						<li><b>Comunicaciones: </b> Se hace por medio de distintos medios o paradigmas tales como la memoria o paso de mensajes</li>
+						<li><b>Aglomeración: </b>Las tareas o datso son agrupados teniendo en cuenta posibles dependencias</li>
+						<li><b>Mapeo: </b>Los grupos son asignados a una unidad de procesamiento</li>
+					</ol>
+					En la siguiente imagen se puede ver descito el proceso de forma gráfica:
+					<div class="image">
+						<img src="images/foster.jpg" alt="" />
+					</div>
+
+			</section>
+
+
+
+	</section>
+
+	
 	<section id="six" class="wrapper style2 alt">
 		<div class="inner">
 			<div class="spotlight">
@@ -492,7 +573,7 @@
 		<div class="inner">
 				<div class="spotlight">
 					<div class="content">
-						<h2>Patrones de control paralelo</h2>
+						<h2>Patrones de diseño paralelo</h2>
 						<p>Los patrones se han establecido como buenas practicas a la hora de realizar ingeniería de
 						software.</p>
 						<p>Los patrones de control en el caso de la programación paralela son maneras de combinar la distribución de los procesos
@@ -503,7 +584,10 @@
 				<div class="spotlight">
 					<div class="content">
 						<h3>Fork-Join</h3>
-						<p>Fork-Join es un patrón que nos permite partir el flujo de un programa en múltiples flujos paralelos para reunirlos luego.</p>
+						<p> En este patrón de diseño se generan dos ejecuciones concurrentes,
+							que empieza inmediatamente después de que el fork es llamado en código, después,
+							se usa join para combinar estas dos ejecuciones concurrentes en una. Cada join puede unirse entonces a su fork
+							correspondiente y lo hace antes de las otras terminen.</p>
 					</div>
 					<div class="image">
 						<img src="images/Fork-join.png" alt="" width="140" />
@@ -573,6 +657,67 @@
 					</div>
 				</div>
 
+
+				<div class="spotlight">
+					<div class="image">
+							<img src="images/parbeginparend.jpeg" alt="" width="140" />
+					</div>
+					<div class="content">
+							<h3> ParBegin - ParEnd </h3>
+									<p>
+										Parbegin y Parend originalmente propuesto por Dijsktra es un patrón para lenguajes estructurados en bloque
+										como Passcal y permiten una especificación explicita del paralelismo, todo lo que esté contenido entre ambos
+										será ejecutado en hilos separados en tanto se necesite y se genera un grafo de precedencia como el que se ve en la imagen,
+										dónde se muestra simplemente el orden de las instrucciones a ejecutar.
+
+									</p>
+							</div>
+					</div>
+
+
+					<div class="spotlight">
+						<div class="content">
+								<h3> Maestro / Esclavo </h3>
+										<p>
+										Es usada cuando se tienen dos o más procesos que necesitan ejecutarse simultanea
+										y continuamente pero a diferentes velocidades. Si estos procesos corren en un único ciclo,
+										pueden suceder problemas de temporización graves. Estos problemas de temporización ocurren
+										cuando una parte del ciclo tarda más en ejecutarse de lo esperado. Si esto sucede, la sección
+										restante del ciclo se atrasa. El patrón Maestro/Esclavo consiste en múltiples ciclos en paralelo.
+										Un ciclo actúa como el maestro y los otros como esclavos. El ciclo maestro controla a todos los demás.
+										</p>
+								</div>
+						</div>
+
+
+						<div class="spotlight">
+							<div class="content">
+									<h3> SPMD - SIMD </h3>
+											<p>
+												Esto viene de la taxonomia Flynn  SPMD (Single Program, Multiple Data), múltiples procesadores autónomos
+												ejecutan simultáneamente el mismo programa en puntos independientes, SIMD (Single instructon, multiple data)
+												está basado en organizar los datos relevantes al problema en estructuras de datos iterativas como arreglos y
+												en definir la computación en términos de una secuencia de actualizaciones paralelas en paralelo con estas estructuras
+												de datos.
+
+											</p>
+									</div>
+							</div>
+
+
+							<div class="spotlight">
+								<div class="content">
+										<h3> Creación de hilos y procesos </h3>
+												<p>
+										Los hilos se distinguen de los tradicionales procesos en que los procesos son generalmente independientes,
+										llevan bastante información de estados, e interactúan sólo a través de mecanismos de comunicación dados por el sistema.
+										Por otra parte, muchos hilos generalmente comparten otros recursos directamente. En muchos de los sistemas operativos que
+										proveen facilidades para los hilos, es más rápido cambiar de un hilo a otro dentro del mismo proceso, que cambiar de un proceso a otro.
+												</p>
+										</div>
+								</div>
+
+
 			</div>
 	</section>
 
@@ -600,7 +745,6 @@
 							<li>Procesadores idénticos</li>
 
 							<li>Igual acceso y tiempos de acceso a la memoria</li>
-
 							<li>Si un procesador actualiza una ubicación en memoria compartida, todos los demás procesadores saben sobre la actualización,
 								esto es llamado coherencia del caché</li>
 						</ul>
@@ -635,6 +779,11 @@
 				<div class="content">
 					<p>
 						<h3>Memoria distribuida</h3>
+						<p> Esta arquítectura se basa en múltiples procesadores con su propia memoria física privada, las tareas pueden operar
+							solo con informaciń local y se necesita de la comunicación para obtener información remota, a través también de procesadores remotos
+							Hay cuatro implementaciones que pueden servir como ejemplo conocidas para esta arquítectura tales como: múltiples sistemas operativos, Middlewares, clusters y grids.
+							 Las razones por las que se prefiere esta arquitectura en ciertos esecearios es porque en principio se pueden
+							 añadir tantas unidades de procesamiento como la red pueda soportar, pero las limitaciones recaen directamente en ella.</p>
 						<ul>
 
 							<li>También llamado modelo de paso de mensajes</li>
@@ -652,6 +801,18 @@
 
 							<li>Cuando un procesador necesita acceso a los datos de otro procesador, suele ser la tarea del programador definir explícitamente
 								cómo y cuándo se comunican los datos. La sincronización entre tareas también es responsabilidad del programador.</li>
+
+						</ul>
+
+						<h4>Ejemplos de memoria distribuida</h4>
+						<ul>
+
+							<li><b>Clusters: </b> Colección de computadores que se encuentran interconectados mediante redes de alta velocidad (Ethernet, SCI, Myrinet, Infiniband)
+								Existe una categorización hecha por la organización TOP500 que lleva cuenta de los clusteres más poderosos de la tierra con capacidad de procesamiento
+								del órden de gigaflops. Estos generalmente están basados en una arquítectura MIMD.</li>
+
+
+							<li><b>Grids: </b> Computadores de múltiples dominios administrativos conectados para solucionar una tarea determinada.</li>
 
 						</ul>
 					</p>
@@ -1355,20 +1516,20 @@ public class CajeraThread extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println("La cajera " + this.nombre + " COMIENZA A PROCESAR LA COMPRA DEL CLIENTE " 
-					+ this.cliente.getNombre() + " EN EL TIEMPO: " 
-					+ (System.currentTimeMillis() - this.initialTime) / 1000 
+		System.out.println("La cajera " + this.nombre + " COMIENZA A PROCESAR LA COMPRA DEL CLIENTE "
+					+ this.cliente.getNombre() + " EN EL TIEMPO: "
+					+ (System.currentTimeMillis() - this.initialTime) / 1000
 					+ "seg");
-		for (int i = 0; i < this.cliente.getCarroCompra().length; i++) { 
-			this.esperarXsegundos(cliente.getCarroCompra()[i]); 
-			System.out.println("Procesado el producto " + (i + 1) 
-			+ " del cliente " + this.cliente.getNombre() + "->Tiempo: " 
-			+ (System.currentTimeMillis() - this.initialTime) / 1000 
+		for (int i = 0; i < this.cliente.getCarroCompra().length; i++) {
+			this.esperarXsegundos(cliente.getCarroCompra()[i]);
+			System.out.println("Procesado el producto " + (i + 1)
+			+ " del cliente " + this.cliente.getNombre() + "->Tiempo: "
+			+ (System.currentTimeMillis() - this.initialTime) / 1000
 			+ "seg");
 		}
-		System.out.println("La cajera " + this.nombre + " HA TERMINADO DE PROCESAR " 
-						+ this.cliente.getNombre() + " EN EL TIEMPO: " 
-						+ (System.currentTimeMillis() - this.initialTime) / 1000 
+		System.out.println("La cajera " + this.nombre + " HA TERMINADO DE PROCESAR "
+						+ this.cliente.getNombre() + " EN EL TIEMPO: "
+						+ (System.currentTimeMillis() - this.initialTime) / 1000
 						+ "seg");
 	}
 
@@ -1412,7 +1573,7 @@ public class MainThread {
 		cajera1.start();
 		cajera2.start();
 	}
-} 
+}
 						</code>
 					</pre>
 				</div>
@@ -1459,7 +1620,7 @@ La cajera Cajera 1 HA TERMINADO DE PROCESAR Cliente 1 EN EL TIEMPO: 15seg
 				</div>
 			</div>
 		</div>
-		
+
 		<ul id="eleven" class="actions special">
 			<li><a href="./presentacion_p.pdf" class="button alt">Diapositivas Exposición</a></li>
 			<li><a href="./taller_p.pdf" class="button alt">Taller</a></li>
@@ -1563,6 +1724,11 @@ La cajera Cajera 1 HA TERMINADO DE PROCESAR Cliente 1 EN EL TIEMPO: 15seg
 
 		</div>
 	</section>
+
+
+
+
+
 
 	<!-- Footer -->
 	<footer id="footer">
