@@ -64,6 +64,7 @@
      text-align: center; ">
       <li style="float: left;"><a href="#historia" class="active">Historia</a></li>
       <li style="float: left;"><a href="#filosofía" class="active">Filosofia</a></li>
+      <li style="float: left;"><a href="#CvP" class="active">Concurrencia VS Paralelismo</a></li>
       <li style="float: left;"><a href="#definición">Definición</a></li>
       <li style="float: left;"><a href="#ventajas">Ventajas</a></li>
       <li style="float: left;"><a href="#desventajas">Desventajas</a></li>
@@ -77,6 +78,8 @@
 
     </ul>
   </nav>
+
+
 </head>
 
 <body>
@@ -147,6 +150,71 @@
               programa o aplicación que no se vea afectada en tiempo real.</p>
 
           </div>
+
+          <div id="CvP">
+            <br> <br>
+            <h1>
+              <a class="anchor" href="#CvP%C3%ADa" aria-hidden="true"><span aria-hidden="true"
+                  class="octicon octicon-link"></span></a>Concurrencia VS Paralelismo</h1>
+
+            <p>
+              Este puede llegar a ser uno de los puntos que más interés puede llegar a causar en los programadores
+              y con justa razón, ya que son términos que pueden llegar a confundirse fácilmente, es por ello que es
+              necesario aprender a diferenciarlos.
+            </p>
+            
+            <p>
+             <strong>La concurrencia es una forma de estructurar una solución que puede ser paralelizable (Aunque no siempre) </strong> 
+            </p>
+
+
+            <section id="diff">
+
+                  <div class="row text-justify">
+                      <div class="col-md-6">
+                          <h3 class="text-center">Concurrencia</h3>
+                          <ul>
+                              <li>
+                                Soporta dos o más acciones en progreso
+                              </li>
+                              <li>
+                                Procesos que se ejecutan de manera independiente 
+                              </li>
+                              <li>
+                                Lidiar con muchas cosas al tiempo
+                              </li>
+                              <li>
+                                Sobre la estructura
+                              </li>
+                          </ul>
+                      </div>
+                      <div class="col-md-6">
+                          <h3 class="text-center">Paralelismo</h3>
+                          <ul>
+                              <li>
+                                Soporta dos o más acciones ejecutándose simultáneamente                                
+                              </li>    
+                              <li>
+                                Procesos que se ejecutan Simultáneamente (tal vez relacionados)                                
+                              </li>    
+                              <li>
+                                Hacer muchas cosas al tiempo                                
+                              </li>    
+                              <li>
+                                Sobre la ejecución                                
+                              </li>
+                          </ul>
+  
+                      </div>
+                  </div>
+              
+          </section>
+
+
+
+          </div>
+
+          
 
           <div id="definición">
             <br> <br>
@@ -2149,224 +2217,7 @@ func processExpensiveTransaction() chan string {
     return c
 }
 </pre>
-            <ul>
-              <li>Otro Ejemplo en <strong>Go</strong>:</li>
-            </ul>
-            <p>
-              En este ejemplo vamos a optimizar una aplicación que realiza peticiones http, haciendo uso de
-              concurrencia,
-              el siguiente código es la aplicación implementada de manera secuencial:
-            </p>
-            <pre class="prettyprint">
-package main
-import (
-	"fmt"
-	"log"
-	"net/http"
-	"os"
-)
-func sendRequest(url string){
-  res, err := http.Get(url)
-  if err != nil{
-    panic(err)
-  }
-  fmt.Printf("Estado: %d URL: %s\n", res.StatusCode,url)
-}
 
-func main() {
-	if len(os.Args) < 2 {
-		log.Fatalln("Uso: go run main.go url1 url2 .. urln")
-	}
-
-	for _, url := range os.Args[1:] {
-		sendRequest("https://" + url)
-	}
-}
-</pre>
-            <p>
-              Para hacer uso del programa, usamos el siguiente comando:
-            <pre class="prettyprint">
-    go run main.go url1 url2 .. urln
-  </pre>
-  Donde url1 a urln se reemplazan por urls a las cuales queremos hacer la petición Get.
-  Los resultados de esto deberían ser los siguientes, en el caso de haber usado las urls de google, youtube y
-  facebook:
-            </p>
-            <pre class="prettyprint">
-Estado: 200 URL: https://facebook.com
-Estado: 200 URL: https://youtube.com
-Estado: 200 URL: https://google.com
-</pre>
-            <p>
-              Para medir el tiempo de ejecución se debe usar el siguiente comando:
-            </p>
-            <p>
-              Para Windows:
-            <pre class="prettyprint">
-    Measure-Command {go run main.go url1 url2 .. urln}
-    </pre>
-            Para Linux:
-            <pre class="prettyprint">
-    time go run main.go url1 url2 .. urln
-    </pre>
-    Este tiempo de ejecución es importante para comparar el antes y el después de usar concurrencia. Haciendo
-    uso del comando de Windows, obtuvimos como resultado:
-            </p>
-            <pre class="prettyprint">
-Days              : 0
-Hours             : 0
-Minutes           : 0
-Seconds           : 1
-Milliseconds      : 970
-Ticks             : 19702343
-TotalDays         : 2,28036377314815E-05
-TotalHours        : 0,000547287305555556
-TotalMinutes      : 0,0328372383333333
-TotalSeconds      : 1,9702343
-TotalMilliseconds : 1970,2343
-</pre>
-            <p>
-              Actualmente nuestra aplicación funciona de manera síncrona, lo cual ralentiza su procesamiento,
-              debido a que tiene que esperar que cada petición termine para poder realizar la siguiente.
-              Ahora vamos a modificar este programa inicial para usar concurrencia y optimizar nuestra aplicación:
-            </p>
-            <pre class="prettyprint">
-  package main
-  import (
-    "fmt"
-    "log"
-    "net/http"
-    "os"
-  )
-  func sendRequest(url string){
-    res, err := http.Get(url)
-    if err != nil{
-      panic(err)
-    }
-    fmt.Printf("Estado: %d URL: %s\n", res.StatusCode,url)
-  }
-  
-  func main() {
-    if len(os.Args) < 2 {
-      log.Fatalln("Uso: go run main.go url1 url2 .. urln")
-    }
-  
-    for _, url := range os.Args[1:] {
-      go sendRequest("https://" + url)
-    }
-  }
-</pre>
-            <p>
-              Con solo agregar la palabra go, hacemos que cada consulta se ejecute en goroutines separadas
-              y si ejecutamos el comando de Benchmark anteriormente mencionado vamos a observar que
-              el tiempo de ejecucion es mucho menor:
-            </p>
-            <pre class="prettyprint">
-Days              : 0
-Hours             : 0
-Minutes           : 0
-Seconds           : 0
-Milliseconds      : 832
-Ticks             : 8328442
-TotalDays         : 9,63940046296296E-06
-TotalHours        : 0,000231345611111111
-TotalMinutes      : 0,0138807366666667
-TotalSeconds      : 0,8328442
-TotalMilliseconds : 832,8442
-</pre>
-            <p>
-              Pero nos vamos a encontrar con un problema: no se imprimen los resultados de las goroutines 
-              en consola.
-              Para corregir esto vamos a hacer uso de WaitGroup, el cual ayuda a contabilizar las rutinas que se tienen
-              activas:
-            </p>
-            <pre class="prettyprint">
-  package main
-  import (
-    "fmt"
-    "log"
-    "net/http"
-    "os"
-  )
-
-  var wg sync.WaitGroup
-
-  func sendRequest(url string){
-    defer wg.Done() //Decrementa el contador de goroutines 
-    res, err := http.Get(url)
-    if err != nil{
-      panic(err)
-    }
-    fmt.Printf("Estado: %d URL: %s\n", res.StatusCode,url)
-  }
-  
-  func main() {
-    if len(os.Args) < 2 {
-      log.Fatalln("Uso: go run main.go url1 url2 .. urln")
-    }
-  
-    for _, url := range os.Args[1:] {
-      go sendRequest("https://" + url)
-      wg.Add(1) //Incrementa el contador de goroutines 
-    }
-    wg.Wait() //Indica que toca esperar a que todas las goroutines terminen
-  }
-</pre>
-  <p>
-    Si ejecutamos de nuevo nuestro programa, vamos a ver que los resultados ahora si se muestran en consola.
-  </p>
-  <pre class="prettyprint">
-    Estado: 200 URL: https://facebook.com
-    Estado: 200 URL: https://youtube.com
-    Estado: 200 URL: https://google.com
-  </pre>
-  <p>
-    Es posible que las goroutines se mezclen en consola, debido a que pueden terminar al mismo tiempo. Dando como resultado:
-  </p>
-  <pre class="prettyprint">
-    Estado: 200 URL: Estado: 200 URL: https://youtube.comhttps://facebook.com
-    Estado: 200 URL: https://google.com
-  </pre>
-  <p>
-    Para evitar que esto ocurra vamos a hacer uso de Mutex, el cual ayuda a sincronizar el acceso a recursos compartidos, como es el caso de la consola.
-    Para hacer uso de Mutex, hacemos lo siguiente:
-  </p>
-  <pre class="prettyprint">
-    package main
-    import (
-      "fmt"
-      "log"
-      "net/http"
-      "os"
-    )
-  
-    var wg sync.WaitGroup
-    var mut sync.Mutex
-  
-    func sendRequest(url string){
-      defer wg.Done() //Decrementa el contador de goroutines
-      res, err := http.Get(url)
-      if err != nil{
-        panic(err)
-      }
-      mut.Lock()  //Bloquea el recurso inferior para que solo esta gorutine 
-                  //pueda hacer uso de este
-      defer mut.Unlock() //Desbloquea el recursos despues de haber terminado de usarlo
-      fmt.Printf("Estado: %d URL: %s\n", res.StatusCode,url)
-    }
-    
-    func main() {
-      if len(os.Args) < 2 {
-        log.Fatalln("Uso: go run main.go url1 url2 .. urln")
-      }
-    
-      for _, url := range os.Args[1:] {
-        go sendRequest("https://" + url)
-        wg.Add(1) //Incrementa el contador de goroutines
-      }
-      wg.Wait() //Indica que toca esperar a que todas las goroutines terminen
-    }
-  </pre>
             <ul>
               <li>Ejemplo de concurrecia en <strong>Erlang</strong>:</li>
             </ul>
@@ -2667,15 +2518,15 @@ TotalMilliseconds : 832,8442
               Cuando se inicia un programa, se activa la fibra principal que ejecutará su código de nivel superior.
               Allí, uno puede engendrar (spawn) más fibras.
               Los componentes de un programa son:
-            <ul>
-              <li>Runtime Scheduler, a cargo de ejecutar todas las fibras cuando sea el momento adecuado. </li>
-              <li>El bucle de eventos, que es solo otra fibra, está a cargo de tareas asíncronas, como por ejemplo
-                archivos, sockets, pipes, señales y temporizadores.</li>
-              <li>Canales, para comunicar datos entre fibras. Runtime Scheduler coordinará fibras y canales para su
-                comunicación.</li>
-              <li>Garbage collector: para limpiar la memoria que "ya no se usa".</li>
-            </ul>
-            Fibras: Para generar una fibra se usa el comando spawn
+              <ul>
+                <li>Runtime Scheduler, a cargo de ejecutar todas las fibras cuando sea el momento adecuado. </li>
+                <li>El bucle de eventos, que es solo otra fibra, está a cargo de tareas asíncronas, como por ejemplo
+                  archivos, sockets, pipes, señales y temporizadores.</li>
+                <li>Canales, para comunicar datos entre fibras. Runtime Scheduler coordinará fibras y canales para su
+                  comunicación.</li>
+                <li>Garbage collector: para limpiar la memoria que "ya no se usa".</li>
+              </ul>
+              Fibras: Para generar una fibra se usa el comando spawn
             </p>
 
             <pre class="prettyprint">
@@ -2970,9 +2821,6 @@ TotalMilliseconds : 832,8442
               <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
                   href="https://webprogramacion.com/44/sistemas-operativos/exclusion-mutua.aspx">Paso de mensajes</a>
               </li>
-              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
-                href="https://www.youtube.com/watch?v=3atNYmqXyV4">Ejemplo Go Concurrencia</a>
-            </li>
             </ul>
           </div>
 
@@ -3007,9 +2855,7 @@ TotalMilliseconds : 832,8442
             <li>Johan Sebastian Salamanca Gonzalez</li>
             <li>Mauricio Mesa Burbano</li>
             <li>Cesar Augusto Torres Ardila</li>
-            <li>Nicolas Mateo Casas Ramos</li>
-            <li>Marcelo Escamilla Sanchez</li>
-            <li>Ivan Delgado Gonzalez</li>
+            <li>David Santiago Fajardo Barrera</li>
           </ul>
         </div>
       </section>
