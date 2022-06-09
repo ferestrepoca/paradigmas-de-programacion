@@ -2367,6 +2367,7 @@ input, select, textarea {
 		border: 0;
 		display: inline-block;
 		position: relative;
+		padding-left: 10;
 	}
 
 		.image img {
@@ -2390,7 +2391,7 @@ input, select, textarea {
 
 		.image.right {
 			float: right;
-			margin: 0 0 1em 1.5em;
+			margin: 0 1 1em 0;
 			top: 0.25em;
 		}
 
@@ -2414,6 +2415,61 @@ input, select, textarea {
 				width: 100%;
 			}
 
+
+/* Image2 */
+
+.image2 {
+	border-radius: 8px;
+		border: 0;
+		display: inline-block;
+		position: relative;
+		padding-left: 10;
+}
+
+	.image2 img {
+		border-radius: 8px;
+		display: block;
+	}
+
+	.image2.left, .image2.right {
+		max-width: 40%;
+	}
+
+		.image2.left img, .image2.right img {
+			width: 100%;
+		}
+
+	.image2.left {
+		float: left;
+		margin: 0 1.5em 1em 0;
+		top: 0.25em;
+	}
+
+	.image2.right {
+		float: right;
+		margin: 0 1 1em 0;
+		top: 0.25em;
+	}
+
+	.image2.fit {
+		display: block;
+		margin: 0 0 2em 0;
+		width: 100%;
+	}
+
+		.image2.fit img {
+			width: 100%;
+		}
+
+	.image2.main {
+		display: block;
+		margin: 0 0 3em 0;
+		width: 100%;
+	}
+
+		.image2.main img {
+			width: 100%;
+		}
 /* List */
 
 	ol {

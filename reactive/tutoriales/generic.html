@@ -1481,7 +1481,104 @@ export function onInterval(callback, milliseconds) {
 <span class="nt">&lt;textarea</span> <span class="na">value=</span><span class="s">{text}</span> <span class="na">on:keydown=</span><span class="s">{handleKeydown}</span><span class="nt">&gt;&lt;/textarea&gt;</span>
 </pre></div>
 
-</code></pre>
+</code></pre><br />
+
+
+<h1 id="motion"><em>Motion</em></h1>
+          <p>
+            Un <em>Motion</em>  en Svelte, esta compuesto por dos partes las cuales
+            juegan un papel muy importante en el framework al momento de interactuar con elementos de
+            tipo texto que ayudan a agilizar la creacion de procesos como slider, entre otros. Motion esta dividido princioalmente en dos subgrupos: <br />
+            
+          <h2 id="Tweened"><em>Tweened</em></h2>
+
+          <p>
+              Con <em>Tweened</em> su principal caracteristica es cuando necesitamos agregar una función de aceleración o cuando queremos hacer clic en los botones, 
+              para que la barra de progreso asuma su nuevo valor.<br>
+              Como ejemplo empezemos cambiando la variable progress a un valor <em>Tweened</em>.
+              <br>
+
+              
+<pre>
+<code class="lang-diff">
+<div class="highlight">
+<pre>
+&lt;script&gt; 
+    import { tweened } from 'svelte/motion';
+    
+    const progress = tweened(0);
+&lt;/script&gt;
+</pre>
+</div>
+</code>
+</pre>
+<br>
+Al hacer click en los botones esto causa que la variable progress se actualice a 
+su nuevo valor. Pero esto es un poco robotico y no muy satisfactorio. Asi que agreguemos 
+una nueva función sencilla.
+
+<pre>
+    <code class="lang-diff">
+    <div class="highlight">
+    <pre>
+    &lt;script&gt; 
+        import { tweened } from 'svelte/motion';
+        import { cubicOut } from 'svelte/easing';
+        
+        const progress = tweened(0, {
+            duration: 400,
+            easing: cubicOut
+        });
+    &lt;/script&gt; </pre> </div>
+    </code>
+    </pre>
+    El modulo <em>svelte/motion</em> nos provee una serie de funciones que nos ayudan a agilizar 
+    estos procesos.
+          </p>
+
+
+          <h2 id="spring"><em>Spring</em></h2>
+
+          <p>
+              La funcion <em>spring</em> es una alternativa de tweened que por 
+              lo general trabaja mejor con valores que estan cambiando constantemente.<br>
+              Vamos a ver un ejemplo en el que se tiene dos estados, uno esta representando 
+              las coordenadas y el otro representa el tamaño. Asi que como se veria esto con <em>springs</em>.
+              <br>              
+<pre>
+<code class="lang-diff">
+<div class="highlight">
+<pre>
+&lt;script&gt; 
+    import { spring } from 'svelte/motion';
+
+    let coords = spring({ x: 50, y: 50 });
+    let size = spring(10);
+&lt;/script&gt;
+</pre>
+</div>
+</code>
+</pre>
+<br>
+Ambos springs vienen por defecto con unos valores <em>stiffness</em>  y <em>damping</em>, los 
+cuales son los encargados de que el spring se comporte de manera correcta o como se supone un spring se debe comportar. 
+De esta manera podemos especificar nuestro propios valores iniciales.
+
+<pre>
+    <code class="lang-diff">
+    <div class="highlight">
+    <pre>
+    let coords = spring({ x: 50, y: 50 }, {
+        stiffness: 0.1,
+        damping: 0.25
+        }); 
+</pre>
+ </div>
+    </code>
+    </pre>
+Al mover el mouse por la pantalla es va a hacer que el coportamiento de los spring cambie.
+Notece que se puede ajustar los valores aun cuando el spring ya esta corriendose.
+    </p>
 
           <!-- CODIGO GENERADO CON https://www.npmjs.com/package/markdown-to-html -->
           <!-- CODIGO GENERADO CON https://www.npmjs.com/package/markdown-to-html -->
