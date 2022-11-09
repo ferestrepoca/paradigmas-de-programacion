@@ -21,6 +21,7 @@
                     <li><a class="menu-item1" href="index.html#lambdacalc">C&aacute;lculo Lambda</a></li>
                     <li><a class="menu-item1" href="index.html#advantage_disadvantage">Ventajas y desventajas</a></li>
                     <li><a class="menu-item1" href="index.html#languages">Lenguajes</a></li>
+                    <li><a class="menu-item1" href="index.html#learning">Recursos de Aprendizaje</a></li>
                 </ul>
             </li>
             <li><a href="concepts.html" class="menu-item">Conceptos</a></li>
@@ -469,6 +470,10 @@
                                 evitando gasto computacional innecesario. El ejemplo más claro está en la utilización de
                                 listas
                                 infinitas.
+
+                                El uso de Lazy Evaluation permite optimizar el tiempo necesario para realizar computaciones, 
+                                multiples plataformas de Big Data, como Apache Spark, hacen uso del paradigma para obtener estos
+                                beneficios. 
                             </li>
 
                             <li>Las características del paradigma, en especial la utilización de funciones puras,
@@ -518,6 +523,12 @@
                             <li>Dificultad inicial para producir buen código: Esto debido a que un programador suele
                                 estar acostumbrado al pensamiento de la programación imperativa, tomando un poco de
                                 tiempo que la persona logre adaptarse y generar código útil.
+
+                                No solo eso, sino que la terminología incluida dentro de la programación funcional 
+                                (combinator, monoid, monad, functor) puede ser
+                                intimidante cuando se inicia desde una base de programación netamente imperativa. Y puede ser 
+                                aún peor cuando no se posee experiencia en el tema.
+
                             </li>
                             <li>Generación de grandes cantidades de short-lived garbage: Esto se debe principalmente
                                 a
@@ -531,6 +542,11 @@
                                 programación
                                 funcional no es fácil crear componentes homólogos inmutables con la misma
                                 eficiencia.
+                            </li>
+                            <li>
+                                El uso de I/O (Archivos, Bases de datos y GUIs) se vuelve un problema. La manipulación de estas entradas y salidas requiere 
+                                del uso de funciones netamente impuras. Un programa que provea utilidad al usuario requerirá, en la gran mayoría de casos, 
+                                acceso a este tipo de entradas y salidas. 
                             </li>
 
                         </ul>
@@ -572,7 +588,7 @@
                             el codigo que estemos creando, y
                             a que no tenemos que preocuparnos por cambios que puedan sufrir los objetos a lo largo del
                             programa. Como ventaja adicional,
-                            los objetos que son inmutables, se vuelven automaticamente segutos en el manejo de hilos (o
+                            los objetos que son inmutables, se vuelven automaticamente seguros en el manejo de hilos (o
                             thread-safe) de manera en que pueden
                             ser accedidos de manera concurrente sin presentar ningun tipo de "side effects" debido a que
                             no pueden modificarse.
@@ -588,9 +604,15 @@
                         <p>
                             Dado que en la programacion funcional no existe un estado global no es necesario implementar
                             las tecnicas de paralelismo como
-                            (Multexes , Semaforos ,Locks) por lo cual se pueden ralizar funciones en paralelo siempre q
+                            (Multexes , Semaforos ,Locks) por lo cual se pueden ralizar funciones en paralelo siempre que
                             estas cumplan con ciertas reglas al
                             momento de su ejecucion
+                        </p>
+                        <p>
+                            Por otro lado, la concurrencia es mucho más segura, las funciones puras son seguras para hilos (thread-safe), es decir, siempre
+                            garantizan que nunca va a suceder que dos procesos concurrentes intenten acceder a los mismos datos al mismo
+                            tiempo. Esto se conoce como condiciones de carrera y es uno de los bugs más dificiles de solucionar, dado que las
+                            funciones puras nunca comparten estados con las demás secciones de un programa nunca tienen condiciones de carrera.
                         </p>
                         <img src="images/Paralelismo.png" class="img-responsive center-block" alt=""
                             style="max-width: 500px">
@@ -840,10 +862,7 @@
 
                     <div class="row">
 
-                        <div class="col-md-6">
-                            <img class="center-block img-responsive img-thumbnail" src="images/index.png" alt="Photo">
-                            <br><script src="https://pastebin.com/embed_js/ERTjEiLf"></script>
-                        </div>
+                        
                         
                         <div class="col-md-6">
                             <h3 class="text-center">Kotlin</h3>
@@ -859,12 +878,46 @@
                             </p>
                             
                         </div>
+                        <div class="col-md-6">
+                            <img class="center-block img-responsive img-thumbnail" src="images/index.png" alt="Photo">
+                            <br>
+                            <script src="https://gist.github.com/joviedog/c3e5b891ec81a4f9bcd680f83410fbd9.js"></script>
+                            </script>
+                        </div>
                    
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="text-center">PYTHON</h3>
+                            <p  style="font-size: 20;">
+                                Python es un lenguaje de programación potente y fácil de aprender. Tiene estructuras de datos de alto nivel eficientes y
+                                un simple pero efectivo sistema de programación orientado a objetos. La elegante sintaxis de Python y su tipado
+                                dinámico, junto a su naturaleza interpretada lo convierten en un lenguaje ideal para scripting y desarrollo rápido de
+                                aplicaciones en muchas áreas, para la mayoría de plataformas.
+
+                                El ejemplo a continuación ilustra el uso de maps en lugar de iteradores para aplicar funciones a conjuntos de datos.
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <img class="center-block img-responsive img-thumbnail" src="images/python-logo.png" alt="Photo">
+                            <script src="https://gist.github.com/joviedog/040354521ef6b095ed0f80aca93f3263.js">
+                            </script>
+                        </div>
                     </div>
 
                 </div>
 
             </section>
+
+            <section id="learning">
+                <h2 id="learning1" class="text-center">Recursos de Aprendizaje</h2>
+                <div class="row" text-justify>
+                    <div class="col-md-12">
+                        <h3><a href="https://www.coursera.org/specializations/scala">Coursera: Functional Programming in Scala</a></h3>
+                        <h3><a href="https://www.coursera.org/learn/scala-parallel-programming">Coursera: Parallel Programming in Scala</a></h3>
+                    </div>
+                </div>
 
 
         </div>
