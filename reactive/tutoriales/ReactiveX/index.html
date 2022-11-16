@@ -40,32 +40,33 @@
 		<section id="intro" class="wrapper style1 fullscreen fade-up">
 			<div class="inner">
 				<h1>ReactiveX</h1>
-					<p><span class="image right"><img src="images/pic06.png" alt="" /></span>
-						ReactiveX es un API que extiende del <a href="https://en.wikipedia.org/wiki/Observer_pattern">patron observador</a> 
-						para programacion asincrona que facilita el manejo de flujo de datos y 
-						eventos a traves de la combinacion del patron Observer e Iterator.
-					</p>
-					<p> Está disponible para los lenguajes:</p>
-					<ul class="a">
-						<li>Java: RxJava</li> 
-						<li>JavaScript: RxJS</li>
-						<li>C#: Rx.NET</li>
-						<li>C#(Unity): UniRx</li>
-						<li>Scala: RxScala</li>
-						<li>Clojure: RxClojure</li>
-						<li>C++: RxCpp</li>
-						<li>Lua: RxLua</li>
-						<li>Ruby: Rx.rb</li>
-						<li>Python: RxPY</li>
-						<li>Go: RxGo</li>
-						<li>Groovy: RxGroovy</li>
-						<li>JRuby: RxJRuby</li>
-						<li>Kotlin: RxKotlin</li>
-						<li>Swift: RxSwift</li>
-						<li>PHP: RxPHP</li>
-						<li>Elixir: reaxive</li>
-						<li>Dart: RxDart</li>
-					</ul>
+				<p><span class="image right"><img src="images/pic06.png" alt="" /></span>
+					ReactiveX es un API que extiende del <a href="https://en.wikipedia.org/wiki/Observer_pattern">patron
+						observador</a>
+					para programacion asincrona que facilita el manejo de flujo de datos y
+					eventos a traves de la combinacion del patron Observer e Iterator.
+				</p>
+				<p> Está disponible para los lenguajes:</p>
+				<ul class="a">
+					<li>Java: RxJava</li>
+					<li>JavaScript: RxJS</li>
+					<li>C#: Rx.NET</li>
+					<li>C#(Unity): UniRx</li>
+					<li>Scala: RxScala</li>
+					<li>Clojure: RxClojure</li>
+					<li>C++: RxCpp</li>
+					<li>Lua: RxLua</li>
+					<li>Ruby: Rx.rb</li>
+					<li>Python: RxPY</li>
+					<li>Go: RxGo</li>
+					<li>Groovy: RxGroovy</li>
+					<li>JRuby: RxJRuby</li>
+					<li>Kotlin: RxKotlin</li>
+					<li>Swift: RxSwift</li>
+					<li>PHP: RxPHP</li>
+					<li>Elixir: reaxive</li>
+					<li>Dart: RxDart</li>
+				</ul>
 				<ul class="actions">
 					<li><a href="https://reactivex.io" class="button scrolly">Documentación Oficial</a></li>
 				</ul>
@@ -78,7 +79,8 @@
 				<div class="content">
 					<div class="inner">
 						<h2>RxJS</h2>
-						<p>RxJS (Por sus siglas en Inglés, "Reactive Extensions for JavaScript") es una librería de JavaScript para
+						<p>RxJS (Por sus siglas en Inglés, "Reactive Extensions for JavaScript") es una librería de
+							JavaScript para
 							programación asíncrona y basada en eventos usando secuencias de observables.
 							El cual proporciona tres tipos de elementos pricipales:
 						</p>
@@ -88,7 +90,8 @@
 							<dt>Subscribers</dt>
 							<dd>Representa la ejecución de un observable recibiendo la información de este.</dd>
 							<dt>Operators</dt>
-							<dd>Son funciones inspiradas en los métodos de los arreglos tales como <i>map, filter, concat,</i> entre muchas otras.</dd>
+							<dd>Son funciones inspiradas en los métodos de los arreglos tales como <i>map, filter,
+									concat,</i> entre muchas otras.</dd>
 						</dl>
 
 						<ul class="actions">
@@ -101,10 +104,13 @@
 				<div class="content">
 					<div class="inner">
 						<h2>Callbacks vs RxJS vs Promises</h2>
-						<p>En los casos en los que se realizan solicitudes a un servidor, donde sabemos que la respuesta no va a ser 
-							inmediata, es necesario el uso de artefactos que nos permitan esperar la respuesta que deseamos sin recibir 
+						<p>En los casos en los que se realizan solicitudes a un servidor, donde sabemos que la respuesta
+							no va a ser
+							inmediata, es necesario el uso de artefactos que nos permitan esperar la respuesta que
+							deseamos sin recibir
 							un time-out.
-							En este caso se verá un rápido funcionamiento de los <i>Callback</i>, las <i>Promesas</i> y los 
+							En este caso se verá un rápido funcionamiento de los <i>Callback</i>, las <i>Promesas</i> y
+							los
 							<i>Observers</i> que propoprciona <b>RxJS</b>.
 						</p>
 						<h3>Callbacks</h3>
@@ -122,7 +128,7 @@ getUser(msg => {
 })
 							</code>
 						</pre>
-						<p>Esto funciona bien para casos sencillos como este, pero cuando se hace más complejo el 
+						<p>Esto funciona bien para casos sencillos como este, pero cuando se hace más complejo el
 							manejo de errores si su compresión se hace más dificil.
 						</p>
 						<pre>
@@ -149,7 +155,7 @@ checkAuth(authInfo => {
 							</code>
 						</pre>
 						<h3>Promises</h3>
-						<p>Es cuando las promesas son utiles, para realizar el manejo de errores y realizar 
+						<p>Es cuando las promesas son utiles, para realizar el manejo de errores y realizar
 							un código de mejor comprensión
 						</p>
 						<pre>
@@ -166,14 +172,17 @@ checkAuth()
 	})
 							</code>
 						</pre>
-						<p>Pero las promesas presentan la limitació de que solo pueden manejar una operación asíncrona por promesa
+						<p>Pero las promesas presentan la limitació de que solo pueden manejar una operación asíncrona
+							por promesa
 							y no es muy útil cuando operación asíncronano termina tras un valor.
 							Es allí cuando los <i>Observadores</i> son tan útiles.
 						</p>
 						<h3>RxJS - Observables</h3>
-						<p>Como ejemplo tomamos el caso de un botón cualquiera, el cuál puede ser oprimido multiples veces,
-							de forma que el metodo <i>subscribe()</i> se suscribe a todos los eventos reconocidos por el 
-							<i>Observable</i>, reaccionando a cada uno de ellos. Adicionalmente se puede realiza el maenjo
+						<p>Como ejemplo tomamos el caso de un botón cualquiera, el cuál puede ser oprimido multiples
+							veces,
+							de forma que el metodo <i>subscribe()</i> se suscribe a todos los eventos reconocidos por el
+							<i>Observable</i>, reaccionando a cada uno de ellos. Adicionalmente se puede realiza el
+							maenjo
 							errores con facilidad desde el <i>subscribe</i>.
 						</p>
 						<pre>
@@ -191,7 +200,8 @@ observable.subscribe(
 							</code>
 						</pre>
 						<ul class="actions">
-							<li><a href="https://rxjs.dev/guide/observable" class="button">Para aprender más sobre Observables en RxJS</a></li>
+							<li><a href="https://rxjs.dev/guide/observable" class="button">Para aprender más sobre
+									Observables en RxJS</a></li>
 						</ul>
 					</div>
 				</div>
@@ -200,64 +210,67 @@ observable.subscribe(
 				<div class="content">
 					<div class="inner">
 						<h2>Ventajas y desventajas de ReactiveX</h2>
-							<h3>Ventajas</h3>
-								<dl>
-									<dt>Gran crecimiento</dt>
-									<dd>Es una herramienta funcional y poderosa. Haciendo que su popularidad aumente 
-										y sea más atractiva y alcanzable.
-									</dd>
-									<dt>Flexible</dt>
-									<dd>Es una herramienta que es compatible con gran cantidad de frameworks y lenguejes.</dd>
-									<dt>API de calidad</dt>
-									<dd>Proporciona una API elegante que facilita la descripción de flujos complejos inluyendo
-										un completo set de entidades que se encargan del trbajo pesado ocultando la complejidad,
-										permitiendo concentrarse en la lógica.
-									</dd>
-									<dt>Facilidad de programación</dt>
-									<dd>Su amplia colección de operadores faicilita la progrmación</dd>
-									<dt>Optimización y protección contra fugas de memoria</dt>
-									<dd>Muchos desarrolladores han participado en la optimización y pruebas de la herramienta
-										resolviendo los principales problemas de memoria.
-									</dd>
-									<dt>Pequeño y conciso</dt>
-									<dd>Su arquitectura modular lo hacen pequeño, conteniendo solo las piezas necesarias.</dd>
-									<dt>Sin dependencias de terceros</dt>
-									<dd>No depende de ninguna librería de terceros. Manteniedo su tamaño óptimo.</dd>
-									<dt>Comunidad grande</dt>
-									<dd>
-										Tiene una gran comunidad diversa y receptiva. Encontrando ayuda para la solución
-										de problemas con facilidad
-									</dd>
-									<dt>Documentacion</dt>
-									<dd>
-										El aprendizaje de la herramienta no es el más sencillo, pero cuenta con una extensa
-										documentación y una gran cantidad de recursos en su página oficial.							
-									</dd>
-									<dt>Actualizaciones periódicas</dt>
-									<dd>Cuenta con actualizaciones regulares, añadiendo constantemente mejoras y correcion de erroes.</dd>
-								</dl>
-							<h3>Desventajas</h3>
-								<dl>
-									<dt>Requiere inmutabilidad de datos</dt>
-									<dd>
-										La inmutabilidad de los datos no es un requisito estricto, pero al ser un concepto de la
-										programación funcional y el paradigma reactivo, optimiza su funcionamiento.
-									</dd>
-									<dt>Depuración y pruebas</dt>
-									<dd>
-										Su depuración y pruebas es algo dificil para un ojo inexperto debido a algunas funciones
-										especificas de la programación reactiva.
-									</dd>
-									<dt>Problema estricto de tipeo</dt>
-									<dd>
-										La única dependencia de RxJS es tslib, que proporciona compatibilidad con Typescript.
-										Typescript proporciona un conjunto de ventajas, como escritura fuerte, autocompletar, etc.,
-										pero también proporciona un uso incorrecto de los modificadores de acceso (privado/público),
-										lo que hace que los métodos internos sean accesibles desde el exterior.
-									</dd>
-									<dt>Uso de Observables</dt>
-									<dd>Para el uso de Observables, todo el código debe estar bajo los Observables</dd>
-								</dl>
+						<h3>Ventajas</h3>
+						<dl>
+							<dt>Gran crecimiento</dt>
+							<dd>Es una herramienta funcional y poderosa. Haciendo que su popularidad aumente
+								y sea más atractiva y alcanzable.
+							</dd>
+							<dt>Flexible</dt>
+							<dd>Es una herramienta que es compatible con gran cantidad de frameworks y lenguejes.</dd>
+							<dt>API de calidad</dt>
+							<dd>Proporciona una API elegante que facilita la descripción de flujos complejos inluyendo
+								un completo set de entidades que se encargan del trbajo pesado ocultando la complejidad,
+								permitiendo concentrarse en la lógica.
+							</dd>
+							<dt>Facilidad de programación</dt>
+							<dd>Su amplia colección de operadores faicilita la progrmación</dd>
+							<dt>Optimización y protección contra fugas de memoria</dt>
+							<dd>Muchos desarrolladores han participado en la optimización y pruebas de la herramienta
+								resolviendo los principales problemas de memoria.
+							</dd>
+							<dt>Pequeño y conciso</dt>
+							<dd>Su arquitectura modular lo hacen pequeño, conteniendo solo las piezas necesarias.</dd>
+							<dt>Sin dependencias de terceros</dt>
+							<dd>No depende de ninguna librería de terceros. Manteniedo su tamaño óptimo.</dd>
+							<dt>Comunidad grande</dt>
+							<dd>
+								Tiene una gran comunidad diversa y receptiva. Encontrando ayuda para la solución
+								de problemas con facilidad
+							</dd>
+							<dt>Documentacion</dt>
+							<dd>
+								El aprendizaje de la herramienta no es el más sencillo, pero cuenta con una extensa
+								documentación y una gran cantidad de recursos en su página oficial.
+							</dd>
+							<dt>Actualizaciones periódicas</dt>
+							<dd>Cuenta con actualizaciones regulares, añadiendo constantemente mejoras y correcion de
+								erroes.</dd>
+						</dl>
+						<h3>Desventajas</h3>
+						<dl>
+							<dt>Requiere inmutabilidad de datos</dt>
+							<dd>
+								La inmutabilidad de los datos no es un requisito estricto, pero al ser un concepto de la
+								programación funcional y el paradigma reactivo, optimiza su funcionamiento.
+							</dd>
+							<dt>Depuración y pruebas</dt>
+							<dd>
+								Su depuración y pruebas es algo dificil para un ojo inexperto debido a algunas funciones
+								especificas de la programación reactiva.
+							</dd>
+							<dt>Problema estricto de tipeo</dt>
+							<dd>
+								La única dependencia de RxJS es tslib, que proporciona compatibilidad con Typescript.
+								Typescript proporciona un conjunto de ventajas, como escritura fuerte, autocompletar,
+								etc.,
+								pero también proporciona un uso incorrecto de los modificadores de acceso
+								(privado/público),
+								lo que hace que los métodos internos sean accesibles desde el exterior.
+							</dd>
+							<dt>Uso de Observables</dt>
+							<dd>Para el uso de Observables, todo el código debe estar bajo los Observables</dd>
+						</dl>
 					</div>
 				</div>
 			</section>
@@ -275,7 +288,8 @@ npm install rxjs
 							</code>
 						</pre>
 						<ul class="actions">
-							<li><a href="https://rxjs.dev/guide/installation" class="button">Más información acerca de la instalación</a></li>
+							<li><a href="https://rxjs.dev/guide/installation" class="button">Más información acerca de
+									la instalación</a></li>
 						</ul>
 					</div>
 				</div>
@@ -309,7 +323,8 @@ rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
 							</code>
 						</pre>
 						<ul class="actions">
-							<li><a href="https://rxjs.dev/guide/importing" class="button">Más información acerca de la importación</a></li>
+							<li><a href="https://rxjs.dev/guide/importing" class="button">Más información acerca de la
+									importación</a></li>
 						</ul>
 					</div>
 				</div>
@@ -319,65 +334,81 @@ rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
 		<!-- Nicolas -->
 		<section id="two" class="wrapper style3 fade-up">
 			<div class="inner">
-				<h1>Caracteristicas especificas</h1>  
-				<h4>A continuacion vamos a dar una serie de explicaciones de conceptos clave de la programacion reactiva y de la libreria RxJS</h4> 
+				<h1>Caracteristicas especificas</h1>
+				<h4>A continuacion vamos a dar una serie de explicaciones de conceptos clave de la programacion reactiva
+					y de la libreria RxJS</h4>
 				<hr><br>
 				<h2>Programación Reactiva en pocas palabras</h2>
-				<h4>La programación reactiva es la programación orientada al manejo de Streams de datos asincronos y la propagacion de cambio</h4>  
+				<h4>La programación reactiva es la programación orientada al manejo de Streams de datos asincronos y la
+					propagacion de cambio</h4>
 
 				<hr><br>
-				<h2>La libreria ReactiveX en pocas palabras</h2> 
+				<h2>La libreria ReactiveX en pocas palabras</h2>
 				<h4>Rx es una combinacion de las mejores ideas del patron observer y el patron iterator</h4>
-				
+
 				<hr><br>
-				<h2>Stream de datos</h2> 
-				<h4>Es uno o más datos que llegan de manera asincrónica, por ejemplo, si miramos desde arriba una autopista veremos pasar coches en una tasa variable, podemos decir que es un stream de coches.</h4> 
-				<h4>Una manera grafica de mostrar lo que es un stream de datos es a traves de un diagrama de canicas, los cuales tienen la siguiente notación:</h4>
-				<span class="image fit"><img src="images/notacion_canicas.jpg" alt="" /></span> 
+				<h2>Stream de datos</h2>
+				<h4>Es uno o más datos que llegan de manera asincrónica, por ejemplo, si miramos desde arriba una
+					autopista veremos pasar coches en una tasa variable, podemos decir que es un stream de coches.</h4>
+				<h4>Una manera grafica de mostrar lo que es un stream de datos es a traves de un diagrama de canicas,
+					los cuales tienen la siguiente notación:</h4>
+				<span class="image fit"><img src="images/notacion_canicas.jpg" alt="" /></span>
 				<h4>Por ejemplo con un flujo de datos que emite numeros del 0 al 3, tendriamos lo siguiente:</h4>
-				<span class="image fit"><img src="images/canicas_1.png" alt="" /></span> 
+				<span class="image fit"><img src="images/canicas_1.png" alt="" /></span>
 
 				<hr><br>
-				<h2>Patron Iterator</h2>  
-				<h4>Iterator es un patrón de diseño de comportamiento que te permite recorrer elementos de una colección sin exponer su representación subyacente (lista, pila, árbol, etc.).</h4> 
+				<h2>Patron Iterator</h2>
+				<h4>Iterator es un patrón de diseño de comportamiento que te permite recorrer elementos de una colección
+					sin exponer su representación subyacente (lista, pila, árbol, etc.).</h4>
 				<h4>La estructura del patron iterator es la siguiente: </h4>
-				<span class="image fit"><img src="images/canicas_1.png" alt="" /></span> 
+				<span class="image fit"><img src="images/canicas_1.png" alt="" /></span>
 
-				<h4>Ejemplo: código de Java que nos muestra el funcionamiento de este patron para hacer la concatenación de un arreglo de Strings </h4>
-				<span class="image fit"><img src="images/code_java.png" alt="" /></span> 
+				<h4>Ejemplo: código de Java que nos muestra el funcionamiento de este patron para hacer la concatenación
+					de un arreglo de Strings </h4>
+				<span class="image fit"><img src="images/code_java.png" alt="" /></span>
 
-
-				<hr><br>
-				<h2>Patron Observador</h2>  
-				<h4>Observer es un patrón de diseño de comportamiento que te permite definir un mecanismo de suscripción para notificar a varios objetos sobre cualquier evento que le suceda al objeto que están observando.</h4>
-				<span class="image fit"><img src="images/observador.png" alt="" /></span> 
-				<h4>La imagen de arriba no solo nos muestra el funcionamiento del patron observador sino nos da un analogia del mismo cuando se sigue una cuenta de twitter, ya que al suscribirse a una cuenta(observable) el seguidor(observador) va a ser notificado de los twets nuevos de la cuenta y en cualquier momento puede romper esta suscripcion dejando de seguir la cuenta</h4>
 
 				<hr><br>
-				<h2>Pull VS Push</h2>  
-				<h4>Pull y Push representan diferentes protocolos que describen como se relaciona el productor de datos con el consumidor.</h4>
+				<h2>Patron Observador</h2>
+				<h4>Observer es un patrón de diseño de comportamiento que te permite definir un mecanismo de suscripción
+					para notificar a varios objetos sobre cualquier evento que le suceda al objeto que están observando.
+				</h4>
+				<span class="image fit"><img src="images/observador.png" alt="" /></span>
+				<h4>La imagen de arriba no solo nos muestra el funcionamiento del patron observador sino nos da un
+					analogia del mismo cuando se sigue una cuenta de twitter, ya que al suscribirse a una
+					cuenta(observable) el seguidor(observador) va a ser notificado de los twets nuevos de la cuenta y en
+					cualquier momento puede romper esta suscripcion dejando de seguir la cuenta</h4>
+
+				<hr><br>
+				<h2>Pull VS Push</h2>
+				<h4>Pull y Push representan diferentes protocolos que describen como se relaciona el productor de datos
+					con el consumidor.</h4>
 				<table>
 					<tr>
-					  <th>Tipo</th>
-					  <th>Productor</th>
-					  <th>Consumidor</th>
+						<th>Tipo</th>
+						<th>Productor</th>
+						<th>Consumidor</th>
 					</tr>
 					<tr>
-					  <td>Pull</td>
-					  <td>Pasivo: Produce los datos cuando se le solicita</td>
-					  <td>Activo: Decide cuando necesita los datos</td>
+						<td>Pull</td>
+						<td>Pasivo: Produce los datos cuando se le solicita</td>
+						<td>Activo: Decide cuando necesita los datos</td>
 					</tr>
 					<tr>
-					  <td>Push</td>
-					  <td>Activo: Produce los datos a su propio ritmo</td>
-					  <td>Pasivo: Reacciona a los datos recibidos</td>
+						<td>Push</td>
+						<td>Activo: Produce los datos a su propio ritmo</td>
+						<td>Pasivo: Reacciona a los datos recibidos</td>
 					</tr>
-				  </table>
-				<h4>Pull: En un sistema Pull el consumidor determina cuando quiere recibir datos del productor. El productor en si mismo de despreocupa de cuando se enviarán los datos al consumidor. Por ejemplo todas las funciones JS con de tipo Pull, las funciones son productoras de datos y el código que la llama a la función consumiendo el retorno.</h4>
-				<span class="image fit"><img src="images/pull.png" alt="" /></span> 
+				</table>
+				<h4>Pull: En un sistema Pull el consumidor determina cuando quiere recibir datos del productor. El
+					productor en si mismo de despreocupa de cuando se enviarán los datos al consumidor. Por ejemplo
+					todas las funciones JS con de tipo Pull, las funciones son productoras de datos y el código que la
+					llama a la función consumiendo el retorno.</h4>
+				<span class="image fit"><img src="images/pull.png" alt="" /></span>
 
-				<h4>Push: El productor determina cuando enviar los datos al consumidor, un ejemplo típico es un servidor de chat que envía los mensajes a medida que llegan a los usuarios.</h4>
-				<span class="image fit"><img src="images/push.png" alt="" /></span> 
+				<h4>Push: El productor determina cuando enviar los datos al consumidor, un ejemplo típico es un servidor
+					de chat que envía los mensajes a medida que llegan a los usuarios.</h4>
+				<span class="image fit"><img src="images/push.png" alt="" /></span>
 
 			</div>
 		</section>
@@ -387,63 +418,74 @@ rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
 			<div class="inner">
 				<h2>Sesión práctica</h2>
 				<h4>Ejemplo 1</h4>
-				<iframe src="https://stackblitz.com/edit/rxjs-nmbr6s?devToolsHeight=33&embed=1&file=index.ts&hideExplorer=1" frameborder="0" width="100%" height="600px"></iframe>
+				<iframe
+					src="https://stackblitz.com/edit/rxjs-nmbr6s?devToolsHeight=33&embed=1&file=index.ts&hideExplorer=1"
+					frameborder="0" width="100%" height="600px"></iframe>
 			</div>
 			<div class="inner">
 				<h4>Ejemplo 2</h4>
-				<iframe src="https://stackblitz.com/edit/rxjs-xdnyup?devToolsHeight=33&embed=1&file=index.ts&hideExplorer=1" frameborder="0" width="100%" height="600px"></iframe>
+				<iframe
+					src="https://stackblitz.com/edit/rxjs-xdnyup?devToolsHeight=33&embed=1&file=index.ts&hideExplorer=1"
+					frameborder="0" width="100%" height="600px"></iframe>
 			</div>
 			<div class="inner">
 				<h4>Ejemplo 3</h4>
-				<iframe src="https://stackblitz.com/edit/rxjs-out63p?devToolsHeight=33&embed=1&file=index.ts&hideExplorer=1" frameborder="0" width="100%" height="600px"></iframe>
+				<iframe
+					src="https://stackblitz.com/edit/rxjs-out63p?devToolsHeight=33&embed=1&file=index.ts&hideExplorer=1"
+					frameborder="0" width="100%" height="600px"></iframe>
 			</div>
 		</section>
 
 		<!-- Kevin -->
-		<section id="two" class="wrapper style3 fade-up">
+		<section id="cuatro" class="wrapper style3 fade-up">
 			<div class="inner">
-				<h2>What we do</h2>
-				<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat
-					malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet
-					imperdiet est velit quis lorem.</p>
+				<h2>Operadores en RxJS</h2>
+				<p>RxJS es principalmente útil para sus operadores , aunque el Observable es la base. Los operadores son
+					las piezas
+					esenciales que permiten que el código asincrónico complejo se componga fácilmente de manera
+					declarativa.</p>
 				<div class="features">
 					<section>
-						<span class="icon solid major fa-code"></span>
-						<h3>Lorem ipsum amet</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
+
+						<h3>Los Operadores canalizables </h3>
+						<p>son del tipo que se pueden canalizar a Observables usando la sintaxis
+							observableInstance.pipe(operator()).
+							Estos incluyen filter(...), y mergeMap(...). Cuando se les llama, no cambian la instancia de
+							Observable
+							existente. En su lugar, devuelven un nuevo Observable, cuya lógica de suscripción se basa en
+							el primer
+							Observable.</p>
+						<img style="width: 100%;" src="./images/pipe.JPG" alt="" srcset="">
+
+					</section>
+
+					<section>
+
+						<h3>Los operadores de creación</h3>
+						<p>son el otro tipo de operador, que se pueden llamar como funciones independientes para crear
+							un nuevo
+							Observable. Por ejemplo: of(1, 2, 3)crea un observable que emitirá 1, 2 y 3, uno tras otro.
+						</p>
+
+						<img style="width: 100%;" src="./images/create.JPG" alt="" srcset="">
 					</section>
 					<section>
-						<span class="icon solid major fa-lock"></span>
-						<h3>Aliquam sed nullam</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
+						<h3>Operador de creación: representación canica</h3>
+						<img style="width: 100%;" src="./images/pip_ope.JPG" alt="" srcset="">
+
 					</section>
 					<section>
-						<span class="icon solid major fa-cog"></span>
-						<h3>Sed erat ullam corper</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
+						<h3>Operador canalizable: representación canica</h3>
+						<img style="width: 100%;" src="./images/creat_ope.JPG" alt="" srcset="">
+
 					</section>
-					<section>
-						<span class="icon solid major fa-desktop"></span>
-						<h3>Veroeros quis lorem</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon solid major fa-link"></span>
-						<h3>Urna quis bibendum</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon major fa-gem"></span>
-						<h3>Aliquam urna dapibus</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
-					</section>
+
 				</div>
+
+				<section>
+					<img style="align-items: center;" src="./images/listadoOperadores.JPG" alt="listado operadores"
+						srcset="">
+				</section>
 				<ul class="actions">
 					<li><a href="generic.html" class="button">Learn more</a></li>
 				</ul>
@@ -455,15 +497,19 @@ rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
 	<footer id="footer" class="wrapper style1-alt">
 		<div class="inner">
 			<h3>Bibliografía:</h3>
-				<li><a href="https://docs.angular.lat/guide/rx-library">La Librería de RxJS - Documentacion Angular</a> </li>
-				<li><a href="https://www.adictosaltrabajo.com/2017/11/14/programacion-reactiva-uso-de-la-libreria-rxjs/">Programación Reactive, uso de la librería RXJs - Enrique Rubio</a></li>
-				<li><a href="https://refactoring.guru/es/design-patterns/">Patrones de diseño</a></li>
-				<li><a href="https://reactivex.io/intro.html">Introduction ReactiveX</a></li>
-				<li><a href="https://rxjs.dev/guide/overview">Introducttion to RxJS</a></li>
-				<li><a href="https://rxjs.dev/guide/installation">installation instructions</a></li>
-				<li><a href="https://rxjs.dev/guide/importing">Importing instructions</a></li>
-				<li><a href="https://www.javatpoint.com/advantages-and-disadvantages-of-rxjs">Advantages and disadvantages of RxJS</a></li>
-				<li><a href="https://academind.com/tutorials/callbacks-vs-promises-vs-rxjs-vs-async-awaits">Callbacks vs Promises vs RxJS vs async/await</a></li>
+			<li><a href="https://docs.angular.lat/guide/rx-library">La Librería de RxJS - Documentacion Angular</a>
+			</li>
+			<li><a href="https://www.adictosaltrabajo.com/2017/11/14/programacion-reactiva-uso-de-la-libreria-rxjs/">Programación
+					Reactive, uso de la librería RXJs - Enrique Rubio</a></li>
+			<li><a href="https://refactoring.guru/es/design-patterns/">Patrones de diseño</a></li>
+			<li><a href="https://reactivex.io/intro.html">Introduction ReactiveX</a></li>
+			<li><a href="https://rxjs.dev/guide/overview">Introducttion to RxJS</a></li>
+			<li><a href="https://rxjs.dev/guide/installation">installation instructions</a></li>
+			<li><a href="https://rxjs.dev/guide/importing">Importing instructions</a></li>
+			<li><a href="https://www.javatpoint.com/advantages-and-disadvantages-of-rxjs">Advantages and disadvantages
+					of RxJS</a></li>
+			<li><a href="https://academind.com/tutorials/callbacks-vs-promises-vs-rxjs-vs-async-awaits">Callbacks vs
+					Promises vs RxJS vs async/await</a></li>
 		</div>
 		<div class="inner">
 			<ul class="menu">
