@@ -24,9 +24,10 @@
 			<nav>
 				<ul>
 					<li><a href="#intro">RxJS</a></li>
-					<li><a href="#one">Introducción</a></li>
-					<li><a href="#two">Caracteristicas</a></li>
-					<li><a href="#three">Uso</a></li>
+					<li><a href="#one">Introducción e Instalación</a></li>
+					<li><a href="#two">Caracteristicas especificas</a></li>
+					<li><a href="#three">Practica</a></li>
+					<li><a href="#cuatro">Operadores</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -48,7 +49,7 @@
 			</div>
 		</section>
 
-		<!-- One -->
+		<!-- Mateo -->
 		<section id="one" class="wrapper style2 spotlights">
 			<section>
 				<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
@@ -93,58 +94,73 @@
 			</section>
 		</section>
 
-		<!-- Two -->
+		<!-- Nicolas -->
 		<section id="two" class="wrapper style3 fade-up">
 			<div class="inner">
-				<h2>What we do</h2>
-				<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat
-					malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet
-					imperdiet est velit quis lorem.</p>
-				<div class="features">
-					<section>
-						<span class="icon solid major fa-code"></span>
-						<h3>Lorem ipsum amet</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon solid major fa-lock"></span>
-						<h3>Aliquam sed nullam</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon solid major fa-cog"></span>
-						<h3>Sed erat ullam corper</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon solid major fa-desktop"></span>
-						<h3>Veroeros quis lorem</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon solid major fa-link"></span>
-						<h3>Urna quis bibendum</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon major fa-gem"></span>
-						<h3>Aliquam urna dapibus</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
-					</section>
-				</div>
-				<ul class="actions">
-					<li><a href="generic.html" class="button">Learn more</a></li>
-				</ul>
+				<h1>Caracteristicas especificas</h1>  
+				<h4>A continuacion vamos a dar una serie de explicaciones de conceptos clave de la programacion reactiva y de la libreria RxJS</h4> 
+				<hr><br>
+				<h2>Programación Reactiva en pocas palabras</h2>
+				<h4>La programación reactiva es la programación orientada al manejo de Streams de datos asincronos y la propagacion de cambio</h4>  
+
+				<hr><br>
+				<h2>La libreria ReactiveX en pocas palabras</h2> 
+				<h4>Rx es una combinacion de las mejores ideas del patron observer y el patron iterator</h4>
+				
+				<hr><br>
+				<h2>Stream de datos</h2> 
+				<h4>Es uno o más datos que llegan de manera asincrónica, por ejemplo, si miramos desde arriba una autopista veremos pasar coches en una tasa variable, podemos decir que es un stream de coches.</h4> 
+				<h4>Una manera grafica de mostrar lo que es un stream de datos es a traves de un diagrama de canicas, los cuales tienen la siguiente notación:</h4>
+				<span class="image fit"><img src="images/notacion_canicas.jpg" alt="" /></span> 
+				<h4>Por ejemplo con un flujo de datos que emite numeros del 0 al 3, tendriamos lo siguiente:</h4>
+				<span class="image fit"><img src="images/canicas_1.png" alt="" /></span> 
+
+				<hr><br>
+				<h2>Patron Iterator</h2>  
+				<h4>Iterator es un patrón de diseño de comportamiento que te permite recorrer elementos de una colección sin exponer su representación subyacente (lista, pila, árbol, etc.).</h4> 
+				<h4>La estructura del patron iterator es la siguiente: </h4>
+				<span class="image fit"><img src="images/canicas_1.png" alt="" /></span> 
+
+				<h4>Ejemplo: código de Java que nos muestra el funcionamiento de este patron para hacer la concatenación de un arreglo de Strings </h4>
+				<span class="image fit"><img src="images/code_java.png" alt="" /></span> 
+
+
+				<hr><br>
+				<h2>Patron Observador</h2>  
+				<h4>Observer es un patrón de diseño de comportamiento que te permite definir un mecanismo de suscripción para notificar a varios objetos sobre cualquier evento que le suceda al objeto que están observando.</h4>
+				<span class="image fit"><img src="images/observador.png" alt="" /></span> 
+				<h4>La imagen de arriba no solo nos muestra el funcionamiento del patron observador sino nos da un analogia del mismo cuando se sigue una cuenta de twitter, ya que al suscribirse a una cuenta(observable) el seguidor(observador) va a ser notificado de los twets nuevos de la cuenta y en cualquier momento puede romper esta suscripcion dejando de seguir la cuenta</h4>
+
+				<hr><br>
+				<h2>Pull VS Push</h2>  
+				<h4>Pull y Push representan diferentes protocolos que describen como se relaciona el productor de datos con el consumidor.</h4>
+				<table>
+					<tr>
+					  <th>Tipo</th>
+					  <th>Productor</th>
+					  <th>Consumidor</th>
+					</tr>
+					<tr>
+					  <td>Pull</td>
+					  <td>Pasivo: Produce los datos cuando se le solicita</td>
+					  <td>Activo: Decide cuando necesita los datos</td>
+					</tr>
+					<tr>
+					  <td>Push</td>
+					  <td>Activo: Produce los datos a su propio ritmo</td>
+					  <td>Pasivo: Reacciona a los datos recibidos</td>
+					</tr>
+				  </table>
+				<h4>Pull: En un sistema Pull el consumidor determina cuando quiere recibir datos del productor. El productor en si mismo de despreocupa de cuando se enviarán los datos al consumidor. Por ejemplo todas las funciones JS con de tipo Pull, las funciones son productoras de datos y el código que la llama a la función consumiendo el retorno.</h4>
+				<span class="image fit"><img src="images/pull.png" alt="" /></span> 
+
+				<h4>Push: El productor determina cuando enviar los datos al consumidor, un ejemplo típico es un servidor de chat que envía los mensajes a medida que llegan a los usuarios.</h4>
+				<span class="image fit"><img src="images/push.png" alt="" /></span> 
+
 			</div>
 		</section>
 
-		<!-- Three -->
+		<!-- Harold -->
 		<section id="three" class="wrapper style1 fade-up">
 			<div class="inner">
 				<h2>Get in touch</h2>
@@ -210,6 +226,56 @@
 			</div>
 		</section>
 
+		<!-- Kevin -->
+		<section id="two" class="wrapper style3 fade-up">
+			<div class="inner">
+				<h2>What we do</h2>
+				<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat
+					malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet
+					imperdiet est velit quis lorem.</p>
+				<div class="features">
+					<section>
+						<span class="icon solid major fa-code"></span>
+						<h3>Lorem ipsum amet</h3>
+						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
+							ultricies erat dapibus.</p>
+					</section>
+					<section>
+						<span class="icon solid major fa-lock"></span>
+						<h3>Aliquam sed nullam</h3>
+						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
+							ultricies erat dapibus.</p>
+					</section>
+					<section>
+						<span class="icon solid major fa-cog"></span>
+						<h3>Sed erat ullam corper</h3>
+						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
+							ultricies erat dapibus.</p>
+					</section>
+					<section>
+						<span class="icon solid major fa-desktop"></span>
+						<h3>Veroeros quis lorem</h3>
+						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
+							ultricies erat dapibus.</p>
+					</section>
+					<section>
+						<span class="icon solid major fa-link"></span>
+						<h3>Urna quis bibendum</h3>
+						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
+							ultricies erat dapibus.</p>
+					</section>
+					<section>
+						<span class="icon major fa-gem"></span>
+						<h3>Aliquam urna dapibus</h3>
+						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
+							ultricies erat dapibus.</p>
+					</section>
+				</div>
+				<ul class="actions">
+					<li><a href="generic.html" class="button">Learn more</a></li>
+				</ul>
+			</div>
+		</section>
 	</div>
 
 	<!-- Footer -->
@@ -218,6 +284,7 @@
 			<h3>Bibliografía:</h3>
 				<li><a href="https://docs.angular.lat/guide/rx-library">La Librería de RxJS - Documentacion Angular</a> </li>
 				<li><a href="https://www.adictosaltrabajo.com/2017/11/14/programacion-reactiva-uso-de-la-libreria-rxjs/">Programación Reactive, uso de la librería RXJs - Enrique Rubio</a></li>
+				<li><a href="https://refactoring.guru/es/design-patterns/">Patrones de diseño</a></li>
 			
 		</div>
 		<div class="inner">
