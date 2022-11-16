@@ -282,11 +282,11 @@ input, select, textarea {
 	}
 
 	code {
-		background: rgba(255, 255, 255, 0.05);
+		background: rgba(0, 0, 0, 0.651);
 		border-radius: 0.25em;
 		border: solid 1px rgba(255, 255, 255, 0.15);
 		font-family: "Courier New", monospace;
-		font-size: 0.9em;
+		font-size: 1em;
 		margin: 0 0.25em;
 		padding: 0.25em 0.65em;
 	}
@@ -2635,6 +2635,13 @@ input, select, textarea {
 			padding-left: 0.5em;
 		}
 
+		ul.a li {
+			padding-left: 0.5em;
+			padding-right: 3px;
+			display:inline-block;
+			
+		}
+
 		ul.alt {
 			list-style: none;
 			padding-left: 0;
@@ -2657,11 +2664,12 @@ input, select, textarea {
 		dl dt {
 			display: block;
 			font-weight: bold;
-			margin: 0 0 1em 0;
+			margin: 0 0 0 0;
 		}
 
 		dl dd {
 			margin-left: 2em;
+			margin-bottom: 1em;
 		}
 
 /* Actions */

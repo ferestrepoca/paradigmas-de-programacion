@@ -39,12 +39,35 @@
 		<!-- Intro -->
 		<section id="intro" class="wrapper style1 fullscreen fade-up">
 			<div class="inner">
-				<h1>RxJS</h1>
-					<p><span class="image right"><img src="images/pic06.png" alt="" /></span>RxJS (Por sus siglas en Inglés, "Reactive Extensions for JavaScript") es una librería para
-						programación reactiva usando obvservables que hacen más fácil la creación de código asincrono o
-						basado en callbacks. </p>
+				<h1>ReactiveX</h1>
+					<p><span class="image right"><img src="images/pic06.png" alt="" /></span>
+						ReactiveX es un API que extiende del <a href="https://en.wikipedia.org/wiki/Observer_pattern">patron observador</a> 
+						para programacion asincrona que facilita el manejo de flujo de datos y 
+						eventos a traves de la combinacion del patron Observer e Iterator.
+					</p>
+					<p> Está disponible para los lenguajes:</p>
+					<ul class="a">
+						<li>Java: RxJava</li> 
+						<li>JavaScript: RxJS</li>
+						<li>C#: Rx.NET</li>
+						<li>C#(Unity): UniRx</li>
+						<li>Scala: RxScala</li>
+						<li>Clojure: RxClojure</li>
+						<li>C++: RxCpp</li>
+						<li>Lua: RxLua</li>
+						<li>Ruby: Rx.rb</li>
+						<li>Python: RxPY</li>
+						<li>Go: RxGo</li>
+						<li>Groovy: RxGroovy</li>
+						<li>JRuby: RxJRuby</li>
+						<li>Kotlin: RxKotlin</li>
+						<li>Swift: RxSwift</li>
+						<li>PHP: RxPHP</li>
+						<li>Elixir: reaxive</li>
+						<li>Dart: RxDart</li>
+					</ul>
 				<ul class="actions">
-					<li><a href="https://rxjs.dev/" class="button scrolly">Documentación Oficial</a></li>
+					<li><a href="https://reactivex.io" class="button scrolly">Documentación Oficial</a></li>
 				</ul>
 			</div>
 		</section>
@@ -52,42 +75,241 @@
 		<!-- Mateo -->
 		<section id="one" class="wrapper style2 spotlights">
 			<section>
-				<!--a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a-->
 				<div class="content">
 					<div class="inner">
-						<h2>ReactiveX y RxJS</h2>
-						<p>ReactiveX es un API para programacion asincrona que facilita el manejo de
-							flujo de datos y eventos a traves de la combinacion del patron Observer e Iterator.</p>
-						<p>ReactiveX es un API para programacion asincrona que facilita el manejo de
-							flujo de datos y eventos a traves de la combinacion del patron Observer e Iterator.</p>
+						<h2>RxJS</h2>
+						<p>RxJS (Por sus siglas en Inglés, "Reactive Extensions for JavaScript") es una librería de JavaScript para
+							programación asíncrona y basada en eventos usando secuencias de observables.
+							El cual proporciona tres tipos de elementos pricipales:
+						</p>
+						<dl>
+							<dt>Observables</dt>
+							<dd>Representa la colección de futuros valores o eventos invocables.</dd>
+							<dt>Subscribers</dt>
+							<dd>Representa la ejecución de un observable reciiendo la informacipon de este.</dd>
+							<dt>Operators</dt>
+							<dd>Son funciones inspiradas en los metodos de los arreglos tales como <i>map, filter, concat,</i> entre muchas otras.</dd>
+						</dl>
+
 						<ul class="actions">
-							<li><a href="generic.html" class="button">Learn more</a></li>
+							<li><a href="https://rxjs.dev" class="button">Más sobre RxJS</a></li>
 						</ul>
 					</div>
 				</div>
 			</section>
 			<section>
-				<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
 				<div class="content">
 					<div class="inner">
-						<h2>Feugiat consequat</h2>
-						<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies
-							erat malesuada quis. Aliquam dapibus.</p>
+						<h2>Callbacks vs RxJS vs Promises</h2>
+						<p>En los casos en los que se realizan solicitudes a un servidor, donde sabemos que la respuesta no va a ser 
+							inmediata, es necesario el uso de artefactos que nos permitan esperar la respuesta que deseamos sin recibir 
+							un time-out.
+							En este caso se verá un rápido funcionamiento de los <i>Callback</i>, las <i>Promesas</i> y los 
+							<i>Observers</i> que propoprciona <b>RxJS</b>.
+						</p>
+						<h3>Callbacks</h3>
+						<p>Simulando la petición a un servidor se realiza un timeOut de 2 segundos</p>
+						<pre>
+							<code>
+const getUser = cb => {
+	setTimeout(() => {
+		cb({ saludo: 'Hola' })
+	}, 2000)
+}
+	
+getUser(msg => {
+	console.log(msg.saludo) // Prints 'Hola' after 2 seconds
+})
+							</code>
+						</pre>
+						<p>Esto funciona bien para casos sencillos como este, pero cuando se hace más complejo el 
+							manejo de errores si su compresión se hace más dificil.
+						</p>
+						<pre>
+							<code>
+const checkAuth = cb => {
+	setTimeout(() => {
+		cb({ isAuth: true })
+	}, 2000)
+}
+const getUser = (authInfo, cb) => {
+	if (!authInfo.isAuth) {
+		cb(null)
+		return
+	}
+	setTimeout(() => {
+		cb({ saludo: 'Hola' })
+	}, 2000)
+}
+checkAuth(authInfo => {
+	getUser(authInfo, msg => {
+		console.log(msg.saludo)
+	})
+})
+							</code>
+						</pre>
+						<h3>Promises</h3>
+						<p>Es cuando las promesas son utiles, para realizar el manejo de errores y realizar 
+							un código de mejor comprensión
+						</p>
+						<pre>
+							<code>
+checkAuth()
+	.then(authStatus => {
+		return getUser(authStatus) // retorna una nueva promesa
+	})
+	.then(msg => {
+		console.log(msg.saludo) // print "Hola"
+	})
+	.catch(error => {
+		//Manejo del error
+	})
+							</code>
+						</pre>
+						<p>Pero las promesas presentan la limitació de que solo pueden manejar una operación asíncrona por promesa
+							y no es muy útil cuando operación asíncronano termina tras un valor.
+							Es allí cuando los <i>Observadores</i> son tan útiles.
+						</p>
+						<h3>RxJS - Observadores</h3>
+						<p>Como ejemplo tomamos el caso de un botón cualquiera, el cuál puede ser oprimido multiples veces,
+							de forma que el metodo <i>subscribe()</i> se suscribe a todos los eventos reconocidos por el 
+							<i>Observable</i>, reaccionando a cada uno de ellos. Adicionalmente se puede realiza el maenjo
+							errores con facilidad desde el <i>subscribe</i>.
+						</p>
+						<pre>
+							<code>
+const button = document.querySelector('button')
+const observable = Rx.Observable.fromEvent(button, 'click')
+observable.subscribe(
+	event => {
+		console.log(event.target)
+	},
+	error => {
+		console.log(error)
+	}
+)
+							</code>
+						</pre>
 						<ul class="actions">
-							<li><a href="generic.html" class="button">Learn more</a></li>
+							<li><a href="https://rxjs.dev/guide/observable" class="button">Para aprender más sobre Observables en RxJS</a></li>
 						</ul>
 					</div>
 				</div>
 			</section>
 			<section>
-				<a href="#" class="image"><img src="images/pic03.jpg" alt="" data-position="25% 25%" /></a>
 				<div class="content">
 					<div class="inner">
-						<h2>Ultricies aliquam</h2>
-						<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies
-							erat malesuada quis. Aliquam dapibus.</p>
+						<h2>Ventajas y desventajas de ReactiveX</h2>
+							<h3>Ventajas</h3>
+								<dl>
+									<dt>Gran crecimiento</dt>
+									<dd>Es una herramienta funcional y poderosa. Haciendo que su popularidad aumente 
+										y sea más atractiva y alcanzable.
+									</dd>
+									<dt>Flexible</dt>
+									<dd>Es una herramienta que es compatible con gran cantidad de frameworks y lenguejes.</dd>
+									<dt>API de calidad</dt>
+									<dd>Proporciona una API elegante que facilita la descripción de flujos complejos inluyendo
+										un completo set de entidades que se encargan del trbajo pesado ocultando la complejidad,
+										permitiendo concentrarse en la lógica.
+									</dd>
+									<dt>Facilidad de programación</dt>
+									<dd>Su amplia colección de operadores faicilita la progrmación</dd>
+									<dt>Optimización y protección contra fugas de memoria</dt>
+									<dd>Muchos desarrolladores han participado en la optimización y pruebas de la herramienta
+										resolviendo los principales problemas de memoria.
+									</dd>
+									<dt>Pequeño y conciso</dt>
+									<dd>Su arquitectura modular lo hacen pequeño, conteniendo solo las piezas necesarias.</dd>
+									<dt>Sin dependencias de terceros</dt>
+									<dd>No depende de ninguna librería de terceros. Manteniedo su tamaño óptimo.</dd>
+									<dt>Comunidad grande</dt>
+									<dd>
+										Tiene una gran comunidad diversa y receptiva. Encontrando ayuda para la solución
+										de problemas con facilidad
+									</dd>
+									<dt>Documentacion</dt>
+									<dd>
+										El aprendizaje de la herramienta no es el más sencillo, pero cuenta con una extensa
+										documentación y una gran cantidad de recursos en su página oficial.							
+									</dd>
+									<dt>Actualizaciones periodicas</dt>
+									<dd>Cuenta con actualizaciones regulares, añadiendo constantemente mejoras y correcion de erroes.</dd>
+								</dl>
+							<h3>Desventajas</h3>
+								<dl>
+									<dt>Requiere inmutabilidad de datos</dt>
+									<dd>
+										La inmutabilidad de los datos no es un requisito estricto, pero al ser un concepto de la
+										programación funcional y el paradigma reactivo, optimiza su funcionamiento.
+									</dd>
+									<dt>Depuración y pruebas</dt>
+									<dd>
+										Su depuración y pruebas es algo dificil para un ojo inexperto debido a algunas funciones
+										especificas de la programación reactiva.
+									</dd>
+									<dt>Problema estricto de tipeo</dt>
+									<dd>
+										La única dependencia de RxJS es tslib, que proporciona compatibilidad con Typescript.
+										Typescript proporciona un conjunto de ventajas, como escritura fuerte, autocompletar, etc.,
+										pero también proporciona un uso incorrecto de los modificadores de acceso (privado/público),
+										lo que hace que los métodos internos sean accesibles desde el exterior.
+									</dd>
+									<dt>Uso de Observables</dt>
+									<dd>Para el uso de Observables, todo el codigo debe estar bajo los Observables</dd>
+								</dl>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="content">
+					<div class="inner">
+						<h2>Instalación de RxJS</h2>
+						<p>
+							La forma más sencilla de Instalación de RxJS es mediante el uso de npm
+							usando el siguiente código.
+						</p>
+						<pre>
+							<code>
+npm install rxjs
+							</code>
+						</pre>
 						<ul class="actions">
-							<li><a href="generic.html" class="button">Learn more</a></li>
+							<li><a href="https://rxjs.dev/guide/installation" class="button">Más información acerca de la instalación</a></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="content">
+					<div class="inner">
+						<h2>Importe</h2>
+						<p>
+							La manera preferida para realizar importes es la siguiente.
+						</p>
+						<pre>
+							<code>
+import {*functionalities*} from 'rxjs';
+							</code>
+						</pre>
+						<p>Por ejemplo:</p>
+						<pre>
+							<code>
+import { of, map } from 'rxjs';
+
+of(1, 2, 3).pipe(map((x) => x + '!!!')); // etc
+							</code>
+						</pre>
+						<p>O para importar el set completo de funcionalidades:</p>
+						<pre>
+							<code>
+import * as rxjs from 'rxjs';
+
+rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
+							</code>
+						</pre>
+						<ul class="actions">
+							<li><a href="https://rxjs.dev/guide/importing" class="button">Más información acerca de la importación</a></li>
 						</ul>
 					</div>
 				</div>
