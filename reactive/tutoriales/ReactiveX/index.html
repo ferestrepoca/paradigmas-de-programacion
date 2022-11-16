@@ -7,7 +7,7 @@
 <html>
 
 <head>
-	<title>Hyperspace by HTML5 UP</title>
+	<title>RxJS</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
@@ -410,6 +410,12 @@ rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
 					de chat que envía los mensajes a medida que llegan a los usuarios.</h4>
 				<span class="image fit"><img src="images/push.png" alt="" /></span>
 
+				<hr><br>
+				<h2>Observadores Frios VS Calientes</h2> 
+				<h4>Frio: Los Observables "fríos" son aquellos que no emiten valores hasta que haya una suscripción activa, ya que la información es producida dentro del Observable y por tanto solo emiten valores en el momento en que se establece una nueva subscripción, por eso, el ejemplo previo que hemos visto, math.random() devuelve valores diferentes.</h4> 
+				<script src="https://gist.github.com/nrrf/86f4b0f91d8a3e34ab9bfb2c94d32f7e.js"></script>
+				<h4>Caliente: Por contra, los Observables "calientes" son aquellos que pueden emitir valores sin que haya ninguna subscripción activa, porque la información del stream se produce fuera del propio Observable. RxJs dispone de algunos Observables ¨calientes¨ y el mejor ejemplo de éstos, es fromEvent que nos permite establecer un Observable sobre cualquier tipo de evento como el click del ratón: </h4>
+				<script src="https://gist.github.com/nrrf/bb9480a6285c2f0ebe37ecc526fab713.js"></script>
 			</div>
 		</section>
 
