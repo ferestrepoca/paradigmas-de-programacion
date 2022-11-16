@@ -70,6 +70,10 @@
 				<ul class="actions">
 					<li><a href="https://reactivex.io" class="button scrolly">Documentación Oficial</a></li>
 				</ul>
+				<ul class="actions">
+					<li><a href="https://www.canva.com/design/DAFR-4E9vRc/RVAUyeMlQgUqU8yEwISEFQ/view?utm_content=DAFR-4E9vRc&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink" class="button scrolly">Presentación</a></li>
+				</ul>
+				
 			</div>
 		</section>
 
@@ -411,10 +415,17 @@ rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
 				<span class="image fit"><img src="images/push.png" alt="" /></span>
 
 				<hr><br>
-				<h2>Observadores Frios VS Calientes</h2> 
-				<h4>Frio: Los Observables "fríos" son aquellos que no emiten valores hasta que haya una suscripción activa, ya que la información es producida dentro del Observable y por tanto solo emiten valores en el momento en que se establece una nueva subscripción, por eso, el ejemplo previo que hemos visto, math.random() devuelve valores diferentes.</h4> 
+				<h2>Observadores Frios VS Calientes</h2>
+				<h4>Frio: Los Observables "fríos" son aquellos que no emiten valores hasta que haya una suscripción
+					activa, ya que la información es producida dentro del Observable y por tanto solo emiten valores en
+					el momento en que se establece una nueva subscripción, por eso, el ejemplo previo que hemos visto,
+					math.random() devuelve valores diferentes.</h4>
 				<script src="https://gist.github.com/nrrf/86f4b0f91d8a3e34ab9bfb2c94d32f7e.js"></script>
-				<h4>Caliente: Por contra, los Observables "calientes" son aquellos que pueden emitir valores sin que haya ninguna subscripción activa, porque la información del stream se produce fuera del propio Observable. RxJs dispone de algunos Observables ¨calientes¨ y el mejor ejemplo de éstos, es fromEvent que nos permite establecer un Observable sobre cualquier tipo de evento como el click del ratón: </h4>
+				<h4>Caliente: Por contra, los Observables "calientes" son aquellos que pueden emitir valores sin que
+					haya ninguna subscripción activa, porque la información del stream se produce fuera del propio
+					Observable. RxJs dispone de algunos Observables ¨calientes¨ y el mejor ejemplo de éstos, es
+					fromEvent que nos permite establecer un Observable sobre cualquier tipo de evento como el click del
+					ratón: </h4>
 				<script src="https://gist.github.com/nrrf/bb9480a6285c2f0ebe37ecc526fab713.js"></script>
 			</div>
 		</section>
@@ -492,9 +503,7 @@ rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
 					<img style="align-items: center;" src="./images/listadoOperadores.JPG" alt="listado operadores"
 						srcset="">
 				</section>
-				<ul class="actions">
-					<li><a href="generic.html" class="button">Learn more</a></li>
-				</ul>
+				
 			</div>
 		</section>
 	</div>
@@ -516,6 +525,8 @@ rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
 					of RxJS</a></li>
 			<li><a href="https://academind.com/tutorials/callbacks-vs-promises-vs-rxjs-vs-async-awaits">Callbacks vs
 					Promises vs RxJS vs async/await</a></li>
+			<li><a href="https://pablomagaz.com/blog/rxjs-subjects-que-son-como-funcionan">Callbacks vs
+					RxJs Subjects. Qué son y cómo funcionan.</a></li>
 		</div>
 		<div class="inner">
 			<ul class="menu">
