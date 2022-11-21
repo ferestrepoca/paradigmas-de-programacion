@@ -66,7 +66,7 @@
         <li class="nav-item"><a class="nav-link" href="#CvP">Concurrencia VS Paralelismo</a></li>
         <li class="nav-item"><a class="nav-link" href="#conceptos">Conceptos</a></li>
         <li class="nav-item"><a class="nav-link" href="#ejecucion-concurrente">Ejecución concurrente</a></li>
-        <li class="nav-item"><a class="nav-link" href="#aplicaciones">Aplicaciones</a></li>
+        <li class="nav-item"><a class="nav-link" href="#aplicaciones">Aplicaciones del paradigma</a></li>
         <li class="nav-item"><a class="nav-link" href="#ventajas">Ventajas</a></li>
         <li class="nav-item"><a class="nav-link" href="#desventajas">Desventajas</a></li>
         <li class="nav-item"><a class="nav-link" href="#lenguajes">Lenguajes</a></li>
@@ -1741,22 +1741,104 @@ procedure consumer() {
 
             <h1>
               <a id="aplicaciones" class="anchor" href="#aplicaciones" aria-hidden="true"><span aria-hidden="true"
-                  class="octicon octicon-link"></span></a>Aplicaciones
+                  class="octicon octicon-link"></span></a>Aplicaciones del paradigma
             </h1>
 
-            <ol>
-              <li>Servidores Web</li>
-              <li>Sistema multimedia</li>
-              <li>Calculo numerico</li>
-              <li>Interaccion por GUI</li>
-              <li>Sistemas gestores de bases de datos</li>
-              <li>Sistemas Operativos</li>
-              <li>Sistemas de control</li>
-              <li>Simulación</li>
-              <li>Videojuegos</li>
-            </ol>
-
-            <p>En estos ejemplos, utilizamos la programación concurrente para :<br />
+           
+            
+              <p>
+                En la cotidianeidad encontramos muchos ejemplos de concurrencia y paralelismo en múltiples procesos con los que interactuamos continuamente, de ellos podemos abstraer características propias que los identifican, así mismo como las partes que los conforman con el fin de tratar de entender y modelarlos en un entorno virtual.
+            
+              </p>
+            
+              <center><img src="images/Aplicaciones-1.jpg" width="80%" height="80%" alt=""></center>
+            
+              <p>
+                El mundo real contiene actores que ejecutan acciones independientemente, pero se comunican entre sí al realizarlas, es por esto que al modelar el mundo, se deben componer y coordinar muchas ejecuciones paralelas.
+              </p>
+            
+              <ul>
+                <li>Redes ferroviarias</li>
+                <li>El cuerpo humano y sus diferentes sistemas</li>
+                <li>Sistemas de ensamblaje dentro de fábricas</li>
+                <li>Equipos de desarrollo de software</li>
+              </ul>
+            
+              <p>Entre muchas otras acciones cotidianas que deben de coordinar distintos procesos para poder ser cumplidas con éxito y funcionar de manera óptima.
+              </p>
+            
+              <p>La concurrencia y el paralelismo nos brinda bastantes herramientas para que la modelación de dichos procesos se realice de manera más apegada a la realidad, y así mismo, encontrar formas de que estos procesos sean más eficientes, al poder separarlos y distribuirlos en pequeños sub procesos que los conformen y se ejecuten paralelamente, de una manera ligeramente más natural que secuencialmente.
+              </p>
+            
+              <h2>Concurrencia en Software</h2>
+            
+              <p>La concurrencia y el paralelismo son ampliamente utilizados en distintos enfoques y formas de software, hasta el punto, que constantemente utilizamos programas o escribimos código sin saber que muchos de estos procesos están paralelizados para brindar una mejor experiencia al usuario. Algunos ejemplos de la utilización de concurrencia y paralelismo en algunos software y sistemas son:</p>
+            
+              <ul style="list-style: none;">
+                <li>
+                  <h4>Multiprogramming</h4>
+                  <p>dentro de un sistema operativo, se pueden ejecutar muchos programas y/o procesos al mismo tiempo compartiendo la misma memoria descomponiendolos en subprocesos asignados a distintos núcleos dentro de un procesador.</p>
+                  <center><img src="images/Aplicaciones-Multiprogramming.png" width="80%" height="80%" alt=""></center>
+                  <ul>
+                    <li>Descargas </li>
+                    <li>Transmisión de datos</li>
+                    <li>Lectura de archivos</li>
+                    <li>Conexión a internet</li>
+                    <li>Manejo de drivers de audio y video</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>Muchos algoritmos se pueden dividir en partes concurrentes</h4>
+                  <div style="display: flex;">
+                    <ul>
+                      <li>Mergesort </li>
+                      <li>Quicksort</li>
+                      <li>Sumar una lista sumando fragmentos en paralelo</li>
+                      <li>Cálculo de números primos</li>
+                      <li>Comprobación de la igualdad de las secuencias de hojas en los árboles</li>
+                    </ul>     
+                    <img src="images/Aplicaciones-Merge_Paralelo.png" width="40%" height="40%"  style='float: left;' alt="">
+                  </div>
+                  
+                </li>
+                <li>
+                  <h4>Motores de videojuegos</h4>
+                  <p>Los motores que soportan la ejecución de videojuegos deben realizar distintos subprocesos que orquestados correctamente componen la experiencia del jugador , como lo son:</p>
+                  <center><img src="images/Aplicaciones-Motores.jpg" width="80%" height="80%" alt=""></center>
+                  <ul>
+                    <li>Game logic</li>
+                    <li>Físicas </li>
+                    <li>IA</li>
+                    <li>Gráficos </li>
+                    <li>Inputs del jugador</li>
+                    <li>Música y sonido</li>
+            
+                  </ul>
+                </li>
+            
+                
+            
+            
+              </ul>
+              <p>otros ejemplos puntuales son:</p>
+                <ul>
+                  <li>Manejo de eventos asincrónicos como la llegada de paquetes de red</li>
+                  <li>Ocultar la latencia, mostrando resultados de carga paulatinamente</li>
+                  <li>Manejo de redes con múltiples equipos</li>
+                  <li>Simulación de eventos complejos</li>
+                  <li>Servidores Web</li>
+                  <li>Sistema multimedia</li>
+                  <li>Calculo numerico</li>
+                  <li>Interaccion por GUI</li>
+                  <li>Sistemas gestores de bases de datos</li>
+                  <li>Sistemas Operativos</li>
+                  <li>Sistemas de control</li>
+                  <li>Simulación</li>
+                  <li>Videojuegos</li>
+                </ul>
+          </div>          
+            
+            <p>En estos ultimos ejemplos, utilizamos la programación concurrente para :<br />
               - Los videos juegos o se usará para la recuperación de claves, la interfaz gráfica y el procesamiento de
               datos recibidos por el servidor para juegos en línea.<br />
               - Servicios web, donde el servidor tendrá que lidiar con muchas solicitudes al mismo tiempo. En este
@@ -1858,8 +1940,9 @@ procedure consumer() {
               <li>En programas con pocas instrucciones en mas lento</li>
               <li>Si se aplica mal puede llevar a resultados erroneos.</li>
             </ul>
-          </div>
 
+          </div>
+        </div>
 
           <div id="lenguajes">
             <br><br>
@@ -3280,6 +3363,7 @@ TotalMilliseconds : 832,8442
 
 
           </div>
+
           <h1>
             <a id="presentacion" class="anchor" aria-hidden="true"><span aria-hidden="true"
                 class="octicon octicon-link"></span></a>Presentación
@@ -3294,6 +3378,11 @@ TotalMilliseconds : 832,8442
             href="https://docs.google.com/presentation/d/1q_2wpfu53nHfQR1IbmdUpXmySJa0J-8b_C6rLYsoe54/edit?usp=sharing">Enlace
             3
           </a>
+          <br>
+          <a
+            href="https://docs.google.com/presentation/d/17fNIbIREBY8tKs3orhIl18sEO1qxzxMrLisaH3QjIAY/edit?usp=sharing">Enlace
+            4
+          </a>
           <h1>
             <a id="taller" class="anchor" aria-hidden="true"><span aria-hidden="true"
                 class="octicon octicon-link"></span></a>Taller
@@ -3303,6 +3392,9 @@ TotalMilliseconds : 832,8442
           <a
             href="https://docs.google.com/a/unal.edu.co/document/d/1wLW-AtC3ap86P4z547Tqse0R3X7bGChVAk6QHdkfu4E/edit?usp=sharing">Enlace
             2</a>
+
+
+            
 
 
           <div id="referencias">
@@ -3446,6 +3538,12 @@ TotalMilliseconds : 832,8442
               <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
                 href="https://www.amazon.com/Rust-Programming-Example-concurrent-applications/dp/1788390636">Rust Programming By Example: Enter the world of Rust by building engaging, concurrent, reactive, and robust applications</a>
               </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                href="https://cs.lmu.edu/~ray/notes/introconcurrency/">Introduction to Concurrency</a>
+              </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                href="https://ericnormand.me/article/concurrency-vs-parallelism">Concurrency and Parallelism in the Real World</a>
+              </li>
             </ul>
           </div>
 
@@ -3497,6 +3595,7 @@ TotalMilliseconds : 832,8442
             <li>Cristian Camilo Garcia Barrera</li>
             <li>Diego Armando Velasquez Vargas</li>
             <li>Daniel Santiago Gaitán</li>
+            <li>Manuel David Medrano Monroy</li>
           </ul>
         </div>
       </section>
