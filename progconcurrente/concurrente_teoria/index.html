@@ -1235,6 +1235,57 @@
               el cual se encargará de revisar los procesos de compra y producción, eliminando así el código clonado,
               además de organizar los procesos desde el objeto de las bodegas en sí.</p>
 
+			<h2>Punto Muerto e Interbloqueo</h2>
+
+            <p>Se dice que un proceso está en punto muerto si se está esperando un evento que no ocurrirá. 
+				Interbloqueo por lo general implica varios procesos y puede conducir a la terminación del programa. 
+				El interbloqueo puede ocurrir cuando los procesos se comunican (por ejemplo, dos procesos intentar 
+				enviarse mensajes entre sí simultáneamente y sincrónicamente) pero es un problema más frecuentemente 
+				asociado con Administración de recursos. En este contexto son necesarios cuatro condiciones para que 
+				exista un interbloqueo:</p>
+
+                <ul>
+					<li>Los procesos deben reclamar el acceso exclusivo a los recursos.</li>
+  
+					<li>Los procesos deben contener algunos recursos mientras esperan otros (es decir,
+						adquirir recursos de forma fragmentaria).</li>
+  
+					<li>Los recursos no pueden eliminarse de los procesos en espera (sin preferencia).</li>
+  
+					<li>Existe una cadena circular de procesos en la que cada proceso tiene uno o más recursos requeridos por el siguiente proceso en la cadena.</li>
+				  </ul>
+
+				  <p>Las técnicas para evitar o recuperarse de un punto muerto se basan en negar al menos una de estas condiciones. 
+					Una de las mejores técnicas (aunque poco prácticas) para evitar interbloqueos es Algoritmo del banquero de Dijkstra. 
+					Dijkstra también planteó lo que se ha convertido en un clásico ejemplo ilustrativo en este campo, el de la Filósofos gastronómicos
+					</p>
+
+			<h2>Aplazamiento indefinido (o inanición o cierre patronal)</h2>
+
+			<p>Se dice que un proceso se pospone indefinidamente si se retrasa esperando un evento que puede no ocurrir. Esta situación puede surgir cuando las solicitudes del  recurso se administran utilizando un algoritmo que no hace provisión por el tiempo de espera de los procesos involucrados. 
+				Las técnicas para evitar el problema colocan procesos competitivos en un orden de prioridad tal que cuanto más tiempo espera un proceso, mayor es su se convierte en prioridad. Tratar los procesos estrictamente en su orden de demora es una solución más simple que es aplicable en muchas circunstancias. para una discusión de estas técnicas.
+				</p>
+
+			<h2>Injusticia</h2>
+
+			<p>En general (pero no universalmente) se cree que cuando existe competencia entre procesos de igual estatus en un programa concurrente, se debe hacer algún intento para asegurar que los procesos en cuestión progresen uniformemente; es decir, para asegurar que no haya injusticia manifiesta al momento de satisfacer las necesidades de esos procesos. La equidad en un sistema concurrente se puede considerar tanto a nivel de diseño como de implementación del sistema. Para el diseñador, es simplemente una pauta a observar al desarrollar un programa; cualquier descuido de la equidad puede conducir a un aplazamiento indefinido, dejando el programa incorrecto
+					Para un implementador del sistema es nuevamente una guía. La mayoría de los lenguajes de programación concurrentes no abordan la equidad. En cambio, el problema se deja en manos de los escritores del compilador y los desarrolladores del software de soporte en tiempo de ejecución					
+					</p>
+
+			<h2>Ocupado Esperando</h2>
+
+			<p>Independientemente del entorno en el que se desarrolle un programa concurrente ejecutado, rara vez es aceptable que cualquiera de sus procesos ejecute un bucle en espera de un cambio de estado del programa. Esto se conoce como ocupado esperando. Las variables de estado involucradas constituyen un bloqueo de giro. No lo es en sí mismo un error, pero desperdicia energía del procesador, lo que a su vez puede conducir a la violación de un requisito de desempeño. Idealmente, el la ejecución del proceso en cuestión debe suspenderse y continuar sólo cuando se cumple la condición para que progrese.
+						</p>
+
+			<h2>Errores transitorios</h2>
+
+			<p>En presencia de no determinismo, fallas en un programa concurrente
+							pueden aparecer como errores transitorios; es decir, el error puede ocurrir o no
+							dependiendo de la ruta de ejecución tomada en una activación particular del programa. La causa de un error transitorio tiende a ser difícil de identificar porque los eventos que lo preceden a menudo no se conocen precisamente y la fuente del error no puede, en general, ser encontrada por experimentación. Así, una de las habilidades en el diseño de cualquier
+							programa concurrente es la habilidad de expresarlo en una forma que garantiza el comportamiento correcto del programa a pesar de cualquier incertidumbre sobre el orden en que se realizan algunas operaciones individuales. Eso es, no debe haber ninguna parte del programa cuyo comportamiento correcto depende del tiempo.
+							
+							</p>
+						
             <h2>Sección Critica</h2>
             <p><img src="http://ecoosfera.com/wp-content/imagenes/interseccion.gif" alt=""></p>
 
@@ -1845,6 +1896,8 @@ procedure consumer() {
               <li>Permite la implementación de programación reactiva</li>
               <li>Controlabilidad</li>
               <li>Disponibilidad de servicios</li>
+              <li>Exclusión mutua: nunca más de un proceso está presente en un región crítica</li>
+              <li>Sin interbloqueo: ningún proceso se retrasa nunca a la espera de un evento que no puede ocurrir</li>
             </ul>
           </div>
           <div id="desventajas">
@@ -3459,6 +3512,10 @@ TotalMilliseconds : 832,8442
           </h1>
 
           <ul>
+            <li>Carlos Julián Cordero Guevara</li>
+            <li>Cristian Alejandro Chávez Becerra</li>
+            <li>Jorge Alberto Rodríguez Corredor</li>
+            <li>Manuel David Medrano Monroy</li>
             <li>Bryam Diaz</li>
             <li>Santiago Marquez</li>
             <li>Christian Vaca</li>
@@ -3474,6 +3531,7 @@ TotalMilliseconds : 832,8442
             <li>Camilo Alfonso Mosquera Benavides</li>
             <li>Juan Sebastian Herrera Maldonado </li>
             <li>Florent Sebag</li>
+            <li>Karen Ximena Combita Alfonso</li>
             <li>Michael Tomas Velasquez Gordillo</li>
             <li>Cristian David Martinez Collazos</li>
             <li>Alejandro Sebastián Alejo Patarroyo</li>
