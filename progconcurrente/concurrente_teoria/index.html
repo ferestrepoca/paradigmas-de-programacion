@@ -1268,13 +1268,13 @@
 
 			<h2>Injusticia</h2>
 
-			<p>En general (pero no universalmente) se cree que cuando existe competencia entre procesos de igual estatus en un programa concurrente, se debe hacer algún intento para asegurar que los procesos en cuestión progresen uniformemente; es decir, para asegurar que no haya injusticia manifiesta al momento de satisfacer las necesidades de esos procesos. La equidad en un sistema concurrente se puede considerar tanto a nivel de diseño como de implementación del sistema. Para el diseñador, es simplemente una pauta a observar al desarrollar un programa; cualquier descuido de la equidad puede conducir a un aplazamiento indefinido, dejando el programa incorrecto
+			<p>En general, se cree que cuando existe competencia entre procesos de igual estatus en un programa concurrente, se debe hacer algún intento para asegurar que los procesos en cuestión progresen uniformemente; es decir, para asegurar que no haya injusticia manifiesta al momento de satisfacer las necesidades de esos procesos. La equidad en un sistema concurrente se puede considerar tanto a nivel de diseño como de implementación del sistema. Para el diseñador es simplemente una pauta a observar al desarrollar un programa; cualquier descuido de la equidad puede conducir a un aplazamiento indefinido, dejando el programa incorrecto.
 					Para un implementador del sistema es nuevamente una guía. La mayoría de los lenguajes de programación concurrentes no abordan la equidad. En cambio, el problema se deja en manos de los escritores del compilador y los desarrolladores del software de soporte en tiempo de ejecución					
 					</p>
 
 			<h2>Ocupado Esperando</h2>
 
-			<p>Independientemente del entorno en el que se desarrolle un programa concurrente ejecutado, rara vez es aceptable que cualquiera de sus procesos ejecute un bucle en espera de un cambio de estado del programa. Esto se conoce como ocupado esperando. Las variables de estado involucradas constituyen un bloqueo de giro. No lo es en sí mismo un error, pero desperdicia energía del procesador, lo que a su vez puede conducir a la violación de un requisito de desempeño. Idealmente, el la ejecución del proceso en cuestión debe suspenderse y continuar sólo cuando se cumple la condición para que progrese.
+			<p>Independientemente del entorno en el que se desarrolle un programa concurrente ejecutado, rara vez es aceptable que cualquiera de sus procesos ejecute un bucle en espera de un cambio de estado del programa. Esto se conoce como "ocupado esperando". Las variables de estado involucradas constituyen un bloqueo de giro. No es en sí mismo un error, pero desperdicia energía del procesador, lo que a su vez puede conducir a la violación de un requisito de desempeño. Idealmente, la ejecución del proceso en cuestión debe suspenderse y continuar sólo cuando se cumple la condición para que progrese.
 						</p>
 
 			<h2>Errores transitorios</h2>
@@ -1287,7 +1287,6 @@
 							</p>
 						
             <h2>Sección Critica</h2>
-            <p><img src="http://ecoosfera.com/wp-content/imagenes/interseccion.gif" alt=""></p>
 
             <p>Para solucionar estos inconvenientes hay que identificar las secciones de código en las que se pueden dar
               condiciones de carrera y permitir que solo un hilo
