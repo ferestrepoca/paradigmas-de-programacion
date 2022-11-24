@@ -1747,14 +1747,14 @@ procedure consumer() {
            
             
               <p>
-                En la cotidianeidad encontramos muchos ejemplos de concurrencia y paralelismo en múltiples procesos con los que interactuamos continuamente, de ellos podemos abstraer características propias que los identifican, así mismo como las partes que los conforman con el fin de tratar de entender y modelarlos en un entorno virtual.
+                En la cotidianeidad encontramos muchos ejemplos de concurrencia y paralelismo en múltiples procesos con los que interactuamos continuamente. De ellos podemos abstraer características propias que los identifican, así como las partes que los conforman, con el fin de tratar de entender y modelarlos en un entorno virtual.
             
               </p>
             
               <center><img src="images/Aplicaciones-1.jpg" width="80%" height="80%" alt=""></center>
             
               <p>
-                El mundo real contiene actores que ejecutan acciones independientemente, pero se comunican entre sí al realizarlas, es por esto que al modelar el mundo, se deben componer y coordinar muchas ejecuciones paralelas.
+                El mundo real contiene actores que ejecutan acciones independientemente, pero que se comunican entre sí al realizarlas. Es por esto que, al modelar el mundo, se deben componer y coordinar muchas ejecuciones paralelas.
               </p>
             
               <ul>
@@ -1767,17 +1767,17 @@ procedure consumer() {
               <p>Entre muchas otras acciones cotidianas que deben de coordinar distintos procesos para poder ser cumplidas con éxito y funcionar de manera óptima.
               </p>
             
-              <p>La concurrencia y el paralelismo nos brinda bastantes herramientas para que la modelación de dichos procesos se realice de manera más apegada a la realidad, y así mismo, encontrar formas de que estos procesos sean más eficientes, al poder separarlos y distribuirlos en pequeños sub procesos que los conformen y se ejecuten paralelamente, de una manera ligeramente más natural que secuencialmente.
+              <p>La concurrencia y el paralelismo nos brindan bastantes herramientas para que la modelación de dichos procesos se realice de manera más apegada a la realidad y, así mismo, para encontrar formas de que estos procesos sean más eficientes al poder separarlos y distribuirlos en pequeños subprocesos que los conformen y se ejecuten en paralelo, es decir, de una manera ligeramente más natural que una ejecución secuencial.
               </p>
             
               <h2>Concurrencia en Software</h2>
             
-              <p>La concurrencia y el paralelismo son ampliamente utilizados en distintos enfoques y formas de software, hasta el punto, que constantemente utilizamos programas o escribimos código sin saber que muchos de estos procesos están paralelizados para brindar una mejor experiencia al usuario. Algunos ejemplos de la utilización de concurrencia y paralelismo en algunos software y sistemas son:</p>
+              <p>La concurrencia y el paralelismo son ampliamente utilizados en distintos enfoques y formas de software, al punto en que constantemente utilizamos programas o escribimos código sin saber que muchos de estos procesos están paralelizados para brindar una mejor experiencia al usuario. Algunos ejemplos de la utilización de concurrencia y paralelismo en ciertos softwares y sistemas son:</p>
             
               <ul style="list-style: none;">
                 <li>
                   <h4>Multiprogramming</h4>
-                  <p>dentro de un sistema operativo, se pueden ejecutar muchos programas y/o procesos al mismo tiempo compartiendo la misma memoria descomponiendolos en subprocesos asignados a distintos núcleos dentro de un procesador.</p>
+                  <p>Dentro de un sistema operativo se pueden ejecutar muchos programas y/o procesos al mismo tiempo y compartiendo la misma memoria. Esto se logra al descomponerlos en subprocesos asignados a distintos núcleos dentro de un procesador.</p>
                   <center><img src="images/Aplicaciones-Multiprogramming.png" width="80%" height="80%" alt=""></center>
                   <ul>
                     <li>Descargas </li>
@@ -1803,7 +1803,7 @@ procedure consumer() {
                 </li>
                 <li>
                   <h4>Motores de videojuegos</h4>
-                  <p>Los motores que soportan la ejecución de videojuegos deben realizar distintos subprocesos que orquestados correctamente componen la experiencia del jugador , como lo son:</p>
+                  <p>Los motores que soportan la ejecución de videojuegos deben realizar distintos subprocesos que, orquestados correctamente, componen la experiencia del jugador, como lo son:</p>
                   <center><img src="images/Aplicaciones-Motores.jpg" width="80%" height="80%" alt=""></center>
                   <ul>
                     <li>Game logic</li>
@@ -1820,16 +1820,16 @@ procedure consumer() {
             
             
               </ul>
-              <p>otros ejemplos puntuales son:</p>
+              <p>Otros ejemplos puntuales son:</p>
                 <ul>
                   <li>Manejo de eventos asincrónicos como la llegada de paquetes de red</li>
                   <li>Ocultar la latencia, mostrando resultados de carga paulatinamente</li>
                   <li>Manejo de redes con múltiples equipos</li>
                   <li>Simulación de eventos complejos</li>
-                  <li>Servidores Web</li>
+                  <li>Servidores web</li>
                   <li>Sistema multimedia</li>
-                  <li>Calculo numerico</li>
-                  <li>Interaccion por GUI</li>
+                  <li>Cálculo numérico</li>
+                  <li>Interacción por GUI</li>
                   <li>Sistemas gestores de bases de datos</li>
                   <li>Sistemas Operativos</li>
                   <li>Sistemas de control</li>
@@ -1838,8 +1838,8 @@ procedure consumer() {
                 </ul>
           </div>          
             
-            <p>En estos ultimos ejemplos, utilizamos la programación concurrente para :<br />
-              - Los videos juegos o se usará para la recuperación de claves, la interfaz gráfica y el procesamiento de
+            <p>En estos últimos ejemplos, la programación concurrente se utiliza para:<br />
+              - Los videojuegos: para la recuperación de claves, la interfaz gráfica y el procesamiento de
               datos recibidos por el servidor para juegos en línea.<br />
               - Servicios web, donde el servidor tendrá que lidiar con muchas solicitudes al mismo tiempo. En este
               contexto,
