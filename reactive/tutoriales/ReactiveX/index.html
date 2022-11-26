@@ -135,7 +135,7 @@ getUser(msg => {
 							</code>
 						</pre>
 						<p>Esto funciona bien para casos sencillos como este, pero cuando se hace más complejo el
-							manejo de errores y su compresión se hace más dificil.
+							manejo de errores, su compresión se hace más dificil.
 
 						</p>
 						<pre>
@@ -162,7 +162,7 @@ checkAuth(authInfo => {
 							</code>
 						</pre>
 						<h3>Promises</h3>
-						<p>Es cuando las promesas son útiles, para realizar el manejo de errores y realizar
+						<p>Es cuando las promesas son útiles para realizar el manejo de errores y realizar
 
 							un código de mejor comprensión
 						</p>
@@ -243,12 +243,12 @@ observable.subscribe(
 								resolviendo los principales problemas de memoria.
 							</dd>
 							<dt>Pequeño y conciso</dt>
-							<dd>Su arquitectura modular lo hacen pequeño, conteniendo solo las piezas necesarias.</dd>
+							<dd>Su arquitectura modular lo hace pequeño, conteniendo solo las piezas necesarias.</dd>
 							<dt>Sin dependencias de terceros</dt>
-							<dd>No depende de ninguna librería de terceros. Manteniedo su tamaño óptimo.</dd>
+							<dd>No depende de ninguna librería de terceros, manteniedo su tamaño óptimo.</dd>
 							<dt>Comunidad grande</dt>
 							<dd>
-								Tiene una gran comunidad diversa y receptiva. Encontrando ayuda para la solución
+								Tiene una gran comunidad diversa y receptiva, lo que permite encontrar ayuda para la solución
 								de problemas con facilidad
 							</dd>
 							<dt>Documentación</dt>
@@ -295,8 +295,8 @@ observable.subscribe(
 					<div class="inner">
 						<h2>Instalación de RxJS</h2>
 						<p>
-							La forma más sencilla de Instalación de RxJS es mediante el uso de npm
-							usando el siguiente código.
+							La forma más sencilla de Instalación de RxJS es mediante el uso de <code>npm</code>
+							a través del siguiente comando:
 						</p>
 						<pre>
 							<code>
@@ -367,13 +367,13 @@ rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
 
 				<hr><br>
 				<h2>Stream de datos</h2>
-				<h4>Es uno o más datos que llegan de manera asincrónica, por ejemplo, si miramos desde arriba una
-					autopista veremos pasar coches en una tasa variable, podemos decir que es un stream de coches.</h4>
+				<h4>Es uno o más datos que llegan de manera asincrónica. Por ejemplo: si miramos desde arriba una
+					autopista, veremos pasar coches en una tasa variable; podemos decir que se trata de un stream de coches.</h4>
 				<h4>Una manera gráfica de mostrar lo que es un stream de datos es a través de un diagrama de canicas,
 
 					los cuales tienen la siguiente notación:</h4>
 				<span class="image fit"><img src="images/notacion_canicas.jpg" alt="" /></span>
-				<h4>Por ejemplo con un flujo de datos que emite números del 0 al 3, tendríamos lo siguiente:</h4>
+				<h4>Por ejemplo, con un flujo de datos que emite números del 0 al 3 tendríamos lo siguiente:</h4>
 
 				<span class="image fit"><img src="images/canicas_1.png" alt="" /></span>
 
@@ -427,7 +427,7 @@ rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
 						<td>Pasivo: Reacciona a los datos recibidos</td>
 					</tr>
 				</table>
-				<h4>Pull: En un sistema Pull el consumidor determina cuándo quiere recibir datos del productor. El
+				<h4>Pull: En un sistema Pull, el consumidor determina cuándo quiere recibir datos del productor. El
 					productor en sí mismo se despreocupa de cuándo se enviarán los datos al consumidor. Por ejemplo,
 					todas las funciones JS son de tipo Pull; las funciones son productoras de datos y el código que las
 					llama consume su valor de retorno.</h4>
@@ -444,15 +444,15 @@ rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
 
 				<h4>Frío: Los Observables "fríos" son aquellos que no emiten valores hasta que haya una suscripción
 
-					activa, ya que la información es producida dentro del Observable y por tanto solo emiten valores en
-					el momento en que se establece una nueva subscripción, por eso, el ejemplo previo que hemos visto,
-					math.random() devuelve valores diferentes.</h4>
+					activa, ya que la información es producida dentro del Observable y, por tanto, solo emiten valores en
+					el momento en que se establece una nueva subscripción. Por eso, el ejemplo previo que hemos visto,
+					math.random(), devuelve valores diferentes.</h4>
 				<script src="https://gist.github.com/nrrf/86f4b0f91d8a3e34ab9bfb2c94d32f7e.js"></script>
 				<h4>Caliente: Por contra, los Observables "calientes" son aquellos que pueden emitir valores sin que
 					haya ninguna subscripción activa, porque la información del stream se produce fuera del propio
-					Observable. RxJs dispone de algunos Observables ¨calientes¨ y el mejor ejemplo de éstos, es
-					fromEvent que nos permite establecer un Observable sobre cualquier tipo de evento como el click del
-					ratón: </h4>
+					Observable. RxJs dispone de algunos Observables ¨calientes¨ y el mejor ejemplo de estos es
+					fromEvent, que nos permite establecer un Observable sobre cualquier tipo de evento (como el click del
+					ratón): </h4>
 				<script src="https://gist.github.com/nrrf/bb9480a6285c2f0ebe37ecc526fab713.js"></script>
 			</div>
 		</section>
@@ -507,7 +507,7 @@ rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
 					<section>
 
 						<h3>Los operadores de creación</h3>
-						<p>son el otro tipo de operador, que se pueden llamar como funciones independientes para crear
+						<p>son el otro tipo de operador, los cuales se pueden llamar como funciones independientes para crear
 							un nuevo
 							Observable. Por ejemplo: of(1, 2, 3) crea un observable que emitirá 1, 2 y 3, uno tras otro.
 
@@ -529,7 +529,7 @@ rxjs.of(1, 2, 3).pipe(rxjs.map((x) => x + '!!!')); // etc;
 				</div>
 
 				<section>
-					<img style="align-items: center;" src="./images/listadoOperadores.JPG" alt="listado operadores"
+					<img style="align-items: center; width:100%" src="./images/listadoOperadores.JPG" alt="listado operadores"
 						srcset="">
 				</section>
 				
