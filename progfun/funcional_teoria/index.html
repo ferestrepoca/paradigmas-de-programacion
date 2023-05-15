@@ -39,7 +39,7 @@
                 <strong>
                     <center>Programación Funcional</center>
                 </strong>
-            </div>
+            </div>1
         </div>
 
         <div class="container">
@@ -76,6 +76,31 @@
 
                         <img src="images/function.jpg" class="img-responsive center-block" alt=""
                             style="max-width: 500px">
+                    </div>
+                </div>
+            </section>
+            <section id="intro">
+                <h2 id="intro1" class="text-center">
+                    Filosofía
+                </h2>
+                <div class="row text-justify">
+                    <div class="col-md-12">
+                        <p>
+                            <br>
+                            Este paradigma de programación tiene dos filosofias principales:
+                            <br>
+                            <br>
+                            1. Debemos renunciar a compartir estados, mutar datos y pensar en ámbitos 
+                            locales o globales, en este paradigma lo más importante es pasar argumentos 
+                            a una función que calculará la salida finalmente.
+                            <br>
+                            <br>
+                            2. Las funciones son el corazón, este paradigma está compuesto de funciones puras y varias
+                             funciones que se unen para crear una función más compleja, para permitir la reutilización
+                            y obtener varias combinaciones.
+                            <br>
+                            <br>
+                        </p>
                     </div>
                 </div>
             </section>
@@ -489,6 +514,11 @@
                                 que se ahorre tiempo y espacio durante la ejecución.
                             </li>
 
+                            <li>Combinación con otros paradigmas: Por su alto nivel de abstracción, es facil utilizarlo junto 
+                                a varios paradigmas de programación, ejemplo POO, ya que solo requerimos del uso de 
+                                funciones puras y de contextos locales.
+                            </li>
+
                             <li>Las características del paradigma, en especial la utilización de funciones puras,
                                 permiten
                                 realizar ciertas optimizaciones particulares.
@@ -547,6 +577,11 @@
                                 El uso de I/O (Archivos, Bases de datos y GUIs) se vuelve un problema. La manipulación de estas entradas y salidas requiere 
                                 de funciones netamente impuras. Un programa que provea utilidad al usuario necesitará, en la gran mayoría de casos, 
                                 acceso a este tipo de entradas y salidas. 
+                            </li>
+                            <li>
+                                Menos útil en situaciones que requieren cambio de estado frecuente, si requerimos llevar un control global de un estado o una
+                                variable, esto es complicado, requerira adaptar el codigo de otra manera y hacer uso, varias veces, de la composición de funciones, durante
+                                toda la ejecucción de nuestro codigo.
                             </li>
 
                         </ul>
