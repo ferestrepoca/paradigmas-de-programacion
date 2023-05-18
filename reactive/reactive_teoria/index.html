@@ -114,6 +114,11 @@
                                 <li><a href="#line8_1">RxPY</a></li>
                                 <li><a href="#line8_2">RxJava</a></li>
                                 <li><a href="#line8_3">RxJS</a></li>
+                                <li><a href="#line8_4">RxRuby</a></li>
+                                <li><a href="#line8_5">Rx.NET</a></li>
+                                <li><a href="#line8_6">Chat</a></li>
+                                <li><a href="#line8_7">RxViz</a></li>
+                                <li><a href="#line8_8">Svelte</a></li>
                             </ul>
                         </li>
                         <li><a href="#line9">Aplicaciones</a></li>
@@ -761,7 +766,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 id="line8_5">Ejemplo de chat usando programación reactiva </h4>
+                            <h4 id="line8_6">Ejemplo de chat usando programación reactiva </h4>
                             <script src="https://gist.github.com/nestorsgarzonc/6e39658f7f354fc497cee69e378833aa.js"></script>
                             <iframe src="https://reactive-programming-examples.vercel.app/" frameborder="0" height="600" width="350"></iframe>
 
@@ -774,34 +779,55 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 id="line_8_6">Ejemplos varios en RxViz</h4>
+                            <h4 id="line8_7">Ejemplos varios en RxViz</h4>
                             <p> En el siguiente enlace se pueden encontrar algunos ejemplos proveidos por el equipo de RxViz.</p>
                             <a href="https://rxviz.com/">https://rxviz.com/</a>
                         </div>
+                        <!-- end col -->
                     </div>
+                    <!-- end row -->
 
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 id="line_8_7">Ejemplo en Svelte</h4>
+                            <h4 id="line8_8">Ejemplo en Svelte</h4>
+                            <p> En el siguiente link se puede acceder a un repositorio que contiene el ejemplo presentado a continuación.</p>
+                            <a href="https://github.com/facaslo97/SvelteExample">https://github.com/facaslo97/SvelteExample</a>
                             <p> En las siguientes imagenes podemos observar como implementar una sencilla interfaz web para un servicio de libreria </p>
                             <p>Estructura del proyecto</p>
+                            <p>En la carpeta source es donde se van a colocar todos los archivos con extensión .svelte que corresponden a componentes de la interfaz gráfica</p>
                             <img src="images/svelteexample/Screenshot from 2023-05-16 21-06-32.png" class="img-responsive img-thumbnail">
                             <p>Componente libro</p>
+                            <p>La sintaxis de svelte es una extensión de HTML, CSS y JavaScript. Dentro de la etiqueta script se va a añadir toda la funcionalidad reactiva. En este caso declaramos 3 variables
+                                que corresponden a los campos título, precio y descripción.
+                            </p>
                             <img src="images/svelteexample/Screenshot from 2023-05-16 21-15-15.png" class="img-responsive img-thumbnail">
                             <p>Componente botón</p>
+                            <p>En esta imagen podemos observar como se agregan los estilos CSS dentro de las etiquetas style. Adicionalmente todo lo que no esté dentro de una etiqueta style o una script es inmediatamente interpretado como
+                                contenido HTML para el componente. En este caso un botón cuyo atributo on:clic indica que el flujo de datos va a ser cambiado cuando se de un evento de clic.
+                                La etiqueta slot indica que se pueden anidar mas componentes svelte dentro de nuestro componente botón.
+                            </p>
                             <img src="images/svelteexample/Screenshot from 2023-05-16 21-18-15.png" class="img-responsive img-thumbnail">
                             <p>Componente app</p>
+                            <p>El componente app es el componente central de la aplicación. Dentro de script se observa como se hace un llamado a los otros 2 componentes, libro y botón. De igual forma
+                                se declaran unas variables que corresponden a los campos del libro, una lista que va a contener componentes de tipo libro, así como 2 funciones que se van a encargar
+                                de actualizar la información según el flujo de datos. Observamos también que para hacer referencia a las variables reactivas del componente libro dentro del contenido HTML se 
+                                encierra el nombre de la variable dentro de llaves. Svelte también permite usar condicionales y ciclos iterativos como se observa en la 3ra imagen.
+                            </p>
                             <img src="images/svelteexample/Screenshot from 2023-05-16 21-23-40.png" class="img-responsive img-thumbnail">
                             <img src="images/svelteexample/Screenshot from 2023-05-16 21-27-05.png" class="img-responsive img-thumbnail">
                             <img src="images/svelteexample/Screenshot from 2023-05-16 21-29-19.png" class="img-responsive img-thumbnail">
                             <p>Main.js</p>
+                            <p>Este script es el que se encarga de actualizar el DOM de acuerdo al componente app que hemos definido con anterioridad.</p>
                             <img src="images/svelteexample/Screenshot from 2023-05-16 21-33-00.png" class="img-responsive img-thumbnail">
                             <p>Ejecución</p>
+                            <p>Agregar un libro tras llenar los campos y pulsar el botón añadir actualiza inmediatamente la lista de libros sin tener que hacer ninguna petición a un servidor.</p>
                             <img src="images/svelteexample/Screenshot from 2023-05-16 21-36-15.png" class="img-responsive img-thumbnail">
                             <img src="images/svelteexample/Screenshot from 2023-05-16 21-39-25.png" class="img-responsive img-thumbnail">
                         </div>
+                        <!-- end col -->
                     </div>
+                    <!-- end row -->
 
                     <hr>
 
