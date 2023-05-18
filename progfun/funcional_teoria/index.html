@@ -66,7 +66,7 @@
                             <br>
                             Uno de los principios del paradigma es hacer que las funciones sean lo m&aacute;s
                             específicas
-                            posible. De esta manera se cumple otro de los principios de este paradigma: la reutilizacion
+                            posible. De esta manera se cumple otro de los principios de este paradigma: la reutilización
                             de
                             c&oacute;digo
                             -pues, como veremos, las funciones retornarán lo mismo siempre a lo largo de toda la
@@ -278,7 +278,7 @@
                             El paradigma funcional se empezó a desarrollar por el matemático John McCarthy en 1956, para
                             programar los primeros proyectos de inteligencia artificial sobre un computador IBM 704
                             durante
-                            su desarrollo este crea el lenguaje de programcion lisp en 1958.
+                            su desarrollo este crea el lenguaje de programación lisp en 1958.
 
                         </p>
                     </div>
@@ -291,10 +291,10 @@
 
                         <p>
                             Lisp fue creado originalmente como una notación matemática práctica para los programas de
-                            computadora, basada en el cálculo lambda de Alonzo Church. apesar de no ser un lenguaje
+                            computadora, basada en el cálculo lambda de Alonzo Church. A pesar de no ser un lenguaje
                             puramente funcional Se convirtió rápidamente un lenguaje de programación pionero en la
                             investigación de la inteligencia artificial (AI) estableciendo las bases de lo que se
-                            conoceria hoy como el paradigma funcional
+                            conocería hoy como el paradigma funcional
                         </p>
                     </div>
                     <div class="col-md-6">
@@ -381,7 +381,7 @@
                         <p>
                             Debido a que en el cálculo lambda formal una función solamente pueden recibir un único
                             parámetro, es necesario utilizar la <strong>currificación</strong>. El ejemplo anterior
-                            evidencia como una función con un parámatro X, tiene como cuerpo otra función con parámetro
+                            evidencia como una función con un parámetro X, tiene como cuerpo otra función con parámetro
                             Y, la cual tiene como cuerpo una expresión E.
                         </p>
                         <p>
@@ -405,7 +405,7 @@
                             <b>Ejemplo de β-reducción utilizando cálculo lambda formal: </b>
                         </p>
                         <p>
-                            El siguiente ejemplo muestra cómo realizar la suma de dos numeros utilizando cálculo lambda.
+                            El siguiente ejemplo muestra cómo realizar la suma de dos números utilizando cálculo lambda.
                         </p>
                         <p>
                             Suponga que tenemos la función <b>f(x,y) = x+y</b>, a continuación se muestra un gráfico que
@@ -562,8 +562,16 @@
                             </li>
                             <li>Generación de grandes cantidades de short-lived garbage: Esto se debe principalmente
                                 a
-                                la caracteristica de inmutabilidad. Los garbage collectors tienden a optimizar este
+                                la característica de inmutabilidad. Los garbage collectors tienden a optimizar este
                                 aspecto.
+                            </li>
+                            <li>Menos útil en situaciones que requieren cambio de estado frecuente, si requerimos llevar 
+                                un control 	global de un estado o una variable, esto es complicado, requerira adaptar el codigo de 
+                                otra manera y 	hacer uso, varias veces, de la composición de funciones, durante toda la ejecucción 
+                                de nuestro codigo. La programación funcional puede ser menos eficiente en algunos casos en comparación 
+                                con otros paradigmas 	de programación. Esto se debe a que la programación funcional se enfoca en la 
+                                evaluación de expresiones 	y funciones matemáticas, lo que puede requerir más tiempo de procesamiento y más 
+                                recursos de memoria en 	algunos casos.
                             </li>
                             <li>Menor eficiencia en el uso de CPU comparados con su contraparte imperativa: Debido
                                 principalmente a que muchas estructuras de variables mutables (como los arreglos)
@@ -578,12 +586,6 @@
                                 de funciones netamente impuras. Un programa que provea utilidad al usuario necesitará, en la gran mayoría de casos, 
                                 acceso a este tipo de entradas y salidas. 
                             </li>
-                            <li>
-                                Menos útil en situaciones que requieren cambio de estado frecuente, si requerimos llevar un control global de un estado o una
-                                variable, esto es complicado, requerira adaptar el codigo de otra manera y hacer uso, varias veces, de la composición de funciones, durante
-                                toda la ejecucción de nuestro codigo.
-                            </li>
-
                         </ul>
 
                     </div>
@@ -593,21 +595,21 @@
 
 
             <section id="lambdacalc">
-                <h2 id="lambdacalc1" class="text-center">Ventajas tecnicas</h2>
+                <h2 id="lambdacalc1" class="text-center">Ventajas técnicas</h2>
 
                 <div class="row text-justify">
                     <div class="col-md-12">
                         <p>
-                            Ventajas relacionadas con el uso de lenguajes funcionales o faciles de implementar debido a
+                            Ventajas relacionadas con el uso de lenguajes funcionales o fáciles de implementar debido a
                             sus principios aplicados en estos
                         </p>
                         <h3 class="text-center">Expresividad</h3>
                         <p>
-                            Dado que la programacion funcional simplifica el codigo de manera significativa el uso de
-                            esta facilita en gran manera la definicion
+                            Dado que la programación funcional simplifica el código de manera significativa el uso de
+                            esta facilita en gran manera la definición
                             de las estructuras globales lo que permite un mayor entendimiento de estas un ejemplo de
                             esto es el uso de los datos algebraicos en haskell
-                            que son aquellos que nos permiten el uso de argumentos como constructores una extencion de
+                            que son aquellos que nos permiten el uso de argumentos como constructores una extensión de
                             las funciones de orden superior usadas en este
                             paradigma.
                         </p>
@@ -617,31 +619,31 @@
 
                         <h3 class="text-center">Seguridad</h3>
                         <p>
-                            Inmutabilidad:Caracteristica existente en los lenguajes funcionales en la cual que un objeto
+                            Inmutabilidad: Característica existente en los lenguajes funcionales en la cual que un objeto
                             no puede cambiar su estado.
-                            Como consecuencia, esta caracteristica aporta muchas facilidades al momento de razonar sobre
-                            el codigo que estemos creando, y
+                            Como consecuencia, esta característica aporta muchas facilidades al momento de razonar sobre
+                            el código que estemos creando, y
                             a que no tenemos que preocuparnos por cambios que puedan sufrir los objetos a lo largo del
                             programa. Como ventaja adicional,
                             los objetos que son inmutables, se vuelven automáticamente seguros en el manejo de hilos (o
                             thread-safe) de manera en que pueden
-                            ser accedidos de manera concurrente sin presentar ningun tipo de "side effects" debido a que
+                            ser accedidos de manera concurrente sin presentar ningún tipo de "side effects" debido a que
                             no pueden modificarse.
 
-                            Manejo de errores:Debido a la caracteristica principal de este paradigma (programar mediante
-                            fucniones),Es relativamente mas
-                            facil detectar errores en el codigo, ya que al separarlo por funciones, no es necesario
-                            revisar todo el codigo como habria que
+                            Manejo de errores:Debido a la característica principal de este paradigma (programar mediante
+                            funciones),Es relativamente mas
+                            fácil detectar errores en el código, ya que al separarlo por funciones, no es necesario
+                            revisar todo el código como habría que
                             hacerlo si se hubiera programado de forma imperativa.
                         </p>
 
                         <h3 class="text-center">Paralelismo</h3>
                         <p>
-                            Dado que en la programacion funcional no existe un estado global no es necesario implementar
-                            las tecnicas de paralelismo como
+                            Dado que en la programación funcional no existe un estado global no es necesario implementar
+                            las técnicas de paralelismo como
                             (Multexes, Semáforos, Locks) por lo cual se pueden realizar funciones en paralelo siempre que
                             estas cumplan con ciertas reglas al
-                            momento de su ejecucion
+                            momento de su ejecución
                         </p>
                         <p>
                             Por otro lado, la concurrencia es mucho más segura. Las funciones puras son seguras para hilos (thread-safe), es decir, siempre
@@ -861,7 +863,7 @@
                             </ul>
                             </p>
                             <p>
-                                JavaScript permite la declaración de funciones puras muy facilmente por medio del
+                                JavaScript permite la declaración de funciones puras muy fácilmente por medio del
                                 comando <i>function</i>.
                                 Las funciones de orden superior <b>map</b>, <b>filter</b> y <b>reduce</b>, son los
                                 pilares de la programación funcional en JavaScript. La composición de funciones es muy
