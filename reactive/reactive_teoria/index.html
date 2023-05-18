@@ -296,7 +296,13 @@
                     <p>Se pueden dar situaciones donde un Notificador genere más elementos de los que un Suscriptor puede consumir. Lo cual genera que el proceso de convertir esa entrada en salida se resista de alguna manera. En la mayoría de los casos esa resistencia es la velocidad de cálculo.</p>
 
                     <p>Para manejar estas situaciones en la programación reactiva se han establecido los siguientes mecanismos: Los suscriptores pueden indicar el número de datos que quieren o pueden procesar, de manera que el notificador nunca les enviará más de n cantidad de elementos. Los notificadores pueden aplicar diferentes operaciones como buffers o descartar algunos datos, para evitar saturar a los suscriptores lentos.</p>
+                    
+                    <h4>Implementación</h4>
 
+                    <p>Lograr los comportamientos que se logran de forma fácil en el paradigma reactivo, resultan muy complicados y con el uso de artefactos complicados en otros paradigmas de programación.</p>
+
+                    <p>Esta facilidad de implementación se puede evidenciar por la relativa rapida acogida de los componentes reactivos en tecnologías de Front-End, interfaces de usuario y hasta gestores de carga y replicacion en entornos de Cloud.</p>
+                
                 </section>
                 <!-- end section -->
 
@@ -766,6 +772,39 @@
 
                     <hr>
 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 id="line_8_6">Ejemplos varios en RxViz</h4>
+                            <p> En el siguiente enlace se pueden encontrar algunos ejemplos proveidos por el equipo de RxViz.</p>
+                            <a href="https://rxviz.com/">https://rxviz.com/</a>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 id="line_8_7">Ejemplo en Svelte</h4>
+                            <p> En las siguientes imagenes podemos observar como implementar una sencilla interfaz web para un servicio de libreria </p>
+                            <p>Estructura del proyecto</p>
+                            <img src="images/svelteexample/Screenshot from 2023-05-16 21-06-32.png" class="img-responsive img-thumbnail">
+                            <p>Componente libro</p>
+                            <img src="images/svelteexample/Screenshot from 2023-05-16 21-15-15.png" class="img-responsive img-thumbnail">
+                            <p>Componente botón</p>
+                            <img src="images/svelteexample/Screenshot from 2023-05-16 21-18-15.png" class="img-responsive img-thumbnail">
+                            <p>Componente app</p>
+                            <img src="images/svelteexample/Screenshot from 2023-05-16 21-23-40.png" class="img-responsive img-thumbnail">
+                            <img src="images/svelteexample/Screenshot from 2023-05-16 21-27-05.png" class="img-responsive img-thumbnail">
+                            <img src="images/svelteexample/Screenshot from 2023-05-16 21-29-19.png" class="img-responsive img-thumbnail">
+                            <p>Main.js</p>
+                            <img src="images/svelteexample/Screenshot from 2023-05-16 21-33-00.png" class="img-responsive img-thumbnail">
+                            <p>Ejecución</p>
+                            <img src="images/svelteexample/Screenshot from 2023-05-16 21-36-15.png" class="img-responsive img-thumbnail">
+                            <img src="images/svelteexample/Screenshot from 2023-05-16 21-39-25.png" class="img-responsive img-thumbnail">
+                        </div>
+                    </div>
+
+                    <hr>
+
                 </section>
                 <!-- end section -->
 
@@ -839,6 +878,17 @@
 
                             <p>Se dice que existe <strong>back-pressure</strong> cuando una aplicación no es capaz de soportar una gran cantidad de datos por falta de recursos, la mayoria de veces este problema esta relacionado a la velocidad computacional (Se procesando las entradas mas rapido que las salidas), la programación reactiva ayuda a manejar este problema notificando al servicio que nos esta enviando datos cuando el servicio que los recibe se queda sin recursos.</p>
 
+                            <strong>Aplicación en interoperabilidad</strong>
+
+                            <p>El patrón Observer y los sistemas de suscripción y dispatchers son excepcionales en el manejo de mensajes de interoperabilidad entre sistemas y componentes de un mismo sistema</p>
+
+                            <p>Los mayores exponentes de esto son:</p>
+                        
+                            <ul>
+                                <li><strong>Websockets:</strong> protocolo de suscripción a mensajes entre un servidor emisor y una aplicacion o componente receptor cuando hay mensajes para enviar en lugar de un polling por parte del receptor.</li>
+                                <li><strong>Server-side events:</strong> protocolo de suscripción en el cual un servidor central envia mensajes al generarse un evento dentro de este con el cual realiza un broadcast a los suscritos.</li>
+                            </ul>
+                            
                             <strong>¿Cuando usar la programación reactiva?</strong>
 
                             <p>De manera general, la programación reactiva se implementa cuando una aplicación maneje un gran flujo de datos o tenga muchas fuentes de datos y que requiera de alguna manera la propagación de cambio en datos modulos y eventos., sin la programación reactiva estas aplicaciones pueden tener problemas relacionados a la sincronización de los datos y como se muestran en la interfaz grafica. Es comun usar la programación reactiva a la par con la programación orientada a objetos en casos donde la programación asincróna se vuelve dificil de entender y mantener. Es importante mencionar la concurrencia, tema en el cual partes de un programa son ejecutadas con cierta regularidad en desorden o en un orden parcial, estos se pueden comunicar entre ellos mientras se estan ejecutando, con la programación reactiva se mejora la concurrencia de las aplicaciones creando modelos asíncrono, no bloqueantes.</p>
