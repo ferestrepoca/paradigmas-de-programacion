@@ -12,6 +12,7 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
 	</head>
 	<body id="top">
 
@@ -37,7 +38,8 @@
 						<header class="major">
 							<h2>Introducción</h2>
 						</header>
-						<p>Mercury es un lenguaje de programación lógica / funcional que combina la claridad y la expresividad de la programación declarativa con funciones avanzadas de análisis estático y detección de errores.
+						<p>Mercury es un lenguaje de programación lógica / funcional que combina la claridad y la expresividad de la programación declarativa con funciones avanzadas de análisis estático y detección de errores. Como lenguaje lógico, está basado en el cálculo de predicados de primer orden y utiliza un sistema de inferencia automático para deducir conclusiones a partir de hechos y reglas declarados.
+
 						</p>
 						<p>Dentro de sus características, se destacan:
 						</p>
@@ -49,6 +51,9 @@
  						 	<li>Es modularizado</li>
  						 	<li>Su compilador facilita el análisis estático y la optimización de código</li>
  						 	<li>Variedad de lenguajes de destino</li>
+							<li>Compila a código de máquina</li>
+							<li>Contiene un sistema de depuración avanzada</li>
+							<li>Permite generar automáticamente documentación a partir de anotaciones dentro del código</li>
 						</ul>
 
 					</section>
@@ -58,12 +63,37 @@
 						<header class="major">
 							<h2>Instalación</h2>
 						</header>
-						<p>Unix <i style="color: black;">(recomendado): </i> Se requiere tener GNU C (gcc) y GNU make 
+						<p>Unix <i style="color: black;">(recomendado): </i>
 						</p>
-						<ul style="list-style-type: circle; margin-left: 20px;">
- 							<li>Para sistemas basados en debian, basta con seguir el proceso de instalación recomendado en este enlace: <a href="http://dl.mercurylang.org/deb/" target="blank">http://dl.mercurylang.org/deb/</a></li>
- 							<li>Los archivos tar de las versiones de Mercury para UNIX se encuentran en la siguiente ruta: <a href="http://dl.mercurylang.org/" target="blank">http://dl.mercurylang.org/</a> </li>
- 						 	<li>Para más información, haga click <a href="https://www.mercurylang.org/download/release.html" target="blank">aquí</a></li>
+						<ul style="list-style-type: decimal; margin-left: 20px;">
+ 							<li>Se requiere instalar GNU C (gcc) y GNU Make</li>
+							 <div class="code-container">
+								<pre>
+								  <code>sudo apt update <br>sudo apt install build-essential
+								  </code>
+								</pre>
+							  </div>
+ 							<li>Descargar la clave GPG del autor del software y autorizar al sistema operativo para descargar cualquier software publicado por el autor.</li>
+							 <div class="code-container">
+								<pre>
+								  <code>sudo apt install wget ca-certificates <br>cd /tmp <br>wget https://paul.bone.id.au/paul.asc <br>sudo cp paul.asc /etc/apt/trusted.gpg.d/paulbone.asc
+								  </code>
+								</pre>
+							  </div>
+							<li>Se debe agregar el repositorio de software al sistema operativo. </li>
+							  <div class="code-container">
+								 <pre>
+								   <code>sudo nano /etc/apt/sources.list <br># Dentro del archivo, agregar las siguientes líneas <br>deb http://dl.mercurylang.org/deb/ DISTRO main <br>deb-src http://dl.mercurylang.org/deb/ DISTRO main <br># Donde “DISTRO” es el nombre de versión del sistema operativo (sid, bookworm, bullseye, disco, focal, jammy)
+								   </code>
+								 </pre>
+							   </div>
+							<li>Instalar el conjunto de paquetes recomendado. </li>
+							   <div class="code-container">
+								  <pre>
+									<code>sudo apt install mercury-recommended</code>
+								  </pre>
+								</div>
+ 						 	Para más información, haga click <a href="https://www.mercurylang.org/download/release.html" target="blank">aquí</a>
 						</ul>
 					</section>
 
@@ -128,9 +158,9 @@
 					</section>
 					<section id="seven">
 						<p>Creado por:</p>
-						<p style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Juan Castelblanco <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ivan Cepeda <br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Camilo Rodriguez</p>
+						<p style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Juan Castelblanco <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ivan Cepeda <br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Camilo Rodriguez <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stevan Valbuena <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Samuel Salgado <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Diego Bulla</p>
 					</section>
-
+					
 
 				<!-- Four -->
 				<!--
