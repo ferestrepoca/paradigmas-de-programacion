@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Tutorial Erlang" />
+    <link rel="stylesheet" href="Erlang.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" type="image/png" href="imagenes/Erlang_Icon.png"/>
+    <title>Tutorial Erlang</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+        <img
+          src="imagenes/Erlang_logo.png"
+          alt="imagen erlang"
+        />
+        <!-- <a href="document/Scala.pdf">
+          <div class="header__button">PRESENTACIÓN</div>
+        </a> -->
+        <a href="https://www.erlang.org/">
+          <div class="header__button">SITIO OFICIAL</div>
+        </a>
+        <a
+          href="https://www.tutorialspoint.com/erlang/index.htm "
+        >
+          <div class="header__button">MATERIAL DE APOYO</div>
+        </a>
+        <a
+          href="https://www.hackerrank.com/domains/fp"
+        >
+          <div class="header__button">EJERCICIOS PRÁCTICOS</div>
+        </a>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="content__section">
+        <h2 class="content__section-title">Presentaciones</h2>
+        <ul>
+          <li>
+            <a
+              href="documentos/ERLANG_Tutorial.pdf"
+              target="_blank"
+              style="color: #56070c; font-weight: 900"
+              >Presentación 2023-1</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="content__section">
+        <h2 class="content__section-title">Generalidades del lenguaje</h2>
+        <ul>
+          <li>
+            Diseñado y creado por la compañía Ericsson el 1986 y cedido como código de uso libre en 1998. Inicialmente concebido para aplicaciones de telefonía.
+          </li>
+          <li>Erlang está diseñado y concebido para: sistemas distribuidos, sistemas en tiempo real, sistemas tolerantes a fallos y aplicaciones de alta disponibilidad y de uso continuo.
+          </li>
+          <li>
+            Se distingue por manejar datos inmutables, contar con pattern matching y, sobre todo, simplificar la creación, administración y comunicación de procesos.
+          </li>
+          <li>
+            La filosofía “let it crash" de Erlang consiste en permitir que los errores ocurran y sean manejados adecuadamente para lograr sistemas más robustos y tolerantes a fallos.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content__section">
+        <h2 class="content__section-title">Instalación</h2>
+        Es posible instalar Erlang en cualquier sistema operativo, a continuación se dan las indicaciones de cómo hacerlo para cada uno:
+        <ul>
+          <li>
+            Windows:</br>
+            <img src="imagenes/InstalacionWindows.png" />
+          </li>
+          <li>
+            Linux & macOS - Pre-built:</br>
+            <img src="imagenes/InstalacionMacOS.png" />
+          </li>
+          <li>
+            Código fuente:</br>
+            <img src="imagenes/InstalacionCodigoFuente.png" />
+          </li>
+        </ul>
+        Además, es posible hacer uso del lenguaje en los siguientes IDEs:
+        <ul>
+          <li>
+            Intellij IDEA: Erlang Plugin
+          </li>
+          <li>
+            VS Code: Erlang/OTP Erlang-LS
+          </li>
+        </ul>
+      </div>
+
+      <div class="content__section">
+        <h2 class="content__section-title">Tour por Erlang</h2>
+        <ul>
+          <li><b>Introducción</b></li>
+          <ul>
+            <li>
+              Lenguaje funcional: Los programas son composiciones de funciones.
+            </li>
+            <li>
+              Manejo de tipos dinámicos: Los tipos de las variables dependen del contenido.
+            </li>
+            <li>
+              Paso de mensajes: Los procesos se pueden comunicar en red a través de paso de mensajes
+            </li>
+            <li>
+              Lenguaje modular:
+              <ul>
+                <li>
+                  Un módulo por fichero, estos deben tener el mismo nombre.
+                  </br>
+                  Es necesario definir el nombre, los ficheros que importa, las funciones que exporta y su implementación.
+                </li>
+                <li>
+                  Se pueden indicar otros metadatos como autor.
+                </li>
+                <li>
+                  Cada módulo se compila por separado
+                </li>
+                <li>
+                  Las funciones se invocan desde el exterior usando la siguiente sintaxis modulo:func(args)
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <li><b>Tipos de datos</b></li>
+          <ul>
+            <li>
+              Enteros: Los enteros se representan simplemente escribiendo el número, ya sea positivo o negativo.
+            </br>
+            <img src="imagenes/Enteros.png"/>
+            </li>
+            <li>
+              Flotantes: Los flotantes se representan escribiendo el número con un punto decimal
+            </br>
+            <img src="imagenes/Flotantes.png"/>
+            </li>
+            <li>
+              Átomos: Se escriben iniciando con una minúscula o entre comillas simples si contienen caracteres especiales
+            </br>
+            <img src="imagenes/Atomos.png"/>
+            </li>
+            <li>
+              Strings: Las cadenas de caracteres se representan entre comillas dobles
+            </br>
+            <img src="imagenes/Strings.png"/>
+            </li>
+            <li>
+              Tuplas: Las tuplas se representan escribiendo sus elementos entre llaves
+            </br>
+            <img src="imagenes/Tuplas.png"/>
+            </li>
+            <li>
+              Listas: Se representan escribiendo sus elementos entre corchetes:
+            </br>
+            <img src="imagenes/Listas.png"/>
+            </li>
+            <li>
+              Mapas: Los mapas son pares llave-valor y se representan entre llaves iniciando con #.
+            </br>
+            <img src="imagenes/Mapas.png"/>
+            </li>
+            <li>
+              Record: Similar a una struct en C. Se declaran con la palabra reservada record              
+            </br>
+            <img src="imagenes/Record.png"/>
+            </li>
+            <li>
+              Booleanos: Pueden tener los valores de true o false.
+            </br>
+            <img src="imagenes/Booleanos.png"/>
+            </li>
+          </ul>
+          <li><b>Variables</b></li>
+          <ul>
+            <li>
+              Empiezan con mayúscula:
+              </br>
+              <img src="imagenes/Variables.png"/>
+            </li>
+            <li>
+              Anónima: Se usa el símbolo '_' para denotar variables anónimas
+            </li>
+            <li>
+              Asignación No-destructiva: Las variables solo se pueden asignar una única vez.
+            </li>
+          </ul>
+          <li><b>Funciones</b></li>
+          <ul>
+            <li>
+              Posee un número fijo de parámetros. Si definimos otra función con el mismo nombre y distinto número de parámetros, se trata de una función distinta.
+            </li>
+            <li>En Erlang, no se utiliza explícitamente la palabra clave "return". En su lugar, el valor de la última expresión evaluada en una función se considera el resultado de esa función.</li>
+            <li>
+              Maneja guardas, que son expresiones lógicas opcionales que se evalúan antes de que se ejecute la cláusula. Si la guarda se evalúa como verdadera, se ejecuta la cláusula correspondiente. Si es falsa, Erlang pasará a la siguiente cláusula en la definición de la función.
+            </br>
+            <img src="imagenes/Guardas.png"/>
+            </li>
+            <li>
+              Cuenta con uso de cláusulas, que proporcionan una forma de manejar diferentes casos o condiciones en una función y especifican qué debe hacer la función cuando se cumplen ciertos patrones o condiciones.
+            </br>
+            <img src="imagenes/Clausulas.png"/>
+            </li>
+            <li>
+              Tiene patrones, que definen la estructura y los valores que se esperan en los argumentos de entrada de la función. Pueden contener variables, literales o combinaciones de ellos. Los patrones se utilizan para hacer coincidir los argumentos de la función con la cláusula correspondiente.
+            </br>
+            <img src="imagenes/Patrones.png"/>
+            </li>
+            <li>
+              Y por último las expresiones, que especifican el resultado que se devuelve cuando la cláusula es evaluada correctamente. Pueden ser cualquier expresión válida en Erlang, como una operación aritmética, una llamada a otra función, una asignación de variables, etc.            </br>
+              </br>
+              <img src="imagenes/Expresiones.png"/>
+            </li>
+          </ul>
+          <li><b>Estructuras de control</b></li>
+          <ul>
+            <li>If-Else: La estructura if-else nos permite tomar decisiones basadas en una condición. 
+            </br>
+              Su sintaxis es la siguiente:
+            </br>
+            <img src="imagenes/IfElse.png"/>
+            </br>
+            En esta estructura, se evalúan las condiciones en orden hasta encontrar una que sea verdadera. La expresión asociada a esa condición se evalúa y se devuelve como resultado. Si ninguna condición es verdadera, se evalúa la expresión asociada a true. Esta estructura se utiliza para realizar bifurcaciones condicionales.
+            </li>
+            <li>Case: La estructura case nos permite evaluar múltiples patrones y ejecutar diferentes acciones en función de esos patrones. 
+            </br>
+              La sintaxis es la siguiente:
+            </br>
+            <img src="imagenes/Case.png"/>
+            </br>
+            En esta estructura, la expresión se evalúa y se compara con cada patrón en orden. Cuando se encuentra un patrón que coincide, se ejecuta la acción asociada a ese patrón. Si ningún patrón coincide, se produce un error. El ‘case ‘se utiliza para realizar evaluaciones múltiples y tomar diferentes acciones en función de los resultados.
+            </li>
+            <li>Iteración mediante recursividad: Muchas definiciones pueden expresarse de forma recursiva mediante:
+              <ul>
+                <li>
+                  Un caso base.
+                </li>
+                <li>
+                  Un caso general, que se define mediante una expresión con casos más simples.
+                </li>
+              </ul>
+            </br>
+            Se expresan directamente como una colección de cláusulas (el caso general al final). Toda cláusula termina en ‘; ’, excepto la última, que finaliza en ‘.’. En Erlang no existen ni el while ni el for, en este lenguaje de programación se fomenta el uso de la recursión en lugar de bucles iterativos, ya que es una forma más natural y eficiente de repetir acciones. Con la recursión, una función se llama a sí misma hasta que se cumpla una condición de salida.
+            </br>
+            A continuación se muestra un ejemplo de iteración mediante recursividad para hacer el cálculo del factorial de un número:
+            </br>
+            <img src="imagenes/Recursion.png"/>
+            </li>
+          </ul>
+          <li><b>Funciones Built-In</b></li>
+          Las funciones Built-In, también conocidas como funciones incorporadas o predefinidas, son funciones que están integradas en el propio lenguaje Erlang y están disponibles sin necesidad de importar librerías externas.
+          </br>
+          </br>
+          Estas funciones proporcionan una amplia variedad de características y funcionalidades útiles para el desarrollo de aplicaciones en Erlang.
+          </br>
+          </br>
+          Algunas características comunes de las funciones Built-In en Erlang:
+          <ul>
+            <li>
+              Funciones matemáticas.
+            </li>
+            <li>
+              Funciones de listas.
+            </li>
+            <li>
+              Funciones de cadenas de caracteres.
+            </li>
+            <li>
+              Funciones de manejo de tiempos.
+            </li>
+          </ul>
+          <li><b>Reducción y unificación</b></li>
+          <ul>
+            <li>
+              Actualizaciones: En Erlang, se utiliza un enfoque llamado "cambio sobre estructuras" para manejar las actualizaciones de software. Esto significa que, en lugar de reemplazar completamente una estructura de datos cuando se realiza una actualización, se comparten la mayor parte de los elementos entre diferentes versiones. 
+              </br>
+              Esto es posible debido a la inmutabilidad de los datos en Erlang.
+            </li>
+            <li>
+              Semántica write-once: En Erlang, se sigue una semántica “write-once", lo que significa que una vez que un valor se asigna a una variable, no se puede modificar. 
+            </br>
+              Esta propiedad de inmutabilidad simplifica el razonamiento sobre el comportamiento de un programa, ya que se evitan los efectos secundarios inesperados causados por cambios en los valores de las variables.
+            </li>
+            <li>  
+              Pattern-matching: En Erlang, el pattern-matching es una característica poderosa que permite hacer coincidir valores con patrones específicos. 
+            </br>
+              Esto permite una mayor flexibilidad en la concordancia de patrones y la toma de decisiones basada en condiciones específicas.
+            </li>
+            <li>  
+              Higher-order functions: En Erlang, las funciones son ciudadanos de primera clase, lo que significa que se pueden pasar como argumentos a otras funciones y también se pueden devolver como resultados. 
+            </br>
+            Esto se conoce como funciones de orden superior o “higher-order functions". Este concepto permite una programación más modular y flexible, ya que las funciones se pueden combinar y componer de manera dinámica.             </li>
+          </ul>
+        </ul>
+      </div>
+      <div class="content__section">
+        <h2 class="content__section-title">Particularidades de Erlang</h2>
+        Erlang es un lenguaje de programación funcional que soporta concurrencia, por lo que es particularmente útil para aplicaciones donde se deba:
+        <ul>
+          <li>
+            Gestionar un gran número de actividades simultáneas.
+          </li>
+          <li>
+            Ser fácilmente distribuible a través de una red de ordenadores.
+          </li>
+          <li>
+            Ser tolerante a fallos de software y hardware.
+          </li>
+          <li>
+            Ser escalable.
+          </li>
+          <li>
+            Poder actualizarse y reconfigurar fácilmente sin tener que detenerse.
+          </li>
+          <li>
+            Responder a los usuarios dentro de unos plazos estrictos.
+          </li>
+        </ul>
+      </br>
+        Es importante destacar que en la concurrencia para Erlang cada hilo que se crea se denomina proceso.
+        <ul>
+          <li>
+            <b>Creación de procesos:</b>
+            </br>
+            Se crea un nuevo proceso concurrente que evalúa funciones. El nuevo proceso se ejecuta en paralelo con la llamada.
+            </br>
+            Dependiendo de la forma en la que se defina la función a evaluar, se debe usar alguna de las siguientes dos sentencias:
+            </br>
+            <img src="imagenes/Procesos1.png"/>
+            </br>
+            <img src="imagenes/Procesos2.png"/>
+          </li>
+          <li>
+            <b>Comunicación entre hilos:</b>
+            </br>
+            Para la comunicación entre hilos existen dos sentencias, una para enviar el mensaje y otra para recibir.
+            <ul>
+              <li>
+                “!” envía un mensaje al proceso con identificador Pid. El envío de mensajes es asíncrono.
+              </br>
+                <img src="imagenes/Procesos1.png"/>
+              </li>
+              <li>
+                “Receive…end” recibe un mensaje que ha sido enviado a un proceso. 
+              </br>
+                <img src="imagenes/Procesos2.png"/>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content__section">
+        <h2>Contenido adicional</h2>
+        <ul>
+          <li>
+            <a 
+            href="http://nbviewer.jupyter.org/url/ferestrepoca.github.io/paradigmas-de-programacion/progconcurrente/tutoriales/erlang/documentos/Tutorial-Erlang-4.ipynb">
+            Notebook trabajado en el periodo 2016-1
+          </a>
+          </li>
+          <li>
+            <a 
+            href="http://nbviewer.jupyter.org/url/ferestrepoca.github.io/paradigmas-de-programacion/progconcurrente/tutoriales/erlang/documentos/Erlang_Notebook_Lenguajes2020_2.ipynb">
+            Notebook trabajado en el periodo 2020-2
+          </a>
+          </li>
+          <li>
+            <a 
+            href="http://nbviewer.jupyter.org/url/ferestrepoca.github.io/paradigmas-de-programacion/progconcurrente/tutoriales/erlang/documentos/EjemplosTutorialErlang.ipynb">
+            Notebook trabajado en el periodo 2023-1
+          </a>
+          </li>
+        </ul>
+      </div>
+      <footer class="footer">
+        <p>
+          <br/>
+          Julián Alexander Manosalva Manrique - Juan Sebastián Pachón Carvajal - David Alexander Zambrano Bohórquez
+        </p>
+        <span>© Copyright UNAL - 2023</span>
+      </footer>
+    </div>
+  </body>
+</html>
