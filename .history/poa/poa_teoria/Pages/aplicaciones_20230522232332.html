@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+        <title>Programación Orientada a Aspectos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="../stylesheets/normalize.css"
+            media="screen"
+        >
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="../stylesheets/stylesheet.css"
+            media="screen"
+        >
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="../stylesheets/github-light.css"
+            media="screen"
+        >
+    </head>
+    <body>
+        <section class="page-header">
+            <div class="wrapper">
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+            </div>
+            <div></div>
+            <section class="page-menu">
+                <h2 class="project-tagline"></h2>
+                <a href="../index.html" class="btn">Inicio</a>
+                <a class="btn btn-actual">Historia</a>
+                <a href="filosofia.html" class="btn">Filosofía del Paradigma</a>
+                <a href="evolucion.html" class="btn">Conceptos Claves</a>
+                <a href="ventajasydesventajas.html" class="btn">Ventajas y desventajas</a>
+                <a href="lenguajes.html" class="btn">Lenguajes</a>
+                <a href="aplicaciones.html" class="btn">Aplicaciones</a>
+                <a href="presentaciones.html" class="btn">Presentaciones</a>
+                <a href="practicas.html" class="btn">Práctica</a>
+                <a href="ejemplos.html" class="btn">Ejemplos</a>
+            </section>
+            <h1 class="project-name">Programación Orientada a Aspectos</h1>
+        </section>
+        <section class="main-content">
+            <h1>
+                <b> APLICACIONES DE ESTE PARADIGMA</b>
+            </h1>
+            <UL type="disk">
+                <li>
+                    <h2>
+                        <ins>Manejo de transacciones</ins>
+                    </h2>
+                    <p align="justify"> Una transaccion en un sistema de gestion de bases de datos (SGBD), es un conjunto de ordenes que se ejecutan formando una unidad de trabajo, es decir, una forma indivisible o atomica.</p>
+                    <p align="justify">La estructura de una transacción usualmente viene dada según el modelo de la transacción, estas pueden ser planas (simples) o anidadas.</p>
+                    </br>
+                    <img
+                        width="500"
+                        height="300"
+                        src="../Images/trans2.webp?raw=true"
+                        hspace="150"
+                    ></img>
+                    <p align="justify">
+                        El Manejo Transaccional es uno de los temas cruciales en cuanto a requerimientos para
+                aplicaciones empresariales. Esta motivación surge debido a que en todo sistema empresarial
+                nos interesa mantener la integridad de nuestra información, con esto en mente es que surge el
+                tema de transacciones.
+                    </p>
+                    <p align="justify">
+                        En la figura podemos observar un método de servicio que ejecuta llamadas a más de un DAO,
+                y a su vez cada DAO modifica el estado de la base de datos al escribir y/o modificar su
+                información.
+                    </p>
+                    <p align="justify">
+                        El objetivo de una transacción es ejecutar todas las líneas de código de nuestro método y
+                guardar finalmente la información en un repositorio, por ejemplo en nuestro caso, una base de
+                datos. Esto se conoce como commit de nuestra transacción.
+                    </p>
+                    <p align="justify">
+                        Si por alguna razón algo fallara en nuestro método de Servicio, se daría marcha atrás a los
+                cambios realizados en la base de datos. Esto se conoce como rollback.
+                    </p>
+                    <p align="justify">
+                        Lo anterior permite que nuestra información, ya sea que se una única base de datos o no, esté
+                íntegra, y no exista posibilidad de datos corruptos por errores o fallas en la ejecución de
+                nuestros métodos.
+                    </p>
+                    <p align="justify"> Spring AOP e Hibernate han implementado el manejo transaccional a partir de la Programación Orientada a Aspectos debido al acceso de datos y funciones transversales</p>
+                    </br>
+                </li>
+                <LI>
+                    <h2>
+                        <ins>Sincronización</ins>
+                    </h2>
+                    <p align="justify"> La sincronización expuesta aquí se basa en los procesos y nos referimos a ella por el hecho de que esta otorga varias técnicas de coordinación de hilos que se ejecutan en forma simultánea y procesos para poder completar una determinada tarea con el objetivo de que estas se ejecuten en un orden establecido y que no se dé lugar a eventos inesperados.</p>
+                    <p align="justify">Mencionamos a continuación en forma general los tipos de sincronización existentes: Barrier, Bloqueo/Semáforo (Lock/Semaphore), Unión de hilos (Thread join), Exclusión Mutua (Mutex), Monitores (Monitors), Sincronización no bloqueante (Non-blocking synchronization), Rendezvous, Contadores de eventos y secuenciadores (Event counters and sequencers).</p>
+                </p>
+                <p align="justify">Con esto nos ahorramos el hecho de colocar en cada método la palabra clave lock, el cual garantiza la ejecución de una sección crítica de código o exclusión mutua también denominada, una sección crítica de código es aquella que no permite ser ejecutada al mismo tiempo, debido a que puede darse el caso de que haya lectura sucia o que al mismo tiempo dos o más hilos de ejecución traten de modificar el valor de una variable, por lo tanto se bloquea dicha sección de código en forma exclusiva en un ambiente concurrente, no permitiendo de esta forma a que otro hilo trate de ejecutar esa sección crítica en un instante dado.</p>
+                <p align="justify">Además al evitar repetir esta palabra clave nos aseguramos de no repetir código por un lado y por otro de separar la funcionalidad básica del aspecto de sincronización.</p>
+                <p align="justify">En la definición del aspecto de sincronización expuesto más arriba, podemos decir que existen dos métodos, el primero llamado OnEntry el cual habilita la entrada a la ejecución del código de sección crítica y se utiliza la clase Monitor que provee un mecanismo para sincronizar el acceso a los objetos y el segundo método llamado OnExit, que se usa para realizar el abandono de la sección crítica de la ejecución del código, por lo tanto se invoca al método Exit de la clase Monitor.</p>
+                <img
+                    width="500"
+                    height="400"
+                    src="../Images/sincro.webp?raw=true"
+                    hspace="150"
+                ></img>
+                </br>
+                </br>
+            </LI>
+            <LI>
+                <h2>
+                    <ins>Perfiles</ins>
+                </h2>
+                <p align="justify"> Tomaremos como ejemplo la Extensión de UML usando Perdiles:</p>
+                <p align="justify">
+                    En la actualidad, UML (Unified Modeling Language) es uno de los lenguajes de modelado más
+                utilizados para el diseño de sistemas. Este lenguaje permite especificar, construir, visualizar y
+                documentar artefactos de un sistema de software de manera sencilla.
+                </p>
+                <p align="justify">
+                    Muchas veces UML es demasiado general y no es lo suficientemente expresivo para modelar
+                elementos específicos de un dominio particular. En estas situaciones es necesario, extender UML.
+                </p>
+                <p align="justify">
+                    Por esta razón, UML estándar incluyó un mecanismo para extender y adaptar UML a diferentes
+                dominios y plataformas: el “Perfil UML” (“UML Profile”)
+                </p>
+                <p align="justify">
+                    Para realizar la extensión UML 2.0  incluyó la definición del paquete “Profile”. Éste
+                paquete incluye los mecanismos para redefinir estereotipos, valores etiquetados y restricciones.
+                </p>
+                <p align="justify">
+                    La propuesta de extensión del perfil, no permite modificar al metamodelo existente, sino adaptar al
+                metamodelo existente, agregando constructores propios para un dominio particular.
+                </p>
+                <p align="justify">
+                    Los estereotipos son especificados como metaclases, los valores etiquetados como metaatributos y
+                los perfiles como una clase de paquete.
+                </p>
+                </br>
+            </LI>
+            <LI>
+                <h2>
+                    <ins>Manejo de Memoria</ins>
+                </h2>
+                <p align="justify"> Ya que la principal tarea de la memoria consiste en llevar un registro de las partes de memoria que se estén utilizando y las que no , con el fin de asignar espacio en memoria a los procesos cuando éstos la necesiten y liberándola cuando terminen, así como administrar el intercambio entre la memoria principal y el disco. El uso de este paradigma de programación ahorra el uso de memoria al no guardar multiples veces las mismas funciones y código en diferentes clases, sino que al aprovechar el fundamento de su paradigma, accede a esta información de manera más eficiente a un sólo bloque de código y no necesita tener código de ejecución sino que es ejecutado bajo ciertas reglas.</p>
+                <LI>
+                    <h2>
+                        <ins>Control de Acceso o Seguridad</ins>
+                    </h2>
+                    <p align="justify"> Debido al uso eficiente del paradigma dentro del uso de las cuentas y perfiles, también afecta directamente el uso de los controles de acceso y la seguridad. Ya que la aplicación se mantiene generalmente igual para cada usuario, solamente difiere su acceso (o no acceso). Por lo que sería rebundante replicar código para cada sesión o la certificación o no del usuario.</p>
+                    <p align="justify">Además, al haber solamente un bloque de código de datos importantes y confidenciales, habrá menos riesgo de encontrar dichos datos. Y es más sencillo controlar el acceso a esos datos si solamente están confinados a un control de acceso y no de manera múltiple.</p>
+                    </br>
+                </LI>
+                <LI>
+                    <h2>
+                        <ins>Logging</ins>
+                    </h2>
+                    <p align="justify"> De manera similar al Control de Acceso, el
+                        <i>Logging</i> es una forma menos generalizada, pero cumple con las mismas características.
+                    </p>
+                    </br>
+                </LI>
+                <LI>
+                    <h2>
+                        <ins>Manejo de Excepciones</ins>
+                    </h2>
+                    <p align="justify"> A través del enfoque de AOP, es posible interceptar las llamadas a los métodos y determinar cuando estos han generado una excepción para posteriormente aplicar la política de manejo más apropiada. Estas políticas puede ser parte del propio aspecto de gestión de excepciones. Como en el caso del registro de eventos, la implementación de este aspecto buscará reducir su implementación (y aplicación) a un atributo que decore el método cuyas posibles excepciones se quieren gestionar.</p>
+                    <b>Un Apropiado Soporte</b>
+                    <p align="justify">Al crear un mecanismo de gestión y manejo de excepciones, no deberíamos partir desde cero, ya que existe un montón de excelentes productos y frameworks que nos simplificarían esta tarea. Para este caso, emplearé los Microsoft Libraries, en particular el Exception Handling Application Block; sin embargo el enfoque de AOP y de este framework que he venido presentado permite emplear cualquier otra librería.</p>
+                    <b>Implementación</b>
+                    <p align="justify">Es importante que si no han leido las primeras partes de esta serie de artículos, aprovechen este momento para hacerlo, sobre todo la parte 1. A partir de este momento mis explicaciones considerarán que el conocimiento y los detalles técnicos explicados en esa parte ya son conocidos.</p>
+                    <p align="justify">El primer paso es crear el atributo (Attribute) que decorará las clases/interfaces para capturar su ejecución e inyectar el código de manejo de excepciones. Nuestro atributo se llamará ExceptionHandlingAttribute y extiende de InterceptableAttribute, la clase base en el framework de AOP que sirve para definir atributos de intercepción.</p>
+                </LI>
+                </br>
+                <LI>
+                    <h2>
+                        <ins>Patrones de Diseño</ins>
+                    </h2>
+                    <p align="justify"> Un patrón de diseño sistemáticamente nombra, motiva y explica un diseño general que aborda un problema de diseño recurrente en sistemas orientados a objetos. Describe el problema, la solución, cuándo aplicar la solución y sus consecuencias. Muchos patrones son transversales. Los patrones pueden afectar a múltiples clases, también pueden ser invasivos y difíciles de (re) usar. AOP localiza el código para un patrón de diseño, hace que los patrones sean más ligeros, más flexibles y más fáciles de (re) utilizar.</p>
+                </LI>
+                </br>
+                <LI>
+                    <h2>
+                        <ins>Monitoreo del Rendimiento</ins>
+                    </h2>
+                    <p align="justify"> Las aplicaciones modernas suelen ser sistemas complejos, multiproceso y distribuidos que utilizan muchos componentes de terceros. En tales sistemas, es difícil detectar (y mucho menos aislar) las causas de los problemas de rendimiento o confiabilidad, especialmente en la producción. Un buen rendimiento es un requisito importante desde el punto de vista comercial. Para cumplir con este requisito, se requiere perfilar la aplicación durante las fases de desarrollo y monitorear el rendimiento después de desplegar la aplicación. AOP permite definir pointcuts que coincidan con los muchos join points en los que se desea supervisar el rendimiento. Luego, se escriben advices que actualicen las estadísticas de rendimiento, los cuales pueden invocarse automáticamente cada vez que se entra o sale de uno de los join points.</p>
+                </LI>
+                </br>
+                <li>
+                    <h2>
+                        <ins>Software que emplea programación orientada a aspectos.</ins>
+                    </h2>
+                    </br>
+                    <b>WebSphere Application Server (WAS)</b>
+                    <p align="justify">
+                        Es una plataforma de IBM que actúa como un servidor de aplicaciones diseñado para configurar, operar e integrar aplicaciones empresariales.
+				WebSphere se distribuye en distintas ediciones donde cada edición soporta diferentes funcionalidades y usan AspectJ internamente para
+				aislar las funcionalidades asociadas a cada edición.
+                    </p>
+                    </br>
+                    <b>JBoss Application Server (JBoss AS)</b>
+                    <p align="justify">
+                        Es un servidor de aplicaciones Java EE. Es un software libre y de código abierto, como está basado en java se puede usar en cualquier 
+				sistema operativo donde haya una máquina virtual de java. El núcleo de JBoss está integrado con programacion orientada a aspectos donde 
+				se usa principalmente para desplegar servicios tales como seguridad y administración de transacciones.
+                    </p>
+                    </br>
+                    <b>Oracle TopLink</b>
+                    <p align="justify">
+                        Es un framework para almacenar objetos Java en una base de datos relacional (Object-Relational mapping) o convertir estos objetos en formato 
+				XML. TopLink logra altos niveles de persistencia y transparencia usando Spring AOP (Componente del framework Spring usado para  aplicar AOP).
+                    </p>
+                    </br>
+                    <b>The a-kernel Project</b>
+                    <p align="justify">
+                        El objetivo del proyecto a-kernel es determinar si la programación orientada a aspectos se puede utilizar para mejorar la modularidad del sistema operativo y, por lo tanto, reducir la complejidad y la fragilidad asociadas con la implementación del sistema.
+                    </p>
+                    </br>
+                    <b>FACET</b>
+                    <p align="justify">
+                        El objetivo del proyecto FACET es investigar el desarrollo de middleware personalizable utilizando métodos de programación orientados a aspectos.
+			Se espera que el uso de aspectos en middleware tendrá los siguientes beneficios:
+                        <ul>
+                            <li>Mejor modularización de características utilizando aspectos</li>
+                            <li>Reducción del código de middleware mediante la activación selectiva de funciones</li>
+                        </ul>
+                    </p>
+                </p>
+            </li>
+            </br>
+            </br>
+            <li>
+                <h2>
+                    <ins>Aplicacion en frameworks.</ins>
+                </h2>
+                </br>
+                <b>
+                    <h1>Spring AOP</h1>
+                </b>
+                <li>
+                    <h3>
+                        <ins>Weaving</ins>
+                    </h3>
+                    <p align="justify">
+                        Usa Runtime weaving durante la ejecución usando proxy dinámico JDK o proxy CGLIB
+                    </p>
+                    </br>
+                    <li>
+                        <h3>
+                            <ins>Estrucutra interna y aplicación</ins>
+                        </h3>
+                        <p align="justify">
+                            Para implementar aspectos en los objetos de destino, tendremos que crear proxies de ese objetos tipo poa . Esto se logra usando una de dos maneras:
+                            <ul>
+                                <li>
+                                    Proxy dinámico JDK: la forma preferida para Spring AOP. Siempre que el objeto de destino implemente incluso una interfaz, se utilizará el proxy dinámico JDK
+                                    <li>
+                                        Proxy CGLIB: si el objeto de destino no implementa una interfaz, se puede usar el proxy CGLIB
+                                    </ul>
+                                    <img
+                                        width="500"
+                                        height="400"
+                                        src="../Images/springaop-process.webp?raw=true"
+                                        hspace="150"
+                                    ></img>
+                                </p>
+                                </br>
+                                <li>
+                                    <h3>
+                                        <ins>JoinPoints</ins>
+                                    </h3>
+                                    <p align="justify">
+                                        No puede aplicarse a clases de tipo final, a metodos estaticos o finales porque no se pueden sobrecargar y resultaria en una runtime excepcion
+                                    </p>
+                                    </br>
+                                    <li>
+                                        <h3>
+                                            <ins>Simplicidad</ins>
+                                        </h3>
+                                        <p align="justify">
+                                            Spring AOP es más simple porque no introduce ningún compilador o weaver adicional en nuestro proceso de compilación. Utiliza el weaver en tiempo de ejecución y, por lo tanto, se integra a la perfección con nuestro proceso de construcción habitual. Aunque parece simple, solo funciona con beans administrados por Spring.
+                                        </p>
+                                        </br>
+                                        <b>
+                                            <h1>AspectJ</h1>
+                                        </b>
+                                        <li>
+                                            <h3>
+                                                <ins>Weaving</ins>
+                                            </h3>
+                                            <p align="justify">
+                                                Usa 3 tipos diferentes de weaving:
+                                                <ul>
+                                                    <li>
+                                                        <h4>
+                                                            <ins>Weaving en tiempo de compilación:</ins>
+                                                        </h4>
+                                                        <p align="justify">
+                                                            Toma como entrada tanto el código fuente de nuestro aspecto como de nuestra aplicación y produce una clase de archivos tejidos como salida.
+                                                        </p>
+                                                        </br>
+                                                        <li>
+                                                            <h4>
+                                                                <ins>Weaving post-compilación:</ins>
+                                                            </h4>
+                                                            <p align="justify">
+                                                                Se conoce como weaving binario, se usa hacerle weave a las clases ya existentes y archivos JAR en conjunto con nuestros aspectos.
+                                                            </p>
+                                                            </br>
+                                                            <li>
+                                                                <h4>
+                                                                    <ins>Weaving en tiempo de carga:</ins>
+                                                                </h4>
+                                                                <p align="justify">
+                                                                    Igual que en el weaving binario, con la diferencia que ocurre hasta que la clase sea cargada a la JVM
+                                                                </p>
+                                                                </br>
+                                                            </ul>
+                                                        </p>
+                                                        <li>
+                                                            <h3>
+                                                                <ins>Estructura interna y aplicación</ins>
+                                                            </h3>
+                                                            <p align="justify">
+                                                                Las clases son compiladas directamente con los aspectos
+                                                            </p>
+                                                            </br>
+                                                            <li>
+                                                                <h3>
+                                                                    <ins>JoinPoints</ins>
+                                                                </h3>
+                                                                <p align="justify">
+                                                                    Los tipos de joinpoints que soporta AspectJ son:
+                                                                    <ul>
+                                                                        <li>
+                                                                            <h4>
+                                                                                <ins>Llamada a metodos</ins>
+                                                                            </h4>
+                                                                            </br>
+                                                                            <li>
+                                                                                <h4>
+                                                                                    <ins>Ejecución de Método</ins>
+                                                                                </h4>
+                                                                                </br>
+                                                                                <li>
+                                                                                    <h4>
+                                                                                        <ins>Llamada de constructor</ins>
+                                                                                    </h4>
+                                                                                    </br>
+                                                                                    <li>
+                                                                                        <h4>
+                                                                                            <ins>Ejecución de constructor</ins>
+                                                                                        </h4>
+                                                                                        </br>
+                                                                                        <li>
+                                                                                            <h4>
+                                                                                                <ins>Ejecución de inicializador estático</ins>
+                                                                                            </h4>
+                                                                                            </br>
+                                                                                            <li>
+                                                                                                <h4>
+                                                                                                    <ins>Inicialización de objeto</ins>
+                                                                                                </h4>
+                                                                                                </br>
+                                                                                                <li>
+                                                                                                    <h4>
+                                                                                                        <ins>Asignación de campo</ins>
+                                                                                                    </h4>
+                                                                                                    </br>
+                                                                                                    <li>
+                                                                                                        <h4>
+                                                                                                            <ins>Ejecución del hanlder</ins>
+                                                                                                        </h4>
+                                                                                                        </br>
+                                                                                                    </ul>
+                                                                                                    Hay que aclarar que AspectJ realiza el proceso de inyeccion de aspectos en el codigo justo antes de cuando se vaya a ejecutar
+                                                                                                </p>
+                                                                                                </br>
+                                                                                                <li>
+                                                                                                    <h3>
+                                                                                                        <ins>Simplicidad</ins>
+                                                                                                    </h3>
+                                                                                                    <p align="justify">
+                                                                                                        Para usar AspectJ, estamos obligados a presentar el compilador de AspectJ (ajc) y volver a empaquetar todas nuestras bibliotecas (a menos que cambiemos el weaving posterior a la compilación o al tiempo de carga).
+
+Esto es más complicado, porque presenta AspectJ Java Tools (que incluye un compilador (ajc), un depurador (ajdb), un generador de documentación (ajdoc), un navegador de estructura de programa (ajbrowser)) que debe integrarse a nuestro IDE o a la herramienta de compilación.
+                                                                                                    </p>
+                                                                                                    </br>
+                                                                                                </li>
+                                                                                            </UL>
+                                                                                            <footer class="site-footer">
+                                                                                                <span class="site-footer-owner">
+                                                                                                    <a href="https://github.com/ProgramacionOrientadaAspectos/POA_teoria">Programacion Orientada a Aspectos</a> is maintained by
+                                                                                                    <a href="https://github.com/ProgramacionOrientadaAspectos">ProgramacionOrientadaAspectos</a>.
+                                                                                                </span>
+                                                                                                <span class="site-footer-credits">This page was created by Diego Rojas, Gustavo Galvis y Dorian Tovar.</span>
+                                                                                            </footer>
+                                                                                        </section>
+                                                                                        <hr size="8px" color="#151157">
+                                                                                    </body>
+                                                                                </body>
+                                                                            </html>

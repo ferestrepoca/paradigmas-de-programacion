@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>Programación Orientada a Aspectos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/github-light.css" media="screen">
+</head>
+<body>
+
+<section class="page-header">
+    <h1 class="project-name">Programación Orientada a Aspectos</h1>
+    <h2 class="project-tagline"></h2>
+
+	<a href="../index.html" class="btn">Inicio</a>
+	<a href="historia.html" class="btn">Historia</a>
+	<a href="filosofia.html" class="btn">Filosofía del Paradigma</a>
+	<a class="btn btn-actual">Conceptos Claves</a>
+	<a href="ventajasydesventajas.html" class="btn">Ventajas y desventajas</a>
+	<a href="lenguajes.html" class="btn">Lenguajes</a>
+	<a href="aplicaciones.html" class="btn">Aplicaciones</a>
+	<a href="presentaciones.html" class="btn">Presentaciones</a>
+	<a href="practicas.html" class="btn">Práctica</a>
+	<a href="ejemplos.html" class="btn">Ejemplos</a>
+</section>
+
+<section class="main-content">
+      <h1>
+<a id="programaciÓn-orientada-a-aspectos" class="anchor" href="#programaci%C3%93n-orientada-a-aspectos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PROGRAMACIÓN ORIENTADA A ASPECTOS.</h1>
+
+<h2>
+<a id="conceptos-claves" class="anchor" href="#conceptos-claves" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CONCEPTOS CLAVES</h2>
+
+<h3>
+    <a id="concern" class="anchor" href="#concern" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>CONCEPTO (Concern):</strong>
+</h3>
+
+<p align="justify">
+    Es un requerimiento específico que debe ser implementado para satisfacer las necesidades del sistema [1].
+</p>
+
+<p align="justify">
+    Así como en la ingeniería de software se propone una clasificación para los requerimientos
+    (funcionales y no funcionales), la POA también propone que los conceptos o <em>concerns</em> se pueden
+     clasificar en
+    <strong>componentes</strong> y <strong>aspectos</strong>.
+</p>
+
+<h3>
+    <a id="component" class="anchor" href="#component" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>COMPONENTE (Component):</strong>
+</h3>
+    <p align="justify">
+        Son las partes del código que pueden ser encapsuladas claramente. Estas partes suelen estar relacionadas con las
+        funcionalidades del sistema [2].
+    </p>
+
+
+<h3>
+<a id="aspectoaspect" class="anchor" href="#aspectoaspect" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>ASPECTO (Aspect):</strong>
+</h3>
+
+<p align="justify">“Un aspecto es una <strong>unidad modular que se disemina por la estructura de otras unidades funcionales.</strong> Un aspecto de diseño es una unidad modular del diseño que se entremezcla en la estructura de otras partes del diseño. (G. Kiczales).“</p>
+
+<p align="center"><img src="https://github.com/japrietov/POA_teoria-1/blob/gh-pages/Images/Aspecto.png?raw=true" alt=""></p>
+
+<p align="justify">
+    Por lo general, los aspectos no suelen hacer parte de las funcionalidades del sistema,
+    sino más bien a propiedades que afectan el desempeño del mismo [2].
+</p>
+
+<h4>
+    <a id="ejemplos" class="anchor" href="#ejemplos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>Ejemplos de aspectos:</strong>
+</h4>
+
+<ul>
+    <li>Uso de memoria</li>
+    <li>Persistencia de datos</li>
+    <li>Seguridad</li>
+    <li>Sistemas de registros (logger)</li>
+    <li>Manejo de errores</li>
+    </ul>
+
+<h3>
+    <a id="sep_concerns" class="anchor" href="#sep_concerns" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>SEPARACIÓN DE CONCEPTOS (separation of concerns):</strong>
+</h3>
+
+<p align="justify">
+    A pesar de que la separación de conceptos no es exclusiva de la POA
+    (y aunque ya se haya hablado del tema en la filosofía del paradigma), la POA hace uso de este término
+    y señala la importancia de encapsular, abstraer y separar los componentes de los aspectos. Esto con
+    el objetivo de hacer el código más mantenible y evitar el código enmarañado.
+</p>
+
+<p align="justify">
+    La separación entre aspectos y componentes es tan evidente que usualmente se utilizan lenguajes
+    diferentes para programar los aspectos y los componentes [2]. Por lo general se usan lenguajes
+    orientados a objetos como Java para implementar los componentes [1].
+</p>
+
+<p align="justify">
+    Cualquier lenguaje que quiera aplicar este paradigma, debe proporcionar herramientas suficientes para
+    permitirle al programador implementar de buena forma esta separación de componentes.
+</p>
+
+<h3>
+<a id="punto-de-uniÓnenlacejoint-point" class="anchor" href="#punto-de-uni%C3%93nenlacejoint-point" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>PUNTO DE UNIÓN/ENLACE (Joint point):</strong>
+</h3>
+
+<p align="justify">Punto de ejecución dentro del sistema donde un aspecto puede ser conectado:</p>
+
+<ul>
+<li>Llamada a un método</li>
+<li>Lanzamiento de una excepción</li>
+<li>Modificación de un campo.</li>
+</ul>
+
+<p align="center"><img src="https://github.com/japrietov/POA_teoria-1/blob/gh-pages/Images/Joinpoints.png?raw=true" alt=""></p>
+
+<h3>
+<a id="consejoadvice" class="anchor" href="#consejoadvice" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>CONSEJO(Advice):</strong>
+</h3>
+
+<p align="justify">Es la implementación del aspecto, es decir, contiene el <strong>código que implementa la nueva funcionalidad</strong>. Se insertan en la aplicación en los puntos de unión.
+Dentro de ellos podemos encontrar:</p>
+
+<ul>
+<li>
+<strong>before</strong> : Esta anotación ejecuta un advice antes de la ejecución del punto de corte especificado. Ej: justo antes de entrar al getter, o al constructor, etc.</li>
+<li>
+<strong>after returning</strong>: Esta anotación ejecuta un advice después de la ejecución del punto de corte especificado, siempre que el método del punto de corte retorne de forma correcta (sin generar errores).
+</li>
+<li>
+<strong>after throwing</strong>: Esta anotación ejecuta un advice después de la ejecución del punto de corte especificado, si el método del punto de corte genera una excepción.
+                                 Podemos tanto acceder a la excepción generada como restringir el tipo de las excepciones que nos interesan.</li>
+<li>
+<strong>after</strong>: Esta anotación ejecuta un advice tras la ejecución de un método, sin importar si fue por exception o por flujo normal (return)</li>
+<li>
+<strong>around</strong>: Cuando el flujo llega a ejecutar el join-point, permite que nuestra lógica pueda determinar si proceder o no mediante el llamado al método proceed().</li>
+</ul>
+<p>A continuación se muestra un <strong>Consejo</strong> que fue declarado de manera <i>anónima</i>.
+  Esto significa que no se declaró un Pointcut o punto de corte antes del Consejo.
+</p>
+<p align = "center">
+    <img src="../Images/advice.webp"/>
+</p>
+<h3>
+<a id="puntos-de-cortepointcut" class="anchor" href="#puntos-de-cortepointcut" aria-hidden="true">
+  <span aria-hidden="true" class="octicon octicon-link"></span></a><strong>PUNTOS DE CORTE (Pointcut):</strong>
+</h3>
+
+<p align="justify">Define los consejos que se aplicarán a cada punto de cruce. Un pointcut es un <strong>predicado o condición para la aplicación de un aspecto.</strong></p>
+
+<p align="justify"><em>Se puede entender más claramente en la siguiente imagen, en la que el programa hace un llamado a un advice,
+                       este advice se definirá a través de un pointcut que contará con diferentes joinpoints del cual podrá escoger uno o varios aspectos
+                       para ser ejecutados (Algo enredado, pero más adelante se explica mejor esa diferenciación entre pointcut y joinpoint).</em></p>
+
+<p align="center"><img src="https://github.com/japrietov/POA_teoria-1/blob/gh-pages/Images/advice_pointcut.png?raw=true" alt=""></p>
+
+<p>A continuación un ejemplo de un <strong>Punto de Corte (Pointcut)</strong> y también un consejo declarado por un pointcut.</p>
+<p align = "center">
+    <img src="../Images/punto_corte.webp"/>
+</p>
+<hr>
+
+
+<p align="justify"><strong>Joinpoints por Categoría:</strong></p>
+<p align = "center">
+    <img src="../Images/Joinpoint_tabla.webp"/>
+</p>
+<p align="justify"><strong>Algunos Pointcuts importantes:</strong></p>
+<p align = "center">
+    <img src="../Images/Pointcut_tabla.webp"/>
+</p>
+<p align="justify"><em><strong>PUNTOS DE CORTE VS PUNTOS DE ENLACE. VAMOS CON EL EJEMPLO...</strong></em></p>
+
+<p align="justify"><em>Cuando sales a comer a un restaurante, estando en él, miras el menú y hay varias opciones que se pueden escoger de platos fuertes, ensaladas, postres, etc. Después de ver que hay en el menú escoges uno o más de estos platos, pero hasta que estos no sean ordenados y el mesero no te los traiga son solo "oportunidades para cenar".</em></p>
+
+<p align="center"><img src="https://github.com/japrietov/POA_teoria-1/blob/gh-pages/Images/example_restaurant.png?raw=true" alt=""></p>
+
+<p align="justify"><em>Los <strong>joinpoints</strong> son las opciones que hay en el menu y los <strong>pointcuts</strong> son los platos que se ordenan.
+                      Hablando dentro del ámbito de la programación, un <strong>joinpoint</strong> es una oportunidad dentro del código para la aplicación de un ASPECTO;
+                      Una vez se toma esa oportunidad y se selecciona uno o más joinpoints, al aplicar un ASPECTO de ellos se tendrá un <strong>pointcut</strong>.</em></p>
+
+<h2>
+  <span aria-hidden="true" class="octicon octicon-link"></span></a>De manera resumida:
+</h2>
+
+<p align="justify">
+
+  Un <strong>Joinpoint</strong> es un lugar individual en donde se puede ejecutar el código. P.ej. "Cuando un método arroja una excepción".
+  <br>
+  Un <strong>punto de corte</strong> es una colección o conjunto de Joinpoints. P.ej. "Cuando un método en la clase Foo arroja una excepción".
+
+</p>
+
+<hr>
+
+<p align="justify"><em>Pero bueno, a nosotros nos gusta ver como se verían todos estos conceptos aplicados ya en un programa. Supongamos que tenemos una tienda, la cual tendrá diferentes empleados. El administrador de la tienda va a tener todo el manejo de los empleados, incluyendo todas las operaciones CRUD (Create, Read, Update, Delete), hasta cómo será el inicio de sesión a la aplicación por parte de los empleados. Este inicio de sesión o Loggin será el Aspecto que tendrá nuestra aplicación.</em></p>
+
+<p align="justify"><em>La imagen a continuación explicará claramente donde estarían cada uno de los conceptos anteriormente mencionados dentro de un programa. Este programa fue implementado utilizando <strong>Spring AOP + AspectJ</strong>.</em></p>
+
+<p align="center"><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/example_code.png?raw=true" alt=""></p>
+
+<p align="justify"><em>Tal vez aun no queden claros estos conceptos mencionados anteriormente, pero en secciones posteriores encontrarán más ejemplos que ayudarán a entender mejor el paradigma de <strong>Programación Orientada a Aspectos.</strong></em></p>
+
+<hr>
+
+<h3>
+<a id="introducciÓnintroduction" class="anchor" href="#introducci%C3%93nintroduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>INTRODUCCIÓN (Introduction):</strong>
+</h3>
+
+<p align="justify">Permite añadir métodos o atributos a clases ya existentes. Un ejemplo en el que resultaría útil es la creación de un Consejo de Auditoría que mantenga la fecha de la última modificación de un objeto, mediante una variable y un método setUltimaModificacion(fecha), que podrían ser introducidos en todas las clases (o sólo en algunas) para proporcionarles esta nueva funcionalidad. </p>
+
+<h3>
+<a id="destinatariotarget" class="anchor" href="#destinatariotarget" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>DESTINATARIO (Target):</strong>
+</h3>
+
+<p align="justify">Es la clase aconsejada, la clase que es objeto de un consejo.</p>
+
+<h3>
+<a id="resultanteproxy" class="anchor" href="#resultanteproxy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>RESULTANTE (Proxy):</strong>
+</h3>
+
+<p align="justify">Es el objeto creado después de aplicar el Consejo al Objeto Destinatario.</p>
+
+<hr>
+
+<p align="justify"><em>Estas definiciones de Target y proxy se entienden mejor en la siguiente imagen, donde claramente se ve que la clase aconsejada o Target es la clase <strong>FooService</strong> y el objeto creado Proxy después de aplicar ese Concejo es <strong>FooServiceProxy</strong></em></p>
+
+<p align="center"><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/proxy_target.png?raw=true" alt=""></p>
+
+<hr>
+
+<h3>
+<a id="tejedorweaving" class="anchor" href="#tejedorweaving" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>TEJEDOR (Weaver):</strong>
+</h3>
+
+<p align="justify">El tejedor tiene un papel similar al del compilador en otros paradigmas,
+    se encarga de <strong>mezclar los diferentes componentes con los aspectos</strong>,
+    ayudándose de las reglas de recomposición que proporcionan los puntos de enlace [1].
+</p>
+
+<p align="justify">El resultado de este proceso de tejido (o weaving) es un código ejecutable
+    de todo el sistema [1].
+</p>
+
+<p align="justify">Este proceso puede ocurrir a lo largo del ciclo de vida del programa:</p>
+
+<ul>
+<li>Aspectos en Tiempo de Compilación.</li>
+<li>Aspectos en Tiempo de Carga, los Aspectos se implementan cuando el Objeto Destinatario es cargado.</li>
+<li>Aspectos en Tiempo de Ejecución.</li>
+</ul>
+
+<p align="center"><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/Tejedor.png?raw=true" alt=""></p>
+
+<h3><strong>Tipos de Entrelazado:</strong></h3>
+<p><ul>
+        <li>
+            <strong>Entrelazado Estático:</strong><br/>
+                <p>El entrelazado estático implica modificar el código fuente de una clase insertando sentencias en estos puntos de enlace. Es decir, que el código del aspecto se introduce en el de la clase. Un ejemplo de este tipo de tejedor es el Tejedor de Aspectos de AspectJ.<br/><br/>
+                La principal ventaja de esta forma de entrelazado es que se evita que el nivel de abstracción que se introduce con la programación orientada a aspectos se derive en un impacto negativo en el rendimiento de la aplicación. Pero, por el contrario, es bastante difícil identificar los aspectos en el código una vez que éste ya se ha tejido.</p>
+        </li>
+        <li>
+            <strong>Entrelazado Dinámico:</strong><br/>
+                <p>Una pre condición o requisito para que se pueda realizar un entrelazado dinámico es que los aspectos existan de forma explícita, tanto en tiempo de compilación como en tiempo de ejecución.<br/><br/>
+                    Para conseguir esto, tanto los aspectos como las estructuras entrelazadas se deben modelar como objetos y deben mantenerse en el ejecutable. Dado un interfaz de reflexión, el tejedor es capaz de añadir, adaptar y borrar aspectos de forma dinámica, si así se desea, durante la ejecución.<br/><br/>
+                    Este tejedor también tiene en cuenta el orden en el que se entremezclan los aspectos. Esto lo resuelve asignando una prioridad al aspecto. El aspecto que tenga asignado un número menor es el que se teje primero, y por lo tanto, aparecerá antes en la jerarquía de herencia.<br/><br/>
+                    El principal inconveniente subyacente bajo este enfoque es el rendimiento y que se utiliza más memoria con la generación de todas estas subclases.<br/><br/>
+                    Una de las primeras clasificaciones de las formas de combinar el comportamiento de los componentes y los aspectos fue dada por John Lamping:
+                    <ul>
+                        <li>
+                                Yuxtaposición: Consiste en la intercalación del código de los aspectos con los componentes. La estructura del código mezclado quedaría como el código base con el código de los aspectos añadidos en los puntos de enlace. En este caso, el tejedor sería bastante simple.
+                        </li>
+                        <li>
+                                Mezcla: Es lo opuesto a la yuxtaposición, todo el código queda mezclado con una combinación de descripciones de componentes y aspectos.
+                        </li>
+                        <li>
+                                Fusión: En este caso, los puntos de enlace no se tratan de manera independiente, se fusionan varios niveles de componentes y de descripciones de aspectos en una acción simple.
+                        </li>
+                    </ul>
+                </p>
+        </li>
+
+    </ul>
+</p>
+
+<hr>
+
+<p align="justify">VIENDO TODOS ESTOS CONCEPTOS ANTERIORMENTE MENCIONADOS, SE PUEDE VER LA DIFERENCIA EN LA ESTRUCTURA DE LA IMPLEMENTACIÓN ENTRE <strong>LOS LENGUAJES TRADICIONALES</strong> Y <strong>LOS LENGUAJES DE ASPECTOS.</strong></p>
+
+<p align="center"><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/Diferencia_tradicional_aspectos.png?raw=true" alt=""></p>
+
+<p align="justify">COMO SE VE, EL CONCEPTO DEL <em>TEJEDOR</em> SE VUELVE FUNDAMENTAL EN LA PROGRAMACIÓN ORIENTADA A ASPECTOS. ADEMÁS QUE LA IMPLEMENTACIÓN DEJA DE SER UNA IMPLEMENTACIÓN SECUENCIAL Y PASA A SER UNA IMPLEMENTACIÓN MODULARIZADA.</p>
+<p align = "center">
+    <img width="500" height="300" src="../Images/tejedor1.webp?raw=true" hspace="150"> </img>
+</p>
+<p>
+En la anterior imagen se puede observar gráficamente cómo funciona el tejedor. El tejedor tendría las siguientes repercusiones dentro del código final:
+</p>
+<p align = "center">
+    <img width="800" height="300" src="../Images/tejedor2.webp?raw=true"> </img>
+</p>
+
+<h3>
+    <a id="referencias" class="anchor" href="#referencias" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>Referencias:</strong>
+</h3>
+<ul>
+    <li>
+        [1]R. Laddad, AspectJ in action. Greenwich, CT: Manning, 2004.
+    </li>
+    <li>
+        [2]G. Kiczales et al., "Aspect-oriented programming", 1997. Available: https://www.cs.ubc.ca/~gregor/papers/kiczales-ECOOP1997-AOP.pdf. [Accessed 7 June 2020].
+    </li>
+
+</ul>
+</section>
+
+</body>
+</html>

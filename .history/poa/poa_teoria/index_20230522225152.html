@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+        <title>Programacion Orientada a Aspectos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="stylesheets/normalize.css"
+            media="screen"
+        >
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="stylesheets/stylesheet.css"
+            media="screen"
+        >
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="stylesheets/github-light.css"
+            media="screen"
+        >
+    </head>
+    <body>
+        <section class="page-header">
+            <div></div>
+            <section class="page-menu">
+                <a class="btn btn-actual">Inicio</a>
+                <a href="Pages/historia.html" class="btn">Historia</a>
+                <a href="Pages/filosofia.html" class="btn">Filosofía del Paradigma</a>
+                <a href="Pages/evolucion.html" class="btn">Conceptos Claves</a>
+                <a href="Pages/ventajasydesventajas.html" class="btn">Ventajas y desventajas</a>
+                <a href="Pages/lenguajes.html" class="btn">Lenguajes</a>
+                <a href="Pages/aplicaciones.html" class="btn">Aplicaciones</a>
+                <a href="Pages/presentaciones.html" class="btn">Presentaciones</a>
+                <a href="Pages/practicas.html" class="btn">Práctica</a>
+                <a href="Pages/ejemplos.html" class="btn">Ejemplos</a>
+            </section>
+            <h1 class="project-name">Programacion Orientada a Aspectos</h1>
+        </section>
+        <section class="main-content">
+            <h1>
+                <a
+                    id="programaciÓn-orientada-a-aspectos"
+                    class="anchor"
+                    href="#programaci%C3%93n-orientada-a-aspectos"
+                    aria-hidden="true"
+                >
+                    <span aria-hidden="true" class="octicon octicon-link"></span>
+                </a>
+                PROGRAMACIÓN ORIENTADA A ASPECTOS.
+            </h1>
+            <h1>
+                <a
+                    id="introducción"
+                    class="anchor"
+                    href="#introducci%C3%B3n"
+                    aria-hidden="true"
+                >
+                    <span aria-hidden="true" class="octicon octicon-link"></span>
+                </a>
+                Introducción.
+            </h1>
+            <p align="justify">
+                A lo largo de la historia, la ingeniería de software ha atravesado ciertas "etapas"  
+	en las que se ha ido desarrollando un concepto básico de la programación (e incluso la vida diaria): 
+	dividir una gran tarea en pequeñas tareas manejables es mucho más sencillo que intentar realizar el 
+	todo, "
+                <em>divide y vencerás</em>
+                ".
+            </p>
+            <p align="justify">
+                En un inicio se tenía el código sin división alguna: datos y 
+	funcionalidades estaban mezcladas por todo el código. A esta etapa se le llama la
+                <b>
+                    generación del 
+		código "espaghetti"
+                </b>
+                :
+            </p>
+            <p align="center">
+                <img src="https://raw.githubusercontent.com/anfmorenoso/Archivos/master/Spag.jpg" alt="">
+            </p>
+            <p align="justify">
+                En la imagen, las formas tienen la función de representar los datos, y los colores 
+	representan la funcionalidad. De ésta manera la imagen ilustra lo que llamamos 
+	el código "espaghetti".
+            </p>
+            <p align="justify">
+                Luego de ésta generación de caos en el código, se dio el primer gran paso en el uso 
+	del concepto "
+                <em>divide y vencerás</em>
+                ". Los desarrolladores comenzaron a identificar las partes
+	 más manejables del código y las expresaron como funciones definidas dentro del dominio del problema:
+            </p>
+            <p align="center">
+                <img src="https://raw.githubusercontent.com/anfmorenoso/Archivos/master/Func.jpg" alt="">
+            </p>
+            <p align="justify">
+                Se consiguió encapsular de cierta manera las funcionalidades, y se 
+	permitió incluir nuevas funciones de forma más sencilla. No obstante, todavía existían
+	 inconvenientes, ya que la claridad de las funciones era pobre debido a la utilización de datos
+	  compartidos; por otro lado, el agregar un nuevo tipo de dato se convertía en una tarea que requería
+	   modificar cuanta función estuviera involucrada con él.
+            </p>
+            <p align="justify">
+                Finalmente, en un intento por solucionar los problemas que dejaban los datos 
+	esparcidos por todo el código, nace la
+                <a href="http://ferestrepoca.github.io/paradigmas-de-programacion/poo/index.html">
+                    Programación 
+		Orientada a Objetos
+                </a>
+                . Esto supuso un gran avance que es visible hasta el día de hoy,
+		 siendo éste uno de los paradigmas de programación más importantes y usados de los últimos años. 
+		 Su descomposición en objetos es mucho más acertada en el entorno real que la descomposición 
+		 funcional.
+            </p>
+            <p align="center">
+                <img src="https://raw.githubusercontent.com/anfmorenoso/Archivos/master/obj.jpg" alt="">
+            </p>
+            <p align="justify">
+                Aunque la
+                <em>programación orientada a objetos</em>
+                es un paradigma de 
+	programación que resuelve bastantes problemas de la programación tradicional, como el integrar
+	 nuevos datos, no es perfecta y posee innumerables problemas, dado que las funciones continúan
+	  esparcidas por todo el código y para agregar una función nueva es necesario revisar y
+	   modificar objetos.
+            </p>
+            <p align="justify">
+                Además, la ingeniería de software no se limitan a tratar las 
+	funcionalidades básicas del problema. Existen muchos otros conceptos que en la descomposición funcional
+	 y en la programación orientada a objetos son aproximados de manera poco eficiente, por ejemplo:
+            </p>
+            <ol>
+                <li>La Sincronización.</li>
+                <li>La Distribución.</li>
+                <li>El Manejo de Errores.</li>
+                <li>La Optimización de Memoria.</li>
+                <li>La Gestión de la Seguridad.</li>
+            </ol>
+            <p align="justify">
+                Mientras que las descomposiciones funcional y orientada a objetos no
+nos plantean ningún problema con respecto al diseño y la implementación de la
+funcionalidad básica, estas técnicas no se comportan bien con los otros aspectos. Es
+decir, que nos encontramos con problemas de programación en los cuales ni las técnicas
+funcionales, ni las orientadas a objetos son suficientes para capturar todas las decisiones
+de diseño que el programa debe implementar.
+            </p>
+            <p align="justify">
+                La programación orientada a aspectos (POA) es una nueva metodología de
+programación que aspira a soportar la separación de competencias para los aspectos
+antes mencionados. Es decir, que intenta separar los componentes y los aspectos unos
+de otros, proporcionando mecanismos que hagan posible abstraerlos y componerlos para
+formar todo el sistema. En definitiva, lo que se persigue es implementar una aplicación
+de forma eficiente, fácil de entender y mantener.
+            </p>
+            <p align="center">
+                <img src="Images/d_aspects.JPG" alt="">
+            </p>
+            <p align="justify">
+                En este esquema se observa que la disociación de los distintos conjuntos
+se realiza tanto en base a la forma (datos) como a las tonalidades (funciones). Además,
+se indica que las distintas funcionalidades están relacionadas de alguna manera. Esto se
+representa utilizando figuras transparentes para indicar este tipo de relación.
+            </p>
+            <p align="justify">Todos estos conceptos se encuentran diseminados por todo el código, a veces incluso implementados múltiples veces, por cada objeto o clase que necesite de las mismas. Un código normal, implementado con paradigmas actuales puede lucir de la siguiente manera:</p>
+            <p align="center">
+                <img src="https://raw.githubusercontent.com/anfmorenoso/Archivos/master/Cod.jpg" alt="">
+            </p>
+            <p align="justify">En una version orientada a aspectos del mismo codigo, tenemos un programa mas compacto y modularizado.</p>
+            <p align="center">
+                <img src="Images/aspect_org.JPG" alt="">
+                <p align="justify">La no separación de los conceptos transversales en la programación ocasiona distintos tipos de problemas como pueden ser:</p>
+                <ul>
+                    <li>Baja correspondencia: La implementación simultánea de varios conceptos oscurece la correspondencia entre un concepto y su implementación.</li>
+                    <li>Baja productividad: Al intentar implementar varios conceptos en un mismo módulo existe la posibilidad de que el desarrollador pierda el rumbo del concepto principal por concentrarse en conceptos periféricos.</li>
+                    <li>Baja reusabilidad: El tener en un mismo módulo implementados varios conceptos, resulta en un código poco reusable.</li>
+                    <li>Baja calidad de código: El código con múltiples conceptos entrelazados en un mismo módulo produce un código propenso a errores. Por otro lado, al tener como objetivo demasiados conceptos es posible que se haga una mejor o peor implementación de los mismos por considerarlos más o menos importantes.</li>
+                    <li>Evolución más dificultosa: Con una implementación que no esté completamente modularizada los futuros cambios en un requerimiento implican revisar y modificar cada uno de los módulos donde esté presente ese requerimiento.</li>
+                </ul>
+                <h1>
+                    <a
+                        id="referencias"
+                        class="anchor"
+                        href="#referencias"
+                        aria-hidden="true"
+                    >
+                        <span aria-hidden="true" class="octicon octicon-link"></span>
+                    </a>
+                    REFERENCIAS.
+                </h1>
+                <p align="justify">
+                    <ul>
+                        <LI>
+                            Quintero, A. M. R. (2000). Visión General de la Programación Orientada a Aspectos. Departamento de Lenguajes y Sistemas Informáticos. Universidad de Sevilla.
+                        </LI>
+                        <LI>
+                            Gupta, L. (2015). Spring AOP – AspectJ Annotation Config Example – HowToDoInJava. [online] Howtodoinjava.com. Available at: http://howtodoinjava.com/spring/spring-aop/spring-aop-aspectj-example-tutorial-using-annotation-config/ [Accessed 15 May 2016].
+                        </LI>
+                        <LI>
+                            Stackoverflow.com. (2016). Spring AOP: What's the difference between JoinPoint and PointCut?. [online] Available at: http://stackoverflow.com/questions/15447397/spring-aop-whats-the-difference-between-joinpoint-and-pointcut [Accessed 15 May 2016].
+                        </LI>
+                        <LI>
+                            Spinczyk, O., & Lohmann, D. (2007). The design and implementation of AspectC++. Knowledge-Based Systems, 20(7), 636-651.
+                        </LI>
+                        <LI>
+                            Asteasuain, F., & Contreras, B. E. (2002). Programación Orientada a Aspectos Análisis del paradigma. Departamento de Ciencias e Ingeniería de la Computación.
+                        </LI>
+                        <LI>
+                            Eil.utoronto.ca Rune Teigen (1997). COOrdination Language. http://eil.utoronto.ca/wp-content/static/profiles/rune/node7.html
+                        </LI>
+                    </ul>
+                </p>
+                <footer class="site-footer">
+                    <span class="site-footer-owner">
+                        <a href="https://github.com/ProgramacionOrientadaAspectos/POA_teoria">Programacion Orientada a Aspectos</a>
+                        is maintained by
+                        <a href="https://github.com/ProgramacionOrientadaAspectos">ProgramacionOrientadaAspectos</a>
+                        .
+                    </span>
+                    <span class="site-footer-credits">This page was created by Jenny Sánchez Cruz, Felipe Moreno, Jeisson Prieto, Diego Rojas, Gustavo Galvis y Dorian Tovar.</span>
+                </footer>
+            </section>
+        </body>
+    </html>

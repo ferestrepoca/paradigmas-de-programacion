@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Programación Orientada a Aspectos</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../stylesheets/normalize.css" media="screen">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="../stylesheets/github-light.css" media="screen">
+</head>
+
+<body>
+
+	<section class="page-header">
+		<h1 class="project-name">Programación Orientada a Aspectos</h1>
+		<h2 class="project-tagline"></h2>
+
+		<a href="../index.html" class="btn">Inicio</a>
+		<a href="historia.html" class="btn">Historia</a>
+		<a href="filosofia.html" class="btn">Filosofía del Paradigma</a>
+		<a href="evolucion.html" class="btn">Conceptos Claves</a>
+		<a class="btn btn-actual">Ventajas y desventajas</a>
+		<a href="lenguajes.html" class="btn">Lenguajes</a>
+		<a href="aplicaciones.html" class="btn">Aplicaciones</a>
+		<a href="presentaciones.html" class="btn">Presentaciones</a>
+		<a href="practicas.html" class="btn">Práctica</a>
+		<a href="ejemplos.html" class="btn">Ejemplos</a>
+
+	</section>
+
+	<section class="main-content">
+
+		<h2>
+			<a id="ventajas-y-desventajas" class="anchor" href="#ventajas-y-desventajas" aria-hidden="true"><span
+					aria-hidden="true" class="octicon octicon-link"></span></a>VENTAJAS Y DESVENTAJAS</h2>
+
+		<h3>
+			<a id="ventajas" class="anchor" href="#ventajas" aria-hidden="true"><span aria-hidden="true"
+					class="octicon octicon-link"></span></a><strong>VENTAJAS</strong>
+		</h3>
+
+		<ul>
+			<li>Ayuda a superar los problemas causados por: <strong>Código Mezclado(Code Tangling)</strong> y
+				<strong>Código Diseminado(Code Scattering)</strong>
+			</li>
+		</ul>
+
+		<hr>
+
+		<p><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/scattering_tangling.png?raw=true"
+				alt=""></p>
+
+		<p><em>Se entiende como <strong>Código Mezclado</strong> como en un mismo módulo de un sistema de software
+				puedan simultáneamente convivir más de un requerimiento. Esta múltiple existencia de requerimientos
+				lleva a la presencia conjunta de elementos de implementación de más de un requerimiento, resultando en
+				un Código Mezclado.</em></p>
+
+		<p><em>El <strong>Código Diseminado</strong> se refiere a como los requerimientos están esparcidos sobre varios
+				módulos, la implementación resultante también queda diseminada sobre esos módulos.</em></p>
+
+		<hr>
+
+		<ul>
+			<li>
+				<p><strong>Implementación modularizada:</strong> POA logra separar cada concepto con mínimo
+					acoplamiento, resultando en implementaciones modularizadas aún en la presencia de conceptos que se
+					entrecruzan. Esto lleva a un código más limpio, menos duplicado, más fácil de entender y de
+					mantener.</p>
+			</li>
+			<li>
+				<p><strong>Mayor evolucionabilidad:</strong> La separación de conceptos permite agregar nuevos aspectos,
+					modificar y / o remover aspectos existentes fácilmente.</p>
+			</li>
+		</ul>
+
+		<p><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/evolucion-social.jpg?raw=true"
+				alt=""></p>
+
+		<ul>
+			<li>
+				<p><strong>Capacidad de retrasar las decisiones de diseño:</strong> para requerimientos actuales o que
+					surjan en el futuro, permite, luego, <em>implementarlos separadamente, e incluirlos automáticamente
+						en el sistema.</em></p>
+			</li>
+			<li>
+				<p><strong>Resuelve el dilema del arquitecto:</strong> ¿Cuántos recursos invertir en el diseño? ¿Cuándo
+					es “demasiado diseño”?</p>
+			</li>
+			<li>
+				<p><strong>Mayor reusabilidad:</strong> Al ser implementados separadamente, tiene mayor probabilidades
+					de ser reusados en otros sistemas con requerimientos similares. </p>
+			</li>
+		</ul>
+
+		<p><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/code_reusability.jpg?raw=true"
+				alt=""></p>
+
+		<ul>
+			<li>
+				<p><strong>Divide y vencerás:</strong> Al separar la funcionalidad básica de los aspectos, se aplica con
+					mayor intensidad el principio de dividir y conquistar.</p>
+			</li>
+			<li>
+				<p><strong>N-dimensiones:</strong> Ahora se tiene la posibilidad de implementar el sistema con las
+					dimensiones que sean necesarias, no una única dimensión ”sobrecargada”.</p>
+			</li>
+			<li>
+				<p><strong>Mínimo acoplamiento y máxima cohesión:</strong> Se genera una mejor implementación de un
+					sistema si realizamos cada una de sus partes por separado y los unimos de una manera estrecha en
+					donde estas partes, en este caso los aspectos interactúen adecuadamente.</p>
+			</li>
+		</ul>
+
+		<p><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/minimo_acoplamiento_maxima_cohesion.png?raw=true"
+				alt=""></p>
+
+		<h3>
+			<a id="desventajas" class="anchor" href="#desventajas" aria-hidden="true"><span aria-hidden="true"
+					class="octicon octicon-link"></span></a><strong>DESVENTAJAS</strong>
+		</h3>
+
+		<ul>
+			<li>
+				<p><strong>Posibles choques entre el código funcional (expresado en el lenguaje componente) y el código
+						de aspectos (expresados en los lenguajes de aspectos):</strong> Usualmente estos choques nacen
+					de la necesidad de violar el encapsulamiento para implementar los diferentes aspectos, sabiendo de
+					antemano el riesgo potencial que se corre al utilizar estas prácticas.</p>
+			</li>
+			<li>
+				<p><strong>Posibles choques entre los aspectos:</strong> El ejemplo clásico es tener dos aspectos que
+					trabajan perfectamente por separado pero al aplicarlos conjuntamente resultan en un comportamiento
+					anormal. </p>
+			</li>
+		</ul>
+
+		<p><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/choque.png?raw=true"
+				alt=""></p>
+
+		<ul>
+			<li>
+				<strong>Problemas propios del desarrollo:</strong> Dado que, a la fecha, este es un paradigma
+				particularmente nuevo, como con cualquier cosa, surgen problemas a medida que se desarrolla. Por esta
+				misma razón, a medida que van surgiendo problemas, las tecnologías que implementan POA deben estar en
+				constante y permanente actualización y cambio, lo cual genera problemas de compatibilidad con versiones
+				diferentes en las que para solucionar algunos erores, se pierden características que antes si poseían.
+			</li>
+		</ul>
+
+		<ul>
+			<li>
+				<strong>Posibles choques entre el código de aspectos y los mecanismos del lenguaje:</strong> Uno de los
+				ejemplos más conocidos de este problema es la anomalía de herencia. Dentro del contexto de la POA, el
+				término puede ser usado para indicar la dificultad de heredar el código de un aspecto en la presencia de
+				herencia.</li>
+			
+	
+
+		<p><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/herencia.png?raw=true"
+				alt=""></p>
+				<li>
+					<strong>Dificultades a la hora de hacer debugging:</strong> Debido a que en este paradigma se tiende a ocultar
+					código buscando la modularización. En el caso de ocurrir un error en nuestra aplicación, puede que no sea fácil
+					identificar si dicho error se originó en el código funcional o en algún aspecto, ya que el flujo real de la
+					ejecución no es explícito y puede ser difícil de seguir.
+				</li>
+		</ul>
+		
+		<ul>
+				<li>
+					<strong>Fragilidad:</strong> Por la forma en que funcionan los pointcuts, cualquier cambio en un advice puede repercutir
+					cambios y posibles errores en múltiples métodos de la aplicación. De la misma manera, cambiar el nombre de un método puede
+					ocasionar que este deje de ser afectado por un advice o que empiece a ser manipulado por otro sin que nos percatemos. Esto
+					exige tener un especial cuidado a la hora de crear y manipular métodos, lo que puede llegar a ser restrictivo.
+				</li>
+		</ul>
+		<ul>
+				<li>
+					<strong>Documentación:</strong> Como se dijo anteriormente, se trata de un paradigma relativamente nuevo
+					comparado con otros, esto causa que la documentación e implementaciones del mismo no tengan documentaciones
+					robustas como, por ejemplo, la programación orientada a objetos. Esto puede suponer un problema para desarrolladores
+					con poca experiencia o para proyectos de gran envergadura que deban depender en gran medida de este paradigma.
+				</li>
+		</ul>
+
+		<footer class="site-footer">
+			<span class="site-footer-owner"><a
+					href="https://github.com/ProgramacionOrientadaAspectos/POA_teoria">Programacion Orientada a
+					Aspectos</a> is maintained by <a
+					href="https://github.com/ProgramacionOrientadaAspectos">ProgramacionOrientadaAspectos</a>.</span>
+			<span class="site-footer-credits">This page was created by Diego Rojas, Gustavo Galvis y Dorian
+				Tovar.</span>
+		</footer>
+	</section>
+
+</body>
+
+</html>

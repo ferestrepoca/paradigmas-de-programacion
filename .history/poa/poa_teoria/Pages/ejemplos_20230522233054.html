@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+        <title>Programación Orientada a Aspectos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="../stylesheets/normalize.css"
+            media="screen"
+        >
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="../stylesheets/stylesheet.css"
+            media="screen"
+        >
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="../stylesheets/github-light.css"
+            media="screen"
+        >
+    </head>
+    <body>
+        <section class="page-header">
+            <div class="wrapper">
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+                <div>
+                    <span class="dot"></span>
+                </div>
+            </div>
+            <div></div>
+            <section class="page-menu">
+                s
+                <a href="../index.html" class="btn">Inicio</a>
+                <a href="historia.html" class="btn">Historia</a>
+                <a href="filosofia.html" class="btn">Filosofía del Paradigma</a>
+                <a href="evolucion.html" class="btn">Conceptos Claves</a>
+                <a href="ventajasydesventajas.html" class="btn">Ventajas y desventajas</a>
+                <a href="lenguajes.html" class="btn">Lenguajes</a>
+                <a href="aplicaciones.html" class="btn">Aplicaciones</a>
+                <a href="presentaciones.html" class="btn">Presentaciones</a>
+                <a href="practicas.html" class="btn">Práctica</a>
+                <a class="btn btn-actual">Ejemplos</a>
+            </section>
+            <h1 class="project-name">Programación Orientada a Aspectos</h1>
+        </section>
+        <section class="main-content">
+            <h1>
+                <a
+                    id="programaciÓn-orientada-a-aspectos"
+                    class="anchor"
+                    href="#programaci%C3%93n-orientada-a-aspectos"
+                    aria-hidden="true"
+                >
+                    <span aria-hidden="true" class="octicon octicon-link"></span>
+                </a>
+                PROGRAMACIÓN ORIENTADA A ASPECTOS.
+            </h1>
+            <h1>
+                <span aria-hidden="true" class="octicon octicon-link"></span>
+            </a>
+            Ejemplos
+        </h1>
+        <p align="justify">
+            En esa sección encontrarás diversos ejemplos del uso de lenguajes como Java o Ruby utilizando el enfoque de la programación orientada a aspectos
+        </p>
+        <h2>
+            <span aria-hidden="true" class="octicon octicon-link"></span>
+        </a>
+        Ejemplo 1 - Cola Circular - AspectJ
+    </h2>
+    <p align="justify">
+        En el siguiente codigo se desarrolla la estructura de una cola circular, a la cual van a acceder multiples hilos.
+		Cuando varios hilos acceden a modificar un mismo elemento, se debe implementar sincronizacion entre estos ya que
+		solo uno puede acceder al elemento a la vez.
+    </p>
+    <script src="http://ideone.com/e.js/toOzyP" type="text/javascript"></script>
+    <p align="justify">
+        Aqui podemos observar como el hecho de implementar aspectos que son necesarios pero que no corresponden a la funcionalidad
+		basica dificultan la lectura del codigo, ya que se mezclan las funcionalidades. Para solucionar este problema se hace uso de
+		la programacion orientada a aspectos, en donde vamos a separar la parte de sincronizacion(aspecto) de la cola circular(funcionalidad basica).
+    </p>
+    <script src="http://ideone.com/e.js/5A3Sdv" type="text/javascript"></script>
+    <p align="justify">
+        El resultado de utilizar este paradigma es una mayor modularidad en el codigo y mas claridad en este. Al separar la sincronizacion del codigo
+		la clase resultante quedaria de la siguiente manera
+    </p>
+    <script src="http://ideone.com/e.js/g0PhhN" type="text/javascript"></script>
+    <h2>
+        <span aria-hidden="true" class="octicon octicon-link"></span>
+    </a>
+    Ejemplo 2 - Cuenta Bancaria - AspectJ
+</h2>
+<p align="justify">
+    Para el siguiente ejemplo vamos a implementar una clase que será una version sencilla de una cuenta de banco.
+		Esta clase tiene un atributo que indica el saldo actual de la cuenta, y tres metodos que realizan un deposito,
+		una transaccion y un retiro. Ademas se requiere que cada vez que se realice un movimiento bancario se registre
+		el tiempo en el que se realizó.
+</p>
+<script src="http://ideone.com/e.js/d5l1Wa" type="text/javascript"></script>
+<p align="justify">
+    Nuevamente podemos ver la mezcla de las funcionalidades en el codigo, ya que los metodos no solo estan haciendo
+		su funcionalidad(realizar un movimiento bancario) sino que tambien estan tomando el tiempo en el que se realizan.
+		Para solucionar esto vamos a implementar un aspecto que va a cumplir con la funcion de registrar cada movimiento
+		que se realice y el tiempo de este.
+</p>
+<script src="http://ideone.com/e.js/0zEkZT" type="text/javascript"></script>
+<p align="justify">
+    Y asi logramos abstraer esos conceptos que son transversales a la funcionalidad basica del programa y conseguimos
+		dejar mas limpio el codigo principal.
+</p>
+<script src="http://ideone.com/e.js/nj1iuv" type="text/javascript"></script>
+<h2>
+    <span aria-hidden="true" class="octicon octicon-link"></span>
+</a>
+Ejemplo 3 - Desarrollo de Consejos - Spring AOP
+</h2>
+<p align="justify">
+    En este ejemplo mostraremos como realizar un consejo con el framework de desarrollo Spring orientado a aspectos. Supongamos
+    que tenemos una incumbencia principal denominada CustomerService declarada de la siguiente manera.
+</p>
+<script src="https://gist.github.com/NeillGiraldo/171f191af5667b512c04a3038fdcd037.js"></script>
+<p align="justify">
+    En este codigo nos encontramos con 2 puntos de corte 1) el metodo printName() y 2) el metodo printName(). Nosotros queremos hacer un aspecto
+    de checkeo de datos para garantizar que nuestros clientes siguen una regla del negocio planteadas a continuación:
+    <li>El Url Debe terminar con el dominio '.com'</li>
+    Con el fin de hacer este checkeo y modificar el cliente en tiempo de ejecución implementamos el siguiente advice.
+</p>
+<script src="https://gist.github.com/NeillGiraldo/26d156d64de0ad67ce90491dd9766029.js"></script>
+<p align="justify">
+    En el codigo anterior podemos observar que se declaro el advice como before y va a verificar que la URL del cliente siga la regla del negocio.
+    Si el cliente cumple con esta regla se imprimira un codigo mencionado que la URL es valida sino se imprimira que la URL es invalida y esta sera reemplazada por la cadena vacia.
+    Para ver esto funcionando, tenemos que usar el lenguaje de especificación XML de Spring para que realice el Tejido y permita agregarle el consejo al punto de corte mencionado.
+</p>
+<script src="https://gist.github.com/NeillGiraldo/216cfdb3c268c07bca75a940a38b1e89.js"></script>
+<p align="justify">
+    En este pedazo de codigo pudimos observar los concepts de Target, Advice y Proxy, siendo respectivamente los customerServices,CheckUrl y CustomerService proxy.
+    El desarrollo de Spring teje el lenguaje de specificación XML con el siguiente codigo Java.
+</p>
+<script src="https://gist.github.com/NeillGiraldo/9ce7331a0a584fff616ae81796059c8d.js"></script>
+<p align="justify">
+    Y generar la siguiente salida
+</p>
+<script src="https://gist.github.com/NeillGiraldo/47453faae16bc299eb9f64bf6862dd46.js"></script>
+<h2>
+    <span aria-hidden="true" class="octicon octicon-link"></span>
+</a>
+Ejemplo 4 - Loggin en spring
+</h2>
+<p align="justify">
+    Este codigo esta escrito de manera de ejemplo para enseñar los conceptos basicos de la programación orientada por aspectos. Implementa de manera de ejemplo los 5 tipos de consejos (advices), tambien el uso de puntos de union y puntos de corte.
+</p>
+<script src="https://ideone.com/e.js/KAGmIl" type="text/javascript"></script>
+<h2>
+    <span aria-hidden="true" class="octicon octicon-link"></span>
+</a>
+Ejemplo 5 - Hello World - Saludo a la clase de lenguajes de programación
+</h2>
+<p align="justify">
+    Este es un ejemplo utilizando el lenguaje de programación Java y con el compilador AJC de AspectJ.
+    <br>
+    Para este ejemplo se crea una clase Hello la cual va a tener un método sayHello() que simplemente imprime Hola con un espacio al final.
+</p>
+<pre>
+    <code>
+        public class Hello {
+
+        public static void main(String[] args) {
+            sayHello();
+        }
+    
+        public static void sayHello() {
+            System.out.print("Hola ");
+        }
+      }
+    </code>
+</pre>
+<p align="justify">
+    También necesitamos el aspecto AspectHello, el cual define un punto de corte greeting(). Se aplican los consejos after y returning para imprimir 
+    el mensaje de saludo después de que se ejecute el método sayHello() de la clase Hello, y el método before para mostrar un mensaje en pantalla antes
+    del saludo.
+</p>
+<pre>
+    <code>
+        public aspect AspectHello {
+
+        pointcut greeting() : execution (* Hello.sayHello(..));
+    
+        before(): greeting() {
+            System.out.println("Bienvenidos a POA");
+        }
+    
+        after() returning() : greeting() {
+            System.out.println("clase de lenguajes de programacion 2022-1");
+        }
+      }
+    </code>
+</pre>
+<p align="justify">
+    Al ejecutar la clase Hello obtendremos como resultado
+</p>
+<img src="../Images/output_example.png" hspace="130"></img>
+<h2>
+    <span aria-hidden="true" class="octicon octicon-link"></span>
+</a>
+Utilizando la gema Aquarium de Ruby
+</h2>
+<p align="justify">
+    La gema Aquarium nos ofrece una amplia variedad de formas para ejecutar un advice. De forma análoga a los métodos que
+    ofrece AspectJ es posible ejecutar un advice:
+    <ul>
+        <li>Antes de la ejecución satisfactoria de un método.</li>
+        <li>Tras la ejecución satisfactoria de un método.</li>
+        <li>Antes y después de la ejecución satisfactoria de un método.</li>
+        <li>Antes y después de la ejecución de un método aunque arroje un error.</li>
+        <li>Después de la ejecución de un método que arrojó un error cualquiera.</li>
+        <li>Después de la ejecución de un método que arrojó un error específico.</li>
+    </ul>
+    A continuación se muestra como realizar estas operaciones usando la sintáxis que Aquarium dispone:
+</p>
+<img
+    width="600"
+    height="400"
+    src="../Images/ruby/1.webp?raw=true"
+    hspace="150"
+></img>
+<h2>
+    <span aria-hidden="true" class="octicon octicon-link"></span>
+</a>
+Utilizando la gema Aquarium de Ruby - Ejemplo #1
+</h2>
+<p align="justify">
+    En el siguiente ejemplo se puede ver de manera sencilla la implementación del enfoque del paradigma
+    usando la gema Aquarium. Supongamos que tenemos nuestra clase Foo, y en esta tenemos un método cuya
+    ejecución de crítica (critical_operation) el cual queremos necesitamos loggear tanto en su inicio como
+    al terminar. En lugar de realizar la lógica de los logs dentro del método crítico, Aquarium nos permite
+    redeclarar la clase y usar la palabra clave "around". Aquí es dónde podemos implementar la lógica para mostrar el mensaje o
+    realizar otro tipo de procesos que necesitemos antes de la ejecución del método. El método no se ejecutará hasta llamar a
+    "join_point.proceed". Una vez termine el proceso podemos mostrar el mensaje de salida indicando que la operación crítica ya ha
+    concluido.
+</p>
+<img
+    width="600"
+    height="400"
+    src="../Images/ruby/2.webp?raw=true"
+    hspace="150"
+></img>
+<h2>
+    <span aria-hidden="true" class="octicon octicon-link"></span>
+</a>
+Utilizando la gema Aquarium de Ruby - Ejemplo #2
+</h2>
+<p align="justify">
+    Para este segundo ejemplo suponga que se está implementando una aplicación de tipo bancaria y para ello se tiene una
+    clase Account.
+    <br>
+    Esta clase cuenta con un método debit que recibe una cantidad a debitar y realiza dos acciones:
+    <ul>
+        <li>Chequea que la cantidad a debitar de la cuenta sea menor a el balance. De no ser así arroja una excepción.</li>
+        <li>Ajusta el nuevo balance restando la cantidad debitada.</li>
+    </ul>
+    <br>
+    Y también un método credit que recibe una cantidad a acreditar a la cuenta y realiza dos acciones:
+    <ul>
+        <li>Chequea que la cantidad a acreditar a la cuenta sea mayor a cero. De no ser así arroja una excepción.</li>
+        <li>Ajusta el nuevo balance restando la cantidad acreditada.</li>
+    </ul>
+</p>
+<img
+    width="600"
+    height="400"
+    src="../Images/ruby/3.webp?raw=true"
+    hspace="150"
+></img>
+<p align="justify">
+    Como es evidente en el código anterior, la aplicación necesita de aspectos como transactiones, persistencia y seguridad/autenticación. Estos
+        aspectos son transversales a la aplicación y su implementación con ruby estándar seguramente llevará a un
+        código muy disperso en el cual se vea comprometida la modularidad.
+        Sin embargo, al usar la gema aquarium se puede realizar un refactor al código para adoptar las técnicas de la programación orientada a aspectos. Para
+        ello se requieren realizar tres acciones:
+    <ul>
+        <li>Antes de devolver el saldo de la cuenta, se debe: Leer el saldo actual de la store de persistencia o base de datos.</li>
+        <li>Después de que cambie el saldo de la cuenta, se debe: Actualizar el nuevo balance en una store de persistencia o una base de datos.</li>
+        <li>Antes de cambiar el saldo de la cuenta se debe: Autenticar y autorizar al usuario.</li>
+    </ul>
+    Usando before y after_returning_from se puede ejecutar la lógica anteriormente planteada de manera separada y limpia
+      como se muestra en la siguiente imagen.
+</p>
+<img
+    width="600"
+    height="400"
+    src="../Images/ruby/4.webp?raw=true"
+    hspace="150"
+></img>
+<h2>
+    <span aria-hidden="true" class="octicon octicon-link"></span>
+</a>
+Utilizando decoradores en Python - Ejemplo #1
+</h2>
+<p align="justify">
+    A continuación se presenta un ejemplo realizado en Python utilizando decoradores para representar
+        el uso de la programación orientada a aspectos en dicho lenguaje.
+    <br>
+    <br>
+    En el ejemplo se usa un decorador para implementar una función transversal de la aplicación, la cual consiste en
+        verificar que un usuario que quiera realizar cierta operación sí sea un usuario válido.
+    <br>
+    <br>
+    <a href="https://nbviewer.org/github/ferestrepoca/paradigmas-de-programacion/blob/gh-pages/poa/poa_teoria/ExampleScripts/ejemplopythonaop.ipynb">
+        <strong>Haz click aquí</strong>
+    </a>
+    para acceder al ejemplo dentro de un notebook de Google Colab.
+</p>
+<footer class="site-footer">
+    <span class="site-footer-owner">
+        <a href="https://github.com/ProgramacionOrientadaAspectos/POA_teoria">Programacion Orientada a Aspectos</a>
+        is maintained by
+        <a href="https://github.com/ProgramacionOrientadaAspectos">ProgramacionOrientadaAspectos</a>
+        .
+    </span>
+    <span class="site-footer-credits">This page was created by Diego Rojas, Gustavo Galvis y Dorian Tovar.</span>
+    <br>
+    <span class="site-footer-credits">This page was modified(2017-1) by Neill Giraldo e Ivàn Vanegas.</span>
+    <br>
+    <span class="site-footer-credits">This page was modified(2020-1) by Esteban Jaramillo Sarmiento.</span>
+</footer>
+</section>
+</body>
+</html>
