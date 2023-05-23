@@ -119,18 +119,6 @@ a:hover {
   justify-content: center;
 }
 
-.project-title {
-  margin-top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.project-tagline {
-  font-size: 2rem;
-}
-
 @function random_range($min, $max) {
   $rand: random();
   $random_range: $min + floor($rand * (($max - $min) + 1));

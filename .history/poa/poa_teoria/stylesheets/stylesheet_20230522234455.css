@@ -128,7 +128,7 @@ a:hover {
 }
 
 .project-tagline {
-  font-size: 2rem;
+  fontsize: 1.5rem;
 }
 
 @function random_range($min, $max) {
