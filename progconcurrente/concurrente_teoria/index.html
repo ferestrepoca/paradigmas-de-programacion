@@ -679,7 +679,7 @@
               La calendarización es un manejo de colas con el objetivo de maximizar el uso de recursos y minimizar
               retardos.</p>
 
-            <img src="images/calendarizacion.png" style="margin-left: 30px">
+            <img src="images/calendarizacion.png" style="display: block; margin-right: auto; margin-left: auto;">
             <h3>Tipos de Calendarización</h3>
 
             <h4>Calendarización a corto plazo</h4>
@@ -714,7 +714,8 @@
 
             <div class="center">
               <p><img src="https://www.tutorialspoint.com/operating_system/images/context_switch.jpg"
-                  alt="Cambio de contexto"></p>
+                  alt="Cambio de contexto"
+                  style="display: block; margin-right: auto; margin-left: auto;"></p>
             </div>
 
             <h3>Criterios de Calendarización</h3>
@@ -797,7 +798,7 @@
               <br> <br>
               <h1>¿Qué se puede ejecutar concurrentemente?</h1>
               No todas las partes de un programa se pueden ejecutar concurrentemente:
-              <br><img src="images/tabla.png" style="margin-top: 10px">
+              <br><br><img src="images/tabla.png" style="display: block; margin-right: auto; margin-left: auto;"><br><br>
               <ul>
                 <li>En la primera columna está claro que la primera sentencia se debe ejecutar antes que la segunda</li>
                 <li>En la segunda columna, el orden en que se ejecuten no tiene importancia</li>
@@ -819,7 +820,7 @@
               Para que se puedan ejecutar concurrentemente dos conjuntos de instrucciones Si y Sj se debe cumplir que
               ninguno escriba
               lo que el otro lee o escribe:
-              <br><img src="images/condiciones.png" style="margin-top: 10px">
+              <br><br><img src="images/condiciones.png" style="display: block; margin-right: auto; margin-left: auto;"><br><br>
             </div>
 
             <h1>Problemas de los programas concurrentes</h1>
@@ -893,7 +894,7 @@
                 un orden de precedencia de las instrucciones que se deben ejecutar
                 muy diferente, de tal manera que en dicho árbol se muestra un orden
                 de ejecución simultáneo para todas las instrucciones del programa.
-                <p><img src="images/arbol_precedencia.PNG" alt=""></p>
+                <p><center><img src="images/arbol_precedencia.PNG" alt=""></center></p><br><br>
 
 
               </li>
@@ -1176,7 +1177,7 @@
               intentar leer o escribir al mismo tiempo, lo cual no podemos permitir, ya que, nuestra informacion se
               podria perder, duplicar, corromper entre otros. Solo es posible que un proceso leo o escriba y que los
               demas esperen su turno. </p>
-            <p><img src="images/problema_lector_escritor.PNG" alt=""></p>
+            <p><center><img src="images/problema_lector_escritor.PNG" alt=""></center></p><br><br>
 
             <h2>
               <a id="problema-de-los-filosofos-que-cenan" class="anchor" href="#problema-de-los-filosofos-que-cenan"
@@ -1185,10 +1186,10 @@
             </h2>
 
             <div class="center">
-              <p><img
+                <p><center><img
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/An_illustration_of_the_dining_philosophers_problem.png/200px-An_illustration_of_the_dining_philosophers_problem.png"
-                  alt=""></p>
-            </div>
+                  alt=""></center></p>
+            </div><br><br>
 
             <p>Cada filósofo pueda tomar los tenedores que están a su izquierda o derecha, para poder comer el filósofo
               de tener los dos tenedores. Si cualquier filósofo toma los dos tenedores entonces los que están al lado
@@ -1313,8 +1314,8 @@
                     se debe implementar en todo el programa, y puede generar graves
                     problemas de seguridad e implementación.
                   </li>
-                </ul>
-                <p><img src="images/semaforo.PNG" alt=""></p>
+                </ul><br><br>
+                <p><center><img src="images/semaforo.PNG" alt=""></center></p>
                 <p>
                   <strong>EJEMPLO:</strong> (Solución posterior)<br><br>
                   Existen uno o más productores y uno o más consumidores, todos almacenan y extraen productos de una
@@ -1344,7 +1345,7 @@
 
                 <strong>EJEMPLO:</strong><br><br>
 
-                <img src="images/PerroGato.png" height="239px" weight="430px"><br><br>
+                <center><img src="images/PerroGato.png" height="239px" weight="430px"></center><br><br>
 
                 Se podría realizar una analogía con una breve historia: Alice y Bob comparte un patio,
                 Alice tiene un gato y Bob un perro. Las mascotas no se llevan bien, por lo que nunca deberán estar en el
@@ -1374,10 +1375,12 @@
                 es una implementación con un alto nivel de abstracción, ofrece más garantías con respecto a seguridad
                 y tolerancia a fallos que otras implementaciones para planificar procesos.
               </li><br>
+              <center>
               <div class="row">
                 <p><img src="images/monitor_1.PNG" alt=""></p>
                 <p><img src="images/monitor_2.PNG" alt=""></p>
               </div>
+              </center>
 
               <li><strong>Mensajes:</strong><br>
                 Los hilos se comunican y sincronizan por medio de mensajes, avisandole a los otros hilos cuando puede
@@ -1744,7 +1747,7 @@ procedure consumer() {
             Una marca en una red de Petri es acotada si existe un entero positivo N que tiene la propiedad de que en
             cualquier sucesión de descarga ningún lugar recibe mas de N fichas. Ahora si una marca M esta acotada y en
             cualquier sucesión de descarga ningún lugar recibe mas de una ficha, se dice que M es una marca segura.
-            <center><img src="images/petri.png" width="100%" height="400px"></center>
+            <center><img src="images/petri.png" width="100%" height="400px"></center><br><br>
             <strong><i>Ejemplo en el cual se simula la llegada de material, para luego bifurcarla paralelamente, en dos
                 máquinas, y luego unirlos en la salida.</i></strong>
             <h2>CSP (Communicating Sequential Processes)</h2>
@@ -1799,7 +1802,7 @@ procedure consumer() {
             
               </p>
             
-              <center><img src="images/Aplicaciones-1.jpg" width="80%" height="80%" alt=""></center>
+              <center><img src="images/Aplicaciones-1.jpg" width="80%" height="80%" alt=""></center><br><br>
             
               <p>
                 El mundo real contiene actores que ejecutan acciones independientemente, pero que se comunican entre sí al realizarlas. Es por esto que, al modelar el mundo, se deben componer y coordinar muchas ejecuciones paralelas.
@@ -1825,8 +1828,8 @@ procedure consumer() {
               <ul style="list-style: none;">
                 <li>
                   <h4>Multiprogramming</h4>
-                  <p>Dentro de un sistema operativo se pueden ejecutar muchos programas y/o procesos al mismo tiempo y compartiendo la misma memoria. Esto se logra al descomponerlos en subprocesos asignados a distintos núcleos dentro de un procesador.</p>
-                  <center><img src="images/Aplicaciones-Multiprogramming.png" width="80%" height="80%" alt=""></center>
+                  <p>Dentro de un sistema operativo se pueden ejecutar muchos programas y/o procesos al mismo tiempo y compartiendo la misma memoria. Esto se logra al descomponerlos en subprocesos asignados a distintos núcleos dentro de un procesador.</p><br><br>
+                  <center><img src="images/Aplicaciones-Multiprogramming.png" width="80%" height="80%" alt=""></center><br><br>
                   <ul>
                     <li>Descargas </li>
                     <li>Transmisión de datos</li>
@@ -1835,7 +1838,7 @@ procedure consumer() {
                     <li>Manejo de drivers de audio y video</li>
                   </ul>
                 </li>
-                <li>
+                <li><br><br>
                   <h4>Muchos algoritmos se pueden dividir en partes concurrentes</h4>
                   <div style="display: flex;">
                     <ul>
@@ -1905,7 +1908,7 @@ procedure consumer() {
                 target="_blank">
                 documentación oficial de AWS </a> sobre concurrencia dónde nos da un ejemplo muy intuitivo</br>
             </p>
-            <img src="images/pizza.png" style="margin-left: 30px; margin-bottom: 20px">
+            <center><img src="images/pizza.png" style="margin-left: 30px; margin-bottom: 20px"></center>
             <ul>
               <p>Existe una pizza con propiedades magicas entre ellas están:</p>
               <li>Tiene un número máximo fijo de porciones, por ejemplo 8.</li>
@@ -1953,6 +1956,50 @@ procedure consumer() {
               una en una.
               Una vez consumida, queda disponible para ser consumida de nuevo.
             </p>
+
+            <p> En general, el paradigma concurrente resulta de mucha utilidad cuando se requiere gestionar y supervisar
+                varias actividades distintas al mismo tiempo. En este tipo de problemas la implementación de un paradigma
+                más secuencial y determinista sería inviable. Para ilustrar la necesidad real del paradigma concurrente
+                se mencionan algunas aplicaciones más:
+            </p>
+            <ul>
+                <li>
+                    Aplicación Web: Las aplicaciones Web deben de garantizar una experiencia de calidad para el
+                    usuario. ¿Pero que ocurriría si, por ejemplo, frente a algún problema de red temporal la aplicación simplemente
+                    se quedara congelada, pasmada, sin permitirnos si quiera interactuar con la intefaz gráfica? Claramente no sería
+                    una muy buena experiencia, mucho menos de calidad. Si la aplicación está diseñada de manera secuencial y determinista
+                    muy probablemente ocurriría esto, puesto que la aplicación se quedaría esperando una respuesta por parte del servidor, 
+                    deteniendo cualquier otra actividad. Afortunadamente esta no es la forma en la que suelen diseñarse. Para mantener
+                    la responsividad en este tipo de aplicaciones es necesaria la aplicación del paradigma recurrente. Unos hilos determinados
+                    se encargan de la comunicación a través de la red con el servidor, mientras que otros se encargan de la interacción directa
+                    con el usuario. De esta forma, la aplicación es capaz de responder (de manera limitada, claro está) a las peticiones del usuario
+                    mientras trata de restablecer la comunicación con el servidor, asegurando así una experiencia de mejor calidad.
+                </li><br><br>
+
+                <center><img src="images/web-application.png" width="80%" height="80%" alt=""></center><br><br>
+ 
+
+                <li>
+                    Procesador de texto: En este caso no hay comunicación con un servidor, pero un procesador de texto debe encargarse de muchas
+                    cosas al mismo tiempo. Un buen procesador de texto debería ser capaz de recibir la entrada del usuario, analizar gramaticalmente
+                    lo que recibe y actualizar la interfaz gráfica, todo esto simultaneamente (o lo bastante rápido como parecer que es así). Dicho
+                    esto, una solución concurrente surge de forma natural. Similar al caso anterior, habrían hilos especiales encargandose de cada 
+                    una de estas actividades distintas.
+                </li><br><br>
+
+                <center><img src="images/word-processor.jpeg" width="80%" height="80%" alt=""></center><br><br>
+
+                <li>
+                    Sistema operativo: En esta aplicación real es donde más se evidencia la necesidad de este paradigma. Un sistema operativo que funcione
+                    de manera secuencial y determinista es impensable. Con la enorme cantidad de actividades que debe de gestionar simultaneamente, como 
+                    asignar memoria, atender eventos I/O de distintos dispositivos periféricos (teclado, mouse, monitor, impresora, etc.), ejecutar procesos
+                    y encargarse de funciones de red, resulta patente la necesidad de una solución recurrente y que además sea eficiente, puesto que de su
+                    correcto funcionamiento depende el funcionamiento de todas las demás aplicaciones que se ejecuten en el sistema.
+                </li><br><br>
+
+                <center><img src="images/sistema-operativo.png" width="80%" height="80%" alt=""></center><br><br>
+
+
 
 
 
