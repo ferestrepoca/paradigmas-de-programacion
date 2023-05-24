@@ -166,12 +166,12 @@
               La programación concurrente es la ejecución simultánea de múltiples tareas interactivamente. Estas tareas
               pueden ser un conjunto de procesos o hilos de ejecución
               creados por un único programa. Las tareas se pueden ejecutar en una sola CPU (multiprogramación), en
-              varios procesadores, o en una red de computadores distribuidos.</p>
+              varios procesadores, o en una red de computadores distribuidos.</p><br>
             <!--
 <img src="https://s3.postimg.org/435ixtj2r/definicion.jpg" style="margin-left: 30px"> -->
 
             <img src="images/concurrentProcess.png" style="margin-left: 30px; margin-bottom: 20px">
-            <p>
+            <p><br>
               La programación concurrente no es más que la forma en la cual podemos
               resolver ciertas problemáticas de forma concurrente, es decir, ejecutando múltiples tareas a la misma vez
               y no de forma secuencial.En un programa concurrente las tareas puede continuar sin la necesidad que otras
@@ -235,6 +235,166 @@
 
                 </div>
               </div>
+
+            <h2>Como diferenciarlas ?</h2>
+            La concurrencia y el paralelismo han sido extensamente discutidos, pero al momento de definirlos, varios
+            autores salen con su propia definición y esta variedad no hacen tan facil la tarea de entender.
+            En terminos sencillos, se puede explicar asi:
+            <blockquote>
+              Un programa es concurrente si puede soportar dos o más acciones<strong> en progreso.</strong><br><br>
+              Un programa es paralelo si puede soportar dos o más acciones <strong>ejecutándose
+                simultáneamente.</strong>"
+            </blockquote>
+
+            <img src="images/diferent.PNG" style="margin-left: 30px  " height="400" width="1500">
+
+            La palabra clave es <strong>en progreso</strong>.<br><br>
+            Un programa es concurrente por que maneja varias tareas al mismo tiempo, define acciones que
+            <strong>pueden</strong> ser ejecutadas al mismo tiempo.<br>
+            Y para que un programa sea paralelo, no solo debe ser concurrente, sino que tambien debe estar diseñado para
+            correr en un medio con hardware paralelo (GPU's, procesadores multi-core, etc).<br><br>
+            Puede ser visto como que la concurrencia es la propiedad de un programa, mientras que el paralelismo es la
+            forma en la que se ejecuta un programa concurrente.<br><br>
+
+
+            <h2>
+              <a id="relacion" class="anchor" href="#relacion" aria-hidden="true">
+                <span aria-hidden="true" class="octicon octicon-link"></span></a>Relación
+            </h2>
+
+            <p>Multiples procesos pueden ser ejecutados al mismo tiempo. En otra palabras, la programacion concurrente
+              se comporta igual que la paralela cuando tenemos un sistema multiprocesador en el cual cada unidad de
+              procesamiento ejecuta un proceso o hilo. En la imagen inferior podemos ver que el la unidad de
+              procesamiento 2 y 3 se comportan igual.</p><br>
+
+            <h2><a id="relacion" class="anchor" href="#relacion" aria-hidden="true"></a>Ejemplo de concurrencia:</h2>
+
+            <p>Imagina una aplicación de descarga de música, en la cual puedes descargar un número determinado de
+              canciones al mismo tiempo,
+              cada canción es independiente de la otra, por lo que la velocidad y el tiempo que tarde en descargarse
+              cada una no afectara al
+              resto de canciones. Esto lo podemos ver como un proceso concurrente, ya que cada descarga es un proceso
+              totalmente
+              independiente del resto.</p><br>
+
+              <img src="images/ejemplo_concurrente.png" style="display: block; margin-right: auto; margin-left: auto;" height="347" width="471" class="center"><br><br>
+
+            <p>Observa la imagen, cada descarga se procesa de forma separada, y al final a una descarga no le importa el
+            estado de las demás. Ya que cada descarga es una tarea completamente diferente.</p><br>
+
+
+            <h2><a id="relacion" class="anchor" href="#relacion" aria-hidden="true"></a>Ejemplo de paralelismo:</h2>
+
+            <p>
+              Imagina la clásica página de viajes, donde nos ayudan a buscar el vuelo más barato o las mejores
+              promociones,
+              para hacer esto, la página debe de buscar al momento en cada aerolínea el vuelo más barato, con menos
+              conexiones, etc.
+              Para esto puedo hacerlo de dos formas, buscar secuencialmente en cada aerolínea las mejores promociones
+              (muy tardado)
+              o utilizar el paralelismo para buscar al mismo tiempo las mejores promociones en todas las aerolíneas.
+            </p><br>
+
+            <img src="images/ejemplo_paralelismo.png" style="display: block; margin-right: auto; margin-left: auto;" height="412" width="471"><br><br>
+
+            <p>Observemos en la imagen como el proceso parte de una entrada inicial (inputs) los cuales definen
+              las características del vuelo a buscar, luego se utiliza la concurrencia para buscar en las cuatro
+              aerolíneas al mismo tiempo. Veamos que en este proceso es indispensable que las 4 búsquedas terminen
+              para poder arrojar un resultado. Podemos ver claramente la relación entre los 4 procesos, ya que el
+              resultado
+              de uno puedo afectar al proceso final.
+              <br><br>
+              Observemos también que una vez que los cuatro procesos terminan, hay un subproceso adicional
+              encargado de unir los resultados y arrojar un resultado final.
+            </p><br>
+
+            <h2>
+              <a id="relacion" class="anchor" href="#relacion" aria-hidden="true"><span aria-hidden="true"
+                  class="octicon octicon-link"></span></a>Proceso o Hilo ?
+            </h2>
+            <p>Primero, los procesos son más pesados de crear y, por lo tanto, utilizan más capacidades de computadora
+              que los hilos. Esto permite entonces de hacer tareas más pesadas.<br /><br />
+
+              En segundo lugar, los procesos son totalmente independientes entre ellos. No comparten ningún dato entre
+              ellos; Mientras que, los hilos pueden compartir información fácilmente.<br /><br />
+
+              Desafortunadamente, esto crea un problema: si dos hilos trabajan con los mismos datos, se puede crear
+              errores como, por ejemplo, la valor cambia sin entender por qué. De hecho, cuando se realizan dos tareas
+              al mismo tiempo, si modificamos los datos en un hilo y hacemos lo mismo en la otra, será imposible
+              predecir qué hilo modificarán primero la variable.<br />
+              Para esto, hay un sistema para "bloquear" los datos en un hilo. Una vez que este hilo desbloqueará los
+              datos, el otro hilo recibirá una señal de que puede modificarlo.<br />
+              Para resumir, cuando se trabaja en los mismos datos con dos subprocesos diferentes, es necesario bloquear
+              los datos en un hilo en el momento de modificarlo, y luego desbloquearlo.</p><br />
+            <p><img src="images/process_hilo.png" style="display: block; margin-right: auto; margin-left: auto;"></p><br /><br /><br />
+
+            <p><img src="http://s32.postimg.org/s503ixn05/paralellismo.jpg" alt=""></p>
+
+            <p>Hay que aclarar la concurrencia no solo es paralelismo, ya que, cuando hay mas procesos o hilos el
+              scheduler del sistema operativo interviene y divide la ejecucion de los procesos, <strong>caracteristica
+                que la programacion paralela NO tiene</strong> cada proceso tiene que ser ejecutado exclusivamente en
+            una unidad de procesamiento. En la parte inferior podemos apreciar mejor la diferencia.</p><br>
+
+            <p><img src="http://joearms.github.io/images/con_and_par.jpg" alt=""></p>
+            <p><strong>Cuadro compartivo Procesos vs Hilos: </strong></p>
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Procesos</th>
+                  <th scope="col">Hilos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Son programas en ejecución.</td>
+                  <td>Son segmentos de procesos.</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Tardan más tiempo en terminar.</td>
+                  <td>Tardan menos tiempo en terminar.</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Toma más tiempo crearlos.</td>
+                  <td>Toma menos tiempo crearlos.</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>Toma más tiempo hacer el cambio de contexto.</td>
+                  <td>Toma menos tiempo hacer el cambio de contexto.</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>Son menos eficientes en términos de comunicación.</td>
+                  <td>Son meás eficientes en términos de comunicación.</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>Consumen más recursos.</td>
+                  <td>Consumen menos recursos.</td>
+                </tr>
+                <tr>
+                  <th scope="row">7</th>
+                  <td>Son aislados.</td>
+                  <td>Comparten memoria.</td>
+                </tr>
+                <tr>
+                  <th scope="row">8</th>
+                  <td>Son denominados "heavy weight process".</td>
+                  <td>Son denominados "light weight process".</td>
+                </tr>
+                <tr>
+                  <th scope="row">9</th>
+                  <td>Los procesos tienen su propio PCB, Stack y espacio en memoria.</td>
+                  <td>Los hilos tienen el PCB de sus padres, su propio Thread Control Block (TCB) y Stack y un
+                    espacio de memoria compartido.</td>
+                </tr>
+              </tbody>
+            </table>
+
             </section>
           </div>
 
@@ -260,12 +420,12 @@
             <div class="center">
               <p><img
                   src="https://www.cs.uic.edu/%7Ejbell/CourseNotes/OperatingSystems/images/Chapter3/3_01_Process_Memory.jpg"
-                  alt=""></p>
+                  style="display: block; margin-right: auto; margin-left: auto;"></p><br>
             </div>
 
             <p><strong>Note</strong> que un programa por sí sólo no es un proceso, ya que este es una entidad pasiva que
               contiene una lista de instrucciones almacenadas en disco ( archivo ejecutable), mientras que un proceso es
-              una entidad activa, el cual cumple todas las características descritas anteriormente.</p>
+              una entidad activa, el cual cumple todas las características descritas anteriormente.</p><br>
 
             <h3>Estados del proceso</h3>
             <p>
@@ -288,11 +448,11 @@
               <li>
                 <p><strong>Terminado</strong>: El proceso a terminado la ejecución. </p>
               </li>
-            </ul>
+            </ul><br>
 
             <img
               src="https://www.cs.uic.edu/%7Ejbell/CourseNotes/OperatingSystems/images/Chapter3/3_02_ProcessState.jpg"
-              alt=""></p>
+              style="display: block; margin-right: auto; margin-left: auto;"></p><br>
             </li>
             <h3>PCB ( Bloque de control de proceso )</h3>
             <p>
@@ -322,7 +482,7 @@
 
             <div class="center">
               <p><img src="https://www.cs.uic.edu/%7Ejbell/CourseNotes/OperatingSystems/images/Chapter3/3_03_PCB.jpg"
-                  alt=""></p>
+                  style="display: block; margin-right: auto; margin-left: auto;"></p>
             </div>
 
             <h2>
@@ -661,169 +821,7 @@
               lo que el otro lee o escribe:
               <br><img src="images/condiciones.png" style="margin-top: 10px">
             </div>
-            <h1>
-              <a id="programacion-paralela-y-concurrente" class="anchor" href="#programacion-paralela-y-concurrente"
-                aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Programacion
-              Paralela y Concurrente
-            </h1>
-            <h2>Como diferenciarlas ?</h2>
-            La concurrencia y el paralelismo han sido extensamente discutidos, pero al momento de definirlos, varios
-            autores salen con su propia definición y esta variedad no hacen tan facil la tarea de entender.
-            En terminos sencillos, se puede explicar asi:
-            <blockquote>
-              Un programa es concurrente si puede soportar dos o más acciones<strong> en progreso.</strong><br><br>
-              Un programa es paralelo si puede soportar dos o más acciones <strong>ejecutándose
-                simultáneamente.</strong>"
-            </blockquote>
 
-            <img src="images/diferent.PNG" style="margin-left: 30px  " height="400" width="1500">
-
-            La palabra clave es <strong>en progreso</strong>.<br><br>
-            Un programa es concurrente por que maneja varias tareas al mismo tiempo, define acciones que
-            <strong>pueden</strong> ser ejecutadas al mismo tiempo.<br>
-            Y para que un programa sea paralelo, no solo debe ser concurrente, sino que tambien debe estar diseñado para
-            correr en un medio con hardware paralelo (GPU's, procesadores multi-core, etc).<br><br>
-            Puede ser visto como que la concurrencia es la propiedad de un programa, mientras que el paralelismo es la
-            forma en la que se ejecuta un programa concurrente.<br>
-
-
-            <h2>
-              <a id="relacion" class="anchor" href="#relacion" aria-hidden="true">
-                <span aria-hidden="true" class="octicon octicon-link"></span></a>Relación
-            </h2>
-
-            <p>Multiples procesos pueden ser ejecutados al mismo tiempo. En otra palabras, la programacion concurrente
-              se comporta igual que la paralela cuando tenemos un sistema multiprocesador en el cual cada unidad de
-              procesamiento ejecuta un proceso o hilo. En la imagen inferior podemos ver que el la unidad de
-              procesamiento 2 y 3 se comportan igual.</p>
-
-            <h2><a id="relacion" class="anchor" href="#relacion" aria-hidden="true"></a>Ejemplo de concurrencia:</h2>
-
-            <p>Imagina una aplicación de descarga de música, en la cual puedes descargar un número determinado de
-              canciones al mismo tiempo,
-              cada canción es independiente de la otra, por lo que la velocidad y el tiempo que tarde en descargarse
-              cada una no afectara al
-              resto de canciones. Esto lo podemos ver como un proceso concurrente, ya que cada descarga es un proceso
-              totalmente
-              independiente del resto.</p>
-
-            <img src="images/ejemplo_concurrente.png" height="347" width="471"><br>
-
-            <p>Observa la imagen, cada descarga se procesa de forma separada, y al final a una descarga no le importa el
-              estado de las demás. Ya que cada descarga es una tarea completamente diferente.</p>
-
-
-            <h2><a id="relacion" class="anchor" href="#relacion" aria-hidden="true"></a>Ejemplo de paralelismo:</h2>
-
-            <p>
-              Imagina la clásica página de viajes, donde nos ayudan a buscar el vuelo más barato o las mejores
-              promociones,
-              para hacer esto, la página debe de buscar al momento en cada aerolínea el vuelo más barato, con menos
-              conexiones, etc.
-              Para esto puedo hacerlo de dos formas, buscar secuencialmente en cada aerolínea las mejores promociones
-              (muy tardado)
-              o utilizar el paralelismo para buscar al mismo tiempo las mejores promociones en todas las aerolíneas.
-            </p>
-
-            <img src="images/ejemplo_paralelismo.png" height="412" width="471"><br>
-
-            <p>Observemos en la imagen como el proceso parte de una entrada inicial (inputs) los cuales definen
-              las características del vuelo a buscar, luego se utiliza la concurrencia para buscar en las cuatro
-              aerolíneas al mismo tiempo. Veamos que en este proceso es indispensable que las 4 búsquedas terminen
-              para poder arrojar un resultado. Podemos ver claramente la relación entre los 4 procesos, ya que el
-              resultado
-              de uno puedo afectar al proceso final.
-              <br><br>
-              Observemos también que una vez que los cuatro procesos terminan, hay un subproceso adicional
-              encargado de unir los resultados y arrojar un resultado final.
-            </p>
-
-            <h2>
-              <a id="relacion" class="anchor" href="#relacion" aria-hidden="true"><span aria-hidden="true"
-                  class="octicon octicon-link"></span></a>Proceso o Hilo ?
-            </h2>
-            <p>Primero, los procesos son más pesados de crear y, por lo tanto, utilizan más capacidades de computadora
-              que los hilos. Esto permite entonces de hacer tareas más pesadas.<br /><br />
-
-              En segundo lugar, los procesos son totalmente independientes entre ellos. No comparten ningún dato entre
-              ellos; Mientras que, los hilos pueden compartir información fácilmente.<br /><br />
-
-              Desafortunadamente, esto crea un problema: si dos hilos trabajan con los mismos datos, se puede crear
-              errores como, por ejemplo, la valor cambia sin entender por qué. De hecho, cuando se realizan dos tareas
-              al mismo tiempo, si modificamos los datos en un hilo y hacemos lo mismo en la otra, será imposible
-              predecir qué hilo modificarán primero la variable.<br />
-              Para esto, hay un sistema para "bloquear" los datos en un hilo. Una vez que este hilo desbloqueará los
-              datos, el otro hilo recibirá una señal de que puede modificarlo.<br />
-              Para resumir, cuando se trabaja en los mismos datos con dos subprocesos diferentes, es necesario bloquear
-              los datos en un hilo en el momento de modificarlo, y luego desbloquearlo.</p><br />
-            <p><img src="images/process_hilo.png" alt=""></p><br /><br /><br />
-
-            <p><img src="http://s32.postimg.org/s503ixn05/paralellismo.jpg" alt=""></p>
-
-            <p>Hay que aclarar la concurrencia no solo es paralelismo, ya que, cuando hay mas procesos o hilos el
-              scheduler del sistema operativo interviene y divide la ejecucion de los procesos, <strong>caracteristica
-                que la programacion paralela NO tiene</strong> cada proceso tiene que ser ejecutado exclusivamente en
-              una unidad de procesamiento. En la parte inferior podemos apreciar mejor la diferencia.</p>
-
-            <p><img src="http://joearms.github.io/images/con_and_par.jpg" alt=""></p>
-            <p><strong>Cuadro compartivo Procesos vs Hilos: </strong></p>
-            <table class="table">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Procesos</th>
-                  <th scope="col">Hilos</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Son programas en ejecución.</td>
-                  <td>Son segmentos de procesos.</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Tardan más tiempo en terminar.</td>
-                  <td>Tardan menos tiempo en terminar.</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Toma más tiempo crearlos.</td>
-                  <td>Toma menos tiempo crearlos.</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Toma más tiempo hacer el cambio de contexto.</td>
-                  <td>Toma menos tiempo hacer el cambio de contexto.</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Son menos eficientes en términos de comunicación.</td>
-                  <td>Son meás eficientes en términos de comunicación.</td>
-                </tr>
-                <tr>
-                  <th scope="row">6</th>
-                  <td>Consumen más recursos.</td>
-                  <td>Consumen menos recursos.</td>
-                </tr>
-                <tr>
-                  <th scope="row">7</th>
-                  <td>Son aislados.</td>
-                  <td>Comparten memoria.</td>
-                </tr>
-                <tr>
-                  <th scope="row">8</th>
-                  <td>Son denominados "heavy weight process".</td>
-                  <td>Son denominados "light weight process".</td>
-                </tr>
-                <tr>
-                  <th scope="row">9</th>
-                  <td>Los procesos tienen su propio PCB, Stack y espacio en memoria.</td>
-                  <td>Los hilos tienen el PCB de sus padres, su propio Thread Control Block (TCB) y Stack y un
-                    espacio de memoria compartido.</td>
-                </tr>
-              </tbody>
-            </table>
             <h1>Problemas de los programas concurrentes</h1>
             <p>Al lidiar con varias tareas al tiempo los programas concurrentes pueden presentar varios problemas : </p>
             <ul>
