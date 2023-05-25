@@ -569,6 +569,11 @@
                   class="octicon octicon-link"></span></a>Corrutinas
             </h2>
 
+            <p>
+              Una corrutina es un componente de programación concurrente que permite la ejecución cooperativa de múltiples tareas en un mismo hilo de ejecución. A diferencia de los hilos tradicionales, donde el sistema operativo es responsable de la planificación y la asignación de tiempo de ejecución, las corrutinas son controladas por el programador y pueden ceder el control de manera explícita.
+            </p>
+
+                      
             <h3>Caracteristicas:</h3>
 
             <ul>
@@ -599,6 +604,7 @@
               <a id="eventLoop" class="anchor" href="#eventLoop" aria-hidden="true"><span aria-hidden="true"
                   class="octicon octicon-link"></span></a>Event Loop
             </h2>
+
 
             <h3>Caracteristicas:</h3>
 
@@ -635,6 +641,11 @@
               <a id="actores" class="anchor" href="#actores" aria-hidden="true"><span aria-hidden="true"
                   class="octicon octicon-link"></span></a>Actores
             </h2>
+          
+            <p>
+              En el contexto de la programación concurrente, un actor es una entidad de ejecución independiente que encapsula su propio estado y procesamiento. Los actores se comunican entre sí a través del intercambio de mensajes, y cada actor tiene una cola de mensajes asociada. Cada mensaje recibido es procesado secuencialmente por un único actor a la vez, lo que evita problemas de concurrencia como las condiciones de carrera.
+
+            </p>
 
             <h3>Caracteristicas:</h3>
 
@@ -2014,6 +2025,8 @@ procedure consumer() {
               <li>Permite optimizar el uso de recursos en sistemas mono/multiprocesador.</li>
               <li>Fiable administración de los datos en sistemas con gran información</li>
               <li>Mejor aprovechamiento de la CPU</li>
+              <li>Modularidad y reutilización de código</li>
+              <li>Desarrollo de software más flexible</li>
               <li>Permite el desarrollo de aplicaciones que no se vean afectadas en tiempo real</li>
               <li>Permite compartir recursos entre tareas lentas y tareas rápidas para que las tareas lentas no retrasen
                 mucho a las rápidas.</li>
@@ -2031,6 +2044,9 @@ procedure consumer() {
             <h1>Desventajas</h1>
             <ul>
               <li>Seguridad</li>
+              <li>Complejidad</li>
+              <li>Depuración y pruebas</li>
+              <li>Deadlocks y bloqueos</li>
               <li>Consumos de recursos cuando hay excesos de hilos o procesos</li>
               <li>Dificultad de desarrollo.</li>
               <li>Dificultad de verificación.</li>
@@ -3647,6 +3663,18 @@ TotalMilliseconds : 832,8442
               <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
                 href="https://www.geeksforgeeks.org/concurrency-in-operating-system/">Concurrency in operating system</a>
               </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                  >Python in a Nutshell</a>
+              </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                >Concurrent Programming: The Java Programming Language - Stephen Hartley y Paul Tymann</a>
+            </li>
+            <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+              >Concurrent Programming in Java: Design Principles and Patterns - Doug Lea </a>
+          </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                href="https://arxiv.org/ftp/arxiv/papers/1008/1008.1459.pdf">Actor Model of Computation: Scalable Robust Information Systems</a>
+              </li>
             </ul>
           </div>
 
@@ -3704,6 +3732,9 @@ TotalMilliseconds : 832,8442
             <li>Diego Armando Velasquez Vargas</li>
             <li>Daniel Santiago Gaitán</li>
             <li>Carlos Andres Rios Rojas</li>
+            <li>Juan Sebastian Peñafiel Ojeda</li>
+            <li>Diego Efrain Mojica Mendez</li>
+            <li>Juliana Cardozo Pedraza</li>
           </ul>
         </div>
       </section>
