@@ -396,6 +396,49 @@
             </table>
 
             </section>
+            <section id="ejemp">
+              <div>
+                <h3>Ejemplos Gophers</h3>
+                
+                <p>
+                  Los Gophers son la mascota de Go (un roedor) los cuales se usaran para el siguiente ejemplo.<br>
+                  Imagina que tenemos un Gopher que tiene que llevar una pila de libros a un incinerador, para esto,
+                  usa un carro para llevar cierta cantidad de libros al incinerador y luego volver a la pila para reponer dicho carro.
+                </p>
+                <img src="images/Gopher1.png" style="margin-left: 30px; margin-bottom: 20px">
+
+                <p>
+                  Si agregamos otro Gopher al ejemplo este no podra hacer nada porque las herramientas estaran ocupadas por su
+                  compañero como se ve en la siguiente imagen.
+                </p>
+                <img src="images/Gopher2.png" style="margin-left: 30px; margin-bottom: 20px">
+
+                <p>
+                  Para este caso simple tenemos dos soluciones simples, una concurrente y la otra paralela.<br>
+                  La solución concurrente es que se añada otro carro para que el segundo Gopher pueda trabajar, sin embargo
+                  esto ocasiona que se necesite una sincronizacion entre los Gophers porque si los dos llegan al incinerador
+                  al mismo tiempo uno tendra que esperar al otro, provocando una perdida de efectividad.
+                </p>
+                <img src="images/Gopher3.png" style="margin-left: 30px; margin-bottom: 20px">
+                <p>
+                  La solucion paralela es duplicar todo, usando dos pilas de libros, dos carros y dos incineradores,
+                  provocando que no se necesite gestionar la sincronizacion entre los Gophers y que ambos puedan trabajar todo el tiempo.
+                </p>
+                <img src="images/Gopher4.png" style="margin-left: 30px; margin-bottom: 20px">
+                <p>
+                  Para complicar el ejemplo ahora vamos a usar 4 Gophers. Usando una solucion concurrente podemos gestionar a los 4 Gophers
+                  para que hagan tareas diferentes y completamente independientes, el primero llena el carro con libros, el segundo lleva el
+                  carro al incinerador, el tercero arroja los libros del carro al incinedaror, y el cuarto regresa el carro a la pila de libros.
+                </p>
+                <img src="images/Gopher5.png" style="margin-left: 30px; margin-bottom: 20px">
+                <p>
+                  Como se dijo anteriormente una solucion concurrente puede ser facilmente paralelizable, y en este ejemplo no es la excepcion,
+                  lo unico que se necesita es duplicar todo y que todo se haga al tiempo.
+                </p>
+                <img src="images/Gopher6.png" style="margin-left: 30px; margin-bottom: 20px">
+                
+              </div>
+            </section>
           </div>
 
 
