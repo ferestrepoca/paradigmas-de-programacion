@@ -121,7 +121,7 @@
               surgieron para abordar la cuestión de cómo manejar múltiples trenes en el mismo sistema ferroviario
               (evitando colisiones y maximizando la eficiencia) y cómo manejar múltiples transmisiones a través de
               un conjunto determinado de cables (mejorando la eficiencia), como a través de multiplexación por división
-              de tiempo (década de 1870). ).
+              de tiempo (década de 1870) ).
             </p>
           </div>
 
@@ -166,7 +166,7 @@
               La programación concurrente es la ejecución simultánea de múltiples tareas interactivamente. Estas tareas
               pueden ser un conjunto de procesos o hilos de ejecución
               creados por un único programa. Las tareas se pueden ejecutar en una sola CPU (multiprogramación), en
-              varios procesadores, o en una red de computadores distribuidos.</p><br>
+              varios procesadores, o en una red de computadores distribuidos. </p><br>
             <!--
 <img src="https://s3.postimg.org/435ixtj2r/definicion.jpg" style="margin-left: 30px"> -->
 
@@ -174,7 +174,7 @@
             <p><br>
               La programación concurrente no es más que la forma en la cual podemos
               resolver ciertas problemáticas de forma concurrente, es decir, ejecutando múltiples tareas a la misma vez
-              y no de forma secuencial.En un programa concurrente las tareas puede continuar sin la necesidad que otras
+              y no de forma secuencial.  En un programa concurrente las tareas puede continuar sin la necesidad que otras
               comiencen o finalicen. <br>
               Si bien es cierto que la programación concurrente acarrea ciertos problemas, principalmente al momento de
               compartir información entre tareas, también es cierto que si se implementa de forma correcta, podremos, en
@@ -236,10 +236,10 @@
                 </div>
               </div>
 
-            <h2>Como diferenciarlas ?</h2>
+            <h2>Como diferenciarlas?</h2>
             La concurrencia y el paralelismo han sido extensamente discutidos, pero al momento de definirlos, varios
-            autores salen con su propia definición y esta variedad no hacen tan facil la tarea de entender.
-            En terminos sencillos, se puede explicar asi:
+            autores salen con su propia definición y esta variedad no hacen tan fácil la tarea de entender.
+            En términos sencillos, se puede explicar así:
             <blockquote>
               Un programa es concurrente si puede soportar dos o más acciones<strong> en progreso.</strong><br><br>
               Un programa es paralelo si puede soportar dos o más acciones <strong>ejecutándose
@@ -262,9 +262,9 @@
                 <span aria-hidden="true" class="octicon octicon-link"></span></a>Relación
             </h2>
 
-            <p>Multiples procesos pueden ser ejecutados al mismo tiempo. En otra palabras, la programacion concurrente
+            <p>Múltiples procesos pueden ser ejecutados al mismo tiempo. En otras palabras, la programación concurrente
               se comporta igual que la paralela cuando tenemos un sistema multiprocesador en el cual cada unidad de
-              procesamiento ejecuta un proceso o hilo. En la imagen inferior podemos ver que el la unidad de
+              procesamiento ejecuta un proceso o hilo. En la imagen inferior podemos ver que la unidad de
               procesamiento 2 y 3 se comportan igual.</p><br>
 
             <h2><a id="relacion" class="anchor" href="#relacion" aria-hidden="true"></a>Ejemplo de concurrencia:</h2>
@@ -319,7 +319,7 @@
               ellos; Mientras que, los hilos pueden compartir información fácilmente.<br /><br />
 
               Desafortunadamente, esto crea un problema: si dos hilos trabajan con los mismos datos, se puede crear
-              errores como, por ejemplo, la valor cambia sin entender por qué. De hecho, cuando se realizan dos tareas
+              errores como, por ejemplo, el valor cambia sin entender por qué. De hecho, cuando se realizan dos tareas
               al mismo tiempo, si modificamos los datos en un hilo y hacemos lo mismo en la otra, será imposible
               predecir qué hilo modificarán primero la variable.<br />
               Para esto, hay un sistema para "bloquear" los datos en un hilo. Una vez que este hilo desbloqueará los
@@ -330,13 +330,13 @@
 
             <p><img src="http://s32.postimg.org/s503ixn05/paralellismo.jpg" alt=""></p>
 
-            <p>Hay que aclarar la concurrencia no solo es paralelismo, ya que, cuando hay mas procesos o hilos el
-              scheduler del sistema operativo interviene y divide la ejecucion de los procesos, <strong>caracteristica
-                que la programacion paralela NO tiene</strong> cada proceso tiene que ser ejecutado exclusivamente en
+            <p>Hay que aclarar la concurrencia no solo es paralelismo, ya que, cuando hay más procesos o hilos el
+              scheduler del sistema operativo interviene y divide la ejecución de los procesos, <strong>característica
+                que la programación paralela NO tiene</strong> cada proceso tiene que ser ejecutado exclusivamente en
             una unidad de procesamiento. En la parte inferior podemos apreciar mejor la diferencia.</p><br>
 
             <p><img src="http://joearms.github.io/images/con_and_par.jpg" alt=""></p>
-            <p><strong>Cuadro compartivo Procesos vs Hilos: </strong></p>
+            <p><strong>Cuadro comparativo Procesos vs Hilos: </strong></p>
             <table class="table">
               <thead class="thead-dark">
                 <tr>
@@ -390,7 +390,7 @@
                   <th scope="row">9</th>
                   <td>Los procesos tienen su propio PCB, Stack y espacio en memoria.</td>
                   <td>Los hilos tienen el PCB de sus padres, su propio Thread Control Block (TCB) y Stack y un
-                    espacio de memoria compartido.</td>
+                    espacio de memoria compartido. </td>
                 </tr>
               </tbody>
             </table>
@@ -408,7 +408,7 @@
                 <img src="images/Gopher1.png" style="margin-left: 30px; margin-bottom: 20px">
 
                 <p>
-                  Si agregamos otro Gopher al ejemplo este no podra hacer nada porque las herramientas estaran ocupadas por su
+                  Si agregamos otro Gopher al ejemplo este no podrá hacer nada porque las herramientas estarán ocupadas por su
                   compañero como se ve en la siguiente imagen.
                 </p>
                 <img src="images/Gopher2.png" style="margin-left: 30px; margin-bottom: 20px">
@@ -416,24 +416,24 @@
                 <p>
                   Para este caso simple tenemos dos soluciones simples, una concurrente y la otra paralela.<br>
                   La solución concurrente es que se añada otro carro para que el segundo Gopher pueda trabajar, sin embargo
-                  esto ocasiona que se necesite una sincronizacion entre los Gophers porque si los dos llegan al incinerador
-                  al mismo tiempo uno tendra que esperar al otro, provocando una perdida de efectividad.
+                  esto ocasiona que se necesite una sincronización entre los Gophers porque si los dos llegan al incinerador
+                  al mismo tiempo uno tendrá que esperar al otro, provocando una pérdida de efectividad.
                 </p>
                 <img src="images/Gopher3.png" style="margin-left: 30px; margin-bottom: 20px">
                 <p>
-                  La solucion paralela es duplicar todo, usando dos pilas de libros, dos carros y dos incineradores,
-                  provocando que no se necesite gestionar la sincronizacion entre los Gophers y que ambos puedan trabajar todo el tiempo.
+                  La solución paralela es duplicar todo, usando dos pilas de libros, dos carros y dos incineradores,
+                  provocando que no se necesite gestionar la sincronización entre los Gophers y que ambos puedan trabajar todo el tiempo.
                 </p>
                 <img src="images/Gopher4.png" style="margin-left: 30px; margin-bottom: 20px">
                 <p>
-                  Para complicar el ejemplo ahora vamos a usar 4 Gophers. Usando una solucion concurrente podemos gestionar a los 4 Gophers
+                  Para complicar el ejemplo ahora vamos a usar 4 Gophers. Usando una solución concurrente podemos gestionar a los 4 Gophers
                   para que hagan tareas diferentes y completamente independientes, el primero llena el carro con libros, el segundo lleva el
-                  carro al incinerador, el tercero arroja los libros del carro al incinedaror, y el cuarto regresa el carro a la pila de libros.
+                  carro al incinerador, el tercero arroja los libros del carro al incinerador, y el cuarto regresa el carro a la pila de libros.
                 </p>
                 <img src="images/Gopher5.png" style="margin-left: 30px; margin-bottom: 20px">
                 <p>
-                  Como se dijo anteriormente una solucion concurrente puede ser facilmente paralelizable, y en este ejemplo no es la excepcion,
-                  lo unico que se necesita es duplicar todo y que todo se haga al tiempo.
+                  Como se dijo anteriormente una solución concurrente puede ser fácilmente paralelizadle, y en este ejemplo no es la excepción,
+                  lo único que se necesita es duplicar todo y que todo se haga al tiempo.
                 </p>
                 <img src="images/Gopher6.png" style="margin-left: 30px; margin-bottom: 20px">
                 
@@ -450,11 +450,11 @@
             <h2><a id="proceso" class="anchor" href="#proceso" aria-hidden="true"><span aria-hidden="true"
                   class="octicon octicon-link"></span></a>Proceso</h2>
 
-            <p>Un proceso no solamente es el código de un programa,un proceso tiene un <strong>contador de
+            <p>Un proceso no solamente es el código de un programa, un proceso tiene un <strong>contador de
                 programa</strong> el cual es un registro del computador que
               indica la dirección de la siguiente instrucción que será ejecutada por el proceso, <strong>Pila de
                 proceso</strong> Esta contiene datos temporales
-              tales como: Los parametros de las funciones, direcciones de retorno, variables locales , … ,
+              tales como: Los parámetros de las funciones, direcciones de retorno, variables locales , … ,
               <strong>Sección de datos</strong> la cual contiene datos
               tales como las variables locales, Heap: Cúmulo de memoria que es la memoria que se asigna dinámicamente al
               proceso n tiempo de ejecución
@@ -518,7 +518,7 @@
                   de procesos, punteros a las colas de planificación ...</p>
               </li>
               <li>
-                <p><strong>Información de gestión de memoria</strong>: Tablas de paginas , tablas de segmentos,
+                <p><strong>Información de gestión de memoria</strong>: Tablas de páginas , tablas de segmentos,
                   dependiendo los mecanismos de gestión del S.O</p>
               </li>
             </ul>
@@ -572,7 +572,7 @@
 
             <ul>
               <li><strong>Creación de un hilo: </strong> La abstracción básica es la ejecución de una función como punto
-                de entrada para un hilo individual, y la obtención de un recurso vinculado a dicha ejecución.Un hilo
+                de entrada para un hilo individual, y la obtención de un recurso vinculado a dicha ejecución. Un hilo
                 puede comenzar con:</li>
               <ul>
                 <li>Un puntero a una función</li>
@@ -617,7 +617,7 @@
             </p>
 
                       
-            <h3>Caracteristicas:</h3>
+            <h3>Características:</h3>
 
             <ul>
               <li><strong>Modelo cooperativo:</strong> Las corrutinas tienen que ser programadas de manera que cedan la
@@ -690,7 +690,7 @@
 
             </p>
 
-            <h3>Caracteristicas:</h3>
+            <h3>Características:</h3>
 
             <ul>
               <li><strong>Procesos ligeros:</strong> Un actor es una unidad de procesamiento análoga al proceso, pero
@@ -841,7 +841,7 @@
               <li><strong>Multiple-Level Queues</strong></li>
               <p>la cola de ready se parte en varias colas que determinan la prioridad de los procesos, cada cola
                 implementa su propio algoritmo de calendarización y
-                adicionalmente tambien se hace calendarización entre las colas</p>
+                adicionalmente también se hace calendarización entre las colas</p>
               <!-- <p><img src="https://s11.postimg.org/ac3tmerfn/multiqueue.jpg" style="margin-left: 30px"></p> -->
             </ul>
 
@@ -1071,7 +1071,7 @@
                 cuando el algoritmo que maneja los recursos no tiene en cuenta
                 el tiempo que lleva esperando ese proceso. Para solucionar esto entre procesos que compiten se puede
                 manejar de tal manera que mientras más espere un proceso, más
-                alta sera su prioridad, aunque una solucion más sencilla y aplicable a un rango mayor de circunstancias
+                alta será su prioridad, aunque una solución más sencilla y aplicable a un rango mayor de circunstancias
                 es tratar con los procesos estrictamente en su orden de espera.<br>
                 Un ejemplo en Ada es el siguiente, en este, un hilo se queda esperando una respuesta de otro proceso que
                 nunca va a ocurrir por que la tarea Gourmet
@@ -1130,15 +1130,15 @@
     </pre>
               </li>
               <li>
-                <strong>Injusticia : </strong> Tambien conocido como "unfairness", ocurre cuando el programa no tiene
+                <strong>Injusticia : </strong> también conocido como "unfairness", ocurre cuando el programa no tiene
                 mecanismos para asegurar que se da un progreso "parejo" en las
                 tareas concurrentes, este es un aspecto que el diseñador debe tener en cuenta al desarrollar el
-                programa, cualquier descuido a la "justicia" de un programa podria
+                programa, cualquier descuido a la "justicia" de un programa podría
                 generar un aplazamiento indefinido.
               </li>
             </ul>
 
-            Para una mayor informacion de como funcionan y actuan estos problemas, por favor referirse al notebook
+            Para una mayor información de como funcionan y actúan estos problemas, por favor referirse al notebook
             dejado a continuación: <br>
             <h3><a
                 href="http://nbviewer.jupyter.org/url/ferestrepoca.github.io/paradigmas-de-programacion/progconcurrente/concurrente_teoria/notebook/Notebook_ProgConcurrente_20181.ipynb"
@@ -1179,8 +1179,8 @@
                   class="octicon octicon-link"></span></a>Sincronizacion
             </h1>
 
-            <p>Cuando tenemos varios procesos o hilos en la ejecucion, en muchos casos no queremos que estos se ejecuten
-              al mismo tiempo. El mecanismo que controla el orden de ejecucion de determinadas tareas lo llamamos
+            <p>Cuando tenemos varios procesos o hilos en la ejecución, en muchos casos no queremos que estos se ejecuten
+              al mismo tiempo. El mecanismo que controla el orden de ejecución de determinadas tareas lo llamamos
               <strong>SINCRONIZACION</strong>.
             </p>
 
@@ -1204,12 +1204,12 @@
 
             <ul>
               <li>
-                Se da cuando uno o mas hilos ejecutan secciones que otro hilo podría usar al mismo tiempo, y en estas
+                Se da cuando uno o más hilos ejecutan secciones que otro hilo podría usar al mismo tiempo, y en estas
                 modifica variables que podrían afectar la ejecución del resto de hilos.
               </li>
 
               <li>
-                Se pueden producir cuando varios threads NO acceden en exclusi´on mutua a un recurso compartido.
+                Se pueden producir cuando varios threads NO acceden en exclusión mutua a un recurso compartido.
               </li>
 
               <li>
@@ -1253,7 +1253,7 @@
               infinitamente. Nadie va a ceder su tenedor porque todos están en la misma situación.</p>
 
             <p>Como podemos hacer para que los filósofos no se mueran de hambre?. Interesante no, el problema en sí
-              tiene muchas soluciones pero solo vamos a enunciar una: Un filosofo toma los dos tenedores y se los demas
+              tiene muchas soluciones pero solo vamos a enunciar una: Un filosofo toma los dos tenedores y se los demás
               hacen una cola alrededor de la mesa para saber cual es el siguiente hasta que todos acaban.</p>
 
             <h2>
@@ -1584,7 +1584,7 @@ public class Banco2 extends Thread{
           while(!turno) {
               wait();
           }
-          //si el turno esta disponible, se toma, poniendolo como false para el resto
+          //si el turno esta disponible, se toma, poniéndolo como false para el resto
           //de hilos
           turno=false;
           for(int i=0;i< this.Operaciones;i++){
@@ -1964,7 +1964,7 @@ procedure consumer() {
             </p>
             <center><img src="images/pizza.png" style="margin-left: 30px; margin-bottom: 20px"></center>
             <ul>
-              <p>Existe una pizza con propiedades magicas entre ellas están:</p>
+              <p>Existe una pizza con propiedades mágicas entre ellas están:</p>
               <li>Tiene un número máximo fijo de porciones, por ejemplo 8.</li>
               <li>Las porciones vuelven a aparecer automáticamente después de ser consumidas.</li>
               <li>Cuando se toma una porción de la pizza, no vuelve a aparecer hasta que se haya consumido por completo.
@@ -2045,7 +2045,7 @@ procedure consumer() {
 
                 <li>
                     Sistema operativo: En esta aplicación real es donde más se evidencia la necesidad de este paradigma. Un sistema operativo que funcione
-                    de manera secuencial y determinista es impensable. Con la enorme cantidad de actividades que debe de gestionar simultaneamente, como 
+                    de manera secuencial y determinista es impensable. Con la enorme cantidad de actividades que debe de gestionar simultáneamente, como 
                     asignar memoria, atender eventos I/O de distintos dispositivos periféricos (teclado, mouse, monitor, impresora, etc.), ejecutar procesos
                     y encargarse de funciones de red, resulta patente la necesidad de una solución recurrente y que además sea eficiente, puesto que de su
                     correcto funcionamiento depende el funcionamiento de todas las demás aplicaciones que se ejecuten en el sistema.
@@ -2116,7 +2116,7 @@ procedure consumer() {
             Elixir es lenguaje de programación de propósito general, concurrente; este lenguaje es funcional. Además
             está construido sobre la MV de Erlang y aprovecha esto para construir sistemas distribuidos y tolerantes a
             fallos con baja latencia. Es utilizado para construcción de API's y para optimización en el desarrollo web.
-            Es utilizado en muchos frameworks como Hedwig, para la implementación de chatbots en distntas redes sociales
+            Es utilizado en muchos frameworks como Hedwig, para la implementación de chatbots en distintas redes sociales
             y
             demás. Elixir presenta ejecución por hilos (referida como procesos) en un ambiente en el cuál múltiples
             procesos pueden comunicarse unos con otros vía mensajes.
@@ -2125,11 +2125,11 @@ procedure consumer() {
               <li><strong>Ada</strong></li>
             </ul>
             <center><img src="images/ada-coin.jpg" width="150px" height="150px"></center>
-            Ada es un lenguaje nacido de un proyecto en los 70s del ejército de los Estados Unidos, el cuál tenía como
-            principal requisito la seguridad, es decir, se tenía que tener un lenguaje con nula cantidad de errores. El
+            Ada es un lenguaje nacido de un proyecto en los 70s del ejército de los Estados Unidos, el cual tenía como
+            principal requisito la seguridad, es decir, se debía tener un lenguaje con nula cantidad de errores. El
             lenguaje es usado de forma amplia en la industria de las infraestructuras de riesgo grande, como lo es
             sistemas de aviones, trenes, tanques y misiles. Es fuertemente tipado, uno de los más tipados, debido a la
-            necesidad explicita de minimizar los errores. Ha tenido relativamente pocas actualizaciones.Es uno de los
+            necesidad explicita de minimizar los errores. Ha tenido relativamente pocas actualizaciones. Es uno de los
             pioneros en programación orientado a objetos, lenguaje multipropósito. Sincroniza las tareas por rendez
             vous.
 
@@ -2140,9 +2140,9 @@ procedure consumer() {
             <center><img src="images/rust.png" width="150px" height="150px"></center>
             Rust es un lenguaje de programación compilado, de propósito general y multiparadigma desarrollado por
             Mozilla y ha sido diseñado para ser ‘un lenguaje seguro, concurrente y práctico’. Rust se enfoca
-            principalmente en seguridad, velocidad y concurrencia. Una de sus principales caraterísticas es que es
+            principalmente en seguridad, velocidad y concurrencia. Una de sus principales características es que es
             posible
-            arreglar bugs en timepo de ejecución. Usado en desarollo web y embebido.
+            arreglar bugs en tiempo de ejecución. Usado en desarrollo web y embebido.
 
             <ul>
               <li><strong>Erlang</strong></li>
@@ -2197,7 +2197,7 @@ procedure consumer() {
 
             Java es un lenguaje de programación orientado a objetos creado en 1991 y publicado en 1995 por Sun
             Microsystem (adquirida por Oracle en 2010), con la intención de que los programadores escribieran el código
-            solo una y lo ejecutarán en cualquier dispositivo. JAva permite realizar concurrencia con la librería
+            solo una y lo ejecutarán en cualquier dispositivo. Java permite realizar concurrencia con la librería
             threads. Además de que cuenta con otras librerías que implementan métodos de planificación y control de
             procesos
             (variables atómicas, semáforos, entre otros) traídos del paquete concurrent.
@@ -2208,7 +2208,7 @@ procedure consumer() {
                 un
                 hilo sin preguntarle al programador. Además, existen otros lenguajes que ya contienen paquetes que
                 facilitan la
-                implementción de la programación concurrente como los son:</p>
+                implementación de la programación concurrente como los son:</p>
             </div>
 
 
@@ -2395,17 +2395,17 @@ t.join()</pre>
             <p>Ejecutamos: <strong>./semaforo</strong></p>
 
             <blockquote>
-              <p>Hilo ENTRO a seccion critica</p>
+              <p>Hilo ENTRO a sección critica</p>
 
-              <p>Hilo SALIO a seccion critica</p>
+              <p>Hilo SALIO a sección critica</p>
 
-              <p>Hilo ENTRO a seccion critica</p>
+              <p>Hilo ENTRO a sección critica</p>
 
-              <p>Hilo SALIO a seccion critica</p>
+              <p>Hilo SALIO a sección critica</p>
 
-              <p>Hilo ENTRO a seccion critica</p>
+              <p>Hilo ENTRO a sección critica</p>
 
-              <p>Hilo SALIO a seccion critica</p>
+              <p>Hilo SALIO a sección critica</p>
             </blockquote>
 
             <ul>
@@ -3141,7 +3141,7 @@ TotalMilliseconds : 832,8442
               con la gestión de memoria que realiza.
             </p>
             <p>
-              Hilos: creamos hilos con el comando thread::spawn, que recibe un closure y se lanza justo al definirlo.
+              Hilos: creamos hilos con el comando thread::spawn, que recibe un closure y se lanza justo al definirlo.
             </p>
             <pre class="prettyprint">
   use std::thread;
@@ -3161,13 +3161,13 @@ TotalMilliseconds : 832,8442
             </blockquote>
 
             <p>
-              Para esperar a que un hilo termine se puede utilizar el método join.
+              Para esperar a que un hilo termine se puede utilizar el método join.
             </p>
             <p>
               Podemos lanzar varios hilos dentro de un bucle
             </p>
             <!--<p>
-  Se crea un Vec donde se meten todos los hilos para luego poder hacer un join y esperar a que todos terminen. Dentro del hilo se imprime por pantalla el índice de la iteración.
+  Se crea un Vec donde se meten todos los hilos para luego poder hacer un join y esperar a que todos terminen. Dentro del hilo se imprime por pantalla el índice de la iteración.
 </p>-->
             <p>Aquí, en cada vuelta del bucle, iniciaremos un hilo con un iterador asociado. El primer hilo se inicia
               con el número 0, el segundo con el número 1 y así sucesivamente.
@@ -3216,8 +3216,8 @@ TotalMilliseconds : 832,8442
 
             <p>
               Mutex y Arc: Para compartir una referencia a memoria entre hilos se usa Arc y Mutex en combinación.
-              Arc es un contador de referencias que se puede compartir entre hilos.
-              Mutex implementa el bloqueo asociado a la variable en concreto.
+              Arc es un contador de referencias que se puede compartir entre hilos.
+              Mutex implementa el bloqueo asociado a la variable en concreto.
 
             </p>
             <pre class="prettyprint">
@@ -3276,11 +3276,11 @@ TotalMilliseconds : 832,8442
             </blockquote>
 
             <p>
-              En este ejemplo se define la cadena dentro de un Mutex y este dentro de un Arc, así se comparte la memoria
+              En este ejemplo se define la cadena dentro de un Mutex y este dentro de un Arc, así se comparte la memoria
               entre hilos.
               <br>
-              channel crea un transmisor, tx, y un receptor, rx, en cada hilo, clona el transmisor y escribe en este la
-              salida. En el send se puede enviar cualquier tipo de dato según se cree el channel, no se pueden enviar
+              channel crea un transmisor, tx, y un receptor, rx, en cada hilo, clona el transmisor y escribe en este la
+              salida. En el send se puede enviar cualquier tipo de dato según se cree el channel, no se pueden enviar
               diferentes tipos de datos por el mismo canal.
 
             </p>
@@ -3346,7 +3346,7 @@ TotalMilliseconds : 832,8442
             </blockquote>
 
             <ul>
-              <li>Ejemplo de concurrecia en <strong>Crystal</strong>:</li>
+              <li>Ejemplo de concurrencia en <strong>Crystal</strong>:</li>
             </ul>
             <p>
               Crystal usa hilos llamados fibras para lograr concurrencia. Las fibras se comunican entre sí mediante
@@ -3376,7 +3376,7 @@ TotalMilliseconds : 832,8442
   sleep 1.second
 </pre>
             <p>
-              Este programa imprimirá "¡Hello!" por un segundo y luego saldra. Esto se debe a que la llamada de espera
+              Este programa imprimirá "¡Hello!" por un segundo y luego saldrá. Esto se debe a que la llamada de espera
               programará la fibra principal que se ejecutará en un segundo y luego ejecutará otra fibra "lista para
               ejecutarse", que en este caso es la de arriba.
               <br><br>
@@ -3751,7 +3751,7 @@ TotalMilliseconds : 832,8442
             <li>Diego Felipe Rodriguez Chaparro</li>
             <li>Nicolas Ricardo Enciso</li>
             <li>Camilo Alfonso Mosquera Benavides</li>
-            <li>Juan Sebastian Herrera Maldonado </li>
+            <li>Juan Sebastián Herrera Maldonado </li>
             <li>Florent Sebag</li>
             <li>Karen Ximena Combita Alfonso</li>
             <li>Michael Tomas Velasquez Gordillo</li>
