@@ -34,7 +34,8 @@
 
 		<h2>
 			<a id="ventajas-y-desventajas" class="anchor" href="#ventajas-y-desventajas" aria-hidden="true"><span
-					aria-hidden="true" class="octicon octicon-link"></span></a>VENTAJAS Y DESVENTAJAS</h2>
+					aria-hidden="true" class="octicon octicon-link"></span></a>VENTAJAS Y DESVENTAJAS
+		</h2>
 
 		<h3>
 			<a id="ventajas" class="anchor" href="#ventajas" aria-hidden="true"><span aria-hidden="true"
@@ -113,8 +114,12 @@
 			</li>
 		</ul>
 
-		<p><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/minimo_acoplamiento_maxima_cohesion.png?raw=true"
-				alt=""></p>
+		<center>
+			<p>
+				<img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/minimo_acoplamiento_maxima_cohesion.png?raw=true"
+					alt="">
+			</p>
+		</center>
 
 		<h3>
 			<a id="desventajas" class="anchor" href="#desventajas" aria-hidden="true"><span aria-hidden="true"
@@ -135,8 +140,13 @@
 			</li>
 		</ul>
 
-		<p><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/choque.png?raw=true"
-				alt=""></p>
+		<center>
+			<p>
+				<img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/choque.png?raw=true"
+					alt="">
+			</p>
+		</center>
+
 
 		<ul>
 			<li>
@@ -153,35 +163,66 @@
 				<strong>Posibles choques entre el código de aspectos y los mecanismos del lenguaje:</strong> Uno de los
 				ejemplos más conocidos de este problema es la anomalía de herencia. Dentro del contexto de la POA, el
 				término puede ser usado para indicar la dificultad de heredar el código de un aspecto en la presencia de
-				herencia.</li>
-			
-	
+				herencia.
+			</li>
 
-		<p><img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/herencia.png?raw=true"
-				alt=""></p>
-				<li>
-					<strong>Dificultades a la hora de hacer debugging:</strong> Debido a que en este paradigma se tiende a ocultar
-					código buscando la modularización. En el caso de ocurrir un error en nuestra aplicación, puede que no sea fácil
-					identificar si dicho error se originó en el código funcional o en algún aspecto, ya que el flujo real de la
-					ejecución no es explícito y puede ser difícil de seguir.
-				</li>
+
+
+			<center>
+				<p>
+					<img src="https://github.com/ProgramacionOrientadaAspectos/POA_teoria/blob/gh-pages/Images/herencia.png?raw=true"
+						alt="">
+				</p>
+			</center>
+
+			<li>
+				<strong>Dificultades a la hora de hacer debugging:</strong> Debido a que en este paradigma se tiende a
+				ocultar
+				código buscando la modularización. En el caso de ocurrir un error en nuestra aplicación, puede que no
+				sea fácil
+				identificar si dicho error se originó en el código funcional o en algún aspecto, ya que el flujo real de
+				la
+				ejecución no es explícito y puede ser difícil de seguir.
+			</li>
 		</ul>
-		
+
 		<ul>
-				<li>
-					<strong>Fragilidad:</strong> Por la forma en que funcionan los pointcuts, cualquier cambio en un advice puede repercutir
-					cambios y posibles errores en múltiples métodos de la aplicación. De la misma manera, cambiar el nombre de un método puede
-					ocasionar que este deje de ser afectado por un advice o que empiece a ser manipulado por otro sin que nos percatemos. Esto
-					exige tener un especial cuidado a la hora de crear y manipular métodos, lo que puede llegar a ser restrictivo.
-				</li>
+			<li>
+				<strong>Fragilidad:</strong> Por la forma en que funcionan los pointcuts, cualquier cambio en un advice
+				puede repercutir
+				cambios y posibles errores en múltiples métodos de la aplicación. De la misma manera, cambiar el nombre
+				de un método puede
+				ocasionar que este deje de ser afectado por un advice o que empiece a ser manipulado por otro sin que
+				nos percatemos. Esto
+				exige tener un especial cuidado a la hora de crear y manipular métodos, lo que puede llegar a ser
+				restrictivo.
+			</li>
 		</ul>
 		<ul>
-				<li>
-					<strong>Documentación:</strong> Como se dijo anteriormente, se trata de un paradigma relativamente nuevo
-					comparado con otros, esto causa que la documentación e implementaciones del mismo no tengan documentaciones
-					robustas como, por ejemplo, la programación orientada a objetos. Esto puede suponer un problema para desarrolladores
-					con poca experiencia o para proyectos de gran envergadura que deban depender en gran medida de este paradigma.
-				</li>
+			<li>
+				<strong>Documentación:</strong> Como se dijo anteriormente, se trata de un paradigma relativamente nuevo
+				comparado con otros, esto causa que la documentación e implementaciones del mismo no tengan
+				documentaciones
+				robustas como, por ejemplo, la programación orientada a objetos. Esto puede suponer un problema para
+				desarrolladores
+				con poca experiencia o para proyectos de gran envergadura que deban depender en gran medida de este
+				paradigma.
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<strong>Incremento de carga computacional:</strong> La definición de capas adicionales dentro del
+				contexto de un proyecto y la inminente cantidad de puntos de comparación, evaluación de expresiones y en
+				general, la inserción de código adicional en el flujo de ejecución de un programa, puede suponer un
+				impacto significativo en el desempeño de la aplicación.
+			</li>
+			<center>
+				<p style="width:200px;height:200px;text-align: center !important;">
+					<img style="align-self: center !important;"
+						src="https://cdn-icons-png.flaticon.com/512/3806/3806043.png" alt="">
+				</p>
+			</center>
+
 		</ul>
 
 		<footer class="site-footer">
@@ -191,6 +232,9 @@
 					href="https://github.com/ProgramacionOrientadaAspectos">ProgramacionOrientadaAspectos</a>.</span>
 			<span class="site-footer-credits">This page was created by Diego Rojas, Gustavo Galvis y Dorian
 				Tovar.</span>
+			<br>
+			<span class="site-footer-credits">This page was modified(2023-1) by Miguel Puentes, Jhonatan Rodríguez,
+				Paula Velosa & Edgar González</span>
 		</footer>
 	</section>
 
