@@ -41,6 +41,7 @@
         </div>
 
         <div class="container">
+
             <div class="row">
                 <h1 class="text-center">Conceptos clave</h1>
 
@@ -48,7 +49,65 @@
                 <hr>
                 <hr>
 
+
                 <div class="row">
+                    <h2>Pensamiento Funcional</h2>
+                    <div class="col-md-6 text-justify">
+                        <p>
+                            El pensamiento funcional es la serie de habilidades e ideas que se aplican para resolver problemas funcionalmente.
+                            Dos ideas importantes que debe aprender el programador funcional son:
+                        </p>
+                        <ol>
+                            <li>Distinguir acciones, cálculos y datos</li>
+                            <li>Usar abstracciones de primera clase</li>
+                        </ol>
+                        <p>Estas no son las únicas ideas de programación funcional, pero sí proporcionan una base sólida de ello.</p>
+                    </div>
+                    <h3>Distinguir acciones, cálculos y datos</h3>
+                    <div class="col-md-6 text-justify">
+                        <p>
+                            Todo código se separa según las categorías de acciones, cálculos o datos. Estas corresponden a qué tan difícil es entender, testear y reusar el código.
+                        </p>
+                        <h4>Acciones</h4>
+                        <p>
+                            Son aquello que depende de cuándo y cuántas veces son llamados.
+                            Son funciones con <a href="#side-effects">efectos secundarios</a>.<br>
+
+                        <p> <i>Ejemplo:</i> Leer de una base de datos.</p>
+                        </p>
+                        <h4>Cálculos</h4>
+                        <p>
+                            Representan decisiones o planes. Estos no afectan el entorno al ser ejecutados.
+                            Son <a href="#purefun">funciones puras</a>.<br>
+
+                        <p> <i>Ejemplo:</i> Revisar si una dirección de correo es válida.</p>
+                        </p>
+                        <h4>Datos</h4>
+                        <p>
+                            Es información registrada sobre eventos, es inmutable y flexible y puede almacenarse, transferirse y usarse de múltiples maneras.<br>
+                        <p> <i>Ejemplo:</i> Ordenes en un restaurante.</p>
+                        </p>
+
+                        <p>
+                            Esta perspectiva se puede aplicar a cualquier situación, aunque al principio puede parecer abstracto, a medida que se práctica se mejora.<br>
+                            Es importante tener en cuenta unos detalles finales:
+                        <ul>
+                            <li>Lo que parece una acción puede estar compuesto de otras acciones, cálculos o datos más pequeños.</li>
+                            <li>Los cálculos pueden estar compuestos de cálculos y datos más pequeños. Al descomponerlo, este se vuelve un cálculo partido en dos, donde la salida del primero es la entrada para el segundo- </li>
+                            <li>Los datos solo están compuestos de más datos. Debido a ello, si se tienen datos, se tiene garantía de cómo se comportarán.</li>
+                        </ul>
+                        </p>
+                    </div>
+                    <h3>Usar abstracciones de primera clase</h3>
+                    <div class="col-md-6 text-justify">
+                        <p>
+                            Para completar.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div id="purefun" class="row" >
                     <h2>Funciones Puras</h2>
                     <div class="col-md-8 text-justify">
                         <p>
@@ -79,7 +138,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div id="side-effects" class="row">
                     <h2>Efectos secundarios</h2>
                     <div class="col-md-8 text-justify">
                         <p>
@@ -529,6 +588,7 @@
                     <script src="https://gist.github.com/Heldeg/4108a40081039098c603a73e0d3ccf54.js"></script>
                 </div>
             </div>
+
             <hr>
             <hr>
 
