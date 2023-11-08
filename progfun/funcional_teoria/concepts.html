@@ -41,14 +41,83 @@
         </div>
 
         <div class="container">
+
             <div class="row">
                 <h1 class="text-center">Conceptos clave</h1>
 
-                <p>A continuación veremos algunos conceptos referentes a la programación funcional</p>
+                <p>A continuación veremos algunos conceptos referentes a la programación funcional.</p>
                 <hr>
                 <hr>
 
+
                 <div class="row">
+                    <h2>Pensamiento Funcional</h2>
+                    <div class="col-md-12 text-justify">
+                        <p>
+                            El pensamiento funcional es la serie de habilidades e ideas que se aplican para resolver problemas funcionalmente.
+                            Dos ideas importantes que debe aprender el programador funcional son:
+                        </p>
+                        <ol>
+                            <li>Distinguir acciones, cálculos y datos</li>
+                            <li>Usar abstracciones de primera clase</li>
+                        </ol>
+                        <p>Estas no son las únicas ideas de programación funcional, pero sí proporcionan una base sólida de ello.</p>
+                    </div>
+                    <hr>
+                    <hr>
+
+                    <h3>Distinguir acciones, cálculos y datos</h3>
+                    <div class="col-md-6 text-justify">
+                        <p>
+                            Todo código se separa según las categorías de acciones, cálculos o datos. Estas corresponden a qué tan difícil es entender, testear y reusar el código.
+                        </p>
+                        <h4>Acciones</h4>
+                        <p>
+                            Son aquello que depende de cuándo y cuántas veces son llamados.
+                            Son funciones con <a href="#side-effects">efectos secundarios</a>.<br>
+
+                        <p> <i>Ejemplo:</i> Leer de una base de datos.</p>
+                        </p>
+                        <h4>Cálculos</h4>
+                        <p>
+                            Representan decisiones o planes. Estos no afectan el entorno al ser ejecutados.
+                            Son <a href="#purefun">funciones puras</a>.<br>
+
+                        <p> <i>Ejemplo:</i> Revisar si una dirección de correo es válida.</p>
+                        </p>
+                        <h4>Datos</h4>
+                        <p>
+                            Es información registrada sobre eventos, es inmutable y flexible y puede almacenarse, transferirse y usarse de múltiples maneras.<br>
+                        <p> <i>Ejemplo:</i> Ordenes en un restaurante.</p>
+                        </p>
+
+                        <p>
+                            Esta perspectiva se puede aplicar a cualquier situación, aunque al principio puede parecer abstracto, a medida que se práctica se mejora.<br>
+                            Es importante tener en cuenta unos detalles finales:
+                        <ul>
+                            <li>Lo que parece una acción puede estar compuesto de otras acciones, cálculos o datos más pequeños.</li>
+                            <li>Los cálculos pueden estar compuestos de cálculos y datos más pequeños. Al descomponerlo, este se vuelve un cálculo partido en dos, donde la salida del primero es la entrada para el segundo- </li>
+                            <li>Los datos solo están compuestos de más datos. Debido a ello, si se tienen datos, se tiene garantía de cómo se comportarán.</li>
+                        </ul>
+                        </p>
+                    </div>
+                    <h3>Usar abstracciones de primera clase</h3>
+                    <div class="col-md-6 text-justify">
+                        <p>
+                            Se hace uso de <a href="#firstclass-fun">funciones de primera clase</a>, estas son funciones que toman como argumento otras funciones.
+                            Existen también valores de primera clase, son aquellos que se pueden pasar a una función, pueden ser retornados por una, se pueden guardar en arreglos,
+                            asignar a un atributo de un objeto, se pueden asignar auna variable, entre otros.  En cambio, operadores aritméticos, ciclos, sentencias if, bloques try/catch,
+                            son ejemplos de valores que no son de primera clase. <br>
+                            La habilidad de identificar valores, funciones, entre otros, que no son de primera clase convertirlos a primera clase proporciona un gran poder para resolver problemas,
+                            pues abre las puertas a patrones de programación funcional más sofisticados (Cabe resaltar que son patrones de PF, diferentes a los usualmente usados para POO).
+                            Algunas ventajas son que permiten abstraer código, eliminar código duplicado, envolver código en funciones.
+                        </p>
+                        <img src="images/abstraction.jpg" width="50%" class="center-block" alt="">
+                    </div>
+
+                </div>
+
+                <div id="purefun" class="row" >
                     <h2>Funciones Puras</h2>
                     <div class="col-md-8 text-justify">
                         <p>
@@ -79,7 +148,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div id="side-effects" class="row">
                     <h2>Efectos secundarios</h2>
                     <div class="col-md-8 text-justify">
                         <p>
@@ -150,9 +219,8 @@
                 <h2>Recursión</h2>
                 <div class="col-md-6 text-justify">
                     <p>
-                        En los lenguajes funcionales no existen los ciclos, así que muchas veces hay que
-                        reemplazarlos
-                        con funciones recursivas. A continuación un ejemplo de la misma función implementada con un
+                        En los lenguajes funcionales no existen los ciclos, esto con el objetivo de preservar la <a href="#inmutabilidad"> inmutabilidad</a>,
+                        por ende, la técnica que se usa es reemplazarlos con funciones recursivas. A continuación un ejemplo de la misma función implementada con un
                         ciclo for y con recursión
                     </p>
 
@@ -165,6 +233,37 @@
                     <iframe src="https://paiza.io/projects/e/d-OVYU-bMeYRr4QRTr4eUQ?theme=tomorrow_night_eighties" width="100%" height="500" scrolling="no" seamless="seamless"></iframe>
                     <h4>Java</h4>
                     <script src="https://gist.github.com/anonymous/71553ee47bd9e61789fed5cad402ce8d.js"></script>
+
+                </div>
+                <h3>Recursión de Cola</h3>
+                <div class="col-md-12 text-justify">
+                    <p>
+                        Dado que las recursiones se manejan guardando la información de los llamados en una pila, es posible que esto produzca
+                        un error de 'StackOverFlow', para evitar esto se usa recursión de cola, esta es una función recursiva en la que la llamada a sí
+                        misma es la última sentencia que ejecuta la función. Esta técnica evita que se desborde la pila dado que el compilador es capaz
+                        de reescribirlo como un búcle.
+
+                    </p>
+                    <hr>
+                    <hr>
+
+
+                </div>
+                <div class="col-md-6 text-justify">
+                    <h4>Recursividad Normal</h4>
+                    <script src="https://gist.github.com/SpaceCowboy03/e31c8cdaa9c9921a7c49034434588cee.js"></script>
+                    <p>
+                        A pesar de que el llamado recursivo <code>factorial(n-1)</code> aparece al final de la función, esta no es la última acción,
+                        pues tras ejecutar esa sentencia aún es necesario realizar la multiplicación por <code>n</code>.
+                    </p>
+
+                </div>
+                <div class="col-md-6 text-justify">
+                    <h4>Tail Recursion</h4>
+                    <script src="https://gist.github.com/SpaceCowboy03/afd3868cffef6d81f16e2f69f0464a41.js"></script>
+                    <p>
+                        En este caso, la llamada a <code>fact(k-1, k*result)</code>, sí es lo último en ejecutarse.
+                    </p>
 
                 </div>
                 </div>
@@ -289,14 +388,16 @@
 
             <div class="row">
                 <h2>Inmutabilidad</h2>
-                <div class="col-md-6 text-justify">
+                <div id="inmutabilidad" class="col-md-6 text-justify">
                     <p>
-                        Un objeto inmutable es aquel que no puede ser modificado una vez haya sido creado.
+                        En general, tener estados mutables vuelve el código más complejo y es causa de errores, ya que dificulta hacer seguimiento a los valores cambiantes,
+                        es por eso que en PF se busca tener objetos inmutables. Un objeto inmutable es aquel que no puede ser modificado una vez haya sido creado.
                         Podemos ver a los objeto inmutables como constantes, una vez nosotros asignamos un valor este no
-                        podrá ser modificado.
+                        podrá ser modificado. <br>
                         Teniendo en cuenta que un programa en programación funcional es inmutable, en ejecución está
                         prohibida la asignación de variables, ya que no garantizan que el código ejecutado dos veces sea
                         exactamente igual.
+
 
                     </p>
 
@@ -400,7 +501,7 @@
 
             <div class="row">
                 <h2>Funciones de Orden Superior y de Primera Clase</h2>
-                <div class="col-md-6 text-justify">
+                <div id="firstclass-fun" class="col-md-6 text-justify">
                     <h4>Funciones de Orden Superior</h4>
                     <p>
                         Son funciones que pueden tomar otras funciones como argumentos o devolverlas como resultado.
@@ -529,6 +630,7 @@
                     <script src="https://gist.github.com/Heldeg/4108a40081039098c603a73e0d3ccf54.js"></script>
                 </div>
             </div>
+
             <hr>
             <hr>
 
