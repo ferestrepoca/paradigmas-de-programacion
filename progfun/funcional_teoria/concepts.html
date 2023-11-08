@@ -215,9 +215,8 @@
                 <h2>Recursión</h2>
                 <div class="col-md-6 text-justify">
                     <p>
-                        En los lenguajes funcionales no existen los ciclos, así que muchas veces hay que
-                        reemplazarlos
-                        con funciones recursivas. A continuación un ejemplo de la misma función implementada con un
+                        En los lenguajes funcionales no existen los ciclos, esto con el objetivo de preservar la <a href="#inmutabilidad"> inmutabilidad</a>,
+                        por ende, la técnica que se usa es reemplazarlos con funciones recursivas. A continuación un ejemplo de la misma función implementada con un
                         ciclo for y con recursión
                     </p>
 
@@ -230,6 +229,37 @@
                     <iframe src="https://paiza.io/projects/e/d-OVYU-bMeYRr4QRTr4eUQ?theme=tomorrow_night_eighties" width="100%" height="500" scrolling="no" seamless="seamless"></iframe>
                     <h4>Java</h4>
                     <script src="https://gist.github.com/anonymous/71553ee47bd9e61789fed5cad402ce8d.js"></script>
+
+                </div>
+                <h3>Recursión de Cola</h3>
+                <div class="col-md-12 text-justify">
+                    <p>
+                        Dado que las recursiones se manejan guardando la información de los llamados en una pila, es posible que esto produzca
+                        un error de 'StackOverFlow', para evitar esto se usa recursión de cola, esta es una función recursiva en la que la llamada a sí
+                        misma es la última sentencia que ejecuta la función. Esta técnica evita que se desborde la pila dado que el compilador es capaz
+                        de reescribirlo como un búcle.
+
+                    </p>
+                    <hr>
+                    <hr>
+
+
+                </div>
+                <div class="col-md-6 text-justify">
+                    <h4>Recursividad Normal</h4>
+                    <script src="https://gist.github.com/SpaceCowboy03/e31c8cdaa9c9921a7c49034434588cee.js"></script>
+                    <p>
+                        A pesar de que el llamado recursivo <code>factorial(n-1)</code> aparece al final de la función, esta no es la última acción,
+                        pues tras ejecutar esa sentencia aún es necesario realizar la multiplicación por <code>n</code>.
+                    </p>
+
+                </div>
+                <div class="col-md-6 text-justify">
+                    <h4>Tail Recursion</h4>
+                    <script src="https://gist.github.com/SpaceCowboy03/afd3868cffef6d81f16e2f69f0464a41.js"></script>
+                    <p>
+                        En este caso, la llamada a <code>fact(k-1, k*result)</code>, sí es lo último en ejecutarse.
+                    </p>
 
                 </div>
                 </div>
@@ -354,14 +384,16 @@
 
             <div class="row">
                 <h2>Inmutabilidad</h2>
-                <div class="col-md-6 text-justify">
+                <div id="inmutabilidad" class="col-md-6 text-justify">
                     <p>
-                        Un objeto inmutable es aquel que no puede ser modificado una vez haya sido creado.
+                        En general, tener estados mutables vuelve el código más complejo y es causa de errores, ya que dificulta hacer seguimiento a los valores cambiantes,
+                        es por eso que en PF se busca tener objetos inmutables. Un objeto inmutable es aquel que no puede ser modificado una vez haya sido creado.
                         Podemos ver a los objeto inmutables como constantes, una vez nosotros asignamos un valor este no
-                        podrá ser modificado.
+                        podrá ser modificado. <br>
                         Teniendo en cuenta que un programa en programación funcional es inmutable, en ejecución está
                         prohibida la asignación de variables, ya que no garantizan que el código ejecutado dos veces sea
                         exactamente igual.
+
 
                     </p>
 
