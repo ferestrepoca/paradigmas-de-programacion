@@ -90,6 +90,8 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
   transition: all 0.5s;
   z-index: 997;
+  background: rgba(52, 59, 64, 0.9);
+  height: 72px;
 }
 
 #header #logo {
@@ -268,7 +270,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   #nav-menu-container {
     display: none;
   }
@@ -363,9 +365,22 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   #mobile-nav-toggle {
     display: inline;
+    margin-right: calc(15px + (100% - 720px)/2);
+  }
+}
+
+@media (max-width: 768px) {
+  #mobile-nav-toggle {
+    margin-right: calc(15px + (100% - 540px)/2);
+  }
+}
+
+@media (max-width: 576px) {
+  #mobile-nav-toggle {
+    margin-right: 15px;
   }
 }
 
@@ -486,6 +501,12 @@ body.mobile-nav-active #mobile-nav-toggle {
   background: url(../img/paradigms.png) center top no-repeat;
   background-size: 526px 500px;
   margin-bottom: 10px;
+}
+
+@media (max-width: 540px) {
+  #about .about-container .background {
+    background-size: 90% auto;
+  }
 }
 
 #about .about-container .content {

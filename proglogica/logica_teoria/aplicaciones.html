@@ -38,15 +38,15 @@
                 <a><img src="img/logo.png" class="resize" /></img></a>
             </div>
 
-            <nav>
+            <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li class="menu-active"><a href="index.html#hero">Paradigma de programación</a>
+                    <li class="menu-has-children"><a href="index.html#hero">Paradigma</a>
                         <ul>
                             <li><a href="index.html#about">Definición</a></li>
                             <li><a href="index.html#comparacion">Imperativo vs Declarativo</a></li>
                         </ul>
                     </li>
-                    <li><a href="proglogica.html">Programación lógica</a>
+                    <li class="menu-has-children"><a href="proglogica.html">Programación lógica</a>
                         <ul>
                             <li><a href="proglogica.html#filosofia">Filosofía del paradigma</a></li>
                             <li><a href="proglogica.html#definicion">¿Qué es?</a></li>
@@ -71,7 +71,7 @@
                             <li><a href="proglogica.html#ventajas">Ventajas y desventajas</a></li>
                         </ul>
                     </li>
-                    <li><a href="lenguaje.html">Lenguajes lógicos</a>
+                    <li class="menu-has-children"><a href="lenguaje.html">Lenguajes lógicos</a>
                         <ul>
                             <li><a href="lenguaje.html#prolog">Prolog</a></li>
                             <li><a href="lenguaje.html#mercury">Mercury</a></li>
@@ -81,16 +81,17 @@
                             <li><a href="lenguaje.html#sequencel">SequenceL</a></li>
                             <li><a href="lenguaje.html#datalog">Datalog</a></li>
                             <li><a href="lenguaje.html#ejemplos">Ejemplos</a></li>
+                            <li><a href="lenguaje.html#ejemplo_comparativo">Ejemplo comparativo</a></li>
                         </ul>
                     </li>
-                    <li><a href="aplicaciones.html">Aplicaciones</a>
+                    <li class="menu-active menu-has-children"><a href="aplicaciones.html">Aplicaciones</a>
                         <ul>
                             <li><a href="aplicaciones.html#ai">Inteligencia artificial</a></li>
                             <li><a href="aplicaciones.html#sist_experto">Sistemas Expertos</a></li>
                             <li><a href="aplicaciones.html#demostracion">Demostración automática de problemas</a></li>
                             <li><a href="aplicaciones.html#reconocimiento">Reconocimiento de lenguaje natural</a></li>
                             <li><a href="aplicaciones.html#procesamiento">Procesamiento de lenguaje natural</a></li>
-                            <li><a href="aplicaciones.html#sist_admon">Sistemas de administración de bases de datosrelacionales</a></li>
+                            <li><a href="aplicaciones.html#sist_admon">Sistemas de gestión de bases de datos relacionales</a></li>
                             <li><a href="aplicaciones.html#resolucion">Resolución de ecuaciones simbólicas</a></li>
                             <li><a href="aplicaciones.html#consultas">Consultas lógicas basadas en reglas</a></li>
                             <li><a href="aplicaciones.html#Logica_probabilistica">Programación lógica probabilística</a></li>
@@ -102,33 +103,28 @@
         </div>
     </header><!-- #header -->
 
-    <!--==========================
-        Hero Section
-    ============================-->
-    <section id="test">
-        <p style=" display: flex; justify-content: center;"><img src="img/hero-bg-short.jpg" style="width:100%;"></p>
-    </section><!-- #hero -->
-
-    <main id="main">
+    <main id="main" style="padding-top: 72px;">
 
         <!--==========================
         Content Section
         ============================-->
-        <section id="lista" style="margin-top:50px;">
+        <section id="lista" style="margin-top:30px;">
             <div class="container">
                 <div class="text_cell_render border-box-sizing rendered_html">
                     <h2 class="title"><strong>Aplicaciones</strong></h2>
                     <p>Las siguientes son aplicaciones en las que se puede emplear la <b>programación lógica</b> para
                         resolver problemas.</p>
-                    <li><a href="#ai">Inteligencia artificial</a></li>
-                    <li><a href="#sist_experto">Sistemas Expertos</a></li>
-                    <li><a href="#demostracion">Demostración automática de problemas</a></li>
-                    <li><a href="#reconocimiento">Reconocimiento de lenguaje natural</a></li>
-                    <li><a href="#procesamiento">Procesamiento de lenguaje natural</a></li>
-                    <li><a href="#sist_admon">Sistemas de administración de bases de datos relacionales</a></li>
-                    <li><a href="#resolucion">Resolución de ecuaciones simbólicas</a></li>
-                    <li><a href="#consultas">Consultas lógicas basadas en reglas</a></li>
-                    <li><a href="#Logica_probabilistica">Programación Lógica Probabilística</a></li>
+                    <ul>
+                        <li><a href="#ai">Inteligencia artificial</a></li>
+                        <li><a href="#sist_experto">Sistemas Expertos</a></li>
+                        <li><a href="#demostracion">Demostración automática de problemas</a></li>
+                        <li><a href="#reconocimiento">Reconocimiento de lenguaje natural</a></li>
+                        <li><a href="#procesamiento">Procesamiento de lenguaje natural</a></li>
+                        <li><a href="#sist_admon">Sistemas de administración de bases de datos relacionales</a></li>
+                        <li><a href="#resolucion">Resolución de ecuaciones simbólicas</a></li>
+                        <li><a href="#consultas">Consultas lógicas basadas en reglas</a></li>
+                        <li><a href="#Logica_probabilistica">Programación Lógica Probabilística</a></li>
+                    </ul>
                 </div>
             </div>
         </section><!-- #content -->
@@ -148,8 +144,7 @@
                         construir un sistema que aplica conceptos de machine learning usando lógica para establecer
                         conocimiento y por último formas causales
                     </p>
-                    <p style=" display: flex; justify-content: center;"><img src="img/machineLearning.jpg"
-                            style="width: 60%;"></p>
+                    <p style=" display: flex; justify-content: center;"><img src="img/machineLearning.jpg" style="width: 100%; max-width: 720px;"></p>
                 </div>
             </div>
         </section><!-- #content -->
@@ -166,8 +161,7 @@
                         y luego un usuario no experto puede generar una consulta y recibir una respuesta o decisión
                          como si la hubiera realizado un experto humano.
                     </p>
-                    <p style=" display: flex; justify-content: center;"><img src="img/compoente_SE.jpg"
-                        style="width: 60%;"></p>
+                    <p style=" display: flex; justify-content: center;"><img src="img/compoente_SE.jpg" style="width: 90%; max-width: 540px;"></p>
                     </p>
                     <p>La naturaleza de este proceso, realizar una consulta sobre conocimiento establecido, es la esencia
                         de la programación lógica, por lo que los sistemas expertos son una clara aplicación de este paradigma.
@@ -188,11 +182,9 @@
                         clasificación de <a
                             href="https://en.wikipedia.org/wiki/Myers%E2%80%93Briggs_Type_Indicator">Myers–Briggs</a>) y
                         su correlación con generos músicales preferidos para cada arquetipo.</p>
-                    <p style=" display: flex; justify-content: center;"><img src="img/personalityTypes.jpg"
-                            style="width: 60%;"></p>
+                    <p style=" display: flex; justify-content: center;"><img src="img/personalityTypes.jpg" style="width: 100%; max-width: 720px;"></p>
                     <p>Sobre la anterior tabla, por ejemplo, se pueden aplicar las siguientes normas de Inferencia</p>
-                    <p style=" display: flex; justify-content: center;"><img src="img/personalityTypes2.jpg"
-                            style="width: 60%;"></p>
+                    <p style=" display: flex; justify-content: center;"><img src="img/personalityTypes2.jpg" style="width: 80%; max-width: 600px;"></p>
                     </p>
                 </div>
             </div>
@@ -210,12 +202,12 @@
                             lógica</font> de un conjunto de <font color="red">axiomas</font> o <font color="red">
                             hipótesis</font>.</p>
                     <ul>
-                        <li style="margin-left:3em">
+                        <li style="margin-left:1em">
                             <p>El <font color="red">lenguaje</font> en el que la <font color="red">conjetura</font>, las
                                 hipótesis y los axiomas son escritos es una lógica, a menudo de primer orden, pero
                                 también puede ser no clásica o de orden superior.</p>
                         </li>
-                        <li style="margin-left:3em">
+                        <li style="margin-left:1em">
                             <p>Las <font color="red">pruebas</font> producidas por un sistema de razonamiento automático
                                 describen cómo y porqué la conjetura es una consecuencia de los axiomas y las
                                 hipótesis,utilizando para ello las <font color="red">reglas de derivación</font>.</p>
@@ -260,7 +252,7 @@
                         del análisis sintáctico es cómo describir las infinitas oraciones posibles de un
                         lenguaje a través de un dispositivo finito, como una gramática, en forma concisa y regular de
                         manera posible.</p>
-                        <p style=" display: flex; justify-content: center;"><img src="img/prolog005.PNG" style="width: 60%;"></p>
+                        <p style=" display: flex; justify-content: center;"><img src="img/prolog005.PNG" style="width: 100%; max-width: 720px;"></p>
                 </div>
             </div>
         </section><!-- #content -->
@@ -279,18 +271,20 @@
                         que sean eficientes.
                     </p>
                     <p>Los elementos claves son: </p>
-                    <li>Con el acoplamiento de una implementación de un sistema lógico existente a un sistema de
-                        gestión de base de datos relacional existente.
-                    </li>
-                    <li>Extender un sistema lógico existente con algunas funcionalidades de gestión de bases de datos
-                        relacionales.
-                    </li>
-                    <li>Extender un sistema lógico existente con algunas funcionalidades de gestión de bases de datos
-                        relacionales.
-                    </li>
-                    <li>Integrando estrechamente las técnicas de programación lógica con la de sistemas de gestión de
-                        bases de datos relacionales.
-                    </li>
+                    <ul>
+                        <li>Con el acoplamiento de una implementación de un sistema lógico existente a un sistema de
+                            gestión de base de datos relacional existente.
+                        </li>
+                        <li>Extender un sistema lógico existente con algunas funcionalidades de gestión de bases de datos
+                            relacionales.
+                        </li>
+                        <li>Extender un sistema lógico existente con algunas funcionalidades de gestión de bases de datos
+                            relacionales.
+                        </li>
+                        <li>Integrando estrechamente las técnicas de programación lógica con la de sistemas de gestión de
+                            bases de datos relacionales.
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section><!-- #content -->
@@ -310,7 +304,7 @@
                         artificial, sistemas expertos, procesamiento
                         de lenguaje natural y juegos de computadora. La computacion logica es componente fundamental de
                         la computación simbolica.</p>
-                    <p style=" display: flex; justify-content: center;"><img src="img/SimbolicC.png" style="width: 30%;"></p>
+                    <p style=" display: flex; justify-content: center;"><img src="img/SimbolicC.png" style="width: 60%; max-width: 360px;"></p>
                 </div>
             </div>
         </section><!-- #content -->
@@ -357,7 +351,7 @@
                         
                         </p>
                         <ul>
-                            <li style="margin-left:2em">
+                            <li style="margin-left:1em">
                                 <p><font color="red">Problog</font> es un lenguaje de programación probabilístico que se basa en Prolog.
                                     Desde una perspectiva de modelado, se puede considerar que un programa de Problog está compuesto por dos partes: 
                                     una parte probabilística que define una distribución de probabilidad sobre los valores de verdad, y una parte lógica que 
