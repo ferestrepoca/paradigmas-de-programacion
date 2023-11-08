@@ -67,3 +67,34 @@ li ul li {
     width: min(900px, 100%);
     margin: 0 auto;
 }
+
+.vertical-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.container-logo {
+    display: inline-block;
+    font-size: large;
+    margin: 1em;
+    padding: 0em;
+}
+
+.logo-example{
+    max-width: 2.5%;
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logo-example img{
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 1em ;
+    margin-bottom: 1em ;
+}
