@@ -693,17 +693,42 @@
 
                         <h3 class="text-center">Paralelismo</h3>
                         <p>
-                            Dado que en la programación funcional no existe un estado global no es necesario implementar
-                            las técnicas de paralelismo como
-                            (Multexes, Semáforos, Locks) por lo cual se pueden realizar funciones en paralelo siempre que
-                            estas cumplan con ciertas reglas al
-                            momento de su ejecución
+                            La programación funcional se caracteriza por la ausencia de cambios en estados globales, lo que
+                             permite "ignorar" el tiempo en un sentido particular. Esto significa que podemos dejar de 
+                             preocuparnos por el momento en que las funciones acceden a una variable compartida, lo que podría 
+                             dar lugar a resultados variables. Al evitar la mutabilidad de las variables, eliminamos la 
+                             necesidad de rastrear cuándo y cómo se accede a ellas, obteniendo respuestas consistentes 
+                             según la lógica de programación. En el contexto de la programación paralela y concurrente, 
+                             estas preocupaciones suelen requerir estructuras y técnicas de sincronización complejas, 
+                             como cerraduras, semáforos, funciones y variables atómicas, variables de condición, 
+                             monitores, etc.
                         </p>
                         <p>
-                            Por otro lado, la concurrencia es mucho más segura. Las funciones puras son seguras para hilos (thread-safe), es decir, siempre
-                            garantizan que nunca va a suceder que dos procesos concurrentes intenten acceder a los mismos datos al mismo
-                            tiempo. Esto se conoce como condiciones de carrera y es uno de los bugs más difíciles de solucionar; dado que las
-                            funciones puras nunca comparten estados con las demás secciones de un programa, nunca tienen condiciones de carrera.
+                            Sin embargo, la programación funcional se convierte en una solución eficaz para lograr el 
+                            paralelismo al proporcionar un enfoque más limpio y claro. A pesar de sus limitaciones, la 
+                            programación funcional se muestra como una herramienta poderosa para la concurrencia, pues 
+                            ofrece ventajas notables, como la programación declarativa, que se basa en expresar lo que 
+                            se quiere hacer en lugar de cómo hacerlo. Esto permite a los sistemas de concurrencia tomar 
+                            decisiones más eficientes sobre cómo ejecutar tareas en paralelo, ya que se pueden reorganizar 
+                            y optimizar las operaciones sin cambiar el resultado final. La evaluación perezosa, otra 
+                            ventaja, significa que las expresiones no se evalúan hasta que sea necesario, lo que mejora la 
+                            eficiencia en situaciones de concurrencia al evitar cálculos innecesarios.
+                        </p>
+                        <p>
+                            La programación funcional, además de promover la composición de funciones, lo que facilita la 
+                            construcción de sistemas concurrentes a partir de componentes pequeños y reutilizables, sobresale 
+                            en la inferencia de dependencias. En un paradigma funcional, las dependencias entre funciones 
+                            se vuelven más claras y explícitas, lo que simplifica la identificación de tareas que pueden 
+                            ejecutarse en paralelo sin preocupaciones por problemas de dependencias. Este enfoque funcional 
+                            también aboga por el aislamiento de estado, lo que implica que las secciones del programa no 
+                            comparten datos mutables. Esto no solo reduce la probabilidad de condiciones de carrera y 
+                            otros problemas comunes en la concurrencia, sino que también mejora la seguridad general. Las 
+                            funciones puras, inherentes a la programación funcional, garantizan que múltiples procesos 
+                            concurrentes nunca intenten acceder simultáneamente a los mismos datos, eliminando así una de las 
+                            preocupaciones más desafiantes en la concurrencia, conocida como condiciones de carrera. En 
+                            resumen, la programación funcional ofrece un enfoque altamente efectivo para abordar la 
+                            concurrencia al eliminar las inquietudes sobre la compartición de estados y al permitir un diseño 
+                            más seguro, eficiente y mantenible de sistemas concurrentes.
                         </p>
                         <img src="images/Paralelismo.png" class="img-responsive center-block" alt=""
                             style="max-width: 500px">
@@ -724,7 +749,7 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 ">
                             <h3 class="text-center">SCALA</h3>
                             <p>
                                 Es un lenguaje de programación multi-paradigma diseñado para
@@ -828,13 +853,112 @@
                         </div>
                     </div>
 
+                    <div class="row text-justify">
+                        <div class="col-md-6">
+                            <img class="center-block img-responsive img-thumbnail" src="images/erlangLogo.png"
+                                alt="Erlang">
+                            <script src="https://gist.github.com/jsarmientopu/2c682edf511eac7209b8e36453339596.js"></script>
+                        </div>
+                        <div class="col-md-6 vertical-center">
+                            <h3 class="text-center">ERLANG</h3>
+                            <p>
+                                Erlang es un lenguaje de programación altamente funcional y
+                                concurrente, diseñado para construir sistemas robustos y escalables
+                                en entornos de telecomunicaciones y aplicaciones distribuidas. 
+                                Sus propiedades funcionales se centran en la inmutabilidad de datos, la 
+                                ausencia de efectos secundarios y la concurrencia basada en actores. 
+                                En Erlang, los procesos son entidades ligeras que se comunican a 
+                                través de mensajes, permitiendo una alta concurrencia y una 
+                                arquitectura resistente a fallos. Además, Erlang promueve el uso de 
+                                patrones funcionales, como la recursión y el patrón "head-tail," lo que 
+                                hace que el código sea más claro y mantenible. Su énfasis en la 
+                                tolerancia a fallos y la escalabilidad lo convierte en una herramienta 
+                                poderosa para aplicaciones distribuidas y sistemas en tiempo real.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row text-justify">
+                        <div class="col-md-6 vertical-center">
+                            <h3 class="text-center">Lisp</h3>
+                            <p>
+                                Lisp, acrónimo de "List Processing," es un lenguaje de programación de 
+                                alto nivel que se destaca por su rica historia en el ámbito de la 
+                                programación funcional. Una de las características distintivas de Lisp 
+                                es su representación de datos y código en forma de listas, lo que lo 
+                                convierte en un lenguaje muy flexible y expresivo. Proporciona un 
+                                ambiente propicio para la programación funcional debido a su énfasis 
+                                en funciones de orden superior, donde las funciones pueden tratarse 
+                                como datos y pasarse como argumentos. Lisp también promueve la 
+                                recursión como una técnica fundamental y fomenta la creación de 
+                                funciones puras que evitan efectos secundarios. Su enfoque en la 
+                                inmutabilidad de datos y la facilidad de creación de nuevas funciones 
+                                lo convierte en un lenguaje adecuado para la construcción de software 
+                                confiable y mantenible. Lisp ha influido en el desarrollo de otros 
+                                lenguajes funcionales y sigue siendo relevante en campos como la 
+                                inteligencia artificial y la programación simbólica.
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <img class="center-block img-responsive img-thumbnail" src="images/lispLogo.svg.png" alt="Lisp">
+                            <script src="https://gist.github.com/jsarmientopu/2cf75ebb5049ddcdfa91eba111a372cc.js"></script>
+                        </div>
+                    </div>
+
+                    <div class="row text-justify">
+                        <div class="col-md-6">
+                            <img class="center-block img-responsive img-thumbnail" src="images/idrisLogo.png"
+                                alt="Idris">
+                            <script src="https://gist.github.com/jsarmientopu/67ed0bcc36f30f6e02f82bf40e9fa3cd.js"></script>
+                        </div>
+                        <div class="col-md-6 vertical-center">
+                            <h3 class="text-center">Idris</h3>
+                            <p>
+                                Idris es un lenguaje de programación funcional y dependiente de tipos 
+                                que se destaca por su sistema de tipos fuerte y flexible, permitiendo a 
+                                los programadores especificar tipos de datos de manera precisa y 
+                                demostrar propiedades de programas a través de teoremas y pruebas 
+                                formales. Con características como evaluación perezosa, pattern 
+                                matching, efectos y metaprogramación, Idris ofrece un enfoque versátil 
+                                para la escritura de software confiable y verificable. Su comunidad 
+                                activa y creciente biblioteca estándar lo convierten en una opción 
+                                atractiva para aquellos que buscan un lenguaje de programación que 
+                                combine los principios funcionales con una sólida verificación de tipos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row text-justify">
+                        <div class="col-md-6 vertical-center">
+                            <h3 class="text-center">ELM</h3>
+                            <p>
+                                Elm es un lenguaje de programación funcional puro diseñado para el 
+                                desarrollo de aplicaciones web front-end. Una de sus características 
+                                distintivas es su fuerte énfasis en la arquitectura de la aplicación, 
+                                siguiendo el patrón Modelo-Vista-Actualización (Model-View-Update,
+                                 MVU). Elm está diseñado para garantizar la ausencia de errores en 
+                                 tiempo de ejecución al eliminar efectivamente los problemas de 
+                                 acceso a nulos, excepciones y otros errores comunes en el desarrollo 
+                                 web. Con un sistema de tipos sólido y una sintaxis simple, ELM 
+                                 promueve la legibilidad y la mantenibilidad del código, lo que lo hace 
+                                 una elección popular para proyectos front-end donde la estabilidad y la 
+                                 seguridad son fundamentales. La comunidad de Elm también es 
+                                 conocida por su enfoque en la documentación y la promoción de 
+                                 mejores prácticas de programación en el desarrollo web.
+                            </p>
+                        </div>
+                        <div class="col-md-6 vertical-center">
+                            <img class="center-block img-responsive img-thumbnail" src="images/ElmLogo.png" alt="ELM">
+                        </div>
+                    </div>
 
                     <div class="row text-justify">
                         <div class="col-md-6">
                             <img class="center-block img-responsive img-thumbnail" src="images/Clojure_logo.svg.png"
                                 alt="Photo">
+                            <script src="https://gist.github.com/jsarmientopu/fb51bd96e6f7d7e7a039eaf8a8818151.js"></script>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 vertical-center">  
                             <h3 class="text-center">CLOJURE</h3>
                             <p>
                                 Es un lenguaje de programación de propósito general que maneja
@@ -873,7 +997,7 @@
                     </div>
 
                     <div class="row text-justify">
-                        <div class="col-md-6">
+                        <div class="col-md-6 vertical-center">
                             <h3 class="text-center">OCaml</h3>
                             <p>
                                 Objective CAML, su etimología proviene de las siglas Objective
@@ -895,6 +1019,7 @@
                         </div>
                         <div class="col-md-6">
                             <img class="center-block img-responsive img-thumbnail" src="images/ocaml.jpeg" alt="Ocaml">
+                            <script src="https://gist.github.com/jsarmientopu/b6b87d78eef21945eb6639988c8b94e8.js"></script>
                         </div>
                     </div>
                     <div class="row text-justify">
