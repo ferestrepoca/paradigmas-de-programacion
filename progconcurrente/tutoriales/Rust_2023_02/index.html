@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rust 2023 - Tutorial</title>
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+    <!-- Code Highlight (Highlight JS) -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/rust.min.js"
+        integrity="sha512-vp/BmF+BW+m/wuIgSZQYqoB2Rwz46sD8YnVM51unvyvOcqYOwyP1BMAO4lHfmVpSZ+eeJAPnkk2fv7mdQN5HDw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>hljs.highlightAll();</script>
+
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- Landing page Section -->
+    <header class="">
+
+        <div class="container-fluid">
+
+            <!-- Nav Bar -->
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav mx-center">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Presentación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Notebook</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link">Disabled</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+    </header>
+
+    <section>
+
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <img src="./images/Rust_logo.png" alt="Rust logo" id="logo">
+            </div>
+
+
+            <div class="col-12 col-md-6">
+                <h4 id="subtitle">
+                    El lenguaje de programación más admirado por los desarrolladores, según Stack Overflow, destaca por su
+                    enfoque en el rendimiento, productividad y resistencia.
+                </h4>
+                <button type="button" class="btn btn-lg" id="btn-get-started">Conoce más</button>
+            </div>
+        </div>
+
+
+    </section>
+
+
+    <section id="stack-overflow-section">
+        <div class="row">
+            <div class="col-12 col-md-6 mt-md-5">
+                <h4 id="subtitle">
+                    Según los resultados de la encuesta de Stack Overflow, Rust es el lenguaje de programación más
+                    admirado por los desarrolladores, con más de 80% de los encuestados.
+                    <a href="https://survey.stackoverflow.co/2023/#section-admired-and-desired-programming-scripting-and-markup-languages">Encuesta</a>
+                </h4>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <img src="./images/stackoverflow.png" alt="Stackoverflow survey" id="stackoverflow">
+            </div>
+        </div>
+    </section>
+
+
+    <section id="code-section">
+        <h2>
+            Código
+        </h2>
+
+        <!-- Hola mundo -->
+
+        <div class="d-flex flex-row justify-content-between mt-5 code-example">
+            <div class="text-rectangle mt-2"></div>
+            <div class="mx-3 code-example-title align-top">
+                <p class="align-top">Hola mundo</p>
+            </div>
+            <div class="text-rectangle mt-2"></div>
+        </div>
+
+        <pre>
+            <code class="rust">
+                fn main() {
+                    println!("Hello, world!");
+                }
+            </code>
+        </pre>
+
+        <!-- Variables y mutación  -->
+
+        <div class="d-flex flex-row justify-content-between mt-5 code-example">
+            <div class="text-rectangle mt-2"></div>
+            <div class="mx-3 code-example-title align-top">
+                <p class="align-top">Variables y mutación</p>
+            </div>
+            <div class="text-rectangle mt-2"></div>
+        </div>
+        <pre>
+            <code class="rust">
+
+                fn main() {
+                    let mi_variable = 5; // inmutable
+                    let mut mi_variable_mut = 5; // mutable
+                    
+                    mi_variable_mut = 10;
+                    mi_variable = 10; // Error, no se puede modificar una variable inmutable
+                    
+                }
+
+            </code>
+        </pre>
+
+
+        <!-- Shadowing -->
+        <div class="d-flex flex-row justify-content-between mt-5 code-example">
+            <div class="text-rectangle mt-2"></div>
+            <div class="mx-3 code-example-title align-top">
+                <p class="align-top">Shadowing</p>
+            </div>
+            <div class="text-rectangle mt-2"></div>
+        </div>
+        <pre>
+            <code class="rust">
+
+                fn main() {
+                    let x = 5;
+                    let x = x + 1; // copia de la variable x original, pero con un valor diferente
+
+                    {
+                        let x = x * 2; // otra variable x, pero con un valor diferente y en un scope diferente
+                        println!("El valor de x en el bloque interno es: {}", x);
+                    
+                    }
+
+                    println!("El valor de x en el bloque principal es: {}", x);
+                }
+
+            </code>
+        </pre>
+
+
+        <!-- Tipos de datos -->
+        <div class="d-flex flex-row justify-content-between mt-5 code-example">
+            <div class="text-rectangle mt-2"></div>
+            <div class="mx-3 code-example-title align-top">
+                <p class="align-top">Tipos de datos</p>
+            </div>
+            <div class="text-rectangle mt-2"></div>
+        </div>
+        <pre>
+            <code class="rust">
+
+                fn main() {
+                    let x: i32 = 5;
+                    let y: f64 = 6.0;
+                    let text: &str = "Hello, world!";
+                    let letter: char = 'a';
+                    let is_valid: bool = true;
+                
+                    // Tambien se puede hacer de esta forma
+                    let x = 5;
+                    let y = 6.0;
+                    let text = "Hello, world!";
+                    let letter = 'a';
+                    let is_valid = true;
+                
+                    // Tambien se puede hacer de esta forma
+                    let x = 5i32;
+                    let y = 6.0f64;
+                
+                    // Incluso se pueden hacer validaciones
+                    let idk: u16 = "5".parse().expect("Not a number!");
+                    let idk: u16 = "-5".parse().expect("Not a number!"); // Error
+                }
+
+            </code>
+        </pre>
+
+
+        <!-- Vectores y Tuplas -->
+        <div class="d-flex flex-row justify-content-between mt-5 code-example">
+            <div class="text-rectangle mt-2"></div>
+            <div class="mx-3 code-example-title align-top">
+                <p class="align-top">Vectores y tuplas</p>
+            </div>
+            <div class="text-rectangle mt-2"></div>
+        </div>
+        <pre>
+            <code class="rust">
+                fn main() {
+                    let vector: Vec<i32> = vec![1, 2, 3, 4, 5];
+                    let tupla: (i32, f64, char) = (500, 6.4, 'a');
+
+                    // Acceder a los elementos de un vector
+                    let primer_elemento = vector[0];
+                    let ultimo_elemento = vector[vector.len() - 1];
+
+                    println!("El primer elemento del vector es: {}", primer_elemento);
+                    println!("El ultimo elemento del vector es: {}", ultimo_elemento);
+
+                    // Acceder a los elementos de una tupla
+                    let (x, y, z) = tupla;
+                    let primer_elemento = x;
+                    let ultimo_elemento = z;
+
+                    println!("El primer elemento de la tupla es: {}", primer_elemento);
+                    println!("El ultimo elemento de la tupla es: {}", ultimo_elemento);
+
+                    // Acceder a los elementos de una tupla de forma directa
+                    let primer_elemento = tupla.0;
+                    let ultimo_elemento = tupla.2;
+
+                    println!("El primer elemento de la tupla es: {}", primer_elemento);
+                    println!("El ultimo elemento de la tupla es: {}", ultimo_elemento);
+                }
+            </code>
+        </pre>
+
+
+        <!-- Otros tipos de datos -->
+        <div class="d-flex flex-row justify-content-between mt-5 code-example">
+            <div class="text-rectangle mt-2"></div>
+            <div class="mx-3 code-example-title align-top">
+                <p class="align-top">Otros tipos de datos</p>
+            </div>
+            <div class="text-rectangle mt-2"></div>
+        </div>
+        <pre>
+            <code class="rust">
+                fn main() {
+                    enum Review {
+                        Good,
+                        Bad,
+                        NotRated,
+                    }
+                
+                    let rating = Review::Good;
+                
+                    // las variables que empiezan con _ no se usan explicitamente
+                    let _second_rating = Review::Bad;
+                    let _third_rating = Review::NotRated;
+                
+                    match rating {
+                        Review::Good => println!("This restaurant is good"),
+                        Review::Bad => println!("This restaurant is bad"),
+                        Review::NotRated => println!("This restaurant is not rated yet"),
+                    }
+                
+                
+                    struct Person {
+                        name: String,
+                        age: u8,
+                    }
+                
+                    let person = Person {
+                        name: String::from("Samantha"),
+                        age: 20,
+                    };
+                
+                    match person {
+                        Person { name, age } => println!("{} is {} years old", name, age),
+                    }
+                }
+            </code>
+        </pre>
+
+
+        <!-- Ownership y borrowing -->
+        <div class="d-flex flex-row justify-content-between mt-5 code-example">
+            <div class="text-rectangle mt-2"></div>
+            <div class="mx-3 code-example-title align-top">
+                <p class="align-top">Ownership y borrowing</p>
+            </div>
+            <div class="text-rectangle mt-2"></div>
+        </div>
+
+
+    </section>
+
+
+    <section id="external-resources">
+        <h2>
+            Recursos externos
+        </h2>
+
+        <p>
+            Recursos oficiales o creados por la comunidad para aprender Rust.
+        </p>
+
+        <div class="row">
+            <a class="btn btn-outline-light col-md-5 col-12 mx-md-5 my-md-2" href="https://www.rust-lang.org/" target="_blank">Documentacion oficial</a>
+            <a class="btn btn-outline-light col-md-5 col-12 mx-md-5 my-md-2" href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021" target="_blank">Playground</a>
+            <a class="btn btn-outline-light col-md-5 col-12 mx-md-5 my-md-2" href="https://github.com/ctjhoa/rust-learning" target="_blank">Rust Learning repo</a>
+        </div>
+    </section>
+
+
+    <section id="footer">
+        <h2>
+            Empresas que usan Rust
+        </h2>
+
+        <div class="row" id="companies-uses-rust"></div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

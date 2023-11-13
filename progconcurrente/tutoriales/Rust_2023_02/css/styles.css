@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    align-content: center;
+    text-align: center;
+}
+
+header, footer {
+    padding: 3% 15%;
+    justify-content: center;
+}
+
+section {
+    padding: 0 15%;
+}
+
+.navbar {
+    padding-bottom: 2rem;
+}
+
+.nav-item {
+    padding: 0 1.2em;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: "Lato";
+}
+
+#logo{
+    width: 20em;
+    height: 20em;
+}
+
+#subtitle{
+    margin: 2em auto;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-family: "Lato";
+    text-align: left;
+    line-height: 1.5;
+}
+
+#btn-get-started{
+    background-color: #ffc832;
+    color: #000000;
+    width: 10em;
+    font-weight: bold;
+
+}
+
+#stack-overflow-section{
+    margin-top: 5em;
+    padding: 4% 15%;
+    background-color: #222222;
+    color: #ffffff;
+}
+
+#stackoverflow {
+    width: 20em;
+    height: 20em;
+    border-radius: 10%;
+}
+
+
+pre{
+    text-align: left;
+}
+
+#code-section{
+    margin-top: 5em;
+}
+
+.code-example-title {
+    font-size: 1.5em;
+    font-weight: 400;
+    font-family: "Lato";
+}
+
+.text-rectangle{
+    background-color: #ffc832;
+    color: #ffffff;
+    height: .6em;
+    vertical-align: middle;
+    min-width: 35%
+    /* padding: 1em;
+    margin: 2em 0; */
+}
+
+#external-resources{
+    background-color: #2e2459;
+    color: #ffffff;
+    margin-top: 5em;
+    height: 100%;
+    padding: 3% 15% 5%;
+}
+
+#footer {
+    background-color: #e9eaea;
+    color: #000000;
+    font-weight: 700;
+    padding: 3% 0;
+}
+
+#external-resources h2, #footer h2 {
+    font-size: 3em;
+    font-weight: 700;
+    font-family: "Lato";
+}
+
+#external-resources p {
+    font-size: 1.5em;
+    font-weight: 400;
+    font-family: "Lato";
+    line-height: 1.5;
+}
+
+#external-resources p, #footer h2 {
+    margin-bottom: 3em;
+}
