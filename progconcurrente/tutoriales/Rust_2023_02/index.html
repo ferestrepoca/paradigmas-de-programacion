@@ -310,6 +310,173 @@
         </div>
 
 
+        <!-- Concurrencia -->
+        <div class="d-flex flex-row justify-content-between mt-5 code-example">
+            <div class="text-rectangle mt-2"></div>
+            <div class="mx-3 code-example-title align-top">
+                <p class="align-top">Concurrencia</p>
+            </div>
+            <div class="text-rectangle mt-2"></div>
+        </div>
+
+        <h6 class="d-block mt-4 code-example-description">
+            En este ejemplo se crean dos hilos de ejecución, cada uno realiza una tarea diferente. 
+            Al final se espera a que ambos hilos terminen antes de que seguir con la ejecución del hilo principal.
+        </h6>
+        <pre>
+            <code class="rust">
+                use std::thread;
+                use std::time::Duration;
+
+                fn main() {
+
+                    let hilo1 = thread::spawn(|| {
+                        for i in 1..10 {
+                            println!("Ciclo en el hilo 1: {}", i);
+                            thread::sleep(Duration::from_millis(1));
+                        }
+                    });
+
+                    let hilo2 = thread::spawn(|| {
+                        let mut i = 1;
+                        let mut msg = "";
+                        loop {
+
+                            if i % 2 == 0 {
+                                msg = "Si";
+                            } else {
+                                msg = "No";
+                            }
+
+                            println!("Hilo 2 - ¿i es par?: {}", msg);
+                            i += 1;
+                            thread::sleep(Duration::from_millis(1));
+
+                            if i == 10 {
+                                break;
+                            }
+                        }
+                    });
+
+                    
+                    // Permite que el hilo de ejecución principal espere a que los hilos creados terminen
+                    hilo1.join().unwrap();
+                    hilo2.join().unwrap();
+                }
+
+
+            </code>
+        </pre>
+
+        <h6 class="d-block mt-4 code-example-description">
+            En este ejemplo se recrea el productor-consumidor, donde el existen varios productores que envían mensajes a un consumidor.
+            Para esto se usa el módulo mpsc (multiple producer, single consumer). Por otra parte, se usa la palabra reservada move para
+            que el hilo tome propiedad de las variables que se usen dentro en este caso tx para los productores y rx para el consumidor.
+        </h6>
+        <pre>
+            <code class="rust">
+                use std::thread;
+                use std::sync::mpsc;
+                use std::time::Duration;
+
+                fn main() {
+
+                    // MSC: Multiple Sender, Single Consumer
+                    let (tx, rx) = mpsc::channel();
+
+                    // Con la palabra reservada move, le decimos a Rust que el hilo
+                    // va a tomar propiedad de las variables que se usen dentro.
+                    let productor = thread::spawn(move || {
+                        let valores = vec![
+                            String::from("Hola"),
+                            String::from("este"),
+                            String::from("es"),
+                            String::from("un"),
+                            String::from("mensaje"),
+                            String::from("de"),
+                            String::from("prueba"),
+                            String::from("para"),
+                            String::from("la clase"),
+                            String::from("de"),
+                            String::from("Lenguajes de Programación"),
+                        ];
+
+                        for valor in valores {
+                            tx.send(valor).unwrap();
+                            thread::sleep(Duration::from_millis(1));
+                        }
+                    });
+
+
+                    let consumidor = thread::spawn(move || {
+                        for recibido in rx {
+                            println!("Recibido: {}", recibido);
+                        }
+                    });
+
+                    productor.join().unwrap();
+                    consumidor.join().unwrap();
+                }
+
+            </code>
+        </pre>
+
+
+        <h6 class="d-block mt-4 code-example-description">
+            En este ejemplo se hace uso de Mutex, que permite que un recurso sea compartido entre hilos. También se utiliza Arc<T> que a diferencia de
+            Rc<T> permite que el recurso sea compartido entre hilos de una forma segura sin tener inconvenientes de ownership.
+        </h6>
+        <pre>
+            <code class="rust">
+                use std::sync::{Arc, Mutex, mpsc};
+                use std::thread;
+                use std::time::Duration;
+
+                fn main() {
+                    let (tx, rx) = mpsc::channel();
+
+                    // Se crea un Mutex que contiene un entero
+                    // Por otra parte, Arc permite que el recurso sea compartido entre los hilos
+                    let contador = Arc::new(Mutex::new(0));
+
+                    // Vector de hilos
+                    let mut handles = vec![];
+
+                    // Creación de 10 hilos, cada uno se encarga de incrementar el contador
+                    for _ in 0..10 {
+                        let tx = tx.clone();
+
+                        // Se crea otra referencia al contador para que pueda ser usado en el hilo
+                        // y evitar problemas de ownership, ya que no se transfiere la propiedad del Mutex
+                        // sino que se crea una nueva referencia.
+                        let contador = Arc::clone(&contador);
+                        let handle = thread::spawn(move || {
+                            let mut num = contador.lock().unwrap();
+                            
+                            // Se referencia a la variable num que está dentro del Mutex, que originalmente viene de la variable contador
+                            *num += 2; 
+                            
+                            tx.send(()).unwrap();
+                            thread::sleep(Duration::from_millis(10));
+                        });
+                        handles.push(handle);
+                    }
+
+                    for _ in 0..10 {
+                        rx.recv().unwrap();
+                    }
+
+                    for handle in handles {
+                        handle.join().unwrap();
+                    }
+
+                    println!("Resultado: {}", *contador.lock().unwrap());
+                }
+
+            </code>
+        </pre>
+
+
     </section>
 
 

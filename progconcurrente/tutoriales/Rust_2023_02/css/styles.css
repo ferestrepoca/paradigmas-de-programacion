@@ -83,6 +83,11 @@ pre{
     font-family: "Lato";
 }
 
+.code-example-description{
+    text-align: left;
+    font-size: 1.1em;
+}
+
 .text-rectangle{
     background-color: #ffc832;
     color: #ffffff;
