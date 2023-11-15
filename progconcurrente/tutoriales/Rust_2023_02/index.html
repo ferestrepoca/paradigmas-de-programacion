@@ -2,585 +2,620 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Rust 2023 - Tutorial</title>
+  <meta charset="UTF-8">
+  <title>Rust 2023 - Tutorial</title>
 
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,700&display=swap"
-        rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 
-    <!-- Code Highlight (Highlight JS) -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Code Highlight (Highlight JS) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/rust.min.js"
-        integrity="sha512-vp/BmF+BW+m/wuIgSZQYqoB2Rwz46sD8YnVM51unvyvOcqYOwyP1BMAO4lHfmVpSZ+eeJAPnkk2fv7mdQN5HDw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
-    <!-- CSS Styles -->
-    <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/rust.min.js"
+    integrity="sha512-vp/BmF+BW+m/wuIgSZQYqoB2Rwz46sD8YnVM51unvyvOcqYOwyP1BMAO4lHfmVpSZ+eeJAPnkk2fv7mdQN5HDw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
 </head>
 
 <body>
 
-    <!-- Landing page Section -->
-    <header class="">
+  <!-- Landing page Section -->
+  <header class="">
 
+    <div class="container-fluid">
+
+      <!-- Nav Bar -->
+      <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-
-            <!-- Nav Bar -->
-            <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo02">
-                        <ul class="navbar-nav mx-center">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="Presentacion.pdf">Presentación</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="http://nbviewer.jupyter.org/url/ferestrepoca.github.io/paradigmas-de-programacion/progconcurrente/tutoriales/Rust_2023_02/RustTutorial.ipynb">Notebook</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+          <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mx-center">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="Presentacion.pdf">Presentación</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"
+                  href="http://nbviewer.jupyter.org/url/dgonzalezo.github.io/rust-tutorial//RustTutorial.ipynb">Notebook</a>
+              </li>
+            </ul>
+          </div>
         </div>
-
-    </header>
-
-    <section>
-
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <img src="./images/Rust_logo.png" alt="Rust logo" id="logo">
-            </div>
-
-
-            <div class="col-12 col-md-6">
-                <h4 id="subtitle">
-                    El lenguaje de programación más admirado por los desarrolladores, según Stack Overflow, destaca por su
-                    enfoque en el rendimiento, productividad y resistencia.
-                </h4>
-                <button type="button" class="btn btn-lg" id="btn-get-started">Conoce más</button>
-            </div>
-        </div>
-
-
-    </section>
-
-
-    <section id="stack-overflow-section">
-        <div class="row">
-            <div class="col-12 col-md-6 mt-md-5">
-                <h4 id="subtitle">
-                    Según los resultados de la encuesta de Stack Overflow, Rust es el lenguaje de programación más
-                    admirado por los desarrolladores, con más de 80% de los encuestados.
-                    <a href="https://survey.stackoverflow.co/2023/#section-admired-and-desired-programming-scripting-and-markup-languages">Encuesta</a>
-                </h4>
-            </div>
-
-            <div class="col-12 col-md-6">
-                <img src="./images/stackoverflow.png" alt="Stackoverflow survey" id="stackoverflow">
-            </div>
-        </div>
-    </section>
-
-
-    <section id="code-section">
-        <h2>
-            Código
-        </h2>
-
-        <!-- Hola mundo -->
-
-        <div class="d-flex flex-row justify-content-between mt-5 code-example">
-            <div class="text-rectangle mt-2"></div>
-            <div class="mx-3 code-example-title align-top">
-                <p class="align-top">Hola mundo</p>
-            </div>
-            <div class="text-rectangle mt-2"></div>
-        </div>
-
-        <pre>
-            <code class="rust">
-                fn main() {
-                    println!("Hello, world!");
-                }
-            </code>
-        </pre>
-
-        <!-- Variables y mutación  -->
-
-        <div class="d-flex flex-row justify-content-between mt-5 code-example">
-            <div class="text-rectangle mt-2"></div>
-            <div class="mx-3 code-example-title align-top">
-                <p class="align-top">Variables y mutación</p>
-            </div>
-            <div class="text-rectangle mt-2"></div>
-        </div>
-        <pre>
-            <code class="rust">
-
-                fn main() {
-                    let mi_variable = 5; // inmutable
-                    let mut mi_variable_mut = 5; // mutable
-                    
-                    mi_variable_mut = 10;
-                    mi_variable = 10; // Error, no se puede modificar una variable inmutable
-                    
-                }
-
-            </code>
-        </pre>
-
-
-        <!-- Shadowing -->
-        <div class="d-flex flex-row justify-content-between mt-5 code-example">
-            <div class="text-rectangle mt-2"></div>
-            <div class="mx-3 code-example-title align-top">
-                <p class="align-top">Shadowing</p>
-            </div>
-            <div class="text-rectangle mt-2"></div>
-        </div>
-        <pre>
-            <code class="rust">
-
-                fn main() {
-                    let x = 5;
-                    let x = x + 1; // copia de la variable x original, pero con un valor diferente
-
-                    {
-                        let x = x * 2; // otra variable x, pero con un valor diferente y en un scope diferente
-                        println!("El valor de x en el bloque interno es: {}", x);
-                    
-                    }
-
-                    println!("El valor de x en el bloque principal es: {}", x);
-                }
-
-            </code>
-        </pre>
-
-
-        <!-- Tipos de datos -->
-        <div class="d-flex flex-row justify-content-between mt-5 code-example">
-            <div class="text-rectangle mt-2"></div>
-            <div class="mx-3 code-example-title align-top">
-                <p class="align-top">Tipos de datos</p>
-            </div>
-            <div class="text-rectangle mt-2"></div>
-        </div>
-        <pre>
-            <code class="rust">
-
-                fn main() {
-                    let x: i32 = 5;
-                    let y: f64 = 6.0;
-                    let text: &str = "Hello, world!";
-                    let letter: char = 'a';
-                    let is_valid: bool = true;
-                
-                    // Tambien se puede hacer de esta forma
-                    let x = 5;
-                    let y = 6.0;
-                    let text = "Hello, world!";
-                    let letter = 'a';
-                    let is_valid = true;
-                
-                    // Tambien se puede hacer de esta forma
-                    let x = 5i32;
-                    let y = 6.0f64;
-                
-                    // Incluso se pueden hacer validaciones
-                    let idk: u16 = "5".parse().expect("Not a number!");
-                    let idk: u16 = "-5".parse().expect("Not a number!"); // Error
-                }
-
-            </code>
-        </pre>
-
-
-        <!-- Vectores y Tuplas -->
-        <div class="d-flex flex-row justify-content-between mt-5 code-example">
-            <div class="text-rectangle mt-2"></div>
-            <div class="mx-3 code-example-title align-top">
-                <p class="align-top">Vectores y tuplas</p>
-            </div>
-            <div class="text-rectangle mt-2"></div>
-        </div>
-        <pre>
-            <code class="rust">
-                fn main() {
-                    let vector: Vec<i32> = vec![1, 2, 3, 4, 5];
-                    let tupla: (i32, f64, char) = (500, 6.4, 'a');
-
-                    // Acceder a los elementos de un vector
-                    let primer_elemento = vector[0];
-                    let ultimo_elemento = vector[vector.len() - 1];
-
-                    println!("El primer elemento del vector es: {}", primer_elemento);
-                    println!("El ultimo elemento del vector es: {}", ultimo_elemento);
-
-                    // Acceder a los elementos de una tupla
-                    let (x, y, z) = tupla;
-                    let primer_elemento = x;
-                    let ultimo_elemento = z;
-
-                    println!("El primer elemento de la tupla es: {}", primer_elemento);
-                    println!("El ultimo elemento de la tupla es: {}", ultimo_elemento);
-
-                    // Acceder a los elementos de una tupla de forma directa
-                    let primer_elemento = tupla.0;
-                    let ultimo_elemento = tupla.2;
-
-                    println!("El primer elemento de la tupla es: {}", primer_elemento);
-                    println!("El ultimo elemento de la tupla es: {}", ultimo_elemento);
-                }
-            </code>
-        </pre>
-
-
-        <!-- Otros tipos de datos -->
-        <div class="d-flex flex-row justify-content-between mt-5 code-example">
-            <div class="text-rectangle mt-2"></div>
-            <div class="mx-3 code-example-title align-top">
-                <p class="align-top">Otros tipos de datos</p>
-            </div>
-            <div class="text-rectangle mt-2"></div>
-        </div>
-        <pre>
-            <code class="rust">
-                fn main() {
-                    enum Review {
-                        Good,
-                        Bad,
-                        NotRated,
-                    }
-                
-                    let rating = Review::Good;
-                
-                    // las variables que empiezan con _ no se usan explicitamente
-                    let _second_rating = Review::Bad;
-                    let _third_rating = Review::NotRated;
-                
-                    match rating {
-                        Review::Good => println!("This restaurant is good"),
-                        Review::Bad => println!("This restaurant is bad"),
-                        Review::NotRated => println!("This restaurant is not rated yet"),
-                    }
-                
-                
-                    struct Person {
-                        name: String,
-                        age: u8,
-                    }
-                
-                    let person = Person {
-                        name: String::from("Samantha"),
-                        age: 20,
-                    };
-                
-                    match person {
-                        Person { name, age } => println!("{} is {} years old", name, age),
-                    }
-                }
-            </code>
-        </pre>
-
-
-        <!-- Ownership y borrowing -->
-        <div class="d-flex flex-row justify-content-between mt-5 code-example">
-            <div class="text-rectangle mt-2"></div>
-            <div class="mx-3 code-example-title align-top">
-                <p class="align-top">Ownership y borrowing</p>
-            </div>
-            <div class="text-rectangle mt-2"></div>
-        </div>
-
-        <h6 class="d-block mt-4 code-example-description">
-            Este ejemplo muestra como se transfiere la propiedad de una variable a otra. En este caso, la variable s1 tiene la propiedad del String
-            y cuando se asigna a s2, la variable s1 ya no tiene la propiedad del String, por lo tanto, no se puede usar. Esto se debe a que Rust
-            automáticamente librea la memoria de la variable s1 cuando otra variable hace referencia a la misma dirección de memoria. Esto evita que si por
-            ejemplo salimos del scope de las variables s1 y s2 liberemos dos veces la misma dirección de memoria, lo cual conduce a un error de memoria y a
-            posibles fallos de seguridad.
-        </h6>
-
-        <div>
-            <img src="./images/ownership.png" alt="ownership explain" width="40%">
-        </div>
-
-        <pre>
-            <code class="rust">
-                fn main() {
-                    let s1 = String::from("hello");
-                    let s2 = s1;
-
-                    println!("{}, world!", s1); // Error, s1 ya no tiene la propiedad del String
-                }
-            </code>
-        </pre>
-
-
-        <h6 class="d-block mt-4 code-example-description">
-            A diferencia del ejemplo anterior, ¿por qué en este caso no se produce un error? Esto se debe a que en este caso se hace una copia del valor,
-            lo cual es algo que no está disponible para los Strings pero si para los tipos de datos: enteros, booleanos, floats, caracteres y tuplas, aunque
-            para este ultimo, solo se puede hacer si todos los elementos de la tupla implementan el trait Copy.
-        </h6>
-        <pre>
-            <code class="rust">
-                fn main() {
-                    let x = 5;
-                    let y = x;
-                
-                    println!("x = {}, y = {}", x, y);
-                }
-            </code>
-        </pre>
-
-        <h6 class="d-block mt-4 code-example-description">
-            En este caso, la función toma presetada la propiedad del String, pero no se puede modificar. Esto se debe a que las referencias también son inmutables
-            a menos de que se especifique lo contrario.
-        </h6>
-        <pre>
-            <code class="rust">
-                fn main() {
-                    let s = String::from("hello");
-                
-                    change(&s);
-                }
-                
-                fn change(some_string: &String) {
-                    some_string.push_str(", world"); // Error, no se puede modificar una referencia inmutable
-                }
-            </code>
-        </pre>
-
-        <h6 class="d-block mt-4 code-example-description">
-            A diferencia del caso anterior, en este caso se puede modificar la referencia, ya que se especifica que la referencia es mutable y como además
-            estamos tomando prestada la propiedad del String, se debe especificar que dicha variable es mutable, ya que la propiedad no se puede transfere.
-        </h6>
-        <pre>
-            <code class="rust">
-                fn main() {
-                    let mut s = String::from("hello");
-                
-                    change(&mut s);
-                
-                    println!("The value of s is: {}", s);
-                }
-                
-                fn change(some_string: &mut String) {
-                    some_string.push_str(", world");
-                }
-            </code>
-        </pre>
-
-        <!-- Concurrencia -->
-        <div class="d-flex flex-row justify-content-between mt-5 code-example">
-            <div class="text-rectangle mt-2"></div>
-            <div class="mx-3 code-example-title align-top">
-                <p class="align-top">Concurrencia</p>
-            </div>
-            <div class="text-rectangle mt-2"></div>
-        </div>
-
-        <h6 class="d-block mt-4 code-example-description">
-            En este ejemplo se crean dos hilos de ejecución, cada uno realiza una tarea diferente. 
-            Al final se espera a que ambos hilos terminen antes de que seguir con la ejecución del hilo principal.
-        </h6>
-        <pre>
-            <code class="rust">
-                use std::thread;
-                use std::time::Duration;
-
-                fn main() {
-
-                    let hilo1 = thread::spawn(|| {
-                        for i in 1..10 {
-                            println!("Ciclo en el hilo 1: {}", i);
-                            thread::sleep(Duration::from_millis(1));
-                        }
-                    });
-
-                    let hilo2 = thread::spawn(|| {
-                        let mut i = 1;
-                        let mut msg = "";
-                        loop {
-
-                            if i % 2 == 0 {
-                                msg = "Si";
-                            } else {
-                                msg = "No";
-                            }
-
-                            println!("Hilo 2 - ¿i es par?: {}", msg);
-                            i += 1;
-                            thread::sleep(Duration::from_millis(1));
-
-                            if i == 10 {
-                                break;
-                            }
-                        }
-                    });
-
-                    
-                    // Permite que el hilo de ejecución principal espere a que los hilos creados terminen
-                    hilo1.join().unwrap();
-                    hilo2.join().unwrap();
-                }
-
-
-            </code>
-        </pre>
-
-        <h6 class="d-block mt-4 code-example-description">
-            En este ejemplo se recrea el productor-consumidor, donde el existen varios productores que envían mensajes a un consumidor.
-            Para esto se usa el módulo mpsc (multiple producer, single consumer). Por otra parte, se usa la palabra reservada move para
-            que el hilo tome propiedad de las variables que se usen dentro en este caso tx para los productores y rx para el consumidor.
-        </h6>
-        <pre>
-            <code class="rust">
-                use std::thread;
-                use std::sync::mpsc;
-                use std::time::Duration;
-
-                fn main() {
-
-                    // MSC: Multiple Sender, Single Consumer
-                    let (tx, rx) = mpsc::channel();
-
-                    // Con la palabra reservada move, le decimos a Rust que el hilo
-                    // va a tomar propiedad de las variables que se usen dentro.
-                    let productor = thread::spawn(move || {
-                        let valores = vec![
-                            String::from("Hola"),
-                            String::from("este"),
-                            String::from("es"),
-                            String::from("un"),
-                            String::from("mensaje"),
-                            String::from("de"),
-                            String::from("prueba"),
-                            String::from("para"),
-                            String::from("la clase"),
-                            String::from("de"),
-                            String::from("Lenguajes de Programación"),
-                        ];
-
-                        for valor in valores {
-                            tx.send(valor).unwrap();
-                            thread::sleep(Duration::from_millis(1));
-                        }
-                    });
-
-
-                    let consumidor = thread::spawn(move || {
-                        for recibido in rx {
-                            println!("Recibido: {}", recibido);
-                        }
-                    });
-
-                    productor.join().unwrap();
-                    consumidor.join().unwrap();
-                }
-
-            </code>
-        </pre>
-
-
-        <h6 class="d-block mt-4 code-example-description">
-            En este ejemplo se hace uso de Mutex, que permite que un recurso sea compartido entre hilos. También se utiliza Arc<T> que a diferencia de
-            Rc<T> permite que el recurso sea compartido entre hilos de una forma segura sin tener inconvenientes de ownership.
-        </h6>
-        <pre>
-            <code class="rust">
-                use std::sync::{Arc, Mutex, mpsc};
-                use std::thread;
-                use std::time::Duration;
-
-                fn main() {
-                    let (tx, rx) = mpsc::channel();
-
-                    // Se crea un Mutex que contiene un entero
-                    // Por otra parte, Arc permite que el recurso sea compartido entre los hilos
-                    let contador = Arc::new(Mutex::new(0));
-
-                    // Vector de hilos
-                    let mut handles = vec![];
-
-                    // Creación de 10 hilos, cada uno se encarga de incrementar el contador
-                    for _ in 0..10 {
-                        let tx = tx.clone();
-
-                        // Se crea otra referencia al contador para que pueda ser usado en el hilo
-                        // y evitar problemas de ownership, ya que no se transfiere la propiedad del Mutex
-                        // sino que se crea una nueva referencia.
-                        let contador = Arc::clone(&contador);
-                        let handle = thread::spawn(move || {
-                            let mut num = contador.lock().unwrap();
-                            
-                            // Se referencia a la variable num que está dentro del Mutex, que originalmente viene de la variable contador
-                            *num += 2; 
-                            
-                            tx.send(()).unwrap();
-                            thread::sleep(Duration::from_millis(10));
-                        });
-                        handles.push(handle);
-                    }
-
-                    for _ in 0..10 {
-                        rx.recv().unwrap();
-                    }
-
-                    for handle in handles {
-                        handle.join().unwrap();
-                    }
-
-                    println!("Resultado: {}", *contador.lock().unwrap());
-                }
-
-            </code>
-        </pre>
-
-
-    </section>
-
-
-    <section id="external-resources">
-        <h2>
-            Recursos externos
-        </h2>
-
-        <p>
-            Recursos oficiales o creados por la comunidad para aprender Rust.
-        </p>
-
-        <div class="row">
-            <a class="btn btn-outline-light col-md-5 col-12 mx-md-5 my-md-2" href="https://www.rust-lang.org/" target="_blank">Documentacion oficial</a>
-            <a class="btn btn-outline-light col-md-5 col-12 mx-md-5 my-md-2" href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021" target="_blank">Playground</a>
-            <a class="btn btn-outline-light col-md-5 col-12 mx-md-5 my-md-2" href="https://github.com/ctjhoa/rust-learning" target="_blank">Rust Learning repo</a>
-            <a class="btn btn-outline-light col-md-5 col-12 mx-md-5 my-md-2" href="https://github.com/rust-lang/rustlings" target="_blank">Learn with Rustlings</a>
-        </div>
-    </section>
-
-
-    <section id="footer">
-        <h2>
-            Empresas que usan Rust
-        </h2>
-
-        <div class="row" id="companies-uses-rust"></div>
-    </section>
-
-    <script src="js/main.js"></script>
+      </nav>
+    </div>
+
+  </header>
+
+  <section>
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <img src="./images/Rust_logo.png" alt="Rust logo" id="logo">
+      </div>
+
+
+      <div class="col-12 col-md-6">
+        <h4 id="subtitle">
+          El lenguaje de programación más admirado por los desarrolladores, según Stack Overflow, destaca por su
+          enfoque en el rendimiento, productividad y resistencia.
+        </h4>
+        <button type="button" class="btn btn-lg" id="btn-get-started">Conoce más</button>
+      </div>
+    </div>
+
+
+  </section>
+
+
+  <section id="stack-overflow-section">
+    <div class="row">
+      <div class="col-12 col-md-6 mt-md-5">
+        <h4 id="subtitle">
+          Según los resultados de la encuesta de Stack Overflow, Rust es el lenguaje de programación más
+          admirado por los desarrolladores, con más de 80% de los encuestados.
+          <a
+            href="https://survey.stackoverflow.co/2023/#section-admired-and-desired-programming-scripting-and-markup-languages">Encuesta</a>
+        </h4>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <img src="./images/stackoverflow.png" alt="Stackoverflow survey" id="stackoverflow">
+      </div>
+    </div>
+  </section>
+
+  <section id="code-section">
+    <h2>
+      Playground
+    </h2>
+    <div class="d-flex flex-row justify-content-between mt-5 code-example">
+      <div class="text-rectangle mt-2"></div>
+      <div class="mx-3 code-example-title align-top">
+        <p class="align-top">Prueba aqui tu codigo!</p>
+      </div>
+      <div class="text-rectangle mt-2"></div>
+    </div>
+
+    <iframe src="playground.html" width="1000" height="400" frameborder="0"></iframe>
+
+  </section>
+
+  <section id="code-section">
+    <h2>
+      Código
+    </h2>
+
+    <!-- Hola mundo -->
+
+    <div class="d-flex flex-row justify-content-between mt-5 code-example">
+      <div class="text-rectangle mt-2"></div>
+      <div class="mx-3 code-example-title align-top">
+        <p class="align-top">Hola mundo</p>
+      </div>
+      <div class="text-rectangle mt-2"></div>
+    </div>
+
+    <pre>
+      <code class="rust">
+        fn main() {
+        println!("Hello, world!");
+        }
+      </code>
+    </pre>
+
+    <!-- Variables y mutación  -->
+
+    <div class="d-flex flex-row justify-content-between mt-5 code-example">
+      <div class="text-rectangle mt-2"></div>
+      <div class="mx-3 code-example-title align-top">
+        <p class="align-top">Variables y mutación</p>
+      </div>
+      <div class="text-rectangle mt-2"></div>
+    </div>
+    <pre>
+      <code class="rust">
+
+        fn main() {
+        let mi_variable = 5; // inmutable
+        let mut mi_variable_mut = 5; // mutable
+
+        mi_variable_mut = 10;
+        mi_variable = 10; // Error, no se puede modificar una variable inmutable
+
+        }
+
+      </code>
+    </pre>
+
+
+    <!-- Shadowing -->
+    <div class="d-flex flex-row justify-content-between mt-5 code-example">
+      <div class="text-rectangle mt-2"></div>
+      <div class="mx-3 code-example-title align-top">
+        <p class="align-top">Shadowing</p>
+      </div>
+      <div class="text-rectangle mt-2"></div>
+    </div>
+    <pre>
+      <code class="rust">
+
+        fn main() {
+        let x = 5;
+        let x = x + 1; // copia de la variable x original, pero con un valor diferente
+
+        {
+        let x = x * 2; // otra variable x, pero con un valor diferente y en un scope diferente
+        println!("El valor de x en el bloque interno es: {}", x);
+
+        }
+
+        println!("El valor de x en el bloque principal es: {}", x);
+        }
+
+      </code>
+    </pre>
+
+
+    <!-- Tipos de datos -->
+    <div class="d-flex flex-row justify-content-between mt-5 code-example">
+      <div class="text-rectangle mt-2"></div>
+      <div class="mx-3 code-example-title align-top">
+        <p class="align-top">Tipos de datos</p>
+      </div>
+      <div class="text-rectangle mt-2"></div>
+    </div>
+    <pre>
+      <code class="rust">
+
+        fn main() {
+        let x: i32 = 5;
+        let y: f64 = 6.0;
+        let text: &str = "Hello, world!";
+        let letter: char = 'a';
+        let is_valid: bool = true;
+
+        // Tambien se puede hacer de esta forma
+        let x = 5;
+        let y = 6.0;
+        let text = "Hello, world!";
+        let letter = 'a';
+        let is_valid = true;
+
+        // Tambien se puede hacer de esta forma
+        let x = 5i32;
+        let y = 6.0f64;
+
+        // Incluso se pueden hacer validaciones
+        let idk: u16 = "5".parse().expect("Not a number!");
+        let idk: u16 = "-5".parse().expect("Not a number!"); // Error
+        }
+
+      </code>
+    </pre>
+
+
+    <!-- Vectores y Tuplas -->
+    <div class="d-flex flex-row justify-content-between mt-5 code-example">
+      <div class="text-rectangle mt-2"></div>
+      <div class="mx-3 code-example-title align-top">
+        <p class="align-top">Vectores y tuplas</p>
+      </div>
+      <div class="text-rectangle mt-2"></div>
+    </div>
+    <pre>
+      <code class="rust">
+        fn main() {
+        let vector: Vec<i32> = vec![1, 2, 3, 4, 5];
+          let tupla: (i32, f64, char) = (500, 6.4, 'a');
+
+          // Acceder a los elementos de un vector
+          let primer_elemento = vector[0];
+          let ultimo_elemento = vector[vector.len() - 1];
+
+          println!("El primer elemento del vector es: {}", primer_elemento);
+          println!("El ultimo elemento del vector es: {}", ultimo_elemento);
+
+          // Acceder a los elementos de una tupla
+          let (x, y, z) = tupla;
+          let primer_elemento = x;
+          let ultimo_elemento = z;
+
+          println!("El primer elemento de la tupla es: {}", primer_elemento);
+          println!("El ultimo elemento de la tupla es: {}", ultimo_elemento);
+
+          // Acceder a los elementos de una tupla de forma directa
+          let primer_elemento = tupla.0;
+          let ultimo_elemento = tupla.2;
+
+          println!("El primer elemento de la tupla es: {}", primer_elemento);
+          println!("El ultimo elemento de la tupla es: {}", ultimo_elemento);
+          }
+      </code>
+    </pre>
+
+
+    <!-- Otros tipos de datos -->
+    <div class="d-flex flex-row justify-content-between mt-5 code-example">
+      <div class="text-rectangle mt-2"></div>
+      <div class="mx-3 code-example-title align-top">
+        <p class="align-top">Otros tipos de datos</p>
+      </div>
+      <div class="text-rectangle mt-2"></div>
+    </div>
+    <pre>
+      <code class="rust">
+        fn main() {
+        enum Review {
+        Good,
+        Bad,
+        NotRated,
+        }
+
+        let rating = Review::Good;
+
+        // las variables que empiezan con _ no se usan explicitamente
+        let _second_rating = Review::Bad;
+        let _third_rating = Review::NotRated;
+
+        match rating {
+        Review::Good => println!("This restaurant is good"),
+        Review::Bad => println!("This restaurant is bad"),
+        Review::NotRated => println!("This restaurant is not rated yet"),
+        }
+
+
+        struct Person {
+        name: String,
+        age: u8,
+        }
+
+        let person = Person {
+        name: String::from("Samantha"),
+        age: 20,
+        };
+
+        match person {
+        Person { name, age } => println!("{} is {} years old", name, age),
+        }
+        }
+      </code>
+    </pre>
+
+
+    <!-- Ownership y borrowing -->
+    <div class="d-flex flex-row justify-content-between mt-5 code-example">
+      <div class="text-rectangle mt-2"></div>
+      <div class="mx-3 code-example-title align-top">
+        <p class="align-top">Ownership y borrowing</p>
+      </div>
+      <div class="text-rectangle mt-2"></div>
+    </div>
+
+    <h6 class="d-block mt-4 code-example-description">
+      Este ejemplo muestra como se transfiere la propiedad de una variable a otra. En este caso, la variable s1 tiene la
+      propiedad del String
+      y cuando se asigna a s2, la variable s1 ya no tiene la propiedad del String, por lo tanto, no se puede usar. Esto
+      se debe a que Rust
+      automáticamente librea la memoria de la variable s1 cuando otra variable hace referencia a la misma dirección de
+      memoria. Esto evita que si por
+      ejemplo salimos del scope de las variables s1 y s2 liberemos dos veces la misma dirección de memoria, lo cual
+      conduce a un error de memoria y a
+      posibles fallos de seguridad.
+    </h6>
+
+    <div>
+      <img src="./images/ownership.png" alt="ownership explain" width="40%">
+    </div>
+
+    <pre>
+      <code class="rust">
+        fn main() {
+        let s1 = String::from("hello");
+        let s2 = s1;
+
+        println!("{}, world!", s1); // Error, s1 ya no tiene la propiedad del String
+        }
+      </code>
+    </pre>
+
+
+    <h6 class="d-block mt-4 code-example-description">
+      A diferencia del ejemplo anterior, ¿por qué en este caso no se produce un error? Esto se debe a que en este caso
+      se hace una copia del valor,
+      lo cual es algo que no está disponible para los Strings pero si para los tipos de datos: enteros, booleanos,
+      floats, caracteres y tuplas, aunque
+      para este ultimo, solo se puede hacer si todos los elementos de la tupla implementan el trait Copy.
+    </h6>
+    <pre>
+      <code class="rust">
+        fn main() {
+        let x = 5;
+        let y = x;
+
+        println!("x = {}, y = {}", x, y);
+        }
+      </code>
+    </pre>
+
+    <h6 class="d-block mt-4 code-example-description">
+      En este caso, la función toma presetada la propiedad del String, pero no se puede modificar. Esto se debe a que
+      las referencias también son inmutables
+      a menos de que se especifique lo contrario.
+    </h6>
+    <pre>
+      <code class="rust">
+        fn main() {
+        let s = String::from("hello");
+
+        change(&s);
+        }
+
+        fn change(some_string: &String) {
+        some_string.push_str(", world"); // Error, no se puede modificar una referencia inmutable
+        }
+      </code>
+    </pre>
+
+    <h6 class="d-block mt-4 code-example-description">
+      A diferencia del caso anterior, en este caso se puede modificar la referencia, ya que se especifica que la
+      referencia es mutable y como además
+      estamos tomando prestada la propiedad del String, se debe especificar que dicha variable es mutable, ya que la
+      propiedad no se puede transfere.
+    </h6>
+    <pre>
+      <code class="rust">
+        fn main() {
+        let mut s = String::from("hello");
+
+        change(&mut s);
+
+        println!("The value of s is: {}", s);
+        }
+
+        fn change(some_string: &mut String) {
+        some_string.push_str(", world");
+        }
+      </code>
+    </pre>
+
+    <!-- Concurrencia -->
+    <div class="d-flex flex-row justify-content-between mt-5 code-example">
+      <div class="text-rectangle mt-2"></div>
+      <div class="mx-3 code-example-title align-top">
+        <p class="align-top">Concurrencia</p>
+      </div>
+      <div class="text-rectangle mt-2"></div>
+    </div>
+
+    <h6 class="d-block mt-4 code-example-description">
+      En este ejemplo se crean dos hilos de ejecución, cada uno realiza una tarea diferente.
+      Al final se espera a que ambos hilos terminen antes de que seguir con la ejecución del hilo principal.
+    </h6>
+    <pre>
+      <code class="rust">
+        use std::thread;
+        use std::time::Duration;
+
+        fn main() {
+
+        let hilo1 = thread::spawn(|| {
+        for i in 1..10 {
+        println!("Ciclo en el hilo 1: {}", i);
+        thread::sleep(Duration::from_millis(1));
+        }
+        });
+
+        let hilo2 = thread::spawn(|| {
+        let mut i = 1;
+        let mut msg = "";
+        loop {
+
+        if i % 2 == 0 {
+        msg = "Si";
+        } else {
+        msg = "No";
+        }
+
+        println!("Hilo 2 - ¿i es par?: {}", msg);
+        i += 1;
+        thread::sleep(Duration::from_millis(1));
+
+        if i == 10 {
+        break;
+        }
+        }
+        });
+
+
+        // Permite que el hilo de ejecución principal espere a que los hilos creados terminen
+        hilo1.join().unwrap();
+        hilo2.join().unwrap();
+        }
+
+
+      </code>
+    </pre>
+
+    <h6 class="d-block mt-4 code-example-description">
+      En este ejemplo se recrea el productor-consumidor, donde el existen varios productores que envían mensajes a un
+      consumidor.
+      Para esto se usa el módulo mpsc (multiple producer, single consumer). Por otra parte, se usa la palabra reservada
+      move para
+      que el hilo tome propiedad de las variables que se usen dentro en este caso tx para los productores y rx para el
+      consumidor.
+    </h6>
+    <pre>
+      <code class="rust">
+        use std::thread;
+        use std::sync::mpsc;
+        use std::time::Duration;
+
+        fn main() {
+
+        // MSC: Multiple Sender, Single Consumer
+        let (tx, rx) = mpsc::channel();
+
+        // Con la palabra reservada move, le decimos a Rust que el hilo
+        // va a tomar propiedad de las variables que se usen dentro.
+        let productor = thread::spawn(move || {
+        let valores = vec![
+        String::from("Hola"),
+        String::from("este"),
+        String::from("es"),
+        String::from("un"),
+        String::from("mensaje"),
+        String::from("de"),
+        String::from("prueba"),
+        String::from("para"),
+        String::from("la clase"),
+        String::from("de"),
+        String::from("Lenguajes de Programación"),
+        ];
+
+        for valor in valores {
+        tx.send(valor).unwrap();
+        thread::sleep(Duration::from_millis(1));
+        }
+        });
+
+
+        let consumidor = thread::spawn(move || {
+        for recibido in rx {
+        println!("Recibido: {}", recibido);
+        }
+        });
+
+        productor.join().unwrap();
+        consumidor.join().unwrap();
+        }
+
+      </code>
+    </pre>
+
+
+    <h6 class="d-block mt-4 code-example-description">
+      En este ejemplo se hace uso de Mutex, que permite que un recurso sea compartido entre hilos. También se utiliza
+      Arc<T> que a diferencia de
+        Rc<T> permite que el recurso sea compartido entre hilos de una forma segura sin tener inconvenientes de
+          ownership.
+    </h6>
+    <pre>
+      <code class="rust">
+        use std::sync::{Arc, Mutex, mpsc};
+        use std::thread;
+        use std::time::Duration;
+
+        fn main() {
+        let (tx, rx) = mpsc::channel();
+
+        // Se crea un Mutex que contiene un entero
+        // Por otra parte, Arc permite que el recurso sea compartido entre los hilos
+        let contador = Arc::new(Mutex::new(0));
+
+        // Vector de hilos
+        let mut handles = vec![];
+
+        // Creación de 10 hilos, cada uno se encarga de incrementar el contador
+        for _ in 0..10 {
+        let tx = tx.clone();
+
+        // Se crea otra referencia al contador para que pueda ser usado en el hilo
+        // y evitar problemas de ownership, ya que no se transfiere la propiedad del Mutex
+        // sino que se crea una nueva referencia.
+        let contador = Arc::clone(&contador);
+        let handle = thread::spawn(move || {
+        let mut num = contador.lock().unwrap();
+
+        // Se referencia a la variable num que está dentro del Mutex, que originalmente viene de la variable contador
+        *num += 2;
+
+        tx.send(()).unwrap();
+        thread::sleep(Duration::from_millis(10));
+        });
+        handles.push(handle);
+        }
+
+        for _ in 0..10 {
+        rx.recv().unwrap();
+        }
+
+        for handle in handles {
+        handle.join().unwrap();
+        }
+
+        println!("Resultado: {}", *contador.lock().unwrap());
+        }
+
+      </code>
+    </pre>
+
+
+  </section>
+
+
+  <section id="external-resources">
+    <h2>
+      Recursos externos
+    </h2>
+
+    <p>
+      Recursos oficiales o creados por la comunidad para aprender Rust.
+    </p>
+
+    <div class="row">
+      <a class="btn btn-outline-light col-md-5 col-12 mx-md-5 my-md-2" href="https://www.rust-lang.org/"
+        target="_blank">Documentacion oficial</a>
+      <a class="btn btn-outline-light col-md-5 col-12 mx-md-5 my-md-2"
+        href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021" target="_blank">Playground</a>
+      <a class="btn btn-outline-light col-md-5 col-12 mx-md-5 my-md-2" href="https://github.com/ctjhoa/rust-learning"
+        target="_blank">Rust Learning repo</a>
+      <a class="btn btn-outline-light col-md-5 col-12 mx-md-5 my-md-2" href="https://github.com/rust-lang/rustlings"
+        target="_blank">Learn with Rustlings</a>
+    </div>
+  </section>
+
+
+  <section id="footer">
+    <h2>
+      Empresas que usan Rust
+    </h2>
+
+    <div class="row" id="companies-uses-rust"></div>
+  </section>
+
+  <script src="js/main.js"></script>
 </body>
 
 </html>
