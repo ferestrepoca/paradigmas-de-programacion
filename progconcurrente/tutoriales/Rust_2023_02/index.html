@@ -309,6 +309,83 @@
             <div class="text-rectangle mt-2"></div>
         </div>
 
+        <h6 class="d-block mt-4 code-example-description">
+            Este ejemplo muestra como se transfiere la propiedad de una variable a otra. En este caso, la variable s1 tiene la propiedad del String
+            y cuando se asigna a s2, la variable s1 ya no tiene la propiedad del String, por lo tanto, no se puede usar. Esto se debe a que Rust
+            automáticamente librea la memoria de la variable s1 cuando otra variable hace referencia a la misma dirección de memoria. Esto evita que si por
+            ejemplo salimos del scope de las variables s1 y s2 liberemos dos veces la misma dirección de memoria, lo cual conduce a un error de memoria y a
+            posibles fallos de seguridad.
+        </h6>
+
+        <div>
+            <img src="./images/ownership.png" alt="ownership explain" width="40%">
+        </div>
+
+        <pre>
+            <code class="rust">
+                fn main() {
+                    let s1 = String::from("hello");
+                    let s2 = s1;
+
+                    println!("{}, world!", s1); // Error, s1 ya no tiene la propiedad del String
+                }
+            </code>
+        </pre>
+
+
+        <h6 class="d-block mt-4 code-example-description">
+            A diferencia del ejemplo anterior, ¿por qué en este caso no se produce un error? Esto se debe a que en este caso se hace una copia del valor,
+            lo cual es algo que no está disponible para los Strings pero si para los tipos de datos: enteros, booleanos, floats, caracteres y tuplas, aunque
+            para este ultimo, solo se puede hacer si todos los elementos de la tupla implementan el trait Copy.
+        </h6>
+        <pre>
+            <code class="rust">
+                fn main() {
+                    let x = 5;
+                    let y = x;
+                
+                    println!("x = {}, y = {}", x, y);
+                }
+            </code>
+        </pre>
+
+        <h6 class="d-block mt-4 code-example-description">
+            En este caso, la función toma presetada la propiedad del String, pero no se puede modificar. Esto se debe a que las referencias también son inmutables
+            a menos de que se especifique lo contrario.
+        </h6>
+        <pre>
+            <code class="rust">
+                fn main() {
+                    let s = String::from("hello");
+                
+                    change(&s);
+                }
+                
+                fn change(some_string: &String) {
+                    some_string.push_str(", world"); // Error, no se puede modificar una referencia inmutable
+                }
+            </code>
+        </pre>
+
+        <h6 class="d-block mt-4 code-example-description">
+            A diferencia del caso anterior, en este caso se puede modificar la referencia, ya que se especifica que la referencia es mutable y como además
+            estamos tomando prestada la propiedad del String, se debe especificar que dicha variable es mutable, ya que la propiedad no se puede transfere.
+        </h6>
+        <pre>
+            <code class="rust">
+                fn main() {
+                    let mut s = String::from("hello");
+                
+                    change(&mut s);
+                
+                    println!("The value of s is: {}", s);
+                }
+                
+                fn change(some_string: &mut String) {
+                    some_string.push_str(", world");
+                }
+            </code>
+        </pre>
 
         <!-- Concurrencia -->
         <div class="d-flex flex-row justify-content-between mt-5 code-example">
