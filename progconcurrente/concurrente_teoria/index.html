@@ -1277,29 +1277,6 @@
             <p><center><img src="images/problema_lector_escritor.PNG" alt=""></center></p><br><br>
 
             <h2>
-              <a id="problema-de-los-filosofos-que-cenan" class="anchor" href="#problema-de-los-filosofos-que-cenan"
-                aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problema de los
-              filosofos que cenan
-            </h2>
-
-            <div class="center">
-                <p><center><img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/An_illustration_of_the_dining_philosophers_problem.png/200px-An_illustration_of_the_dining_philosophers_problem.png"
-                  alt=""></center></p>
-            </div><br><br>
-
-            <p>Cada filósofo pueda tomar los tenedores que están a su izquierda o derecha, para poder comer el filósofo
-              de tener los dos tenedores. Si cualquier filósofo toma los dos tenedores entonces los que están al lado
-              queda en espera. Hay un tenedor y los dos filósofos compiten por tomarlo y uno queda sin tenedores. </p>
-
-            <p>Si todos los filósofos toman el tenedor que está a su derecha entonces todos se quedaran esperando
-              infinitamente. Nadie va a ceder su tenedor porque todos están en la misma situación.</p>
-
-            <p>Como podemos hacer para que los filósofos no se mueran de hambre?. Interesante no, el problema en sí
-              tiene muchas soluciones pero solo vamos a enunciar una: Un filosofo toma los dos tenedores y se los demás
-              hacen una cola alrededor de la mesa para saber cual es el siguiente hasta que todos acaban.</p>
-
-            <h2>
               <a id="problema-productor-consumidor" class="anchor" href="#problema-productor-consumidor"
                 aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problema del
               Productor - Consumidor
@@ -1390,6 +1367,60 @@
               que los autos que vayan en otro sentido no podrán
               ingresar al cruce hasta que los carros del carril que tiene el semáforo en verde (tienen permiso de entrar
               a la sección critica) terminen de pasar.</p>
+
+              <h2>
+                <a id="problema-de-los-filosofos-que-cenan" class="anchor" href="#problema-de-los-filosofos-que-cenan"
+                  aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>La cena de los filósofos
+              </h2>
+  
+              <div class="center">
+                  <p><center><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/An_illustration_of_the_dining_philosophers_problem.png/200px-An_illustration_of_the_dining_philosophers_problem.png"
+                    alt=""></center></p>
+              </div><br><br>
+  
+              <p>El problema de la cena de los filósofos es una de las analogías más populares usadas para explicar la concurrencia,
+                sus problemas y acciones de mitigación. Existen n filósofos, n tenedores, y n platos de pasta en la mesa. Dicha pasta
+                debe comerse con dos tenedores, por lo que en el caso inicial, <b>no todos pueden comer a la vez</b>. Entonces, los
+                filósofos compiten por obtener los tenedores en un tiempo corto, porque de lo contrario morirán de hambre. Una vez
+              un filósofo termina de comer, suelta ambos tenedores.</p>
+  
+                <p>Si dos filósofos intentan tomar el mismo tenedor en un momento dado, estamos ante una <b>condición de carrera.</b></p>
+              
+                <p>Por otra parte, si todos los filósofos toman el tenedor que está a su derecha entonces todos se quedaran esperando
+                infinitamente. Nadie va a ceder su tenedor porque todos están en la misma situación. Esta es la situación que puede abstraerse
+                como un <b>interbloqueo.</b></p>
+  
+              <p>Como podemos hacer para que los filósofos no se mueran de hambre?. Interesante no, el problema en sí
+                tiene muchas soluciones pero solo vamos a enunciar una: Un filosofo toma los dos tenedores y se los demás
+                hacen una cola alrededor de la mesa para saber cual es el siguiente hasta que todos acaban.</p>
+
+                <h3>¿Cómo atacar el problema de los filósofos?</h3>
+
+                Existen diferentes técnicas algorítmicas para atacar el problema de la cena.
+
+                <ul>
+                <li>
+                  <b>Round-robin:</b> Es quizás la opción más intuitiva pero menos eficiente. Se implementa un sistema de
+                  turnos, y cada filósofo come cuando sea su turno propio. Idealmente, deben tener tiempo limitado por turno,
+                  porque de lo contrario, los últimos en esperar morirían de hambre. Puede pensarse como un carrusel.<br><br>
+                  <img src="images/LakesideParkCarousel.jpg" width="70%">
+                </li>
+                <li>
+                  <b>Cola de pensadores:</b> Esta solución requiere de algo de detalle matemático y algorítmico. Cuando un
+                  filósofo toma un tenedor, espera un tiempo aleatorio para obtener el otro. Si no hay ninguno libre, suelta
+                  el primero, se lo entrega al primero de la cola y se va hacia atrás a esperar su turno nuevamente.<br><br>
+                  <img src="images/cola_filosofos.png" height="70%">
+                </li>
+                <li>
+                  <b>Árbitro o moderador:</b> Para lograr esta solución se necesita introducir a un actor nuevo, que no
+                haga parte activa de la cena. Este actor -llamado árbitro o moderador- debe velar porque en cada escenario
+                de n filósofos, sólo haya n-1 sentados en la mesa. De esta manera, se garantiza que al menos uno de los filósofos
+                pueda terminar su comida. Cuando el primer filósofo haya terminado, se retirará del recinto e intercambiará lugares
+                con quien estaba esperando.<br><br>
+                <img src="images/arbitro.png" width="70%">
+              </li>
+                </ul>
 
             <h2>Métodos de sincronización y comunicación</h2>
             <p>Existen diversas formas en las que podemos sincronizar y comunicar los hilos, entre ellas tenemos:</p>
@@ -2164,6 +2195,10 @@ procedure consumer() {
             demás. Elixir presenta ejecución por hilos (referida como procesos) en un ambiente en el cuál múltiples
             procesos pueden comunicarse unos con otros vía mensajes.
 
+            <br><br>
+
+            <b>Aplicaciones notables:</b> Changelog, una plataforma de podcasts para desarrolladores. <br><br>
+
             <ul>
               <li><strong>Ada</strong></li>
             </ul>
@@ -2176,6 +2211,10 @@ procedure consumer() {
             pioneros en programación orientado a objetos, lenguaje multipropósito. Sincroniza las tareas por rendez
             vous.
 
+            <br><br>
+
+            <b>Aplicaciones notables:</b> Sistemas de planeación aérea y naval. <br><br>
+
 
             <ul>
               <li><strong>Rust</strong></li>
@@ -2184,8 +2223,9 @@ procedure consumer() {
             Rust es un lenguaje de programación compilado, de propósito general y multiparadigma desarrollado por
             Mozilla y ha sido diseñado para ser ‘un lenguaje seguro, concurrente y práctico’. Rust se enfoca
             principalmente en seguridad, velocidad y concurrencia. Una de sus principales características es que es
-            posible
-            arreglar bugs en tiempo de ejecución. Usado en desarrollo web y embebido.
+            posible arreglar bugs en tiempo de ejecución. Usado en desarrollo web y embebido. <br><br>
+
+            <b>Aplicaciones notables:</b> Partes del kernel de Linux, cuya escritura es soportada desde octubre de 2022. <br><br>
 
             <ul>
               <li><strong>Erlang</strong></li>
@@ -2196,6 +2236,10 @@ procedure consumer() {
             estructurar la aplicación. Estos procesos no comparten memoria y se comunican de forma asincrónica mediante
             el paso de mensajes. Utilizado en telecomunicaciones, e-commerce y mensajería instantánea.
 
+            <br><br>
+
+            <b>Aplicaciones notables:</b> Lógica de negocio de aplicaciones como WhatsApp. <br><br>
+
             <ul>
               <li><strong>GO</strong></li>
             </ul>
@@ -2204,6 +2248,10 @@ procedure consumer() {
             con recolector de basura, soportado en diferentes tipos de sistemas. La concurrencia en Go es diferente a
             los criterios de programación basados en bloqueos como pthreads. Es fácil de aprender debido a su similitud
             con los lenguajes más usados, es implementado en modelos de negocio y manejo de servidores.
+
+            <br><br>
+
+            <b>Aplicaciones notables:</b> El código backend de Uber.<br><br>
 
             <ul>
               <li><strong>Haskell</strong></li>
@@ -2214,6 +2262,10 @@ procedure consumer() {
             creación de hilos como los gastos generales de cambio de contexto son extremadamente bajos. La programación
             de los hilos de Haskell se hace internamente y no hace uso de ningún paquete de hilos suministrado por el
             sistema operativo.
+
+            <br><br>
+
+            <b>Aplicaciones notables:</b> Análisis de sintaxis en código alojado en GitHub <br><br>
 
             <ul>
               <li><strong>Crystal</strong></li>
@@ -2233,6 +2285,10 @@ procedure consumer() {
             Las otras primitivas de concurrencia son canales. Si ha hecho algo de Golang, esta es básicamente la misma
             idea.
 
+            <br><br>
+
+            <b>Aplicaciones notables:</b> Servicios web de compañías como Errordeck, GigSmart, Appmonitor, etc. <br><br>
+
             <ul>
               <li><strong>Java</strong></li>
             </ul>
@@ -2249,11 +2305,12 @@ procedure consumer() {
                 permite de hacer programación concurrente, debe usarlo. Además, cuando uses estos lenguajes, a menudo
                 usarás hilos sin siquiera saberlo. De hecho, hay muchas funciones incluidas en los lenguajes que crean
                 un
-                hilo sin preguntarle al programador. Además, existen otros lenguajes que ya contienen paquetes que
-                facilitan la
-                implementación de la programación concurrente como los son:</p>
+                hilo sin preguntarle al programador.</p>
             </div>
 
+
+            <b>Aplicaciones notables:</b> Innumerables. Desde servicios web backend mediante Spring Boot hasta desarrollo
+            de videojuegos con LWJGL, la librería usada para escribir Minecraft.<br><br>
 
             <ul>
               <li><strong>python</strong></li>
@@ -2271,7 +2328,10 @@ procedure consumer() {
             Específicamente la librería "Thread" incluye una interfaz de alto nivel orientada a objetos para trabajar
             con concurrencia desde
             Python. Los objetos Thread se ejecutan al mismo tiempo dentro del mismo proceso y comparten memoria.
+              
+            <br><br>
 
+            <b>Aplicaciones notables:</b> El backend de Instagram. <br><br>
 
             <ul>
               <li><strong>C</strong></li>
@@ -2285,6 +2345,10 @@ procedure consumer() {
             control muy básicos como la implementación
             de un semáforo.
 
+            <br><br>
+
+            <b>Aplicaciones notables:</b> El kernel de Linux y otros lenguajes como Python y C++. <br><br>
+
             <ul>
               <li><strong>C++</strong></li>
             </ul>
@@ -2297,6 +2361,11 @@ procedure consumer() {
             y orientada a objetos. Se puede usar una librería thread que es básicamente una sección de código
             independiente que el procesador puede ejecutar
             de forma concurrente junto a otros threads o hilos de ejecución.
+
+            <br><br>
+
+            <b>Aplicaciones notables:</b> Motores gráficos como Source de Valve, usado en videojuegos como Half-Life
+            y Counter-Strike.<br><br>
 
           </div>
           <div id="ejemplos">
@@ -3754,15 +3823,42 @@ TotalMilliseconds : 832,8442
               </li>
               <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
                 >Concurrent Programming: The Java Programming Language - Stephen Hartley y Paul Tymann</a>
-            </li>
-            <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
-              >Concurrent Programming in Java: Design Principles and Patterns - Doug Lea </a>
-          </li>
+              </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                >Concurrent Programming in Java: Design Principles and Patterns - Doug Lea </a>
+              </li>
               <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
                 href="https://arxiv.org/ftp/arxiv/papers/1008/1008.1459.pdf">Actor Model of Computation: Scalable Robust Information Systems</a>
               </li>
               <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
                 href="https://deadlockempire.github.io/">Aprende Concurrencia matando dragones</a>
+              </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                href="https://archive.org/details/softwareengineer0002booc">Software Engineering with Ada</a>
+              </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                href="https://medium.com/aviabird/10-amazing-open-source-elixir-phoenix-apps-e2c52ee25053">10 Amazing open source Elixir/Phoenix Apps</a>
+              </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                href="https://www.mycplus.com/featured-articles/source-game-development-engine/">Source Game Development Engine</a>
+              </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                href="https://towardsdatascience.com/top-16-python-applications-in-real-world-a0404111ac23">Top 16 Python Applications in Real-World</a>
+              </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                href="https://crystal-lang.org/used_in_prod/">Crystal: Used in production</a>
+              </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                href="https://serokell.io/blog/top-software-written-in-haskell">11 Companies That Use Haskell in Production</a>
+              </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                href="https://www.linkedin.com/pulse/3-best-apps-made-golang-codalien/">3 best apps made with Golang</a>
+              </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                href="https://codesync.global/media/successful-companies-using-elixir-and-erlang/">Successful Companies Use Erlang and Elixir</a>
+              </li>
+              <li><a style="background-color: #FFFFFF;color: blue; text-align: left;"
+                href="https://www.theregister.com/2022/10/05/rust_kernel_pull_request_pulled/">Linux 6.1: Rust to hit mainline kernel</a>
               </li>
             </ul>
           </div>
@@ -3824,6 +3920,7 @@ TotalMilliseconds : 832,8442
             <li>Juan Sebastian Peñafiel Ojeda</li>
             <li>Diego Efrain Mojica Mendez</li>
             <li>Juliana Cardozo Pedraza</li>
+            <li>Santiago Mondragón Gómez</li>
           </ul>
         </div>
       </section>
