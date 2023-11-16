@@ -299,6 +299,25 @@
             Puede ser visto como que la concurrencia es la propiedad de un programa, mientras que el paralelismo es la
             forma en la que se ejecuta un programa concurrente.<br><br>
 
+            Para entender esta diferencia, también podemos usar una analogía de una cafetería y un barista, y en la que hay 
+            dos tareas disponibles: tomar pedidos y preparar café.<br><br>
+
+            Supongamos que tenemos la cafetería con un solo barista. En este escenario, 
+            el barista toma pedidos y prepara café para los clientes que llegan. Mientras espera que el café se prepare, 
+            en lugar de estar inactivo, puede atender a otro cliente y tomar su pedido. Aunque cada tarea individual (tomar 
+            un pedido o preparar café) no ocurre al mismo tiempo, la cafetería está manejando múltiples flujos de trabajo 
+            de manera concurrente a través del barista. Es como si el barista estuviera alternando entre tomar pedidos 
+            y preparar bebidas, gestionando varias tareas de manera eficiente aunque no todas estén en progreso de forma 
+            simultánea. A esto se le conoce como <strong>concurrencia</strong>. <br><br>
+
+            Ahora, supongamos que tenemos una cafetería con varios baristas, cada uno con su propia área de trabajo y su 
+            propia máquina de café. En esta situación, cada barista puede atender a un cliente de manera 
+            independiente. Pueden tomar pedidos y preparar bebidas de forma simultánea. La clave aquí es que las acciones 
+            de cada barista están ocurriendo verdaderamente al mismo tiempo, aprovechando los recursos individuales de 
+            cada uno. Este escenario refleja el <strong>paralelismo</strong>, donde múltiples tareas se ejecutan 
+            simultáneamente gracias a la disponibilidad de recursos independientes (múltiples baristas). Cada barista es 
+            como un núcleo de procesador en un sistema que permite la verdadera simultaneidad en la ejecución de 
+            tareas. <br><br>
 
             <h2>
               <a id="relacion" class="anchor" href="#relacion" aria-hidden="true">
