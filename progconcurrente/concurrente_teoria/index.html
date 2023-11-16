@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -1178,6 +1178,38 @@
                 tareas concurrentes, este es un aspecto que el diseñador debe tener en cuenta al desarrollar el
                 programa, cualquier descuido a la "justicia" de un programa podría
                 generar un aplazamiento indefinido.
+              </li>
+              <li>
+                <strong>False sharing:</strong>
+                <p>
+                Es un fenómeno en programación concurrente en el cual dos o más hilos o procesos, que trabajan en diferentes partes de la memoria, comparten una caché. Aunque están modificando datos independientes, debido a la arquitectura de la caché, las actualizaciones de una región de memoria pueden invalidar la caché de otra región, haciendo necesaria una nueva sincronización, resultando en un rendimiento subóptimo y problemas de concurrencia.
+                </p>
+                <p>
+                  En arquitecturas de computadoras modernas, la memoria se organiza en líneas de caché. Si dos hilos modifican datos ubicados en la misma línea de caché, aunque sean datos diferentes, la caché podría invalidarse continuamente, generando un overhead innhttps://www.youtube.com/watch?v=kMRLgCtxjvge>cesario.
+                </p>
+                <p>
+                  El false sharing puede tener un impacto significativo en el rendimiento, ya que puede resultar en una mayor competencia por recursos de caché y la invalidación frecuente de cachés. Esto puede llevar a un aumento en el tiempo de ejecución y una disminución de la eficiencia del programa.
+                </p>
+                <p>
+                  Para mitigar el false sharing, se pueden emplear varias estrategias:
+                  <ul>
+                    <li>
+                      <strong>Alineación de Variables: </strong> Asegurarse de que las variables utilizadas por hilos concurrentes estén alineadas de manera que ocupen diferentes líneas de caché.
+                    </li>
+                    <li>
+                      <strong>Padding: </strong>Agregar relleno (padding) entre variables para separarlas en líneas de caché diferentes y evitar la interferencia entre ellas.
+                    </li>
+                    <li>
+                      <strong>Técnicas de Optimización del Compilador: </strong>Algunos compiladores ofrecen opciones para alinear variables y optimizar la disposición en la memoria.
+                    </li>
+                  </ul> 
+                </p>
+                <p>
+                  A continuación se presenta una demostración visual del problema del uso compartido de memoria caché False Sharing:
+                </p>
+                <p>
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/kMRLgCtxjvg?si=tIYcDtHWUxSIFar7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </p>
               </li>
             </ul>
 
