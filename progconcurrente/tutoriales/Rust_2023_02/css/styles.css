@@ -10,7 +10,7 @@ body {
     text-align: center;
 }
 
-header, footer {
+header, footer, historial {
     padding: 3% 15%;
     justify-content: center;
 }
@@ -113,7 +113,14 @@ pre{
     padding: 3% 0;
 }
 
-#external-resources h2, #footer h2 {
+#historial {
+    background-color: #e9eaea;
+    color: #000000;
+    font-weight: 700;
+    padding: 3% 0;
+}
+
+#external-resources h2, #footer h2, #historial h2 {
     font-size: 3em;
     font-weight: 700;
     font-family: "Lato";
@@ -126,6 +133,21 @@ pre{
     line-height: 1.5;
 }
 
+#historial h2 {
+    margin-bottom: 2em;
+}
 #external-resources p, #footer h2 {
     margin-bottom: 3em;
 }
+
+.thumbnail-img {
+  /* max-width: 60em; */
+  max-width: 100%;
+  /* max-height: 60em; */
+  max-height: 100%;
+  /* height: 10%; */
+  margin: 0; /* Eliminar el margen */
+  padding: 0; /* Eliminar el relleno */
+  display: block; /* Asegurar que sea un elemento de bloque */
+}
+
