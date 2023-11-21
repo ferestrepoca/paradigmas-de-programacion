@@ -177,6 +177,57 @@
         <p align="justify">
             Spring AOP es más simple porque no introduce ningún compilador o weaver adicional en nuestro proceso de compilación. Utiliza el weaver en tiempo de ejecución y, por lo tanto, se integra a la perfección con nuestro proceso de construcción habitual. Aunque parece simple, solo funciona con beans administrados por Spring.
         </p></br>
+        <b><h1>Spring AOP </h1></b>	
+        <li> <h3><ins>Weaving</ins></h3> 
+        <p align="justify">
+            Usa Runtime weaving durante la ejecución usando proxy dinámico JDK o proxy CGLIB
+        </p></br>
+        <li> <h3><ins>Estrucutra interna y aplicación</ins></h3> 
+        <p align="justify">
+            Para implementar aspectos en los objetos de destino, tendremos que crear proxies de ese objetos tipo poa . Esto se logra usando una de dos maneras:
+            <ul>
+                <li>Proxy dinámico JDK: la forma preferida para Spring AOP. Siempre que el objeto de destino implemente incluso una interfaz, se utilizará el proxy dinámico JDK
+                <li>Proxy CGLIB: si el objeto de destino no implementa una interfaz, se puede usar el proxy CGLIB
+            </ul>
+            <img width="500" height="400" src="../Images/springaop-process.webp?raw=true" hspace="150"> </img>
+        </p></br>
+        <li> <h3><ins>JoinPoints</ins></h3> 
+        <p align="justify">
+            No puede aplicarse a clases de tipo final, a metodos estaticos o finales porque no se pueden sobrecargar y resultaria en una runtime excepcion
+        </p></br>
+        <li> <h3><ins>Simplicidad</ins></h3> 
+        <p align="justify">
+            Spring AOP es más simple porque no introduce ningún compilador o weaver adicional en nuestro proceso de compilación. Utiliza el weaver en tiempo de ejecución y, por lo tanto, se integra a la perfección con nuestro proceso de construcción habitual. Aunque parece simple, solo funciona con beans administrados por Spring.
+        </p>
+        <h2>Aplicación de AOP en microservicios con Spring</h2> 
+        <p align="justify">
+            La necesidad de manejar obligaciones transversales en la arquitectura por microservicios es primordial. En el ámbito de Spring, la programación orientada aspectos nos proporciona una solución poderosa para modularizar las preocupaciones transversales e implementarlas en la lógica de negocio sin mezclarlas con el código principal.
+        </p>
+        <h2>Ventajas de usar POA en microservicios</h2>
+        <li><h3><ins>Manejo centralizado de preocupaciones transversales:</ins></h3></li>
+        <p align="justify">
+            Al definir obligaciones como el registro, validación de usuarios o seguridad en un único lugar, se garantiza un enfoque estandarizado en los microservicios. Garantizando que los cambios que puedan llegar a darse se hereden automáticamente en todos los microservicios.
+        </p></br>
+        <li><h3><ins>Escalabilidad y Rendimiento:</ins></h3></li>
+        <p align="justify">
+            La escalabilidad y el rendimiento, primordiales en los microservicios, se incrementan con POA. Los aspectos se pueden emplear estratégicamente para manejar desafíos como reintentos, tiempos de espera y rupturas de circuitos en las interacciones de red. Además, equipar los microservicios con código de supervisión del rendimiento a través de POA puede conducir a la identificación y optimización de los cuellos de botella del rendimiento.
+        </p></br>
+        <li><h3><ins>Medidas de seguridad mejoradas:</ins></h3></li>
+        <p align="justify">
+            Los aspectos de seguridad pueden aplicar de forma coherente políticas como la autenticación y la autorización en los microservicios. Además, la creación de registros de auditoría mediante el registro de operaciones específicas se vuelve más ágil, lo que garantiza que el uso del sistema se supervise y analice continuamente.
+        </p></br>
+        <li><h3><ins>Flexibilidad en la evolución del servicio:</ins></h3></li>
+        <p align="justify">
+            El efecto de desacoplamiento de POA significa que los microservicios pueden evolucionar sin el peso del código mezclado (code tangling). Esto conduce a la flexibilidad en la evolución del servicio. Cuando la lógica principal de un servicio no está plagada de código transversal, tareas como la refactorización o la actualización se vuelven notablemente más sencillas.
+        </p></br>
+        <li><h3><ins>Manejo optimizado de errores:</ins></h3></li>
+        <p align="justify">
+            El manejo de errores se vuelve más ágil con POA. Se puede garantizar que todos los microservicios respondan a los errores en un formato coherente. Los aspectos se pueden utilizar para detectar y administrar excepciones, lo que garantiza que se evite que las excepciones no controladas bloqueen un servicio y se también que sean registradas para su análisis.
+        </p></br>
+        <li><h3><ins>Gestión simplificada de transacciones y patrones de comunicación</ins></h3></li>
+        <p align="justify">
+            En entornos en los que los microservicios se ocupan de bases de datos u otros recursos transaccionales, POA simplifica la gestión de transacciones, garantizando la integridad y la coherencia. Además, POA facilita patrones de comunicación confiables, como el abastecimiento de eventos o la saga en interacciones asincrónicas de microservicios.
+        </p>
         <b><h1>AspectJ</h1></b>							
        <li> <h3><ins>Weaving</ins></h3> 
         <p align="justify">
