@@ -1185,7 +1185,7 @@
                 Es un fenómeno en programación concurrente en el cual dos o más hilos o procesos, que trabajan en diferentes partes de la memoria, comparten una caché. Aunque están modificando datos independientes, debido a la arquitectura de la caché, las actualizaciones de una región de memoria pueden invalidar la caché de otra región, haciendo necesaria una nueva sincronización, resultando en un rendimiento subóptimo y problemas de concurrencia.
                 </p>
                 <p>
-                  En arquitecturas de computadoras modernas, la memoria se organiza en líneas de caché. Si dos hilos modifican datos ubicados en la misma línea de caché, aunque sean datos diferentes, la caché podría invalidarse continuamente, generando un overhead innhttps://www.youtube.com/watch?v=kMRLgCtxjvge>cesario.
+                  En arquitecturas de computadoras modernas, la memoria se organiza en líneas de caché. Si dos hilos modifican datos ubicados en la misma línea de caché, aunque sean datos diferentes, la caché podría invalidarse continuamente, generando un overhead innecesario.
                 </p>
                 <p>
                   El false sharing puede tener un impacto significativo en el rendimiento, ya que puede resultar en una mayor competencia por recursos de caché y la invalidación frecuente de cachés. Esto puede llevar a un aumento en el tiempo de ejecución y una disminución de la eficiencia del programa.
