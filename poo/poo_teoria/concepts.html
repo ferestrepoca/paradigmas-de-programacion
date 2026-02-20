@@ -121,7 +121,7 @@
                                 <li>Hay que centrarse en lo que es y lo que hace un objeto, antes de decidir cómo
                                     debería ser implementado.
                                 </li>
-                                <li>Se hace énfasis en el qué hace más que en el cómo lo hace</li>
+                                <li>Se hace énfasis en el qué hace, más que en el cómo lo hace</li>
                             </ul>
 
                             <br>
@@ -130,7 +130,7 @@
                             <br/>
                             Ejemplo: Imaginemos que queremos aplicar la abstracción a las aves:<br/><br/>
                             <b>Objeto</b>: Pajaro <br/><br/>
-                            <b>Caracteristicas:</b>
+                            <b>Características:</b>
                             <ul style="list-style-type: circle;">
                                 <li>Pico</li>
                                 <li>Alas</li>
@@ -213,11 +213,11 @@
                                             problema.
                                         </li>
                                         <li>Un objeto es una instancia de una clase, que tiene: identidad,
-                                            estado(atributos) y comportamiento(metodos).
+                                            estado(atributos) y comportamiento(métodos).
                                         </li>
                                     </ul>
                                     Para el ejemplo anterior de la Clase UniversityStudent (Estudiante universitario),
-                                    la creacion de objetos se haria de la siguiente forma:<br/><br/>
+                                    la creación de objetos se haría de la siguiente forma:<br/><br/>
                                     <center>
                                         <img src="images/objects.png">
                                     </center>
@@ -272,7 +272,7 @@
                                     de modelado unificado (UML). Por ejemplo, la <a href="herencia">herencia</a> se
                                     dibuja
                                     mediante un triángulo donde su eje superior apunta a la clase padre. La visibilidad
-                                    de los atributos que tiene la clases se denota con un + (público), - (protegido),
+                                    de los atributos que tiene la clases se denota con un + (público), - (privado),
                                     # (protegido). La relación que tiene un objeto con otro se representa dependiendo de
                                     su categoría, una relación de asociación es una línea sencilla que
                                     une las dos clases vinculadas, una relación de agregación (existe una instancia de
@@ -297,7 +297,7 @@
                                     objeto B
                                     que ejecute uno de sus métodos con ciertos parámetros asociados al evento que lo
                                     generó.<br/>
-                                    Los mensaje son los que permiten la comunicacion entre objetos.<br/>
+                                    Los mensajes son los que permiten la comunicación entre objetos.<br/>
                                     Ejemplo:<br/><br/>
                                     <center>
                                         <img src="images/mensaje.png" id="ventajas">
@@ -325,7 +325,7 @@
                                 <!--Destructor-->
                                 <br/><br/>
                                 <div align="justify"><br><strong>Destructor</strong>
-                                    <br><br>Es un método de una clase cuyo fin es eliminar un objeto de una clase.
+                                    <br><br>Es un método que al eliminar un objeto de una clase, libera recursos.
                                     <br/></div>
                                 <br>
                                 <center><img src="images/destructor1.png" alt="Photo" height=200 border=0 hspace=0
@@ -404,8 +404,8 @@
                                     puede hacer. En programación orientada a objetos una interfaz X describe todas las
                                     funciones que un objeto debe tener para poder ser un X.<br/><br>
                                     <ul style="list-style-type: circle;">
-                                        <li>Una interface es una variante de una clase abstracta con la condición de que
-                                            todos sus métodos deben ser abstractos. Si la interface va a tener
+                                        <li>Una interfaz es una variante de una clase abstracta con la condición de que
+                                            todos sus métodos deben ser abstractos. Si la interfaz va a tener
                                             atributos, éstos deben llevar las palabras reservadas static final y con un
                                             valor inicial ya que funcionan como constantes por lo que, por convención,
                                             su nombre va en mayúsculas.
@@ -413,7 +413,7 @@
                                         <li>Una clase implementa una o más interfaces (separadas con comas ",") con la
                                             palabra reservada implements.
                                         </li>
-                                        <li>La principal diferencia entre interface y abstract es que una interface
+                                        <li>La principal diferencia entre interfaz y abstract es que una interfaz
                                             proporciona un mecanismo de encapsulación de los protocolos de los métodos
                                             sin forzar al usuario a utilizar la herencia.
                                         </li>
@@ -468,7 +468,7 @@
                                 <!--Modularidad-->
                                 <div align="justify"><strong>Modularidad </strong>
                                     <br><br>La modularidad es la propiedad que permite dividir una aplicación en partes
-                                    más pequeñas ( llamadas módulos ), cada una de las cuales debe ser tan independiente
+                                    más pequeñas ( llamadas módulos ), cada una de las cuales debe ser tan independientes
                                     como sea posible de la aplicación en sí y
                                     de las restantes partes.<br/><br/>
                                     <center>
@@ -480,7 +480,7 @@
                                     todos los posibles paquetes de código. La siguiente imagen muestra la división que
                                     se hace a partir de una aplicación base o un servicio
                                     general, que se divide en diferentes módulos con un propósito especial y finalmente
-                                    un subdivición en pequeños paquetes de código que integran
+                                    un subdivisión en pequeños paquetes de código que integran
                                     las clases.
                                     <br/>
                                     <br/>
@@ -498,7 +498,7 @@
                                         </li>
                                         <li>El encapsulamiento consiste en agrupar en una Clase las
                                             características(atributos) con un acceso privado y los comportamientos
-                                            (métodos) con un acceso público.
+                                            (métodos) con un acceso (público, privado, protegido).
                                         </li>
                                         <li>Acceder o modificar los miembros de una clase a través de sus métodos.</li>
                                     </ul>
@@ -513,7 +513,7 @@
                                     </center>
                                     <br/>
                                     Podemos ver que cuando no hay encapsulamiento los atributos pueden tomar valores
-                                    inconsistentes, lo cual seria fatal para cualquier sistema.<br/><br/>
+                                    inconsistentes, lo cual sería fatal para cualquier sistema.<br/><br/>
                                     Aplicando el encapsulamiento tenemos:<br/><br/>
                                     <center>
                                         <img src="images/encapsulamientojava.png">
@@ -521,8 +521,8 @@
                                     </center>
                                     <br/><br/>
                                     Con el resultado anterior vemos que el encapsulamiento nos ayuda a proteger la
-                                    integridad de los datos y nos asegura que los atributos de nuestra clase solo podran
-                                    ser accedidos a traves de los metodos definidos en dicha clase.<br/><br/>
+                                    integridad de los datos y nos asegura que los atributos de nuestra clase solo podrán
+                                    ser accedidos a través de los métodos definidos en dicha clase.<br/><br/>
                                     Ejemplo de encapsulamiento en C++:<br/><br/>
                                     <center>
                                         <img src="images/encapsulamientoc++.png">
@@ -542,13 +542,13 @@
                                     otras palabras la nueva clase (subclase o clase derivada) puede utilizar la misma
                                     implementación de su superclase (clase base) o especificar una nueva implementación.
                                     <ul style="list-style-type: circle;">
-                                        <li>Es la relación entre una clase general y otra clase mas especifica.</li>
+                                        <li>Es la relación entre una clase general y otra clase más especifica.</li>
                                         <li>Es un mecanismo que nos permite crear clases derivadas a partir de clases
                                             base.
                                         </li>
                                         <li>Nos permite compartir automáticamente métodos y datos entre clases,
                                             subclases y objetos. Por ejemplo: Si declaramos una clase párrafo derivada
-                                            de un clase texto todos los métodos y variables asociadas con la clase texto
+                                            de un clase texto, todos los métodos y variables asociadas con la clase texto
                                             son automáticamente heredados por la subclase párrafo.
                                         </li>
                                     </ul>
@@ -582,15 +582,15 @@
                                         <img src="images/ejemplohmultiple.png" id="ventajas">
                                         <h5>En este ejemplo, las clases <i>Passenger y Employee</i> heredan de la clase
                                             <i>Human</i> y las clases <i>FlyingPlane y GroundPlane</i> heredan de la
-                                            clase <i>Plane</i>.</h5>h5>
+                                            clase <i>Plane</i>.
+                                        </h5>
                                     </center>
                                 </div>
                                 <br/>
                                 <!--Polimorfismo-->
                                 <div align="justify"><strong>Polimorfismo</strong>
                                     <br><br>Son comportamientos diferentes, asociados a objetos distintos,
-                                    pueden compartir el mismo nombre; al llamarlos por ese nombre se utilizará el
-                                    comportamiento correspondiente al objeto que se est&eacute; usando.
+                                        los objetos con comportamientos diferentes pueden compartir el mismo nombre.
                                     <br/>
                                 </div>
                                 <br>
