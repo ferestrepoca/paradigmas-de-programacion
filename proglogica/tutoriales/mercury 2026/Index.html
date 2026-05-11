@@ -398,7 +398,7 @@ mmc --make hello && ./hello</code></pre>
           <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
         </div>
       </div>
-      <pre><code class="language-prolog">:- module mi_modulo.          % 1. Nombre del módulo (coincide con el archivo .m)
+      <pre><code class="language-prolog">:- module main.          % 1. Nombre del módulo (coincide con el archivo, en glot.io es main)
 
 :- interface.                  % 2. INTERFAZ: lo que es público
 :- import_module io.           %    Importar módulo de E/S
@@ -548,7 +548,7 @@ contar(nodo(Izq, _, Der)) =
           <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
         </div>
       </div>
-      <pre><code class="language-prolog">:- module hello.
+      <pre><code class="language-prolog">:- module main.
 :- interface.
 :- import_module io.
 :- pred main(io::di, io::uo) is det.
@@ -569,17 +569,21 @@ main(!IO) :-
           <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
         </div>
       </div>
-      <pre><code class="language-prolog">:- module factorial.
+      <pre><code class="language-prolog">:- module main.
 :- interface.
 :- import_module io.
 :- pred main(io::di, io::uo) is det.
 
 :- implementation.
-:- import_module int.
+:- import_module int, list, string.
 
 :- func factorial(int) = int.
-factorial(0) = 1.
-factorial(N) = N * factorial(N - 1) :- N > 0.
+factorial(N) = (
+    if N =< 0 then
+        1
+    else
+        N * factorial(N - 1)
+).
 
 main(!IO) :-
     io.format("factorial(0)  = %d\n", [i(factorial(0))],  !IO),
@@ -598,18 +602,20 @@ main(!IO) :-
           <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
         </div>
       </div>
-      <pre><code class="language-prolog">:- module fibonacci.
+      <pre><code class="language-prolog">:- module main.
 :- interface.
 :- import_module io.
 :- pred main(io::di, io::uo) is det.
 
 :- implementation.
-:- import_module int.
+:- import_module int, list, string.
 
 :- func fib(int) = int.
-fib(0) = 0.
-fib(1) = 1.
-fib(N) = fib(N - 1) + fib(N - 2) :- N > 1.
+fib(N) = (
+    if N =< 0 then 0
+    else if N = 1 then 1
+    else fib(N - 1) + fib(N - 2)
+).
 
 main(!IO) :-
     io.format("fib(0)  = %d\n",  [i(fib(0))],  !IO),
@@ -639,13 +645,13 @@ main(!IO) :-
           <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
         </div>
       </div>
-      <pre><code class="language-prolog">:- module listas.
+      <pre><code class="language-prolog">:- module main.
 :- interface.
 :- import_module io.
 :- pred main(io::di, io::uo) is det.
 
 :- implementation.
-:- import_module int, list.
+:- import_module int, list, string.
 
 :- func mi_longitud(list(T)) = int.
 mi_longitud([]) = 0.
@@ -666,7 +672,7 @@ concatenar([H|T], L) = [H | concatenar(T, L)].
 main(!IO) :-
     Lista = [1, 2, 3, 4, 5],
     io.format("Lista:       %s\n", [s(string(Lista))],              !IO),
-    io.format("Longitud:    %d\n", [i(mi_longitud(Lista))],          !IO),
+    io.format("Longitud:    %d\n", [i(mi_longitud(Lista))],         !IO),
     io.format("Invertida:   %s\n", [s(string(invertir(Lista)))],     !IO),
     io.format("Concat [6..8]:%s\n",[s(string(concatenar(Lista,[6,7,8])))], !IO).</code></pre>
     </div>
@@ -682,18 +688,23 @@ main(!IO) :-
           <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
         </div>
       </div>
-      <pre><code class="language-prolog">:- module ordenamiento.
+      <pre><code class="language-prolog">:- module main.
 :- interface.
 :- import_module io.
 :- pred main(io::di, io::uo) is det.
 
 :- implementation.
-:- import_module int, list.
+:- import_module int, list, string.
 
 :- pred insertar(int::in, list(int)::in, list(int)::out) is det.
 insertar(X, [],     [X]).
-insertar(X, [H|T],  [X,H|T]) :- X =< H.
-insertar(X, [H|T],  [H|T1])  :- X > H, insertar(X, T, T1).
+insertar(X, [H|T],  Res) :-
+    ( if X =< H then
+        Res = [X, H | T]
+    else
+        insertar(X, T, T1),
+        Res = [H | T1]
+    ).
 
 :- pred insertion_sort(list(int)::in, list(int)::out) is det.
 insertion_sort([], []).
@@ -719,13 +730,13 @@ main(!IO) :-
           <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
         </div>
       </div>
-      <pre><code class="language-prolog">:- module figuras.
+      <pre><code class="language-prolog">:- module main.
 :- interface.
 :- import_module io.
 :- pred main(io::di, io::uo) is det.
 
 :- implementation.
-:- import_module float, math.
+:- import_module float, math, list, string.
 
 :- type figura
     --->    circulo(float)
@@ -735,7 +746,7 @@ main(!IO) :-
 :- func area(figura) = float.
 area(circulo(R))           = math.pi * R * R.
 area(rectangulo(B, H))     = B * H.
-area(triangulo(A, B, C))   = sqrt(S * (S-A) * (S-B) * (S-C)) :-
+area(triangulo(A, B, C))   = math.sqrt(S * (S - A) * (S - B) * (S - C)) :-
     S = (A + B + C) / 2.0.
 
 :- func nombre(figura) = string.
@@ -773,13 +784,13 @@ main(!IO) :-
           <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
         </div>
       </div>
-      <pre><code class="language-prolog">:- module orden_superior.
+      <pre><code class="language-prolog">:- module main.
 :- interface.
 :- import_module io.
 :- pred main(io::di, io::uo) is det.
 
 :- implementation.
-:- import_module int, list.
+:- import_module int, list, string.
 
 % mi_map: aplica F a cada elemento de la lista
 :- func mi_map(func(T) = U, list(T)) = list(U).
@@ -823,7 +834,7 @@ main(!IO) :-
           <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
         </div>
       </div>
-      <pre><code class="language-prolog">:- module dcg_parser.
+      <pre><code class="language-prolog">:- module main.
 :- interface.
 :- import_module io.
 :- pred main(io::di, io::uo) is det.
@@ -832,8 +843,8 @@ main(!IO) :-
 :- import_module list, char, string, int.
 
 % Gramática: oracion --> frase_nominal, frase_verbal
-%             frase_nominal --> sustantivo
-%             frase_verbal  --> verbo | verbo, frase_nominal
+%            frase_nominal --> sustantivo
+%            frase_verbal  --> verbo | verbo, frase_nominal
 
 :- pred sustantivo(list(string)::in, list(string)::out) is semidet.
 sustantivo --> ["mercury"].
@@ -879,22 +890,23 @@ main(!IO) :-
           <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
         </div>
       </div>
-      <pre><code class="language-prolog">:- module estado.
+      <pre><code class="language-prolog">:- module main.
 :- interface.
 :- import_module io.
 :- pred main(io::di, io::uo) is det.
 
 :- implementation.
-:- import_module int, list.
+:- import_module int, list, string.
 
 % Cuenta regresiva: el estado (N) se pasa por recursión
 :- pred cuenta_regresiva(int::in, io::di, io::uo) is det.
-cuenta_regresiva(0, !IO) :-
-    io.write_string("Despegue!\n", !IO).
 cuenta_regresiva(N, !IO) :-
-    N > 0,
-    io.format("  %d...\n", [i(N)], !IO),
-    cuenta_regresiva(N - 1, !IO).
+    ( if N =< 0 then
+        io.write_string("Despegue!\n", !IO)
+    else
+        io.format("  %d...\n", [i(N)], !IO),
+        cuenta_regresiva(N - 1, !IO)
+    ).
 
 % Suma acumulativa: el acumulador es el estado
 :- pred sumar_lista(list(int)::in, int::in, int::out) is det.
@@ -956,7 +968,7 @@ main(!IO) :-
     © 2026 Paradigmas de Programación · UNAL
   </div>
 </footer>
-
+</body>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     hljs.configure({ ignoreUnescapedHTML: true });
