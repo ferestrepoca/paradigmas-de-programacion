@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mercury — Programación Lógico-Funcional</title>
+
+  <!-- Fonts: Inter + Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS (Play CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Highlight.js — Atom One Dark -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Fira Code"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ─── CSS variables ─── */
+    :root {
+      --bg:      #060912;
+      --surface: #0a0e1a;
+      --card:    #0f1629;
+      --card2:   #131d35;
+      --border:  #1e2d45;
+      --primary: #8b5cf6;
+      --plight:  #a78bfa;
+      --pdark:   #6d28d9;
+      --cyan:    #22d3ee;
+      --cyandark:#06b6d4;
+      --amber:   #fbbf24;
+      --green:   #34d399;
+      --red:     #f87171;
+      --text:    #e2e8f0;
+      --muted:   #64748b;
+      --secondary:#94a3b8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--pdark); border-radius: 3px; }
+
+    /* ─── Scroll offset for sticky nav ─── */
+    section[id] { scroll-margin-top: 68px; }
+
+    /* ─── Gradient text ─── */
+    .grad {
+      background: linear-gradient(135deg, var(--plight) 0%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── Section label ─── */
+    .stag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cyandark);
+    }
+
+    /* ─── Nav link hover underline ─── */
+    .nl {
+      position: relative;
+      color: var(--secondary);
+      transition: color 0.2s;
+    }
+    .nl::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--cyan));
+      transition: width 0.25s;
+    }
+    .nl:hover { color: #fff; }
+    .nl:hover::after { width: 100%; }
+
+    /* ─── Card hover ─── */
+    .ch {
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .ch:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary) !important;
+      box-shadow: 0 10px 30px rgba(139,92,246,0.18);
+    }
+
+    /* ─── Badge ─── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid;
+    }
+
+    /* ─── Terminal block ─── */
+    .trm {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .trm-bar {
+      background: #161b22;
+      padding: 9px 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border-bottom: 1px solid #30363d;
+    }
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .trm-body {
+      padding: 16px 18px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.82rem;
+      line-height: 1.85;
+      color: #e6edf3;
+    }
+    .trm-body .cm  { color: #6e7681; }
+    .trm-body .cmd { color: #79c0ff; }
+    .trm-body .ok  { color: #3fb950; }
+    .trm-body .ps  { color: #3fb950; }
+    .trm-body .warn{ color: #fbbf24; }
+
+    /* ─── Code override (Highlight.js) ─── */
+    pre { border-radius: 9px !important; }
+    pre code.hljs {
+      font-family: 'Fira Code', monospace !important;
+      font-size: 0.78rem !important;
+      line-height: 1.72 !important;
+      padding: 16px 18px !important;
+    }
+
+    /* ─── Tab buttons ─── */
+    .tbtn {
+      padding: 7px 20px;
+      border-radius: 7px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--muted);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: none;
+    }
+    .tbtn:hover { color: var(--secondary); background: rgba(255,255,255,0.04); }
+    .tbtn.on {
+      color: #fff;
+      background: rgba(139,92,246,0.18);
+      border-color: var(--primary);
+    }
+    .tc { display: none; }
+    .tc.on { display: block; }
+
+    /* ─── Table ─── */
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      background: rgba(139,92,246,0.09);
+      color: var(--plight);
+      padding: 11px 15px;
+      text-align: left;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 9px 15px;
+      font-size: 0.83rem;
+      color: var(--secondary);
+      border-bottom: 1px solid rgba(30,45,69,0.45);
+    }
+    tr:hover td { background: rgba(139,92,246,0.04); }
+
+    /* ─── Image placeholder ─── */
+    .ph {
+      background: linear-gradient(135deg, var(--card) 0%, var(--card2) 100%);
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 18px 20px;
+      text-align: center;
+    }
+    .ph-lbl {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .ph-desc {
+      font-size: 0.73rem;
+      color: #334155;
+      max-width: 320px;
+      line-height: 1.55;
+    }
+
+    /* ─── Pipeline step ─── */
+    .pipe-step {
+      flex: 1;
+      text-align: center;
+      padding: 10px 6px;
+      border-radius: 8px;
+      border: 1px solid;
+    }
+
+    /* ─── Scroll-reveal ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.shown { opacity: 1; transform: none; }
+
+    /* ─── Hero grid background ─── */
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(139,92,246,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139,92,246,0.03) 1px, transparent 1px);
+      background-size: 55px 55px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     STICKY NAVIGATION
+══════════════════════════════════════════════════════ -->
+<nav id="nav" style="position:fixed;top:0;left:0;right:0;z-index:50;
+     background:rgba(6,9,18,0.82);backdrop-filter:blur(14px);
+     border-bottom:1px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px;
+       height:64px;display:flex;align-items:center;justify-content:space-between;">
+
+    <!-- Logo -->
+    <a href="#inicio" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <div style="width:32px;height:32px;border-radius:8px;
+           background:linear-gradient(135deg,#7c3aed,#06b6d4);
+           display:flex;align-items:center;justify-content:center;
+           color:#fff;font-weight:800;font-size:0.78rem;">Hg</div>
+      <span style="color:#fff;font-weight:700;font-size:1.05rem;letter-spacing:-0.02em;">Mercury</span>
+      <span style="color:#1e2d45;font-size:0.85rem;display:none;" class="md-show">/ Programación Lógica</span>
+    </a>
+
+    <!-- Nav links -->
+    <div style="display:flex;align-items:center;gap:22px;font-size:0.85rem;">
+      <a href="#inicio" class="nl" style="text-decoration:none;">Inicio</a>
+      <a href="#pasos"  class="nl" style="text-decoration:none;">Primeros Pasos</a>
+      <a href="#tour"   class="nl" style="text-decoration:none;">Tour</a>
+      <a href="#partic" class="nl" style="text-decoration:none;">Particularidades</a>
+      <a href="#ejemplos" class="nl" style="text-decoration:none;">Ejemplos</a>
+      <a href="https://www.mercurylang.org/" target="_blank" rel="noopener"
+         style="padding:5px 13px;border-radius:6px;font-size:0.78rem;font-weight:500;
+                background:rgba(139,92,246,0.13);border:1px solid rgba(139,92,246,0.28);
+                color:var(--plight);text-decoration:none;">Docs ↗</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════ -->
+<section id="inicio" class="hero-grid"
+  style="min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;">
+
+  <!-- Ambient glows -->
+  <div style="position:absolute;top:20%;left:15%;width:420px;height:420px;border-radius:50%;
+       background:radial-gradient(circle,rgba(139,92,246,0.11) 0%,transparent 70%);
+       filter:blur(45px);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:15%;right:12%;width:300px;height:300px;border-radius:50%;
+       background:radial-gradient(circle,rgba(34,211,238,0.07) 0%,transparent 70%);
+       filter:blur(40px);pointer-events:none;"></div>
+
+  <div style="max-width:1280px;margin:0 auto;padding:100px 24px 60px;width:100%;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;">
+
+      <!-- Left -->
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+          <span class="stag">Universidad Nacional de Colombia</span>
+          <span style="color:#1e2d45;">|</span>
+          <span class="stag" style="color:var(--plight);">Lenguajes de Programación</span>
+        </div>
+
+        <h1 style="font-size:clamp(4rem,8vw,6.5rem);font-weight:900;
+            letter-spacing:-0.04em;line-height:1;margin-bottom:18px;">
+          <span class="grad">Mercury</span>
+        </h1>
+
+        <p style="font-size:1.25rem;font-weight:500;color:var(--secondary);
+            line-height:1.55;margin-bottom:10px;">
+          Programación <strong style="color:#fff;">Lógico-Funcional</strong> Pura<br/>
+          para Software de <strong style="color:var(--cyan);">Alta Confiabilidad</strong>
+        </p>
+        <p style="font-size:0.88rem;color:var(--muted);margin-bottom:28px;">
+          Creado en 1995 · Universidad de Melbourne · Lenguaje de 2ª generación
+        </p>
+
+        <!-- Badges -->
+        <div style="display:flex;flex-wrap:wrap;gap:9px;margin-bottom:32px;">
+          <span class="badge" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.3);color:var(--plight);">⬡ Tipado Estático</span>
+          <span class="badge" style="background:rgba(34,211,238,0.1);border-color:rgba(34,211,238,0.3);color:var(--cyan);">⚡ Compilado a C Nativo</span>
+          <span class="badge" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.3);color:var(--green);">✦ I/O Completamente Puro</span>
+          <span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:var(--amber);">◈ Determinismo Declarado</span>
+        </div>
+
+        <!-- CTAs -->
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="#tour" style="padding:12px 24px;border-radius:9px;font-weight:600;
+             color:#fff;text-decoration:none;
+             background:linear-gradient(135deg,#7c3aed,#06b6d4);
+             box-shadow:0 4px 22px rgba(139,92,246,0.38);
+             transition:transform 0.15s,box-shadow 0.15s;"
+             onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(139,92,246,0.5)'"
+             onmouseout="this.style.transform='';this.style.boxShadow='0 4px 22px rgba(139,92,246,0.38)'">
+            Explorar el Lenguaje →
+          </a>
+          <a href="#ejemplos" style="padding:12px 24px;border-radius:9px;font-weight:600;
+             color:var(--secondary);text-decoration:none;
+             background:rgba(255,255,255,0.04);border:1px solid var(--border);
+             transition:border-color 0.15s,color 0.15s;"
+             onmouseover="this.style.borderColor='var(--primary)';this.style.color='#fff'"
+             onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--secondary)'">
+            Ver Ejemplos
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: placeholder + stats -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <!-- Image placeholder -->
+        <div class="ph" style="min-height:260px;">
+          <div style="font-size:2.8rem;opacity:0.35;">☿</div>
+          <div class="ph-lbl">Placeholder · Imagen Hero</div>
+          <p class="ph-desc">
+            Recomendación: Logo oficial de Mercury (mercurylang.org) o arte conceptual
+            abstracto con nodos interconectados representando unificación y backtracking.
+            Paleta: violeta-cian sobre fondo oscuro.
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+          <div style="text-align:center;padding:16px 10px;border-radius:10px;
+               background:var(--card);border:1px solid var(--border);">
+            <div style="font-size:1.6rem;font-weight:900;color:var(--plight);">1995</div>
+            <div style="font-size:0.72rem;color:#475569;margin-top:4px;">Año de creación</div>
+          </div>
+          <div style="text-align:center;padding:16px 10px;border-radius:10px;
+               background:var(--card);border:1px solid var(--border);">
+            <div style="font-size:1.6rem;font-weight:900;color:var(--cyan);">≫ C</div>
+            <div style="font-size:0.72rem;color:#475569;margin-top:4px;">Rendimiento nativo</div>
+          </div>
+          <div style="text-align:center;padding:16px 10px;border-radius:10px;
+               background:var(--card);border:1px solid var(--border);">
+            <div style="font-size:1.6rem;font-weight:900;color:var(--green);">100%</div>
+            <div style="font-size:0.72rem;color:#475569;margin-top:4px;">Puro y funcional</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll arrow -->
+  <div style="position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+       display:flex;flex-direction:column;align-items:center;gap:6px;color:#334155;">
+    <span style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;">scroll</span>
+    <div style="width:1px;height:28px;background:linear-gradient(to bottom,#475569,transparent);
+         animation:bounce 1.5s ease-in-out infinite;"></div>
+  </div>
+  <style>
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+  </style>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PRIMEROS PASOS
+══════════════════════════════════════════════════════ -->
+<section id="pasos" style="padding:80px 0;border-top:1px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+
+    <div class="reveal" style="margin-bottom:44px;">
+      <p class="stag" style="margin-bottom:6px;">Apartado 2</p>
+      <h2 style="font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-0.03em;">Primeros Pasos</h2>
+      <p style="color:var(--muted);margin-top:6px;">Instalación y estructura básica de un programa Mercury</p>
+    </div>
+
+    <!-- Requirements -->
+    <div class="reveal" style="margin-bottom:16px;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;">
+        <!-- Requisitos card -->
+        <div style="grid-column:span 3;padding:14px 18px;border-radius:10px;
+             background:rgba(34,211,238,0.04);border:1px solid rgba(34,211,238,0.14);
+             display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+          <span style="font-size:0.82rem;font-weight:600;color:var(--cyan);">Requisitos del Sistema:</span>
+          <span style="font-size:0.8rem;color:var(--secondary);">Linux / macOS / Windows (WSL2)</span>
+          <span style="font-size:0.8rem;color:var(--secondary);">~500 MB de espacio en disco</span>
+          <span style="font-size:0.8rem;color:var(--secondary);">GCC o Clang + make</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terminal blocks -->
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;">
+      <!-- Linux -->
+      <div class="trm ch">
+        <div class="trm-bar">
+          <div class="dot" style="background:#ff5f57;"></div>
+          <div class="dot" style="background:#febc2e;"></div>
+          <div class="dot" style="background:#28c840;"></div>
+          <span style="color:#6e7681;font-size:0.76rem;margin-left:6px;font-family:'Fira Code',monospace;">Linux / Ubuntu</span>
+        </div>
+        <div class="trm-body">
+          <div><span class="cm"># Método rápido (APT)</span></div>
+          <div><span class="ps">$</span> <span class="cmd">sudo apt-get update</span></div>
+          <div><span class="ps">$</span> <span class="cmd">sudo apt-get install mercury-dev</span></div>
+          <br/>
+          <div><span class="cm"># Desde fuente (última versión)</span></div>
+          <div><span class="ps">$</span> <span class="cmd">wget https://dl.mercurylang.org/...</span></div>
+          <div><span class="ps">$</span> <span class="cmd">./configure && make</span></div>
+          <div><span class="ps">$</span> <span class="cmd">sudo make install</span></div>
+        </div>
+      </div>
+
+      <!-- macOS -->
+      <div class="trm ch">
+        <div class="trm-bar">
+          <div class="dot" style="background:#ff5f57;"></div>
+          <div class="dot" style="background:#febc2e;"></div>
+          <div class="dot" style="background:#28c840;"></div>
+          <span style="color:#6e7681;font-size:0.76rem;margin-left:6px;font-family:'Fira Code',monospace;">macOS</span>
+        </div>
+        <div class="trm-body">
+          <div><span class="cm"># Con Homebrew</span></div>
+          <div><span class="ps">$</span> <span class="cmd">brew install mercury</span></div>
+          <br/>
+          <div><span class="cm"># Verificar instalación</span></div>
+          <div><span class="ps">$</span> <span class="cmd">mmc --version</span></div>
+          <div class="ok">Mercury Compiler version 22.01</div>
+          <br/>
+          <div><span class="cm"># Compilar y ejecutar</span></div>
+          <div><span class="ps">$</span> <span class="cmd">mmc --make programa</span></div>
+          <div><span class="ps">$</span> <span class="cmd">./programa</span></div>
+        </div>
+      </div>
+
+      <!-- Windows -->
+      <div class="trm ch">
+        <div class="trm-bar">
+          <div class="dot" style="background:#ff5f57;"></div>
+          <div class="dot" style="background:#febc2e;"></div>
+          <div class="dot" style="background:#28c840;"></div>
+          <span style="color:#6e7681;font-size:0.76rem;margin-left:6px;font-family:'Fira Code',monospace;">Windows (WSL2) — Recomendado</span>
+        </div>
+        <div class="trm-body">
+          <div><span class="cm"># Paso 1: Habilitar WSL2</span></div>
+          <div><span class="ps">&gt;</span> <span class="cmd">wsl --install</span></div>
+          <br/>
+          <div><span class="cm"># Paso 2: Instalar Ubuntu (Microsoft Store)</span></div>
+          <div><span class="cm"># Paso 3: Seguir pasos de Linux en WSL</span></div>
+          <br/>
+          <div class="warn">⚠ Alternativa: instalador binario</div>
+          <div class="warn">  en mercurylang.org/download.html</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hello World + structure -->
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+      <!-- File structure -->
+      <div style="padding:22px;border-radius:12px;border:1px solid var(--border);background:var(--card);">
+        <h3 style="color:#fff;font-weight:700;font-size:1rem;margin-bottom:14px;
+            display:flex;align-items:center;gap:8px;">
+          <span style="color:var(--cyan);">◈</span>
+          Estructura de un archivo <code style="font-family:'Fira Code',monospace;color:var(--plight);font-size:0.87rem;">.m</code>
+        </h3>
+        <pre><code class="language-prolog">:- module nombre_modulo.      % Nombre del módulo
+:- interface.                 % Sección pública
+
+:- import_module io.          % Importar módulos
+
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.            % Sección privada
+
+main(!IO) :-
+    io.write_string("Hola Mundo\n", !IO).</code></pre>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;">
+          <div style="font-size:0.75rem;padding:8px 10px;border-radius:6px;
+               background:rgba(139,92,246,0.05);border:1px solid var(--border);">
+            <span style="color:var(--plight);font-weight:700;">interface</span>
+            <p style="color:#475569;margin-top:4px;">Declaraciones públicas visibles desde otros módulos</p>
+          </div>
+          <div style="font-size:0.75rem;padding:8px 10px;border-radius:6px;
+               background:rgba(34,211,238,0.05);border:1px solid var(--border);">
+            <span style="color:var(--cyan);font-weight:700;">implementation</span>
+            <p style="color:#475569;margin-top:4px;">Código privado e implementación interna</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hello World -->
+      <div style="padding:22px;border-radius:12px;border:1px solid var(--border);background:var(--card);">
+        <h3 style="color:#fff;font-weight:700;font-size:1rem;margin-bottom:14px;
+            display:flex;align-items:center;gap:8px;">
+          <span style="color:var(--green);">▶</span> Hello World + Compilación
+        </h3>
+        <pre><code class="language-prolog">:- module hola_mundo.
+:- interface.
+:- import_module io.
+:- pred main(io::di, io::uo) is det.
+:- implementation.
+
+main(!IO) :-
+    io.write_string("¡Hola desde Mercury!\n", !IO).</code></pre>
+
+        <div class="trm" style="margin-top:12px;border-radius:7px;">
+          <div class="trm-bar" style="padding:7px 12px;">
+            <div class="dot" style="background:#ff5f57;"></div>
+            <div class="dot" style="background:#febc2e;"></div>
+            <div class="dot" style="background:#28c840;"></div>
+            <span style="color:#6e7681;font-size:0.72rem;margin-left:6px;font-family:'Fira Code',monospace;">Terminal</span>
+          </div>
+          <div class="trm-body" style="padding:10px 14px;font-size:0.79rem;">
+            <div><span class="ps">$</span> <span class="cmd">mmc --make hola_mundo</span></div>
+            <div><span class="ps">$</span> <span class="cmd">./hola_mundo</span></div>
+            <div class="ok">¡Hola desde Mercury!</div>
+          </div>
+        </div>
+
+        <p style="font-size:0.76rem;color:#475569;margin-top:10px;line-height:1.6;">
+          <strong style="color:var(--amber);">!IO</strong> es azúcar sintáctica para el par
+          <code style="font-family:'Fira Code',monospace;font-size:0.74rem;">(IO0, IO1)</code>
+          — garantiza que el I/O sea <strong style="color:var(--green);">puro y ordenado</strong>.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     TOUR DEL LENGUAJE
+══════════════════════════════════════════════════════ -->
+<section id="tour" style="padding:80px 0;border-top:1px solid var(--border);
+     background:rgba(10,14,26,0.6);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+
+    <div class="reveal" style="margin-bottom:44px;">
+      <p class="stag" style="margin-bottom:6px;">Apartado 3</p>
+      <h2 style="font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-0.03em;">Tour por el Lenguaje</h2>
+      <p style="color:var(--muted);margin-top:6px;">Los 5 conceptos fundamentales de Mercury</p>
+    </div>
+
+    <!-- Módulos + Predicados vs Funciones -->
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+
+      <!-- Módulos -->
+      <div class="ch" style="padding:22px;border-radius:12px;border:1px solid var(--border);background:var(--card);">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+          <div>
+            <div style="font-size:2rem;margin-bottom:6px;">📦</div>
+            <h3 style="font-size:1.15rem;font-weight:700;color:#fff;">Módulos</h3>
+            <p style="font-size:0.8rem;color:var(--muted);margin-top:3px;">Encapsulación con interfaz pública</p>
+          </div>
+          <span class="badge" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.3);color:var(--plight);">Encapsulación</span>
+        </div>
+        <pre><code class="language-prolog">:- module matematicas.
+:- interface.
+:- import_module int.
+:- pred suma(int::in, int::in, int::out) is det.
+:- pred producto(int::in, int::in, int::out) is det.
+
+:- implementation.
+suma(X, Y, Z)     :- Z = X + Y.
+producto(X, Y, Z) :- Z = X * Y.</code></pre>
+      </div>
+
+      <!-- Predicados vs Funciones -->
+      <div class="ch" style="padding:22px;border-radius:12px;border:1px solid var(--border);background:var(--card);">
+        <div style="margin-bottom:14px;">
+          <div style="font-size:2rem;margin-bottom:6px;">⚖️</div>
+          <h3 style="font-size:1.15rem;font-weight:700;color:#fff;">Predicados vs Funciones</h3>
+          <p style="font-size:0.8rem;color:var(--muted);margin-top:3px;">Dos formas complementarias de expresar cómputo</p>
+        </div>
+        <pre><code class="language-prolog">% Predicado: relación (puede fallar, multi-solución)
+:- pred duplicar(int::in, int::out) is det.
+duplicar(X, Y) :- Y = X * 2.
+
+% Función: retorna valor (usable en expresiones)
+:- func cuadrado(int) = int.
+cuadrado(X) = X * X.
+
+% Uso en expresiones:
+%   duplicar(5, Y)  → Y = 10
+%   cuadrado(5)     → 25  (en una expresión)</code></pre>
+      </div>
+    </div>
+
+    <!-- Sistema de Modos -->
+    <div class="reveal" style="padding:22px;border-radius:12px;border:1px solid var(--border);
+         background:var(--card);margin-bottom:14px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;">
+        <div>
+          <div style="font-size:2rem;margin-bottom:8px;">🔄</div>
+          <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:6px;">Sistema de Modos</h3>
+          <p style="font-size:0.8rem;color:var(--muted);margin-bottom:14px;">
+            Declaran la <strong style="color:#fff;">dirección del flujo de datos</strong> para cada argumento
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="badge" style="background:rgba(34,211,238,0.1);border-color:rgba(34,211,238,0.3);color:var(--cyan);">
+              <code style="font-family:'Fira Code',monospace;font-size:0.72rem;">::in</code>
+              Entrada (instanciado al llamar)
+            </span>
+            <span class="badge" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.3);color:var(--green);">
+              <code style="font-family:'Fira Code',monospace;font-size:0.72rem;">::out</code>
+              Salida (libre, se unifica)
+            </span>
+            <span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:var(--amber);">
+              <code style="font-family:'Fira Code',monospace;font-size:0.72rem;">::di</code>
+              Destructive Input (I/O)
+            </span>
+            <span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:var(--amber);">
+              <code style="font-family:'Fira Code',monospace;font-size:0.72rem;">::uo</code>
+              Unique Output (I/O)
+            </span>
+          </div>
+        </div>
+        <pre><code class="language-prolog">% 2 entradas, 1 salida → siempre det
+:- pred sumar(int::in, int::in, int::out) is det.
+sumar(A, B, C) :- C = A + B.
+
+% Entrada puede ser "ground" o libre
+:- pred clasificar(int::in, string::out) is det.
+
+% I/O siempre usa di / uo
+:- pred main(io::di, io::uo) is det.
+main(!IO) :-
+    io.write_string("Hola\n", !IO).</code></pre>
+      </div>
+    </div>
+
+    <!-- Determinismo + Tipos -->
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+
+      <!-- Determinismo -->
+      <div class="ch" style="padding:22px;border-radius:12px;border:1px solid var(--border);background:var(--card);">
+        <div style="font-size:2rem;margin-bottom:8px;">🎯</div>
+        <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:4px;">Declaraciones de Determinismo</h3>
+        <p style="font-size:0.8rem;color:var(--muted);margin-bottom:14px;">
+          Mercury <em>obliga</em> a declarar cuántas soluciones puede tener un predicado
+        </p>
+
+        <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;
+               padding:8px 11px;border-radius:6px;
+               background:rgba(34,211,238,0.05);border:1px solid rgba(34,211,238,0.15);">
+            <code style="font-family:'Fira Code',monospace;color:var(--cyan);font-size:0.82rem;">det</code>
+            <span style="font-size:0.76rem;color:var(--muted);">Exactamente 1 solución, nunca falla</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;
+               padding:8px 11px;border-radius:6px;
+               background:rgba(251,191,36,0.05);border:1px solid rgba(251,191,36,0.15);">
+            <code style="font-family:'Fira Code',monospace;color:var(--amber);font-size:0.82rem;">semidet</code>
+            <span style="font-size:0.76rem;color:var(--muted);">0 ó 1 soluciones (puede fallar)</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;
+               padding:8px 11px;border-radius:6px;
+               background:rgba(248,113,113,0.05);border:1px solid rgba(248,113,113,0.15);">
+            <code style="font-family:'Fira Code',monospace;color:var(--red);font-size:0.82rem;">nondet</code>
+            <span style="font-size:0.76rem;color:var(--muted);">0 ó más soluciones (backtracking)</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;
+               padding:8px 11px;border-radius:6px;
+               background:rgba(167,139,250,0.05);border:1px solid rgba(167,139,250,0.15);">
+            <code style="font-family:'Fira Code',monospace;color:var(--plight);font-size:0.82rem;">multi</code>
+            <span style="font-size:0.76rem;color:var(--muted);">1 ó más soluciones (≥1 garantizada)</span>
+          </div>
+        </div>
+
+        <!-- Placeholder: determinism diagram -->
+        <div class="ph" style="min-height:115px;">
+          <div class="ph-lbl">Placeholder · Diagrama de Determinismo</div>
+          <p class="ph-desc">
+            Recomendación: Matriz 2×2 o árbol de decisión. Ejes: "¿puede fallar?" vs
+            "¿puede producir varias soluciones?". Las 4 celdas mapean a det/semidet/multi/nondet.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sistema de Tipos -->
+      <div class="ch" style="padding:22px;border-radius:12px;border:1px solid var(--border);background:var(--card);">
+        <div style="font-size:2rem;margin-bottom:8px;">🔒</div>
+        <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:4px;">Sistema de Tipos</h3>
+        <p style="font-size:0.8rem;color:var(--muted);margin-bottom:14px;">
+          Tipado estático fuerte con polimorfismo paramétrico
+        </p>
+        <pre><code class="language-prolog">% Tipos primitivos
+int, float, char, string, bool
+
+% Tipo lista polimórfica
+list(T)   % lista de elementos de tipo T
+
+% Tipo algebraico (union type)
+:- type forma
+    --->    circulo(float)
+    ;       rectangulo(float, float)
+    ;       triangulo(float, float, float).
+
+% Tipo opcional (Maybe)
+:- type maybe(T)
+    --->    yes(T)
+    ;       no.
+
+% Detección de errores en COMPILACIÓN:
+% suma(3.14, "hola", Z)  → ERROR ✗</code></pre>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PARTICULARIDADES
+══════════════════════════════════════════════════════ -->
+<section id="partic" style="padding:80px 0;border-top:1px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+
+    <div class="reveal" style="margin-bottom:44px;">
+      <p class="stag" style="margin-bottom:6px;">Apartado 5</p>
+      <h2 style="font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-0.03em;">Particularidades del Lenguaje</h2>
+      <p style="color:var(--muted);margin-top:6px;">Lo que distingue a Mercury de cualquier otro lenguaje lógico</p>
+    </div>
+
+    <!-- Feature icon grid -->
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:24px;">
+      <div class="ch" style="text-align:center;padding:16px 10px;border-radius:10px;border:1px solid var(--border);background:var(--card);">
+        <div style="font-size:1.8rem;margin-bottom:6px;">🛡️</div>
+        <div style="font-size:0.75rem;font-weight:600;color:#fff;">Tipos Estáticos</div>
+        <div style="font-size:0.68rem;color:#475569;margin-top:4px;">Errores en compilación</div>
+      </div>
+      <div class="ch" style="text-align:center;padding:16px 10px;border-radius:10px;border:1px solid var(--border);background:var(--card);">
+        <div style="font-size:1.8rem;margin-bottom:6px;">⚡</div>
+        <div style="font-size:0.75rem;font-weight:600;color:#fff;">Compilado a C</div>
+        <div style="font-size:0.68rem;color:#475569;margin-top:4px;">Velocidad nativa</div>
+      </div>
+      <div class="ch" style="text-align:center;padding:16px 10px;border-radius:10px;border:1px solid var(--border);background:var(--card);">
+        <div style="font-size:1.8rem;margin-bottom:6px;">💧</div>
+        <div style="font-size:0.75rem;font-weight:600;color:#fff;">I/O Puro</div>
+        <div style="font-size:0.68rem;color:#475569;margin-top:4px;">Sin side-effects</div>
+      </div>
+      <div class="ch" style="text-align:center;padding:16px 10px;border-radius:10px;border:1px solid var(--border);background:var(--card);">
+        <div style="font-size:1.8rem;margin-bottom:6px;">📐</div>
+        <div style="font-size:0.75rem;font-weight:600;color:#fff;">Modos Explícitos</div>
+        <div style="font-size:0.68rem;color:#475569;margin-top:4px;">Flujo de datos claro</div>
+      </div>
+      <div class="ch" style="text-align:center;padding:16px 10px;border-radius:10px;border:1px solid var(--border);background:var(--card);">
+        <div style="font-size:1.8rem;margin-bottom:6px;">📦</div>
+        <div style="font-size:0.75rem;font-weight:600;color:#fff;">Módulos Robustos</div>
+        <div style="font-size:0.68rem;color:#475569;margin-top:4px;">Interfaz definida</div>
+      </div>
+      <div class="ch" style="text-align:center;padding:16px 10px;border-radius:10px;border:1px solid var(--border);background:var(--card);">
+        <div style="font-size:1.8rem;margin-bottom:6px;">✅</div>
+        <div style="font-size:0.75rem;font-weight:600;color:#fff;">Det. Verificado</div>
+        <div style="font-size:0.68rem;color:#475569;margin-top:4px;">Por el compilador</div>
+      </div>
+    </div>
+
+    <!-- Pipeline + IO puro -->
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+
+      <!-- Pipeline -->
+      <div style="padding:22px;border-radius:12px;border:1px solid var(--border);background:var(--card);">
+        <h3 style="font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:6px;">⚙️ Pipeline de Compilación</h3>
+        <p style="font-size:0.8rem;color:var(--muted);margin-bottom:16px;">De código fuente a ejecutable nativo de alto rendimiento</p>
+
+        <!-- Visual pipeline -->
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+          <div class="pipe-step" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.3);">
+            <div style="font-family:'Fira Code',monospace;font-weight:700;color:var(--plight);font-size:0.9rem;">.m</div>
+            <div style="font-size:0.68rem;color:#475569;">Fuente Mercury</div>
+          </div>
+          <div style="color:#334155;font-size:1.2rem;font-weight:700;flex-shrink:0;">→</div>
+          <div class="pipe-step" style="background:rgba(34,211,238,0.1);border-color:rgba(34,211,238,0.3);">
+            <div style="font-family:'Fira Code',monospace;font-weight:700;color:var(--cyan);font-size:0.9rem;">mmc</div>
+            <div style="font-size:0.68rem;color:#475569;">Compilador</div>
+          </div>
+          <div style="color:#334155;font-size:1.2rem;font-weight:700;flex-shrink:0;">→</div>
+          <div class="pipe-step" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);">
+            <div style="font-family:'Fira Code',monospace;font-weight:700;color:var(--amber);font-size:0.9rem;">.c</div>
+            <div style="font-size:0.68rem;color:#475569;">Código C</div>
+          </div>
+          <div style="color:#334155;font-size:1.2rem;font-weight:700;flex-shrink:0;">→</div>
+          <div class="pipe-step" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.3);">
+            <div style="font-family:'Fira Code',monospace;font-weight:700;color:var(--green);font-size:0.9rem;">bin</div>
+            <div style="font-size:0.68rem;color:#475569;">Ejecutable nativo</div>
+          </div>
+        </div>
+
+        <!-- Placeholder pipeline diagram -->
+        <div class="ph" style="min-height:120px;">
+          <div class="ph-lbl">Placeholder · Diagrama del Pipeline</div>
+          <p class="ph-desc">
+            Recomendación: Infografía tipo "pipeline" con íconos de cada etapa:
+            archivo .m → engranaje MMC (verificación de tipos + modos + determinismo)
+            → archivo C → ícono GCC/Clang → binario ejecutable.
+            Resaltar las etapas de verificación estática (diferencia clave vs Prolog).
+          </p>
+        </div>
+      </div>
+
+      <!-- I/O puro -->
+      <div style="padding:22px;border-radius:12px;border:1px solid var(--border);background:var(--card);">
+        <h3 style="font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:6px;">
+          💧 I/O Puro con <code style="font-family:'Fira Code',monospace;color:var(--plight);">!IO</code>
+        </h3>
+        <p style="font-size:0.8rem;color:var(--muted);margin-bottom:14px;">
+          El estado de I/O se pasa explícitamente — el compilador verifica el orden
+        </p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+          <div>
+            <p style="font-size:0.7rem;color:#475569;font-weight:600;text-transform:uppercase;
+                letter-spacing:0.06em;margin-bottom:6px;">Sin azúcar sintáctica</p>
+            <pre><code class="language-prolog" style="font-size:0.7rem;">main(IO0, IO) :-
+  io.write_string(
+    "Hola\n", IO0, IO1),
+  io.write_string(
+    "Mundo\n", IO1, IO).</code></pre>
+          </div>
+          <div>
+            <p style="font-size:0.7rem;color:#475569;font-weight:600;text-transform:uppercase;
+                letter-spacing:0.06em;margin-bottom:6px;">Con <code style="font-family:'Fira Code',monospace;">!IO</code> (equivalente)</p>
+            <pre><code class="language-prolog" style="font-size:0.7rem;">main(!IO) :-
+  io.write_string(
+    "Hola\n", !IO),
+  io.write_string(
+    "Mundo\n", !IO).</code></pre>
+          </div>
+        </div>
+
+        <div style="padding:10px 12px;border-radius:8px;font-size:0.78rem;
+             background:rgba(52,211,153,0.05);border:1px solid rgba(52,211,153,0.15);">
+          <p style="color:var(--green);font-weight:600;margin-bottom:5px;">¿Por qué es importante?</p>
+          <ul style="color:var(--muted);list-style:disc;padding-left:16px;line-height:1.7;">
+            <li>El compilador verifica el <strong style="color:#fff;">orden correcto</strong> de operaciones</li>
+            <li>No hay efectos secundarios implícitos → código <strong style="color:#fff;">puro</strong></li>
+            <li>I/O determinista y predecible</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison table Mercury vs Prolog -->
+    <div class="reveal" style="border-radius:12px;border:1px solid var(--border);
+         overflow:hidden;background:var(--card);">
+      <div style="padding:18px 22px;border-bottom:1px solid var(--border);">
+        <h3 style="font-size:1.15rem;font-weight:700;color:#fff;">⚖️ Mercury vs Prolog — Diferencias Clave</h3>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:4px;">
+          Comparativa directa entre los dos principales lenguajes de programación lógica
+        </p>
+      </div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Característica</th>
+              <th>Prolog (1972)</th>
+              <th>Mercury (1995)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:600;color:#fff;">Sistema de Tipos</td>
+              <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--red);">Dinámico</span></td>
+              <td><span class="badge" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.3);color:var(--green);">Estático con inferencia</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:#fff;">Modos de argumentos</td>
+              <td>Implícitos (ocultos al programador)</td>
+              <td style="color:var(--cyan);">Declarados explícitamente</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:#fff;">Determinismo</td>
+              <td>Implícito, en tiempo de ejecución</td>
+              <td style="color:var(--cyan);">Declarado y verificado por compilador</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:#fff;">Entrada/Salida</td>
+              <td>Predicados impuros</td>
+              <td style="color:var(--green);">Estado explícito (completamente puro)</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:#fff;">Corte (!)</td>
+              <td style="color:var(--amber);">Soportado (ensucia la semántica)</td>
+              <td style="color:var(--green);">No existe → if-then-else</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:#fff;">Rendimiento</td>
+              <td>Interpretado</td>
+              <td style="color:var(--green);">Compilado a C nativo</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:#fff;">assert / retract</td>
+              <td style="color:var(--amber);">Soportado (estado mutable global)</td>
+              <td style="color:var(--green);">No existe → datos inmutables</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:#fff;">Sistema de módulos</td>
+              <td>Limitado o ausente</td>
+              <td style="color:var(--green);">Sistema completo con interfaz</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     EJEMPLOS (TABS)
+══════════════════════════════════════════════════════ -->
+<section id="ejemplos" style="padding:80px 0;border-top:1px solid var(--border);
+     background:rgba(10,14,26,0.6);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+
+    <div class="reveal" style="margin-bottom:28px;">
+      <p class="stag" style="margin-bottom:6px;">Apartado 6</p>
+      <h2 style="font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-0.03em;">Ejemplos de Código</h2>
+      <p style="color:var(--muted);margin-top:6px;">De lo básico hasta la programación lógica pura con backtracking</p>
+    </div>
+
+    <!-- Tab buttons -->
+    <div class="reveal" style="display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap;">
+      <button class="tbtn on" onclick="switchTab('basic',this)">🟢 Básicos</button>
+      <button class="tbtn"    onclick="switchTab('inter',this)">🟡 Intermedios</button>
+      <button class="tbtn"    onclick="switchTab('adv',this)">🔴 Avanzados</button>
+    </div>
+
+    <!-- ── TAB: Básicos ── -->
+    <div id="tc-basic" class="tc on reveal">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+
+        <!-- Factorial -->
+        <div style="border-radius:12px;border:1px solid var(--border);overflow:hidden;background:var(--card);">
+          <div style="padding:14px 16px;border-bottom:1px solid var(--border);
+               display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-weight:700;color:#fff;">Factorial</div>
+              <div style="font-size:0.74rem;color:#475569;">factorial.m · Funciones con pattern matching</div>
+            </div>
+            <span class="badge" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.3);color:var(--green);">det</span>
+          </div>
+          <div style="padding:14px;">
+            <pre><code class="language-prolog">:- module factorial.
+:- interface.
+:- import_module io.
+:- pred main(io::di, io::uo) is det.
+:- implementation.
+:- import_module int.
+
+:- func factorial(int) = int.
+factorial(0) = 1.
+factorial(N) = N * factorial(N - 1)
+    :- N > 0.
+
+main(!IO) :-
+    io.format("5!  = %d\n",
+        [i(factorial(5))], !IO),
+    io.format("10! = %d\n",
+        [i(factorial(10))], !IO).</code></pre>
+          </div>
+          <div style="padding:0 14px 14px;">
+            <div class="trm" style="border-radius:7px;">
+              <div class="trm-body" style="padding:9px 13px;font-size:0.76rem;">
+                <div class="ok">factorial(5)  = 120</div>
+                <div class="ok">factorial(10) = 3628800</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fibonacci -->
+        <div style="border-radius:12px;border:1px solid var(--border);overflow:hidden;background:var(--card);">
+          <div style="padding:14px 16px;border-bottom:1px solid var(--border);
+               display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-weight:700;color:#fff;">Fibonacci</div>
+              <div style="font-size:0.74rem;color:#475569;">fibonacci.m · Recursión + I/O</div>
+            </div>
+            <span class="badge" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.3);color:var(--green);">det</span>
+          </div>
+          <div style="padding:14px;">
+            <pre><code class="language-prolog">:- func fib(int) = int.
+fib(0) = 0.
+fib(1) = 1.
+fib(N) = fib(N-1) + fib(N-2)
+    :- N > 1.
+
+:- pred print_fibs(int::in,
+    int::in, io::di, io::uo) is det.
+print_fibs(I, Max, !IO) :-
+    ( I < Max ->
+        io.format("fib(%d) = %d\n",
+            [i(I), i(fib(I))], !IO),
+        print_fibs(I + 1, Max, !IO)
+    ;
+        true
+    ).</code></pre>
+          </div>
+          <div style="padding:0 14px 14px;">
+            <div class="trm" style="border-radius:7px;">
+              <div class="trm-body" style="padding:9px 13px;font-size:0.76rem;">
+                <div class="ok">fib(0) = 0</div>
+                <div class="ok">fib(1) = 1</div>
+                <div class="ok">fib(2) = 1</div>
+                <div class="ok">fib(3) = 2</div>
+                <div class="ok">fib(4) = 3 ...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Operaciones -->
+        <div style="border-radius:12px;border:1px solid var(--border);overflow:hidden;background:var(--card);">
+          <div style="padding:14px 16px;border-bottom:1px solid var(--border);
+               display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-weight:700;color:#fff;">Operaciones Básicas</div>
+              <div style="font-size:0.74rem;color:#475569;">operaciones.m · Aritmética entera</div>
+            </div>
+            <span class="badge" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.3);color:var(--green);">det</span>
+          </div>
+          <div style="padding:14px;">
+            <pre><code class="language-prolog">:- import_module int.
+
+main(!IO) :-
+    A = 10, B = 3,
+    io.format("%d + %d = %d\n",
+        [i(A),i(B),i(A+B)], !IO),
+    io.format("%d - %d = %d\n",
+        [i(A),i(B),i(A-B)], !IO),
+    io.format("%d * %d = %d\n",
+        [i(A),i(B),i(A*B)], !IO),
+    io.format("%d div %d = %d\n",
+        [i(A),i(B),i(A div B)], !IO),
+    io.format("%d mod %d = %d\n",
+        [i(A),i(B),i(A mod B)], !IO).</code></pre>
+          </div>
+          <div style="padding:0 14px 14px;">
+            <div class="trm" style="border-radius:7px;">
+              <div class="trm-body" style="padding:9px 13px;font-size:0.76rem;">
+                <div class="ok">10 + 3  = 13</div>
+                <div class="ok">10 div 3 = 3</div>
+                <div class="ok">10 mod 3 = 1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── TAB: Intermedios ── -->
+    <div id="tc-inter" class="tc reveal">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+
+        <!-- Listas -->
+        <div style="border-radius:12px;border:1px solid var(--border);overflow:hidden;background:var(--card);">
+          <div style="padding:14px 16px;border-bottom:1px solid var(--border);
+               display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-weight:700;color:#fff;">Manipulación de Listas</div>
+              <div style="font-size:0.74rem;color:#475569;">listas.m · Suma, máximo, filtrado</div>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <span class="badge" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.3);color:var(--green);">det</span>
+              <span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:var(--amber);">semidet</span>
+            </div>
+          </div>
+          <div style="padding:14px;">
+            <pre><code class="language-prolog">:- import_module list, int.
+
+% Suma recursiva
+:- func suma_lista(list(int)) = int.
+suma_lista([]) = 0.
+suma_lista([H|T]) = H + suma_lista(T).
+
+% Máximo (semidet: falla si lista vacía)
+:- pred maximo(list(int)::in, int::out)
+    is semidet.
+maximo([X], X).
+maximo([H|T], Max) :-
+    maximo(T, MaxT),
+    ( H > MaxT -> Max = H ; Max = MaxT ).
+
+% Filtrar números pares
+:- pred filtrar_pares(list(int)::in,
+    list(int)::out) is det.
+filtrar_pares([], []).
+filtrar_pares([H|T], R) :-
+    filtrar_pares(T, RF),
+    ( H mod 2 = 0 -> R = [H|RF]
+    ;                R = RF ).</code></pre>
+          </div>
+        </div>
+
+        <!-- Tipos algebraicos -->
+        <div style="border-radius:12px;border:1px solid var(--border);overflow:hidden;background:var(--card);">
+          <div style="padding:14px 16px;border-bottom:1px solid var(--border);
+               display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-weight:700;color:#fff;">Tipos Algebraicos</div>
+              <div style="font-size:0.74rem;color:#475569;">formas.m · Área y perímetro con pattern matching</div>
+            </div>
+            <span class="badge" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.3);color:var(--plight);">ADT</span>
+          </div>
+          <div style="padding:14px;">
+            <pre><code class="language-prolog">:- import_module float, math.
+
+:- type forma
+    --->    circulo(float)
+    ;       rectangulo(float, float)
+    ;       triangulo(float, float, float).
+
+:- func area(forma) = float.
+area(circulo(R))      = math.pi * R * R.
+area(rectangulo(A,B)) = A * B.
+area(triangulo(A,B,C)) = Ar :-
+    S = (A + B + C) / 2.0,         % Herón
+    Ar = math.sqrt(S*(S-A)*(S-B)*(S-C)).
+
+:- func perimetro(forma) = float.
+perimetro(circulo(R))      = 2.0*math.pi*R.
+perimetro(rectangulo(A,B)) = 2.0*(A+B).
+perimetro(triangulo(A,B,C))= A+B+C.</code></pre>
+          </div>
+        </div>
+
+        <!-- Backtracking -->
+        <div style="border-radius:12px;border:1px solid var(--border);overflow:hidden;
+             background:var(--card);grid-column:span 2;">
+          <div style="padding:14px 16px;border-bottom:1px solid var(--border);
+               display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-weight:700;color:#fff;">Búsqueda con Backtracking</div>
+              <div style="font-size:0.74rem;color:#475569;">busqueda.m · Predicado nondet + recolección con solutions/2</div>
+            </div>
+            <span class="badge" style="background:rgba(248,113,113,0.1);border-color:rgba(248,113,113,0.3);color:var(--red);">nondet</span>
+          </div>
+          <div style="padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <pre><code class="language-prolog">:- import_module list, int, solutions.
+
+% Pertenencia (nondet: múltiples soluciones)
+:- pred pertenece(T::out, list(T)::in)
+    is nondet.
+pertenece(X, [X|_]).
+pertenece(X, [_|T]) :- pertenece(X, T).
+
+% Pares que suman N (nondet)
+:- pred par_suma(int::in, list(int)::in,
+    int::out, int::out) is nondet.
+par_suma(N, Lista, X, Y) :-
+    pertenece(X, Lista),
+    pertenece(Y, Lista),
+    X < Y,
+    X + Y = N.
+
+:- type par ---> par(int, int).</code></pre>
+            <pre><code class="language-prolog">% solutions/2 recolecta TODOS los resultados
+% del predicado nondet en una lista
+main(!IO) :-
+    Lista = [1,2,3,4,5,6,7,8],
+    Obj = 9,
+    solutions(
+        (pred(par(X,Y)::out) is nondet :-
+            par_suma(Obj,Lista,X,Y)),
+        Soluciones),
+    io.format("Pares que suman %d:\n",
+        [i(Obj)], !IO),
+    list.foldl(
+        (pred(par(X,Y)::in,
+              !.IO::di, !:IO::uo) is det :-
+            io.format("  %d + %d\n",
+                [i(X),i(Y)], !IO)),
+        Soluciones, !IO).</code></pre>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── TAB: Avanzados ── -->
+    <div id="tc-adv" class="tc reveal">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+
+        <!-- Stack ADT -->
+        <div style="border-radius:12px;border:1px solid var(--border);overflow:hidden;background:var(--card);">
+          <div style="padding:14px 16px;border-bottom:1px solid var(--border);
+               display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-weight:700;color:#fff;">Módulo: Pila Abstracta</div>
+              <div style="font-size:0.74rem;color:#475569;">pila.m · Tipo abstracto + interfaz completa</div>
+            </div>
+            <span class="badge" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.3);color:var(--plight);">Tipo Abstracto</span>
+          </div>
+          <div style="padding:14px;">
+            <pre><code class="language-prolog">:- module pila.
+:- interface.
+:- import_module list.
+
+% Tipo abstracto (implementación oculta)
+:- type pila(T).
+
+:- func pila_vacia = pila(T).
+:- pred push(T::in, pila(T)::in,
+    pila(T)::out) is det.
+:- pred pop(pila(T)::in, T::out,
+    pila(T)::out) is semidet.   % falla si vacía
+:- pred peek(pila(T)::in, T::out) is semidet.
+:- func tamanio(pila(T)) = int.
+
+:- implementation.
+% Internamente: lista (detalle oculto)
+:- type pila(T) ---> pila(list(T)).
+
+pila_vacia = pila([]).
+push(E, pila(L), pila([E|L])).
+pop(pila([H|T]), H, pila(T)).
+peek(pila([H|_]), H).
+tamanio(pila(L)) = list.length(L).</code></pre>
+          </div>
+        </div>
+
+        <!-- N-Reinas -->
+        <div style="border-radius:12px;border:1px solid var(--border);overflow:hidden;background:var(--card);">
+          <div style="padding:14px 16px;border-bottom:1px solid var(--border);
+               display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-weight:700;color:#fff;">Solucionador N-Reinas</div>
+              <div style="font-size:0.74rem;color:#475569;">n_reinas.m · Backtracking puro · 92 soluciones para N=8</div>
+            </div>
+            <span class="badge" style="background:rgba(248,113,113,0.1);border-color:rgba(248,113,113,0.3);color:var(--red);">nondet</span>
+          </div>
+          <div style="padding:14px;">
+            <pre><code class="language-prolog">:- import_module int, list, solutions.
+
+% Verificar posición segura
+:- pred segura(int::in, int::in,
+    list(int)::in) is semidet.
+segura(_, _, []).
+segura(Fila, Col, [RC|Resto]) :-
+    RF = list.length(Resto) + 1,
+    Col \= RC,                  % misma columna
+    abs(Col-RC) \= abs(Fila-RF),% diagonal
+    segura(Fila, Col, Resto).
+
+% Colocar N reinas recursivamente
+:- pred reinas(int::in, int::in,
+    list(int)::in, list(int)::out) is nondet.
+reinas(N, F, Acc, Sol) :-
+    ( F > N -> Sol = Acc
+    ; between(1, N, Col),
+      segura(F, Col, Acc),
+      reinas(N, F+1, [Col|Acc], Sol) ).
+
+main(!IO) :-
+    solutions(reinas(8,1,[],), Sols),
+    io.format("Total soluciones: %d\n",
+        [i(list.length(Sols))], !IO).</code></pre>
+          </div>
+
+          <!-- N-Queens board placeholder -->
+          <div style="padding:0 14px 14px;">
+            <div class="ph" style="min-height:110px;">
+              <div class="ph-lbl">Placeholder · Tablero N-Reinas</div>
+              <p class="ph-desc">
+                Recomendación: Tablero 8×8 con 8 reinas colocadas en una solución válida.
+                Ilustración vectorial en cian/violeta o captura de la salida en terminal.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculadora IO -->
+        <div style="border-radius:12px;border:1px solid var(--border);overflow:hidden;
+             background:var(--card);grid-column:span 2;">
+          <div style="padding:14px 16px;border-bottom:1px solid var(--border);
+               display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-weight:700;color:#fff;">I/O Compleja con Manejo de Errores</div>
+              <div style="font-size:0.74rem;color:#475569;">calculadora_io.m · Lectura interactiva · tipos de operación · guardas</div>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:var(--amber);">semidet</span>
+              <span class="badge" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.3);color:var(--green);">det</span>
+            </div>
+          </div>
+          <div style="padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <pre><code class="language-prolog">:- import_module int, string, char, list.
+
+% Tipo algebraico para operaciones
+:- type operacion
+    --->    suma
+    ;       resta
+    ;       multiplicacion
+    ;       division.
+
+:- pred parse_operacion(string::in,
+    operacion::out) is semidet.
+parse_operacion("+", suma).
+parse_operacion("-", resta).
+parse_operacion("*", multiplicacion).
+parse_operacion("/", division).
+
+:- pred ejecutar(int::in, operacion::in,
+    int::in, int::out) is semidet.
+ejecutar(A, suma,         B, A + B).
+ejecutar(A, resta,        B, A - B).
+ejecutar(A, multiplicacion,B, A * B).
+ejecutar(A, division,     B, A div B)
+    :- B \= 0.    % guarda: no div/0</code></pre>
+            <pre><code class="language-prolog">:- pred leer_entero(string::in,
+    int::out, io::di, io::uo) is det.
+leer_entero(Prompt, N, !IO) :-
+    io.write_string(Prompt, !IO),
+    io.read_line_as_string(Res, !IO),
+    ( Res = ok(L),
+      string.to_int(string.strip(L), N0)
+    ->
+        N = N0
+    ;
+        io.write_string("Inválido→0\n",!IO),
+        N = 0 ).
+
+main(!IO) :-
+    io.write_string("=== Calculadora ===\n",!IO),
+    leer_entero("Número A: ", A, !IO),
+    leer_entero("Número B: ", B, !IO),
+    io.write_string("Op (+,-,*,/): ", !IO),
+    io.read_line_as_string(Op, !IO),
+    ( Op = ok(S),
+      parse_operacion(string.strip(S), Oper),
+      ejecutar(A, Oper, B, Res)
+    ->
+        io.format("= %d\n", [i(Res)], !IO)
+    ;   io.write_string(
+            "Error o división por cero\n",!IO)
+    ).</code></pre>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     CIERRE
+══════════════════════════════════════════════════════ -->
+<section style="padding:80px 0;border-top:1px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+
+    <div class="reveal" style="margin-bottom:44px;">
+      <p class="stag" style="margin-bottom:6px;">Apartado 7</p>
+      <h2 style="font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-0.03em;">Cierre y Ecosistema</h2>
+    </div>
+
+    <!-- Ventajas / Limitaciones / Aplicaciones -->
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;">
+
+      <div style="padding:22px;border-radius:12px;border:1px solid var(--border);background:var(--card);">
+        <h3 style="color:#fff;font-weight:700;font-size:1rem;margin-bottom:14px;
+            display:flex;align-items:center;gap:8px;">
+          <span style="color:var(--green);">✓</span> Ventajas
+        </h3>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;">
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--green);flex-shrink:0;">+</span>
+            Errores de tipo detectados en <strong style="color:#fff;">compilación</strong>
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--green);flex-shrink:0;">+</span>
+            Rendimiento <strong style="color:#fff;">comparable a C</strong>
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--green);flex-shrink:0;">+</span>
+            Código <strong style="color:#fff;">puro y predecible</strong>
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--green);flex-shrink:0;">+</span>
+            Determinismo <strong style="color:#fff;">verificado</strong> en compilación
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--green);flex-shrink:0;">+</span>
+            Módulos con <strong style="color:#fff;">encapsulación real</strong>
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--green);flex-shrink:0;">+</span>
+            Sin corte (!) → semántica <strong style="color:#fff;">limpia</strong>
+          </li>
+        </ul>
+      </div>
+
+      <div style="padding:22px;border-radius:12px;border:1px solid var(--border);background:var(--card);">
+        <h3 style="color:#fff;font-weight:700;font-size:1rem;margin-bottom:14px;
+            display:flex;align-items:center;gap:8px;">
+          <span style="color:var(--red);">!</span> Limitaciones
+        </h3>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;">
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--red);flex-shrink:0;">–</span>
+            Curva de aprendizaje <strong style="color:#fff;">pronunciada</strong>
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--red);flex-shrink:0;">–</span>
+            Comunidad <strong style="color:#fff;">pequeña</strong>, pocas librerías
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--red);flex-shrink:0;">–</span>
+            Más <strong style="color:#fff;">verbosidad</strong> que Prolog
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--red);flex-shrink:0;">–</span>
+            Sin <code style="font-family:'Fira Code',monospace;font-size:0.76rem;">assert/retract</code>
+            → sin estado mutable
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--red);flex-shrink:0;">–</span>
+            Soporte de <strong style="color:#fff;">IDEs limitado</strong>
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--red);flex-shrink:0;">–</span>
+            Documentación principalmente en papers académicos
+          </li>
+        </ul>
+      </div>
+
+      <div style="padding:22px;border-radius:12px;border:1px solid var(--border);background:var(--card);">
+        <h3 style="color:#fff;font-weight:700;font-size:1rem;margin-bottom:14px;
+            display:flex;align-items:center;gap:8px;">
+          <span style="color:var(--cyan);">◈</span> Aplicaciones Reales
+        </h3>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;">
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--cyan);flex-shrink:0;">▸</span>
+            Compiladores y análisis estático
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--cyan);flex-shrink:0;">▸</span>
+            Sistemas de <strong style="color:#fff;">verificación formal</strong>
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--cyan);flex-shrink:0;">▸</span>
+            IA y sistemas expertos
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--cyan);flex-shrink:0;">▸</span>
+            Procesamiento de lenguaje natural
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--cyan);flex-shrink:0;">▸</span>
+            Software de <strong style="color:#fff;">alta integridad</strong>
+          </li>
+          <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--secondary);">
+            <span style="color:var(--amber);flex-shrink:0;">★</span>
+            El compilador Mercury está escrito <strong style="color:#fff;">en Mercury</strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Extended comparison table -->
+    <div class="reveal" style="border-radius:12px;border:1px solid var(--border);
+         overflow:hidden;background:var(--card);">
+      <div style="padding:16px 22px;border-bottom:1px solid var(--border);">
+        <h3 style="font-size:1.05rem;font-weight:700;color:#fff;">Comparación con otros lenguajes del paradigma lógico</h3>
+      </div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Lenguaje</th>
+              <th>Año</th>
+              <th>Tipado</th>
+              <th>Ejecución</th>
+              <th>Determinismo</th>
+              <th>Uso principal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:600;color:#fff;">Prolog</td>
+              <td>1972</td>
+              <td><span class="badge" style="font-size:0.7rem;padding:2px 7px;background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--red);">Dinámico</span></td>
+              <td>Interpretado</td>
+              <td>Implícito</td>
+              <td>IA, investigación</td>
+            </tr>
+            <tr style="background:rgba(139,92,246,0.04);">
+              <td style="font-weight:700;color:var(--plight);">Mercury ⭐</td>
+              <td>1995</td>
+              <td><span class="badge" style="font-size:0.7rem;padding:2px 7px;background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.3);color:var(--green);">Estático</span></td>
+              <td style="color:var(--green);">C nativo</td>
+              <td style="color:var(--green);">Declarado y verificado</td>
+              <td>Software producción</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:#fff;">Datalog</td>
+              <td>1978</td>
+              <td><span class="badge" style="font-size:0.7rem;padding:2px 7px;background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--red);">Dinámico</span></td>
+              <td>Interpretado</td>
+              <td>N/A</td>
+              <td>Bases de datos</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:#fff;">Oz / Mozart</td>
+              <td>1991</td>
+              <td><span class="badge" style="font-size:0.7rem;padding:2px 7px;background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--red);">Dinámico</span></td>
+              <td>Interpretado</td>
+              <td>Implícito</td>
+              <td>Multi-paradigma</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════ -->
+<footer style="border-top:1px solid var(--border);background:var(--bg);padding:48px 0 24px;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:32px;">
+
+      <div>
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px;">
+          <div style="width:28px;height:28px;border-radius:7px;
+               background:linear-gradient(135deg,#7c3aed,#06b6d4);
+               display:flex;align-items:center;justify-content:center;
+               color:#fff;font-weight:800;font-size:0.74rem;">Hg</div>
+          <span style="color:#fff;font-weight:700;font-size:0.95rem;">Mercury</span>
+        </div>
+        <p style="color:#475569;font-size:0.8rem;line-height:1.65;">
+          Lenguaje lógico-funcional puro de segunda generación.
+          Universidad de Melbourne, creado por Fergus Henderson y Thomas Conway, 1995.
+        </p>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-weight:600;font-size:0.88rem;margin-bottom:10px;">Referencias</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;
+            font-size:0.78rem;color:#475569;">
+          <li>· Henderson, Conway, Somogyi (1996) — ACSC Proceedings</li>
+          <li>· mercurylang.org — Sitio oficial</li>
+          <li>· github.com/Mercury-Language/mercury</li>
+          <li>· ferestrepoca.github.io/paradigmas-de-programacion</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-weight:600;font-size:0.88rem;margin-bottom:10px;">Contexto académico</h4>
+        <p style="color:#475569;font-size:0.8rem;line-height:1.7;">
+          Universidad Nacional de Colombia<br/>
+          Lenguajes de Programación<br/>
+          Paradigma: Programación Lógica<br/>
+          Semestre 2025
+        </p>
+      </div>
+
+    </div>
+    <div style="border-top:1px solid var(--border);padding-top:20px;
+         display:flex;justify-content:space-between;align-items:center;">
+      <p style="color:#334155;font-size:0.75rem;">Programación Lógica · Mercury · UNAL</p>
+      <p style="color:#334155;font-size:0.75rem;">Paradigmas de Programación</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════════ -->
+<script>
+  // ── Highlight.js ──
+  hljs.highlightAll();
+
+  // ── Tab switching ──
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tc').forEach(t => t.classList.remove('on'));
+    document.querySelectorAll('.tbtn').forEach(b => b.classList.remove('on'));
+    document.getElementById('tc-' + id).classList.add('on');
+    btn.classList.add('on');
+  }
+
+  // ── Scroll-reveal ──
+  const revObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('shown'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+  // ── Active nav highlight on scroll ──
+  const secs = document.querySelectorAll('section[id]');
+  const nls  = document.querySelectorAll('a.nl');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    secs.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 90) cur = s.id;
+    });
+    nls.forEach(a => {
+      a.style.color = (a.getAttribute('href') === '#' + cur) ? '#fff' : '';
+    });
+  }, { passive: true });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercury — Tutorial 2026-1 · Paradigmas de Programación UNAL</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    /* ===== DESIGN SYSTEM — Apple (DESIGN.md) ===== */
+    :root {
+      --primary:         #0066cc;
+      --primary-focus:   #0071e3;
+      --primary-dark:    #2997ff;
+      --ink:             #1d1d1f;
+      --ink-80:          #333333;
+      --ink-48:          #7a7a7a;
+      --muted:           #cccccc;
+      --divider:         #f0f0f0;
+      --hairline:        #e0e0e0;
+      --canvas:          #ffffff;
+      --parchment:       #f5f5f7;
+      --pearl:           #fafafc;
+      --tile-1:          #272729;
+      --black:           #000000;
+      --on-dark:         #ffffff;
+      --on-primary:      #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.47;
+      letter-spacing: -0.374px;
+      color: var(--ink);
+      background: var(--canvas);
+    }
+
+    /* ── NAV ── */
+    .g-nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 44px;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+      z-index: 200;
+    }
+    .g-nav-logo {
+      font-size: 15px; font-weight: 600; color: var(--on-dark);
+      text-decoration: none; letter-spacing: 0;
+    }
+    .g-nav-links { display: flex; gap: 20px; align-items: center; }
+    .g-nav-links a {
+      color: rgba(255,255,255,.8); font-size: 12px;
+      text-decoration: none; letter-spacing: -0.12px;
+      transition: color .15s;
+    }
+    .g-nav-links a:hover { color: #fff; }
+    .g-nav-links .nav-cta {
+      color: var(--primary-dark) !important; font-weight: 600;
+    }
+    @media (max-width: 640px) {
+      .g-nav-links { display: none; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: 44px;
+      background: var(--tile-1);
+      padding: 100px 0 80px;
+      text-align: center;
+    }
+    .eyebrow {
+      font-size: 14px; font-weight: 600; letter-spacing: .2px;
+      text-transform: uppercase; color: var(--primary-dark);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'SF Pro Display', system-ui, -apple-system, sans-serif;
+      font-size: 56px; font-weight: 600;
+      line-height: 1.07; letter-spacing: -0.28px;
+      color: var(--on-dark); margin-bottom: 18px;
+    }
+    .hero-lead {
+      font-size: 24px; font-weight: 300; line-height: 1.5;
+      color: var(--muted); margin-bottom: 36px;
+    }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── TOC chips ── */
+    .toc {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-top: 32px;
+    }
+    .toc a {
+      font-size: 13px; color: var(--primary-dark);
+      border: 1px solid rgba(41,151,255,.35);
+      border-radius: 9999px; padding: 5px 14px;
+      text-decoration: none; transition: background .15s;
+    }
+    .toc a:hover { background: rgba(41,151,255,.12); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block; border-radius: 9999px;
+      padding: 11px 22px; font-size: 17px; font-family: inherit;
+      font-weight: 400; text-decoration: none; cursor: pointer;
+      border: none; transition: transform .1s, background .15s;
+    }
+    .btn:active { transform: scale(.95); }
+    .btn-blue  { background: var(--primary); color: var(--on-primary); }
+    .btn-blue:hover { background: var(--primary-focus); }
+    .btn-ghost-dark {
+      background: transparent; color: var(--primary-dark);
+      border: 1px solid var(--primary-dark);
+    }
+    .btn-ghost-dark:hover { background: rgba(41,151,255,.1); }
+    .btn-sm {
+      padding: 7px 16px; font-size: 13px; border-radius: 9999px;
+      display: inline-block; text-decoration: none; cursor: pointer;
+      border: none; transition: transform .1s; font-family: inherit;
+    }
+    .btn-sm:active { transform: scale(.95); }
+    .btn-sm-run { background: var(--primary); color: var(--on-primary); }
+    .btn-sm-run:hover { background: var(--primary-focus); }
+    .btn-sm-copy {
+      background: transparent; color: var(--primary-dark);
+      border: 1px solid rgba(41,151,255,.4);
+    }
+    .btn-sm-copy:hover { background: rgba(41,151,255,.1); }
+
+    /* ── SECTIONS ── */
+    .section { padding: 80px 0; }
+    .sec-dark   { background: var(--tile-1); color: var(--on-dark); }
+    .sec-light  { background: var(--canvas); color: var(--ink); }
+    .sec-parch  { background: var(--parchment); color: var(--ink); }
+    .container  { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+    .sec-label {
+      font-size: 12px; font-weight: 600; letter-spacing: .2px;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .label-blue  { color: var(--primary); }
+    .label-sky   { color: var(--primary-dark); }
+
+    h2 {
+      font-family: 'SF Pro Display', system-ui, -apple-system, sans-serif;
+      font-size: 40px; font-weight: 600; line-height: 1.1;
+      margin-bottom: 18px;
+    }
+    h3 {
+      font-family: 'SF Pro Display', system-ui, -apple-system, sans-serif;
+      font-size: 28px; font-weight: 600; line-height: 1.14;
+      letter-spacing: .196px; margin: 48px 0 14px;
+    }
+    h3:first-of-type { margin-top: 0; }
+    p { margin-bottom: 16px; }
+    p:last-child { margin-bottom: 0; }
+    strong { font-weight: 600; }
+    a { color: var(--primary); }
+    .dark-link { color: var(--primary-dark); }
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+      font-size: 14px; background: rgba(0,0,0,.06);
+      padding: 1px 5px; border-radius: 4px;
+    }
+    .sec-dark code { background: rgba(255,255,255,.1); color: var(--on-dark); }
+
+    /* ── CARDS ── */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 18px; margin-top: 32px; }
+    .card {
+      background: var(--canvas); border: 1px solid var(--hairline);
+      border-radius: 18px; padding: 24px;
+    }
+    .card-dark {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px; padding: 24px;
+    }
+    .card-icon { font-size: 26px; margin-bottom: 10px; }
+    .card h4, .card-dark h4 {
+      font-size: 17px; font-weight: 600; letter-spacing: -0.374px;
+      margin-bottom: 6px;
+    }
+    .card-dark h4 { color: var(--on-dark); }
+    .card p  { font-size: 14px; color: var(--ink-48); letter-spacing: -0.224px; line-height: 1.43; margin: 0; }
+    .card-dark p { color: var(--muted); font-size: 14px; line-height: 1.43; margin: 0; }
+
+    /* ── TABLES ── */
+    .tbl { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+    .tbl th {
+      text-align: left; padding: 10px 14px; font-weight: 600;
+      border-bottom: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.07); color: var(--on-dark);
+    }
+    .tbl td {
+      padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,.06);
+      color: var(--muted);
+    }
+    .tbl td:first-child { color: var(--primary-dark); font-family: monospace; font-weight: 600; }
+    .tbl-light th {
+      background: var(--parchment); color: var(--ink);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .tbl-light td { border-bottom: 1px solid var(--divider); color: var(--ink); }
+    .tbl-light td:first-child { color: var(--primary); }
+
+    /* ── CODE BLOCKS ── */
+    .code-wrap {
+      margin: 28px 0; border-radius: 11px; overflow: hidden;
+      box-shadow: rgba(0,0,0,.22) 3px 5px 30px 0;
+    }
+    .code-head {
+      background: #111113; padding: 10px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .code-fname {
+      font-family: 'SF Mono','Fira Code',monospace;
+      font-size: 12px; color: #8a8a8f; font-weight: 600;
+    }
+    .code-actions { display: flex; gap: 8px; }
+    .code-wrap pre { margin: 0 !important; border-radius: 0 !important; }
+    .code-wrap pre code {
+      font-family: 'SF Mono','Fira Code','Courier New',monospace !important;
+      font-size: 13.5px !important; line-height: 1.65 !important;
+      padding: 20px !important; background: #0d0d0f !important;
+    }
+
+    /* ── CHIPS ── */
+    .chip {
+      display: inline-block; font-size: 12px; font-weight: 600;
+      padding: 3px 10px; border-radius: 9999px;
+      background: rgba(0,102,204,.1); color: var(--primary);
+      margin: 2px 4px 2px 0;
+    }
+
+    /* ── FOOTER ── */
+    footer { background: var(--parchment); padding: 60px 0 0; border-top: 1px solid var(--hairline); }
+    .footer-grid {
+      max-width: 980px; margin: 0 auto; padding: 0 24px;
+      display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between;
+    }
+    .footer-brand h4 { font-size: 21px; font-weight: 600; color: var(--ink); }
+    .footer-brand p  { font-size: 12px; color: var(--ink-48); margin-top: 6px; }
+    .footer-col h5 { font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
+    .footer-col a {
+      display: block; font-size: 12px; color: var(--ink-80);
+      text-decoration: none; line-height: 2.41;
+    }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-copy {
+      max-width: 980px; margin: 36px auto 0; padding: 20px 24px;
+      border-top: 1px solid var(--hairline);
+      font-size: 12px; color: var(--ink-48); text-align: center;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 34px; }
+      .hero-lead { font-size: 17px; }
+      h2 { font-size: 28px; }
+      h3 { font-size: 21px; }
+      .section { padding: 48px 0; }
+      .hero { padding: 64px 0 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── GLOBAL NAV ─── -->
+<nav class="g-nav">
+  <a href="#" class="g-nav-logo">☿ Mercury</a>
+  <div class="g-nav-links">
+    <a href="#primeros-pasos">Primeros Pasos</a>
+    <a href="#tour">Tour</a>
+    <a href="#particularidades">Particularidades</a>
+    <a href="#basicos">Básicos</a>
+    <a href="#intermedios">Intermedios</a>
+    <a href="#avanzados">Avanzados</a>
+    <a href="https://glot.io/new/mercury" target="_blank" class="nav-cta">▶ Glot.io</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">Paradigma Lógico · UNAL 2026-1</p>
+    <h1>Mercury</h1>
+    <p class="hero-lead">Programación lógico-funcional con tipos estáticos,<br>modos e inferencia de determinismo.</p>
+    <div class="hero-btns">
+      <a href="#primeros-pasos" class="btn btn-blue">Comenzar tutorial</a>
+      <a href="https://glot.io/new/mercury" target="_blank" class="btn btn-ghost-dark">▶ Probar en línea</a>
+    </div>
+    <nav class="toc">
+      <a href="#primeros-pasos">Primeros Pasos</a>
+      <a href="#tour">Tour del Lenguaje</a>
+      <a href="#particularidades">Particularidades</a>
+      <a href="#basicos">Ejemplos Básicos</a>
+      <a href="#intermedios">Ejemplos Intermedios</a>
+      <a href="#avanzados">Ejemplos Avanzados</a>
+    </nav>
+  </div>
+</section>
+
+<!-- ─── 01 PRIMEROS PASOS ─── -->
+<section id="primeros-pasos" class="section sec-light">
+  <div class="container">
+    <p class="sec-label label-blue">01 — Primeros Pasos</p>
+    <h2>¿Qué es Mercury?</h2>
+    <p>Mercury es un lenguaje de programación <strong>lógico-funcional</strong> diseñado para aplicaciones de alta confiabilidad. Combina la expresividad de Prolog con un sistema de tipos estático, análisis de modos e inferencia de determinismo. A diferencia de Prolog, Mercury está <strong>compilado</strong> y produce código de máquina eficiente.</p>
+    <p>Fue desarrollado en la Universidad de Melbourne a mediados de los 90 y sigue en desarrollo activo. Es ideal para sistemas donde la corrección es crítica: compiladores, verificación formal, inteligencia artificial simbólica.</p>
+    <div class="cards">
+      <div class="card"><div class="card-icon">🧠</div><h4>Lógico-funcional</h4><p>Basado en predicados de primer orden. Cada predicado describe una relación, no una instrucción imperativa.</p></div>
+      <div class="card"><div class="card-icon">🔒</div><h4>Tipos estáticos</h4><p>Sistema de tipos fuerte y estático. Los errores de tipo se detectan en compilación, nunca en ejecución.</p></div>
+      <div class="card"><div class="card-icon">⚡</div><h4>Compilado</h4><p>Compila a C, Java o C#. Rendimiento comparable a lenguajes imperativos compilados como C.</p></div>
+      <div class="card"><div class="card-icon">🎯</div><h4>Determinismo</h4><p>El compilador verifica si un predicado siempre tiene solución, puede fallar, o puede producir múltiples resultados.</p></div>
+    </div>
+    <h3>Instalación</h3>
+    <p>Mercury está disponible para Linux (recomendado), macOS y Windows. En Ubuntu/Debian:</p>
+    <div class="code-wrap">
+      <div class="code-head"><span class="code-fname">bash — Ubuntu/Debian</span></div>
+      <pre><code class="language-bash">sudo apt install wget ca-certificates
+cd /tmp && wget https://paul.bone.id.au/paul.asc
+sudo cp paul.asc /etc/apt/trusted.gpg.d/paulbone.asc
+
+# Reemplazar "focal" con tu distro: jammy, bookworm, etc.
+echo "deb http://dl.mercurylang.org/deb/ focal main" | sudo tee -a /etc/apt/sources.list
+
+sudo apt update && sudo apt install mercury-recommended</code></pre>
+    </div>
+    <h3>Compilar y ejecutar</h3>
+    <div class="code-wrap">
+      <div class="code-head"><span class="code-fname">bash — Compilación</span></div>
+      <pre><code class="language-bash"># Compilar (genera ejecutable + archivos intermedios)
+mmc hello.m && ./hello
+
+# Compilar limpio (recomendado, solo el ejecutable)
+mmc --make hello && ./hello</code></pre>
+    </div>
+    <p style="margin-top:20px;">¿Sin instalación? Usa <a href="https://glot.io/new/mercury" target="_blank"><strong>Glot.io</strong></a> — un editor Mercury online gratuito. Cada ejemplo de este tutorial tiene un botón directo.</p>
+  </div>
+</section>
+
+<!-- ─── 02 TOUR DEL LENGUAJE ─── -->
+<section id="tour" class="section sec-dark">
+  <div class="container">
+    <p class="sec-label label-sky">02 — Tour del Lenguaje</p>
+    <h2 style="color:var(--on-dark)">Breve especificación</h2>
+    <p style="color:var(--muted)">Mercury tiene una sintaxis basada en Prolog, pero con adiciones fundamentales para tipos, modos y determinismo. Todo programa es una colección de <strong style="color:var(--on-dark)">módulos</strong>.</p>
+
+    <h3 style="color:var(--on-dark)">Estructura de un módulo</h3>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">modulo.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module mi_modulo.          % 1. Nombre del módulo (coincide con el archivo .m)
+
+:- interface.                  % 2. INTERFAZ: lo que es público
+:- import_module io.           %    Importar módulo de E/S
+:- pred main(io::di, io::uo) is det.   % Declarar predicado principal
+
+:- implementation.             % 3. IMPLEMENTACIÓN: código privado
+main(!IO) :-
+    io.write_string("Hola desde Mercury!\n", !IO).</code></pre>
+    </div>
+
+    <h3 style="color:var(--on-dark)">Tipos primitivos y algebraicos</h3>
+    <table class="tbl">
+      <tr><th>Tipo</th><th>Descripción</th><th>Ejemplo</th></tr>
+      <tr><td>int</td><td>Entero de precisión nativa</td><td>42, -7, 0</td></tr>
+      <tr><td>float</td><td>Punto flotante doble</td><td>3.14, -2.5e10</td></tr>
+      <tr><td>string</td><td>Cadena de caracteres UTF-8</td><td>"hola mundo"</td></tr>
+      <tr><td>char</td><td>Carácter Unicode</td><td>'a', 'ñ', '\n'</td></tr>
+      <tr><td>bool</td><td>Booleano</td><td>yes, no</td></tr>
+      <tr><td>list(T)</td><td>Lista polimórfica homogénea</td><td>[1,2,3], ["a","b"]</td></tr>
+    </table>
+
+    <h3 style="color:var(--on-dark)">Sistema de determinismo</h3>
+    <p style="color:var(--muted)">Cada predicado <strong style="color:var(--on-dark)">declara</strong> su comportamiento. El compilador verifica que la declaración sea correcta — esto elimina errores en tiempo de ejecución:</p>
+    <table class="tbl">
+      <tr><th>Declaración</th><th>Soluciones posibles</th><th>¿Puede fallar?</th><th>Uso típico</th></tr>
+      <tr><td>det</td><td>Exactamente 1</td><td>No</td><td>Funciones, main</td></tr>
+      <tr><td>semidet</td><td>0 ó 1</td><td>Sí</td><td>Búsquedas, checks</td></tr>
+      <tr><td>multi</td><td>1 ó más</td><td>No</td><td>Generadores</td></tr>
+      <tr><td>nondet</td><td>0 ó más</td><td>Sí</td><td>Backtracking general</td></tr>
+      <tr><td>failure</td><td>Siempre 0</td><td>Siempre</td><td>Casos imposibles</td></tr>
+      <tr><td>erroneous</td><td>Nunca retorna</td><td>—</td><td>error/1, throw</td></tr>
+    </table>
+
+    <h3 style="color:var(--on-dark)">Modos de instanciación</h3>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">modos.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">% in  = ya instanciado (entrada)
+% out = no instanciado (salida)
+% di  = estado destruible (E/S entrada)
+% uo  = estado único (E/S salida)
+
+:- pred suma(int::in, int::in, int::out) is det.
+suma(X, Y, Z) :- Z = X + Y.
+
+% Azúcar sintáctico: func declara in/in -> out automáticamente
+:- func suma_f(int, int) = int.
+suma_f(X, Y) = X + Y.
+
+% Predicado semidet: puede fallar si X no está en la lista
+:- pred miembro(T::in, list(T)::in) is semidet.
+miembro(X, [X|_]).
+miembro(X, [_|T]) :- miembro(X, T).</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 03 PARTICULARIDADES ─── -->
+<section id="particularidades" class="section sec-parch">
+  <div class="container">
+    <p class="sec-label label-blue">03 — Particularidades</p>
+    <h2>Lo que hace único a Mercury</h2>
+    <p>Mercury comparte la filosofía declarativa de Prolog, pero añade garantías estáticas que lo hacen apto para software de producción de alta integridad.</p>
+    <div class="cards">
+      <div class="card"><div class="card-icon">🛡️</div><h4>Pureza declarativa</h4><p>Los predicados son puros por defecto. Los efectos secundarios son explícitos: se modela como paso de estado único de E/S.</p></div>
+      <div class="card"><div class="card-icon">🚫</div><h4>Sin cut (!)</h4><p>Mercury no tiene el operador cut de Prolog. El control de flujo se maneja con el sistema de determinismo — más predecible y seguro.</p></div>
+      <div class="card"><div class="card-icon">♻️</div><h4>Garbage Collector</h4><p>Gestión automática de memoria con GC de Boehm. Sin manejo manual de memoria.</p></div>
+      <div class="card"><div class="card-icon">📦</div><h4>Módulos</h4><p>Sistema de módulos con interfaces separadas. Facilita encapsulación y desarrollo de librerías reutilizables.</p></div>
+      <div class="card"><div class="card-icon">🌐</div><h4>Multi-backend</h4><p>Compila a C, C#, Java o Erlang. Un mismo código, múltiples plataformas y entornos.</p></div>
+      <div class="card"><div class="card-icon">📋</div><h4>Documentación automática</h4><p>El compilador genera HTML de documentación a partir de comentarios especiales (<code>%&gt;</code>) en el código.</p></div>
+    </div>
+
+    <h3>El estado de E/S — !IO</h3>
+    <p>La E/S en Mercury es <strong>pura y explícita</strong>. En lugar de efectos secundarios ocultos, se pasa un token de estado <code>!IO</code> que garantiza la secuencialidad y la pureza referencial:</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">io_estado.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">% !IO es azucar sintactico para IO0::di, IO::uo
+% Cada llamada consume el estado anterior y produce uno nuevo.
+% El compilador garantiza que no se use el mismo estado dos veces.
+
+main(!IO) :-
+    io.write_string("Linea 1\n", !IO),   % consume IO0, produce IO1
+    io.write_string("Linea 2\n", !IO),   % consume IO1, produce IO2
+    io.write_string("Linea 3\n", !IO).   % consume IO2, produce IO3
+
+% Nota: !IO expandido es:
+%   main(IO0, IO3) :-
+%       io.write_string("Linea 1\n", IO0, IO1),
+%       io.write_string("Linea 2\n", IO1, IO2),
+%       io.write_string("Linea 3\n", IO2, IO3).</code></pre>
+    </div>
+
+    <h3>Tipos algebraicos</h3>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">tipos_algebraicos.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">% Tipo algebraico: arbol binario polimórfico
+:- type arbol(T)
+    --->    hoja
+    ;       nodo(arbol(T), T, arbol(T)).
+
+% Pattern matching exhaustivo (el compilador verifica)
+:- func altura(arbol(T)) = int.
+altura(hoja) = 0.
+altura(nodo(Izq, _, Der)) =
+    1 + int.max(altura(Izq), altura(Der)).
+
+:- func contar(arbol(T)) = int.
+contar(hoja) = 0.
+contar(nodo(Izq, _, Der)) =
+    1 + contar(Izq) + contar(Der).</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 04 BÁSICOS ─── -->
+<section id="basicos" class="section sec-dark">
+  <div class="container">
+    <p class="sec-label label-sky">04 — Ejemplos Básicos</p>
+    <h2 style="color:var(--on-dark)">Empezando con Mercury</h2>
+    <p style="color:var(--muted)">Los ejemplos básicos cubren los conceptos fundamentales. Haz clic en <strong style="color:var(--on-dark)">▶ Glot.io</strong> para ejecutarlos directamente en el navegador.</p>
+
+    <!-- B1: Hello World -->
+    <h3 style="color:var(--on-dark)">B1 · Hello, World!</h3>
+    <p style="color:var(--muted)">El programa más simple posible. Observa la estructura obligatoria: módulo → interfaz → implementación.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">hello.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module hello.
+:- interface.
+:- import_module io.
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+main(!IO) :-
+    io.write_string("Hello, World!\n", !IO).</code></pre>
+    </div>
+
+    <!-- B2: Factorial -->
+    <h3 style="color:var(--on-dark)">B2 · Factorial</h3>
+    <p style="color:var(--muted)">Función factorial recursiva usando <code style="color:var(--on-dark)">func</code>. El compilador verifica que los casos sean exhaustivos y el determinismo sea <code style="color:var(--on-dark)">det</code>.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">factorial.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module factorial.
+:- interface.
+:- import_module io.
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module int.
+
+:- func factorial(int) = int.
+factorial(0) = 1.
+factorial(N) = N * factorial(N - 1) :- N > 0.
+
+main(!IO) :-
+    io.format("factorial(0)  = %d\n", [i(factorial(0))],  !IO),
+    io.format("factorial(5)  = %d\n", [i(factorial(5))],  !IO),
+    io.format("factorial(10) = %d\n", [i(factorial(10))], !IO).</code></pre>
+    </div>
+
+    <!-- B3: Fibonacci -->
+    <h3 style="color:var(--on-dark)">B3 · Fibonacci</h3>
+    <p style="color:var(--muted)">La secuencia de Fibonacci con múltiples cláusulas. Nota la simetría con la definición matemática.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">fibonacci.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module fibonacci.
+:- interface.
+:- import_module io.
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module int.
+
+:- func fib(int) = int.
+fib(0) = 0.
+fib(1) = 1.
+fib(N) = fib(N - 1) + fib(N - 2) :- N > 1.
+
+main(!IO) :-
+    io.format("fib(0)  = %d\n",  [i(fib(0))],  !IO),
+    io.format("fib(1)  = %d\n",  [i(fib(1))],  !IO),
+    io.format("fib(5)  = %d\n",  [i(fib(5))],  !IO),
+    io.format("fib(10) = %d\n",  [i(fib(10))], !IO),
+    io.format("fib(15) = %d\n",  [i(fib(15))], !IO).</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 05 INTERMEDIOS ─── -->
+<section id="intermedios" class="section sec-light">
+  <div class="container">
+    <p class="sec-label label-blue">05 — Ejemplos Intermedios</p>
+    <h2>Listas, recursión y tipos</h2>
+    <p>Los ejemplos intermedios exploran el trabajo con listas, algoritmos recursivos y tipos de datos algebraicos — el núcleo de la programación lógico-funcional.</p>
+
+    <!-- I1: Listas -->
+    <h3>I1 · Operaciones sobre listas</h3>
+    <p>Implementación manual de operaciones comunes: longitud, inversión y concatenación usando recursión estructural.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">listas.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module listas.
+:- interface.
+:- import_module io.
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module int, list.
+
+:- func mi_longitud(list(T)) = int.
+mi_longitud([]) = 0.
+mi_longitud([_|T]) = 1 + mi_longitud(T).
+
+% Inversión con acumulador (eficiente O(n))
+:- func invertir(list(T)) = list(T).
+invertir(L) = aux(L, []).
+
+:- func aux(list(T), list(T)) = list(T).
+aux([], Acc)    = Acc.
+aux([H|T], Acc) = aux(T, [H|Acc]).
+
+:- func concatenar(list(T), list(T)) = list(T).
+concatenar([], L)    = L.
+concatenar([H|T], L) = [H | concatenar(T, L)].
+
+main(!IO) :-
+    Lista = [1, 2, 3, 4, 5],
+    io.format("Lista:       %s\n", [s(string(Lista))],              !IO),
+    io.format("Longitud:    %d\n", [i(mi_longitud(Lista))],          !IO),
+    io.format("Invertida:   %s\n", [s(string(invertir(Lista)))],     !IO),
+    io.format("Concat [6..8]:%s\n",[s(string(concatenar(Lista,[6,7,8])))], !IO).</code></pre>
+    </div>
+
+    <!-- I2: Ordenamiento -->
+    <h3>I2 · Ordenamiento por inserción</h3>
+    <p>Algoritmo de ordenamiento clásico que muestra cómo los predicados tienen múltiples cláusulas con guardas de condición.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">ordenamiento.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module ordenamiento.
+:- interface.
+:- import_module io.
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module int, list.
+
+:- pred insertar(int::in, list(int)::in, list(int)::out) is det.
+insertar(X, [],     [X]).
+insertar(X, [H|T],  [X,H|T]) :- X =< H.
+insertar(X, [H|T],  [H|T1])  :- X > H, insertar(X, T, T1).
+
+:- pred insertion_sort(list(int)::in, list(int)::out) is det.
+insertion_sort([], []).
+insertion_sort([H|T], Sorted) :-
+    insertion_sort(T, ST),
+    insertar(H, ST, Sorted).
+
+main(!IO) :-
+    Lista = [64, 25, 12, 22, 11, 90, 3],
+    insertion_sort(Lista, Ordenada),
+    io.format("Original: %s\n",  [s(string(Lista))],     !IO),
+    io.format("Ordenada: %s\n",  [s(string(Ordenada))],  !IO).</code></pre>
+    </div>
+
+    <!-- I3: Tipos algebraicos + pattern matching -->
+    <h3>I3 · Tipos algebraicos y pattern matching</h3>
+    <p>Figuras geométricas modeladas con un tipo algebraico. El compilador verifica que todos los casos sean cubiertos en el pattern matching.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">figuras.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module figuras.
+:- interface.
+:- import_module io.
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module float, math.
+
+:- type figura
+    --->    circulo(float)
+    ;       rectangulo(float, float)
+    ;       triangulo(float, float, float).
+
+:- func area(figura) = float.
+area(circulo(R))           = math.pi * R * R.
+area(rectangulo(B, H))     = B * H.
+area(triangulo(A, B, C))   = sqrt(S * (S-A) * (S-B) * (S-C)) :-
+    S = (A + B + C) / 2.0.
+
+:- func nombre(figura) = string.
+nombre(circulo(_))          = "Circulo".
+nombre(rectangulo(_, _))    = "Rectangulo".
+nombre(triangulo(_, _, _))  = "Triangulo".
+
+:- pred mostrar(figura::in, io::di, io::uo) is det.
+mostrar(F, !IO) :-
+    io.format("%s: area = %.4f\n", [s(nombre(F)), f(area(F))], !IO).
+
+main(!IO) :-
+    mostrar(circulo(5.0),          !IO),
+    mostrar(rectangulo(4.0, 6.0),  !IO),
+    mostrar(triangulo(3.0, 4.0, 5.0), !IO).</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 06 AVANZADOS ─── -->
+<section id="avanzados" class="section sec-dark">
+  <div class="container">
+    <p class="sec-label label-sky">06 — Ejemplos Avanzados</p>
+    <h2 style="color:var(--on-dark)">Higher-order, DCG y Estado</h2>
+    <p style="color:var(--muted)">Capacidades avanzadas de Mercury: predicados de orden superior, gramáticas de cláusulas definidas y manejo de estado mediante recursión.</p>
+
+    <!-- A1: Higher-order -->
+    <h3 style="color:var(--on-dark)">A1 · Predicados de orden superior</h3>
+    <p style="color:var(--muted)">Mercury soporta <strong style="color:var(--on-dark)">funciones de orden superior</strong>: funciones que reciben otras funciones como argumento, similar a <code style="color:var(--on-dark)">map</code>, <code style="color:var(--on-dark)">filter</code> y <code style="color:var(--on-dark)">fold</code> en lenguajes funcionales.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">orden_superior.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module orden_superior.
+:- interface.
+:- import_module io.
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module int, list.
+
+% mi_map: aplica F a cada elemento de la lista
+:- func mi_map(func(T) = U, list(T)) = list(U).
+mi_map(_, [])     = [].
+mi_map(F, [H|T])  = [F(H) | mi_map(F, T)].
+
+% mi_foldl: reduce la lista acumulando con F
+:- func mi_foldl(func(T, U) = U, list(T), U) = U.
+mi_foldl(_, [], Acc)    = Acc.
+mi_foldl(F, [H|T], Acc) = mi_foldl(F, T, F(H, Acc)).
+
+% Funciones concretas para pasar como argumento
+:- func doblar(int) = int.
+doblar(X) = X * 2.
+
+:- func cuadrado(int) = int.
+cuadrado(X) = X * X.
+
+:- func sumar(int, int) = int.
+sumar(X, Acc) = X + Acc.
+
+main(!IO) :-
+    Lista   = [1, 2, 3, 4, 5],
+    Dobles  = mi_map(doblar,   Lista),
+    Cuadrs  = mi_map(cuadrado, Lista),
+    Suma    = mi_foldl(sumar,  Lista, 0),
+    io.format("Original:   %s\n", [s(string(Lista))],   !IO),
+    io.format("Dobles:     %s\n", [s(string(Dobles))],  !IO),
+    io.format("Cuadrados:  %s\n", [s(string(Cuadrs))],  !IO),
+    io.format("Suma total: %d\n", [i(Suma)],             !IO).</code></pre>
+    </div>
+
+    <!-- A2: DCG -->
+    <h3 style="color:var(--on-dark)">A2 · Gramáticas de Cláusulas Definidas (DCG)</h3>
+    <p style="color:var(--muted)">Las DCG permiten definir <strong style="color:var(--on-dark)">gramáticas formales y parsers</strong> de forma elegante. Mercury transforma las reglas DCG en predicados con argumentos de diferencia de listas automáticamente.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">dcg_parser.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module dcg_parser.
+:- interface.
+:- import_module io.
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module list, char, string, int.
+
+% Gramática: oracion --> frase_nominal, frase_verbal
+%             frase_nominal --> sustantivo
+%             frase_verbal  --> verbo | verbo, frase_nominal
+
+:- pred sustantivo(list(string)::in, list(string)::out) is semidet.
+sustantivo --> ["mercury"].
+sustantivo --> ["lenguaje"].
+sustantivo --> ["programador"].
+
+:- pred verbo(list(string)::in, list(string)::out) is semidet.
+verbo --> ["es"].
+verbo --> ["usa"].
+
+:- pred frase_nominal(list(string)::in, list(string)::out) is semidet.
+frase_nominal --> sustantivo.
+
+:- pred frase_verbal(list(string)::in, list(string)::out) is semidet.
+frase_verbal --> verbo.
+frase_verbal --> verbo, frase_nominal.
+
+:- pred oracion(list(string)::in, list(string)::out) is semidet.
+oracion --> frase_nominal, frase_verbal.
+
+:- pred probar(string::in, list(string)::in, io::di, io::uo) is det.
+probar(Desc, Tokens, !IO) :-
+    ( oracion(Tokens, []) ->
+        io.format("VALIDA  | %s\n", [s(Desc)], !IO)
+    ;
+        io.format("INVALIDA| %s\n", [s(Desc)], !IO)
+    ).
+
+main(!IO) :-
+    probar("mercury es",           ["mercury", "es"],           !IO),
+    probar("programador usa mercury",["programador","usa","mercury"], !IO),
+    probar("es mercury",           ["es", "mercury"],           !IO).</code></pre>
+    </div>
+
+    <!-- A3: Estado con recursión -->
+    <h3 style="color:var(--on-dark)">A3 · Manejo de estado con recursión</h3>
+    <p style="color:var(--muted)">En Mercury, el <strong style="color:var(--on-dark)">estado mutable</strong> se modela pasando el estado como argumento. Este patrón — llamado <em>state threading</em> — garantiza la pureza referencial sin sacrificar la expresividad.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">estado.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Probar en Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module estado.
+:- interface.
+:- import_module io.
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module int, list.
+
+% Cuenta regresiva: el estado (N) se pasa por recursión
+:- pred cuenta_regresiva(int::in, io::di, io::uo) is det.
+cuenta_regresiva(0, !IO) :-
+    io.write_string("Despegue!\n", !IO).
+cuenta_regresiva(N, !IO) :-
+    N > 0,
+    io.format("  %d...\n", [i(N)], !IO),
+    cuenta_regresiva(N - 1, !IO).
+
+% Suma acumulativa: el acumulador es el estado
+:- pred sumar_lista(list(int)::in, int::in, int::out) is det.
+sumar_lista([], Acc, Acc).
+sumar_lista([H|T], Acc, Total) :-
+    NuevoAcc = Acc + H,
+    sumar_lista(T, NuevoAcc, Total).
+
+% Producto con acumulador
+:- pred producto_lista(list(int)::in, int::in, int::out) is det.
+producto_lista([], Acc, Acc).
+producto_lista([H|T], Acc, Prod) :-
+    producto_lista(T, Acc * H, Prod).
+
+main(!IO) :-
+    io.write_string("=== Cuenta regresiva ===\n", !IO),
+    cuenta_regresiva(5, !IO),
+    io.nl(!IO),
+
+    Lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    sumar_lista(Lista, 0, Suma),
+    producto_lista(Lista, 1, Prod),
+    io.format("=== Lista 1..10 ===\n", [], !IO),
+    io.format("Suma:     %d\n", [i(Suma)], !IO),
+    io.format("Producto: %d\n", [i(Prod)], !IO).</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h4>☿ Mercury 2026-1</h4>
+      <p>Tutorial de Paradigmas de Programación</p>
+      <p>Universidad Nacional de Colombia</p>
+      <div style="margin-top:14px">
+        <span class="chip">Prog. Lógica</span>
+        <span class="chip">Mercury</span>
+        <span class="chip">UNAL 2026-1</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Recursos oficiales</h5>
+      <a href="https://mercurylang.org" target="_blank">mercurylang.org</a>
+      <a href="https://mercurylang.org/information/doc-release/reference_manual.pdf" target="_blank">Manual de referencia (PDF)</a>
+      <a href="https://mercurylang.org/information/doc-release/user_guide.pdf" target="_blank">Guía del usuario (PDF)</a>
+      <a href="https://glot.io/new/mercury" target="_blank">Glot.io — Editor online</a>
+    </div>
+    <div class="footer-col">
+      <h5>Repositorio UNAL</h5>
+      <a href="http://ferestrepoca.github.io/paradigmas-de-programacion/" target="_blank">Página principal</a>
+      <a href="https://github.com/ferestrepoca/paradigmas-de-programacion" target="_blank">GitHub</a>
+      <a href="http://ferestrepoca.github.io/paradigmas-de-programacion/proglogica/logica_teoria/index.html" target="_blank">Teoría — Prog. Lógica</a>
+      <a href="https://github.com/ferestrepoca/paradigmas-de-programacion/tree/gh-pages/proglogica/tutoriales/Mercury" target="_blank">Tutorial Mercury anterior</a>
+    </div>
+  </div>
+  <div class="footer-copy">
+    © 2026 Paradigmas de Programación · UNAL · Diseño basado en DESIGN.md (Apple design language)
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => { hljs.highlightAll(); });
+
+  function copyCode(btn) {
+    const block = btn.closest('.code-wrap');
+    const code  = block.querySelector('code').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = '✓ Copiado';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    }).catch(() => {
+      // fallback: select text
+      const el = block.querySelector('code');
+      const sel = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    });
+  }
+</script>
+</body>
+</html>

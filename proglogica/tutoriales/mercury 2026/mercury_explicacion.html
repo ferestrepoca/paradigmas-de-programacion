@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Cómo funciona Mercury?</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #0f1117;
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #a78bfa, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin-bottom: 32px;
+  }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  .nav-btn {
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid #334155;
+    background: #1e293b;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { border-color: #7c3aed; color: #c4b5fd; }
+  .nav-btn.active { background: #4c1d95; border-color: #7c3aed; color: #e9d5ff; font-weight: 600; }
+
+  /* SECTIONS */
+  .section { display: none; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* CARDS */
+  .card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .card h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #a78bfa;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card p { color: #cbd5e1; font-size: 0.92rem; line-height: 1.7; margin-bottom: 8px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* CODE BLOCKS */
+  pre {
+    background: #0f172a;
+    border: 1px solid #1e3a5f;
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    margin: 12px 0;
+  }
+  .kw { color: #7dd3fc; }
+  .fn { color: #a78bfa; }
+  .str { color: #86efac; }
+  .cm { color: #475569; font-style: italic; }
+  .num { color: #fbbf24; }
+  .type { color: #f9a8d4; }
+
+  /* FLOW DIAGRAM */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    margin: 16px 0;
+  }
+  .flow-box {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+  .flow-arrow {
+    font-size: 1.4rem;
+    color: #475569;
+  }
+  .fb-purple { background: #3b0764; border: 1px solid #7c3aed; color: #e9d5ff; }
+  .fb-blue   { background: #0c2340; border: 1px solid #2563eb; color: #bfdbfe; }
+  .fb-teal   { background: #042f2e; border: 1px solid #0d9488; color: #99f6e4; }
+  .fb-amber  { background: #451a03; border: 1px solid #d97706; color: #fde68a; }
+  .fb-green  { background: #052e16; border: 1px solid #16a34a; color: #bbf7d0; }
+  .fb-gray   { background: #1e293b; border: 1px solid #475569; color: #94a3b8; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 12px 0; }
+  th { background: #1e3a5f; color: #93c5fd; padding: 10px 14px; text-align: left; }
+  td { padding: 9px 14px; border-bottom: 1px solid #1e293b; color: #cbd5e1; }
+  tr:hover td { background: #1e293b44; }
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .b-green { background: #052e16; color: #86efac; border: 1px solid #16a34a; }
+  .b-red   { background: #450a0a; color: #fca5a5; border: 1px solid #dc2626; }
+  .b-blue  { background: #0c2340; color: #93c5fd; border: 1px solid #2563eb; }
+  .b-amber { background: #451a03; color: #fde68a; border: 1px solid #d97706; }
+
+  /* INTERACTIVE UNIFICATION */
+  .unif-demo {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 16px 0;
+  }
+  .unif-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .unif-input {
+    flex: 1;
+    min-width: 120px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #e2e8f0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 0.9rem;
+  }
+  .unif-eq { color: #a78bfa; font-weight: 700; font-size: 1.2rem; }
+  .btn-unif {
+    padding: 8px 20px;
+    background: #4c1d95;
+    border: 1px solid #7c3aed;
+    color: #e9d5ff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .btn-unif:hover { background: #5b21b6; }
+  .unif-result {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-family: monospace;
+    margin-top: 8px;
+  }
+  .unif-ok  { background: #052e16; border: 1px solid #16a34a; color: #86efac; }
+  .unif-err { background: #450a0a; border: 1px solid #dc2626; color: #fca5a5; }
+
+  /* DETERMINISM SELECTOR */
+  .det-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .det-card {
+    padding: 14px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+  }
+  .det-card:hover { transform: translateY(-2px); }
+  .det-card.selected { border-color: #a78bfa; }
+  .dc-det    { background: #052e16; }
+  .dc-semi   { background: #0c2340; }
+  .dc-nondet { background: #451a03; }
+  .dc-multi  { background: #3b0764; }
+  .det-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+  .det-desc { font-size: 0.8rem; color: #94a3b8; line-height: 1.4; }
+  .det-detail {
+    margin-top: 12px;
+    padding: 14px;
+    background: #0f172a;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    display: none;
+  }
+  .det-detail.show { display: block; }
+
+  /* PIPELINE */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    padding: 8px 0;
+    margin: 16px 0;
+  }
+  .pipe-step {
+    flex-shrink: 0;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 12px 16px;
+    text-align: center;
+    min-width: 110px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .pipe-step:hover { border-color: #7c3aed; background: #2d1b69; }
+  .pipe-step.active { border-color: #38bdf8; background: #0c2340; }
+  .pipe-icon { font-size: 1.4rem; margin-bottom: 4px; }
+  .pipe-label { font-size: 0.78rem; color: #94a3b8; }
+  .pipe-arrow-h { color: #334155; font-size: 1.2rem; padding: 0 4px; flex-shrink: 0; }
+  .pipe-detail {
+    background: #0c2340;
+    border: 1px solid #1e3a5f;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-top: 8px;
+    display: none;
+    animation: fadeIn 0.2s ease;
+  }
+  .pipe-detail.show { display: block; }
+  .pipe-detail h3 { color: #38bdf8; font-size: 0.95rem; margin-bottom: 8px; }
+  .pipe-detail p  { color: #cbd5e1; font-size: 0.85rem; line-height: 1.6; }
+
+  /* PROGRESS BAR */
+  .progress-bar {
+    height: 4px;
+    background: #1e293b;
+    border-radius: 2px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7c3aed, #38bdf8);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+</style>
+</head>
+<body>
+
+<h1>¿Cómo funciona Mercury?</h1>
+<p class="subtitle">Guía interactiva — Lenguajes de Programación · Universidad Nacional de Colombia</p>
+
+<div class="progress-bar"><div class="progress-fill" id="progress" style="width:20%"></div></div>
+
+<nav class="nav">
+  <button class="nav-btn active" onclick="showSection('s1',this,20)">1 · Modelo de ejecución</button>
+  <button class="nav-btn" onclick="showSection('s2',this,40)">2 · Unificación</button>
+  <button class="nav-btn" onclick="showSection('s3',this,55)">3 · Tipos y modos</button>
+  <button class="nav-btn" onclick="showSection('s4',this,70)">4 · Determinismo</button>
+  <button class="nav-btn" onclick="showSection('s5',this,85)">5 · I/O puro</button>
+  <button class="nav-btn" onclick="showSection('s6',this,100)">6 · Compilación</button>
+</nav>
+
+<!-- SECCIÓN 1: MODELO DE EJECUCIÓN -->
+<div id="s1" class="section active">
+  <div class="card">
+    <h2>⚙️ El modelo lógico de Mercury</h2>
+    <p>Mercury ejecuta programas como una <strong>búsqueda de pruebas lógicas</strong>. Dado un conjunto de hechos y reglas, el motor intenta demostrar que una consulta es verdadera.</p>
+    <p>Hay tres conceptos centrales que trabajan juntos:</p>
+  </div>
+
+  <div class="flow">
+    <div class="flow-box fb-purple">📋 Hechos y Reglas (la base de conocimiento)</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box fb-blue">🔍 Consulta del usuario</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box fb-teal">⚡ Unificación + Backtracking</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box fb-green">✅ Respuesta: éxito (con sustituciones) o fallo</div>
+  </div>
+
+  <div class="card">
+    <h2>📌 Hechos</h2>
+    <p>Son verdades absolutas del dominio. No tienen condiciones.</p>
+    <pre><span class="cm">% Estos son hechos:</span>
+<span class="fn">padre</span>(<span class="str">tom</span>, <span class="str">bob</span>).    <span class="cm">% tom es padre de bob</span>
+<span class="fn">padre</span>(<span class="str">bob</span>, <span class="str">ann</span>).    <span class="cm">% bob es padre de ann</span>
+<span class="fn">edad</span>(<span class="str">tom</span>, <span class="num">60</span>).      <span class="cm">% tom tiene 60 años</span></pre>
+  </div>
+
+  <div class="card">
+    <h2>📐 Reglas</h2>
+    <p>Son verdades condicionales: "A es verdad SI B es verdad".</p>
+    <pre><span class="cm">% Regla: X es abuelo de Z si X es padre de Y e Y es padre de Z</span>
+<span class="fn">abuelo</span>(X, Z) :-
+    <span class="fn">padre</span>(X, Y),
+    <span class="fn">padre</span>(Y, Z).
+
+<span class="cm">% Regla recursiva: X es ancestro de Z</span>
+<span class="fn">ancestro</span>(X, Z) :- <span class="fn">padre</span>(X, Z).
+<span class="fn">ancestro</span>(X, Z) :-
+    <span class="fn">padre</span>(X, Y),
+    <span class="fn">ancestro</span>(Y, Z).</pre>
+  </div>
+
+  <div class="card">
+    <h2>🔄 Backtracking automático</h2>
+    <p>Cuando un camino falla, Mercury retrocede y prueba la siguiente alternativa. Es como explorar un árbol de decisiones automáticamente.</p>
+    <pre><span class="cm">% Si pregunto: abuelo(tom, Q)?
+% Mercury intenta:
+%   padre(tom, Y) → Y = bob  ✓
+%   padre(bob, Z) → Z = ann  ✓
+%   Resultado: Q = ann  ✅
+
+% Si hubiera más hijos de bob, Mercury los encontraría todos.</span></pre>
+  </div>
+</div>
+
+<!-- SECCIÓN 2: UNIFICACIÓN -->
+<div id="s2" class="section">
+  <div class="card">
+    <h2>🔗 Unificación — el mecanismo central</h2>
+    <p>La unificación es el proceso de hacer que dos términos sean <strong>idénticos mediante sustitución de variables</strong>. Es más poderosa que la simple igualdad de otros lenguajes.</p>
+  </div>
+
+  <div class="card">
+    <h2>🧪 Demo interactiva de unificación</h2>
+    <p style="margin-bottom:12px; color:#94a3b8; font-size:0.85rem;">Escribe dos términos Mercury y ve si unifican:</p>
+    <div class="unif-demo">
+      <div class="unif-row">
+        <input class="unif-input" id="t1" value="par(X, 2)" placeholder="Término 1">
+        <span class="unif-eq">=</span>
+        <input class="unif-input" id="t2" value="par(1, Y)" placeholder="Término 2">
+        <button class="btn-unif" onclick="checkUnif()">Unificar</button>
+      </div>
+      <div id="unif-result"></div>
+    </div>
+
+    <p style="color:#64748b; font-size:0.8rem; margin-top:8px;">Prueba también: <code style="color:#a78bfa">f(X,X)</code> = <code style="color:#a78bfa">f(1,2)</code> &nbsp;·&nbsp; <code style="color:#a78bfa">[H|T]</code> = <code style="color:#a78bfa">[1,2,3]</code> &nbsp;·&nbsp; <code style="color:#a78bfa">42</code> = <code style="color:#a78bfa">42</code></p>
+  </div>
+
+  <div class="card">
+    <h2>📋 Casos de unificación</h2>
+    <table>
+      <tr><th>Expresión</th><th>Resultado</th><th>Explicación</th></tr>
+      <tr><td><code>X = 5</code></td><td><span class="badge b-green">✓ X = 5</span></td><td>Variable libre se liga al valor</td></tr>
+      <tr><td><code>5 = 5</code></td><td><span class="badge b-green">✓ ok</span></td><td>Mismos átomos unifican</td></tr>
+      <tr><td><code>5 = 6</code></td><td><span class="badge b-red">✗ falla</span></td><td>Átomos distintos no unifican</td></tr>
+      <tr><td><code>f(X,2) = f(1,Y)</code></td><td><span class="badge b-green">✓ X=1, Y=2</span></td><td>Unificación estructural</td></tr>
+      <tr><td><code>[H|T] = [1,2,3]</code></td><td><span class="badge b-green">✓ H=1, T=[2,3]</span></td><td>Destrucción de lista</td></tr>
+      <tr><td><code>f(X,X) = f(1,2)</code></td><td><span class="badge b-red">✗ falla</span></td><td>X no puede ser 1 y 2 a la vez</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>💡 Unificación en pattern matching</h2>
+    <p>Mercury usa unificación implícitamente para seleccionar qué cláusula ejecutar:</p>
+    <pre><span class="kw">:- func</span> <span class="fn">describe</span>(<span class="type">list(int)</span>) = <span class="type">string</span>.
+<span class="fn">describe</span>([])      = <span class="str">"lista vacía"</span>.       <span class="cm">% unifica con []</span>
+<span class="fn">describe</span>([_])     = <span class="str">"un elemento"</span>.       <span class="cm">% unifica con [_]</span>
+<span class="fn">describe</span>([_,_|_]) = <span class="str">"dos o más"</span>.         <span class="cm">% unifica con [_,_|_]</span></pre>
+  </div>
+</div>
+
+<!-- SECCIÓN 3: TIPOS Y MODOS -->
+<div id="s3" class="section">
+  <div class="card">
+    <h2>🏷️ Sistema de tipos estático</h2>
+    <p>A diferencia de Prolog, Mercury verifica tipos <strong>en tiempo de compilación</strong>. Esto elimina una categoría entera de errores antes de ejecutar el programa.</p>
+    <pre><span class="cm">% Tipos básicos del lenguaje</span>
+<span class="type">int</span>        <span class="cm">→ 42, -7, 0</span>
+<span class="type">float</span>      <span class="cm">→ 3.14, -0.5</span>
+<span class="type">char</span>       <span class="cm">→ 'a', 'Z', '\n'</span>
+<span class="type">string</span>     <span class="cm">→ "hola mundo"</span>
+<span class="type">bool</span>       <span class="cm">→ yes, no (módulo bool)</span>
+<span class="type">list(T)</span>    <span class="cm">→ [1,2,3], ["a","b"]</span></pre>
+  </div>
+
+  <div class="card">
+    <h2>🧱 Tipos algebraicos (ADT)</h2>
+    <p>Permiten definir estructuras de datos complejas con constructores:</p>
+    <pre><span class="kw">:- type</span> <span class="type">forma</span>
+    <span class="kw">---></span>  <span class="fn">circulo</span>(<span class="type">float</span>)
+    <span class="kw">;</span>     <span class="fn">rectangulo</span>(<span class="type">float</span>, <span class="type">float</span>)
+    <span class="kw">;</span>     <span class="fn">triangulo</span>(<span class="type">float</span>, <span class="type">float</span>, <span class="type">float</span>).
+
+<span class="kw">:- type</span> <span class="type">maybe(T)</span>       <span class="cm">% tipo genérico/polimórfico</span>
+    <span class="kw">---></span>  <span class="fn">yes</span>(T)
+    <span class="kw">;</span>     <span class="fn">no</span>.
+
+<span class="cm">% Uso con pattern matching:</span>
+<span class="kw">:- func</span> <span class="fn">area</span>(<span class="type">forma</span>) = <span class="type">float</span>.
+<span class="fn">area</span>(<span class="fn">circulo</span>(R))        = <span class="num">3.14159</span> * R * R.
+<span class="fn">area</span>(<span class="fn">rectangulo</span>(A, B)) = A * B.
+<span class="fn">area</span>(<span class="fn">triangulo</span>(A,B,C))  = Area :- ... .</pre>
+  </div>
+
+  <div class="card">
+    <h2>🎯 Modos — dirección del flujo de datos</h2>
+    <p>Los modos indican qué argumentos son entradas y cuáles son salidas al llamar un predicado:</p>
+    <table>
+      <tr><th>Modo</th><th>Significado</th><th>Ejemplo</th></tr>
+      <tr><td><code>::in</code></td><td>Argumento ya instanciado (entrada)</td><td><code>sumar(3::in, 4::in, ...)</code></td></tr>
+      <tr><td><code>::out</code></td><td>Argumento sin instanciar (salida)</td><td><code>sumar(..., ..., R::out)</code></td></tr>
+      <tr><td><code>::di</code></td><td>Destructive input — para I/O</td><td><code>IO::di</code></td></tr>
+      <tr><td><code>::uo</code></td><td>Unique output — para I/O</td><td><code>IO::uo</code></td></tr>
+    </table>
+    <pre><span class="kw">:- pred</span> <span class="fn">sumar</span>(<span class="type">int</span>::<span class="kw">in</span>, <span class="type">int</span>::<span class="kw">in</span>, <span class="type">int</span>::<span class="kw">out</span>) <span class="kw">is det</span>.
+<span class="fn">sumar</span>(A, B, C) :- C = A + B.
+
+<span class="cm">% El compilador verifica que:</span>
+<span class="cm">% - A y B lleguen instanciados</span>
+<span class="cm">% - C salga instanciado</span></pre>
+  </div>
+</div>
+
+<!-- SECCIÓN 4: DETERMINISMO -->
+<div id="s4" class="section">
+  <div class="card">
+    <h2>🎲 Declaraciones de determinismo</h2>
+    <p>Una de las características más únicas de Mercury: <strong>el programador declara cuántas soluciones puede tener un predicado</strong>, y el compilador lo verifica. Haz clic en cada tipo para ver detalles:</p>
+  </div>
+
+  <div class="det-grid">
+    <div class="det-card dc-det" onclick="showDet('det')">
+      <div class="det-name" style="color:#86efac">det</div>
+      <div class="det-desc">Exactamente 1 solución. Nunca falla.</div>
+    </div>
+    <div class="det-card dc-semi" onclick="showDet('semi')">
+      <div class="det-name" style="color:#93c5fd">semidet</div>
+      <div class="det-desc">0 o 1 soluciones. Puede fallar.</div>
+    </div>
+    <div class="det-card dc-nondet" onclick="showDet('nondet')">
+      <div class="det-name" style="color:#fde68a">nondet</div>
+      <div class="det-desc">0 o más soluciones. No determinístico.</div>
+    </div>
+    <div class="det-card dc-multi" onclick="showDet('multi')">
+      <div class="det-name" style="color:#e9d5ff">multi</div>
+      <div class="det-desc">1 o más soluciones. Siempre al menos una.</div>
+    </div>
+  </div>
+
+  <div id="det-det" class="det-detail">
+    <pre><span class="kw">:- pred</span> <span class="fn">factorial</span>(<span class="type">int</span>::<span class="kw">in</span>, <span class="type">int</span>::<span class="kw">out</span>) <span class="kw">is det</span>.
+<span class="fn">factorial</span>(<span class="num">0</span>, <span class="num">1</span>).
+<span class="fn">factorial</span>(N, F) :- N > <span class="num">0</span>, factorial(N-<span class="num">1</span>, F1), F = N * F1.
+<span class="cm">% Siempre produce exactamente un resultado.</span>
+<span class="cm">% El compilador garantiza que no falla para N >= 0.</span></pre>
+  </div>
+
+  <div id="det-semi" class="det-detail">
+    <pre><span class="kw">:- pred</span> <span class="fn">buscar_en_lista</span>(<span class="type">int</span>::<span class="kw">in</span>, <span class="type">list(int)</span>::<span class="kw">in</span>) <span class="kw">is semidet</span>.
+<span class="fn">buscar_en_lista</span>(X, [X|_]).
+<span class="fn">buscar_en_lista</span>(X, [_|T]) :- <span class="fn">buscar_en_lista</span>(X, T).
+<span class="cm">% Éxito si X está en la lista, falla si no está.</span>
+<span class="cm">% El caller debe manejar ambos casos con if-then-else.</span></pre>
+  </div>
+
+  <div id="det-nondet" class="det-detail">
+    <pre><span class="kw">:- pred</span> <span class="fn">miembro</span>(<span class="type">int</span>::<span class="kw">out</span>, <span class="type">list(int)</span>::<span class="kw">in</span>) <span class="kw">is nondet</span>.
+<span class="fn">miembro</span>(X, [X|_]).
+<span class="fn">miembro</span>(X, [_|T]) :- <span class="fn">miembro</span>(X, T).
+<span class="cm">% Puede producir 0, 1 o múltiples soluciones vía backtracking.</span>
+<span class="cm">% Para lista [1,2,3]: genera X=1, X=2, X=3 sucesivamente.</span></pre>
+  </div>
+
+  <div id="det-multi" class="det-detail">
+    <pre><span class="kw">:- pred</span> <span class="fn">entre</span>(<span class="type">int</span>::<span class="kw">in</span>, <span class="type">int</span>::<span class="kw">in</span>, <span class="type">int</span>::<span class="kw">out</span>) <span class="kw">is multi</span>.
+<span class="fn">entre</span>(Low, High, X) :-
+    Low =< High,
+    ( X = Low ; <span class="fn">entre</span>(Low+<span class="num">1</span>, High, X) ).
+<span class="cm">% Siempre produce AL MENOS una solución (Low mismo).</span>
+<span class="cm">% entre(1, 5, X) → X=1,2,3,4,5</span></pre>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>🛡️ ¿Por qué importa el determinismo?</h2>
+    <p>El compilador de Mercury <strong>verifica en tiempo de compilación</strong> que el determinismo declarado sea correcto. Esto significa:</p>
+    <table>
+      <tr><th>Situación</th><th>En Prolog</th><th>En Mercury</th></tr>
+      <tr><td>Predicado que debería ser det pero puede fallar</td><td><span class="badge b-red">Error en ejecución</span></td><td><span class="badge b-green">Error en compilación</span></td></tr>
+      <tr><td>Llamar predicado nondet como si fuera det</td><td><span class="badge b-red">Comportamiento impredecible</span></td><td><span class="badge b-green">Error en compilación</span></td></tr>
+      <tr><td>Cláusulas no exhaustivas</td><td><span class="badge b-amber">Warning opcional</span></td><td><span class="badge b-green">Error en compilación</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SECCIÓN 5: I/O PURO -->
+<div id="s5" class="section">
+  <div class="card">
+    <h2>🔒 I/O completamente puro</h2>
+    <p>En la mayoría de lenguajes, las operaciones de I/O son <em>efectos secundarios</em> que rompen la pureza funcional. Mercury resuelve esto pasando el <strong>estado del mundo</strong> como un argumento explícito.</p>
+  </div>
+
+  <div class="card">
+    <h2>📦 El tipo io.state</h2>
+    <p>Cada operación de I/O recibe el estado del mundo actual y produce uno nuevo:</p>
+    <pre><span class="cm">% Sin azúcar sintáctica (cómo funciona internamente):</span>
+<span class="kw">:- pred</span> <span class="fn">main</span>(<span class="type">io.state</span>::<span class="kw">di</span>, <span class="type">io.state</span>::<span class="kw">uo</span>) <span class="kw">is det</span>.
+<span class="fn">main</span>(IO0, IO) :-
+    io.write_string(<span class="str">"Hola\n"</span>, IO0, IO1),    <span class="cm">% IO0 → IO1</span>
+    io.write_string(<span class="str">"Mundo\n"</span>, IO1, IO).    <span class="cm">% IO1 → IO</span>
+
+<span class="cm">% Con azúcar !IO (equivalente, más limpio):</span>
+<span class="fn">main</span>(!IO) :-
+    io.write_string(<span class="str">"Hola\n"</span>, !IO),
+    io.write_string(<span class="str">"Mundo\n"</span>, !IO).</pre>
+  </div>
+
+  <div class="flow">
+    <div class="flow-box fb-blue">Estado del mundo: IO₀</div>
+    <div class="flow-arrow">↓ io.write_string("Hola", IO₀, IO₁)</div>
+    <div class="flow-box fb-teal">Estado del mundo: IO₁ (después de imprimir "Hola")</div>
+    <div class="flow-arrow">↓ io.write_string("Mundo", IO₁, IO₂)</div>
+    <div class="flow-box fb-green">Estado del mundo: IO₂ (después de imprimir "Mundo")</div>
+  </div>
+
+  <div class="card">
+    <h2>✅ Ventajas del I/O puro</h2>
+    <table>
+      <tr><th>Propiedad</th><th>Explicación</th></tr>
+      <tr><td><span class="badge b-green">Orden garantizado</span></td><td>Las operaciones de I/O se ejecutan en el orden exacto que aparecen en el código</td></tr>
+      <tr><td><span class="badge b-blue">Sin efectos ocultos</span></td><td>Una función sin parámetro IO nunca puede hacer I/O accidentalmente</td></tr>
+      <tr><td><span class="badge b-amber">Razonamiento local</span></td><td>Se puede entender una función solo mirando sus parámetros</td></tr>
+      <tr><td><span class="badge b-green">Testeable</span></td><td>Las funciones puras son triviales de probar unitariamente</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>📖 Ejemplo: leer y procesar entrada</h2>
+    <pre><span class="fn">main</span>(!IO) :-
+    io.write_string(<span class="str">"¿Tu nombre? "</span>, !IO),
+    io.read_line_as_string(Resultado, !IO),
+    (
+        Resultado = <span class="fn">ok</span>(Nombre) <span class="cm">% lectura exitosa</span>
+    ->
+        io.format(<span class="str">"Hola, %s!\n"</span>, [<span class="fn">s</span>(Nombre)], !IO)
+    ;
+        io.write_string(<span class="str">"Error al leer\n"</span>, !IO)
+    ).</pre>
+  </div>
+</div>
+
+<!-- SECCIÓN 6: COMPILACIÓN -->
+<div id="s6" class="section">
+  <div class="card">
+    <h2>🏭 Pipeline de compilación de Mercury</h2>
+    <p>Mercury compila código fuente hasta llegar a un ejecutable nativo eficiente. Haz clic en cada etapa para ver qué hace:</p>
+  </div>
+
+  <div class="pipeline">
+    <div class="pipe-step active" onclick="showPipe('p1',this)">
+      <div class="pipe-icon">📝</div>
+      <div class="pipe-label">Fuente .m</div>
+    </div>
+    <div class="pipe-arrow-h">→</div>
+    <div class="pipe-step" onclick="showPipe('p2',this)">
+      <div class="pipe-icon">🔍</div>
+      <div class="pipe-label">Parser</div>
+    </div>
+    <div class="pipe-arrow-h">→</div>
+    <div class="pipe-step" onclick="showPipe('p3',this)">
+      <div class="pipe-icon">🏷️</div>
+      <div class="pipe-label">Verificación de tipos</div>
+    </div>
+    <div class="pipe-arrow-h">→</div>
+    <div class="pipe-step" onclick="showPipe('p4',this)">
+      <div class="pipe-icon">📊</div>
+      <div class="pipe-label">Análisis de modos</div>
+    </div>
+    <div class="pipe-arrow-h">→</div>
+    <div class="pipe-step" onclick="showPipe('p5',this)">
+      <div class="pipe-icon">⚙️</div>
+      <div class="pipe-label">Generación C</div>
+    </div>
+    <div class="pipe-arrow-h">→</div>
+    <div class="pipe-step" onclick="showPipe('p6',this)">
+      <div class="pipe-icon">🚀</div>
+      <div class="pipe-label">Ejecutable</div>
+    </div>
+  </div>
+
+  <div id="pipe-p1" class="pipe-detail show">
+    <h3>📝 Código fuente (.m)</h3>
+    <p>El programador escribe archivos con extensión <code>.m</code>. Cada archivo es un módulo con sección <code>:- interface.</code> e <code>:- implementation.</code></p>
+    <p>Comando: <code>mmc --make mi_programa</code></p>
+  </div>
+  <div id="pipe-p2" class="pipe-detail">
+    <h3>🔍 Análisis sintáctico (Parser)</h3>
+    <p>El compilador lee el archivo y construye un Árbol de Sintaxis Abstracta (AST). Verifica que la sintaxis sea correcta y reconoce declaraciones, predicados y cláusulas.</p>
+  </div>
+  <div id="pipe-p3" class="pipe-detail">
+    <h3>🏷️ Verificación de tipos</h3>
+    <p>Mercury infiere y verifica los tipos de todas las expresiones. Si hay incompatibilidades de tipo (p.ej., pasar un <code>float</code> donde se espera un <code>int</code>), el compilador lanza un error <em>antes de ejecutar el programa</em>.</p>
+  </div>
+  <div id="pipe-p4" class="pipe-detail">
+    <h3>📊 Análisis de modos y determinismo</h3>
+    <p>Se verifican las declaraciones de modos (<code>::in</code>, <code>::out</code>) y determinismo (<code>det</code>, <code>semidet</code>, etc.). El compilador comprueba que las cláusulas sean consistentes con lo declarado. Esta fase es única de Mercury.</p>
+  </div>
+  <div id="pipe-p5" class="pipe-detail">
+    <h3>⚙️ Generación de código C</h3>
+    <p>Mercury transforma el código lógico a código C optimizado. Aplica optimizaciones como eliminación de llamadas de cola (tail call optimization), lo que hace que la recursión sea tan eficiente como un bucle.</p>
+  </div>
+  <div id="pipe-p6" class="pipe-detail">
+    <h3>🚀 Ejecutable nativo</h3>
+    <p>GCC o Clang compila el código C a un binario nativo para la plataforma. El resultado tiene rendimiento comparable a programas escritos directamente en C — muy superior a Prolog interpretado.</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>📊 Mercury vs Prolog: resumen final</h2>
+    <table>
+      <tr><th>Característica</th><th>Prolog</th><th>Mercury</th></tr>
+      <tr><td>Tipos</td><td><span class="badge b-amber">Dinámico</span></td><td><span class="badge b-green">Estático + inferencia</span></td></tr>
+      <tr><td>Errores de tipo</td><td><span class="badge b-red">En ejecución</span></td><td><span class="badge b-green">En compilación</span></td></tr>
+      <tr><td>Modos</td><td><span class="badge b-amber">Implícitos</span></td><td><span class="badge b-green">Declarados y verificados</span></td></tr>
+      <tr><td>Determinismo</td><td><span class="badge b-amber">Implícito</span></td><td><span class="badge b-green">Declarado y verificado</span></td></tr>
+      <tr><td>I/O</td><td><span class="badge b-red">Efectos secundarios</span></td><td><span class="badge b-green">Estado explícito, puro</span></td></tr>
+      <tr><td>Rendimiento</td><td><span class="badge b-amber">Interpretado</span></td><td><span class="badge b-green">Compilado a C nativo</span></td></tr>
+      <tr><td>Módulos</td><td><span class="badge b-amber">Limitado</span></td><td><span class="badge b-green">Sistema completo</span></td></tr>
+      <tr><td>Corte (!)</td><td><span class="badge b-red">Soportado (rompe pureza)</span></td><td><span class="badge b-green">No existe (if-then-else)</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<script>
+function showSection(id, btn, pct) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('progress').style.width = pct + '%';
+}
+
+// Unification demo
+const CASES = [
+  { a: 'par(X, 2)', b: 'par(1, Y)', ok: true, msg: 'Unificación exitosa: X = 1, Y = 2' },
+  { a: 'f(X,X)', b: 'f(1,2)', ok: false, msg: 'Falla: X no puede unificar con 1 y 2 simultáneamente' },
+  { a: '[H|T]', b: '[1,2,3]', ok: true, msg: 'Unificación exitosa: H = 1, T = [2, 3]' },
+  { a: '42', b: '42', ok: true, msg: 'Unificación exitosa: mismo átomo' },
+  { a: '5', b: '6', ok: false, msg: 'Falla: 5 y 6 son átomos distintos, no unifican' },
+  { a: 'f(X, Y)', b: 'f(1, Y)', ok: true, msg: 'Unificación exitosa: X = 1, Y queda libre' },
+];
+
+function checkUnif() {
+  const t1 = document.getElementById('t1').value.trim();
+  const t2 = document.getElementById('t2').value.trim();
+  const match = CASES.find(c =>
+    (c.a === t1 && c.b === t2) || (c.a === t2 && c.b === t1)
+  );
+  const div = document.getElementById('unif-result');
+  if (match) {
+    div.className = 'unif-result ' + (match.ok ? 'unif-ok' : 'unif-err');
+    div.textContent = (match.ok ? '✓ ' : '✗ ') + match.msg;
+  } else {
+    const hasVar = /[A-Z_]/.test(t1) || /[A-Z_]/.test(t2);
+    const simple = t1 === t2;
+    if (simple) {
+      div.className = 'unif-result unif-ok';
+      div.textContent = '✓ Unificación exitosa: términos idénticos';
+    } else if (hasVar) {
+      div.className = 'unif-result unif-ok';
+      div.textContent = '✓ Unificación posible: las variables se ligarían a los valores correspondientes';
+    } else {
+      div.className = 'unif-result unif-err';
+      div.textContent = '✗ Falla: los términos tienen estructuras incompatibles';
+    }
+  }
+}
+
+function showDet(id) {
+  document.querySelectorAll('.det-detail').forEach(d => d.classList.remove('show'));
+  document.getElementById('det-' + id).classList.add('show');
+  document.querySelectorAll('.det-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+}
+
+function showPipe(id, el) {
+  document.querySelectorAll('.pipe-detail').forEach(d => d.classList.remove('show'));
+  document.querySelectorAll('.pipe-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('pipe-' + id).classList.add('show');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
