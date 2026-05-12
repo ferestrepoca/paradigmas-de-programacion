@@ -94,16 +94,42 @@
 
     /* ── TOC chips ── */
     .toc {
-      display: flex; flex-wrap: wrap; gap: 10px;
-      justify-content: center; margin-top: 32px;
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin-top: 36px;
+      max-width: 840px; margin-left: auto; margin-right: auto;
     }
     .toc a {
-      font-size: 13px; color: var(--primary-dark);
-      border: 1px solid rgba(41,151,255,.35);
-      border-radius: 9999px; padding: 5px 14px;
-      text-decoration: none; transition: background .15s;
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 12px; font-weight: 500; letter-spacing: .1px;
+      color: rgba(255,255,255,.65);
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 9999px;
+      padding: 6px 14px 6px 7px;
+      text-decoration: none;
+      transition: background .2s, color .15s, border-color .2s,
+                  transform .12s, box-shadow .2s;
     }
-    .toc a:hover { background: rgba(41,151,255,.12); }
+    .toc a:hover {
+      background: rgba(41,151,255,.18);
+      color: #fff;
+      border-color: rgba(41,151,255,.55);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(41,151,255,.22);
+    }
+    .toc-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(41,151,255,.22);
+      color: var(--primary-dark);
+      font-size: 10px; font-weight: 700; letter-spacing: 0;
+      flex-shrink: 0;
+      transition: background .2s;
+    }
+    .toc a:hover .toc-num {
+      background: rgba(41,151,255,.45);
+      color: #fff;
+    }
 
     /* ── BUTTONS ── */
     .btn {
@@ -318,6 +344,8 @@
     <a href="#basicos">Básicos</a>
     <a href="#intermedios">Intermedios</a>
     <a href="#avanzados">Avanzados</a>
+    <a href="#recursos">Recursos</a>
+    <a href="#creditos">Créditos</a>
     <a href="https://glot.io/new/mercury" target="_blank" class="nav-cta">▶ Glot.io</a>
   </div>
 </nav>
@@ -333,12 +361,14 @@
       <a href="https://glot.io/new/mercury" target="_blank" class="btn btn-ghost-dark">▶ Probar en línea</a>
     </div>
     <nav class="toc">
-      <a href="#primeros-pasos">Primeros Pasos</a>
-      <a href="#tour">Tour del Lenguaje</a>
-      <a href="#particularidades">Particularidades</a>
-      <a href="#basicos">Ejemplos Básicos</a>
-      <a href="#intermedios">Ejemplos Intermedios</a>
-      <a href="#avanzados">Ejemplos Avanzados</a>
+      <a href="#primeros-pasos"><span class="toc-num">01</span>Primeros Pasos</a>
+      <a href="#tour"><span class="toc-num">02</span>Tour del Lenguaje</a>
+      <a href="#particularidades"><span class="toc-num">03</span>Particularidades</a>
+      <a href="#basicos"><span class="toc-num">04</span>Ejemplos Básicos</a>
+      <a href="#intermedios"><span class="toc-num">05</span>Ejemplos Intermedios</a>
+      <a href="#avanzados"><span class="toc-num">06</span>Ejemplos Avanzados</a>
+      <a href="#recursos"><span class="toc-num">07</span>Recursos y PDF</a>
+      <a href="#creditos"><span class="toc-num">08</span>Créditos</a>
     </nav>
   </div>
 </section>
@@ -618,6 +648,143 @@ main(!IO) :-
     io.format("fib(10) = %d\n",  [i(fib(10))], !IO),
     io.format("fib(15) = %d\n",  [i(fib(15))], !IO).</code></pre>
     </div>
+
+    <!-- B4: Variables -->
+    <h3 style="color:var(--on-dark)">B4 · Variables y tipos primitivos</h3>
+    <p style="color:var(--muted)">Mercury infiere el tipo de cada variable desde su primer uso — no puede cambiar ni reasignarse. Este ejemplo muestra los cuatro tipos primitivos fundamentales: <code style="color:var(--on-dark)">int</code>, <code style="color:var(--on-dark)">float</code>, <code style="color:var(--on-dark)">string</code> y <code style="color:var(--on-dark)">list</code>.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">variables.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module variables.
+:- interface.
+:- import_module io.
+
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module int, float, string, list.
+
+main(!IO) :-
+    % Declaración de variables de distintos tipos.
+    % El tipo se infiere del primer uso — no puede cambiar.
+    IntVar    = 42,
+    FloatVar  = 3.14,
+    StringVar = "Hola, Mercury",
+    ListVar   = [1, 2, 3, 4, 5],
+
+    io.write_string("Valor de IntVar: ",    !IO),
+    io.write_int(IntVar,                    !IO),
+    io.nl(!IO),
+
+    io.write_string("Valor de FloatVar: ",  !IO),
+    io.write_float(FloatVar,                !IO),
+    io.nl(!IO),
+
+    io.write_string("Valor de StringVar: ", !IO),
+    io.write_string(StringVar,              !IO),
+    io.nl(!IO),
+
+    io.write_string("Valores de ListVar: ", !IO),
+    io.write_list(ListVar, ", ", io.write_int, !IO),
+    io.nl(!IO).</code></pre>
+    </div>
+
+    <!-- B5: Tipos -->
+    <h3 style="color:var(--on-dark)">B5 · Seguridad de tipos y conversión explícita</h3>
+    <p style="color:var(--muted)">Mercury tiene un sistema de tipos fuerte y estático. No existe conversión implícita. Para combinar un <code style="color:var(--on-dark)">int</code> con una <code style="color:var(--on-dark)">string</code> se debe usar <code style="color:var(--on-dark)">string.from_int/1</code> explícitamente — el compilador rechaza el código si los tipos no coinciden.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">tipos.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module tipos.
+:- interface.
+:- import_module io.
+
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module string.
+
+:- pred ejemplo_predicado(int::in, string::out) is det.
+ejemplo_predicado(X, Y) :-
+    % Esto sería un error de tipo en Mercury:
+    %   Y = X + "hola".
+    % Forma correcta con conversión explícita:
+    Y = string.from_int(X) ++ " hola".
+
+main(!IO) :-
+    T = 1,
+    % No se puede reasignar ni cambiar el tipo de una variable:
+    %   T = "hola",
+    %   T = 2,
+    _ = T,
+    ejemplo_predicado(42, Resultado),
+    io.write_string(Resultado, !IO),
+    io.nl(!IO).</code></pre>
+    </div>
+
+    <!-- B6: Det/Semidet -->
+    <h3 style="color:var(--on-dark)">B6 · Determinismo: det y semidet en práctica</h3>
+    <p style="color:var(--muted)">La tabla de determinismo de la sección 02 cobra vida aquí. <code style="color:var(--on-dark)">add/3</code> es <code style="color:var(--on-dark)">det</code> — produce siempre exactamente un resultado. <code style="color:var(--on-dark)">is_even/1</code> y <code style="color:var(--on-dark)">my_member/2</code> son <code style="color:var(--on-dark)">semidet</code> — pueden fallar, por eso se usan dentro de <code style="color:var(--on-dark)">if-then-else</code>.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">det_semidet.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module det_semidet.
+:- interface.
+:- import_module io.
+
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module int, list.
+
+% Predicado determinista: siempre produce exactamente un resultado.
+:- pred add(int::in, int::in, int::out) is det.
+add(X, Y, Z) :- Z = X + Y.
+
+% Predicado semideterminista: puede fallar (si X es impar).
+:- pred is_even(int::in) is semidet.
+is_even(X) :- X mod 2 = 0.
+
+% Predicado semideterminista: puede fallar (si X no está en la lista).
+:- pred my_member(int::in, list(int)::in) is semidet.
+my_member(X, [X | _]).
+my_member(X, [_ | Tail]) :- my_member(X, Tail).
+
+main(!IO) :-
+    add(3, 4, Sum),
+    io.write_string("La suma es: ", !IO),
+    io.write_int(Sum, !IO),
+    io.nl(!IO),
+
+    ( if is_even(Sum) then
+        io.write_string("La suma es par\n",   !IO)
+    else
+        io.write_string("La suma es impar\n", !IO)
+    ),
+
+    MyList = [1, 2, 3, 4],
+    ( if list.member(3, MyList) then
+        io.write_string("3 está en la lista\n",    !IO)
+    else
+        io.write_string("3 no está en la lista\n", !IO)
+    ).</code></pre>
+    </div>
+
   </div>
 </section>
 
@@ -752,6 +919,175 @@ main(!IO) :-
     mostrar(rectangulo(4.0, 6.0),  !IO),
     mostrar(triangulo(3.0, 4.0, 5.0), !IO).</code></pre>
     </div>
+
+    <!-- I4: Mother -->
+    <h3>I4 · Predicados con múltiples modos — mother</h3>
+    <p>Un predicado puede declarar el mismo argumento como <code>in</code> u <code>out</code> según el modo de llamada. <code>mother/2</code> funciona hacia adelante (dado el hijo, busca la madre) y también puede usarse hacia atrás (dada la madre, busca sus hijos). El compilador verifica cada modo por separado.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">mother.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module mother.
+:- interface.
+:- import_module io.
+
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+
+:- type persona ---> laura ; rafael ; james.
+
+% El mismo predicado, dos modos distintos:
+%   dado el hijo (in) → busca la madre (out): semidet
+%   dada la madre (out) → busca hijos (in):   nondet
+:- pred mother(persona, persona).
+:- mode mother(in, out) is semidet.
+:- mode mother(out, in) is nondet.
+
+mother(rafael, laura).
+mother(james,  laura).
+
+main(!IO) :-
+    ( if mother(rafael, X) then
+        io.write_string("La madre de rafael es ", !IO),
+        io.write(X, !IO),
+        io.nl(!IO)
+    else
+        io.write_string("Rafael no tiene madre registrada.\n", !IO)
+    ).</code></pre>
+    </div>
+
+    <!-- I5: Family -->
+    <h3>I5 · Programación relacional y <code>solutions/2</code></h3>
+    <p>Un árbol genealógico con cuatro predicados relacionales (<code>parent</code>, <code>father</code>, <code>mother</code>, <code>grandparent</code>), cada uno con múltiples declaraciones de modo. <code>solutions/2</code> recolecta <strong>todas</strong> las respuestas de un predicado <code>nondet</code> en una lista — similar a <code>findall</code> en Prolog pero con verificación de tipos.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">family.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module family.
+:- interface.
+:- import_module io.
+
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module list, solutions.
+
+:- type person ---> ada ; bob ; dan ; ema ; fay ; joe.
+
+:- pred female(person).
+:- mode female(in)  is semidet.
+:- mode female(out) is multi.
+female(ada). female(ema). female(fay).
+
+:- pred male(person).
+:- mode male(in)  is semidet.
+:- mode male(out) is multi.
+male(bob). male(dan). male(joe).
+
+:- pred parent(person, person).
+:- mode parent(in,  in)  is semidet.
+:- mode parent(in,  out) is nondet.
+:- mode parent(out, in)  is nondet.
+:- mode parent(out, out) is multi.
+parent(ada, dan). parent(bob, dan).
+parent(dan, fay). parent(ema, fay).
+parent(dan, joe). parent(ema, joe).
+
+:- pred grandparent(person, person).
+:- mode grandparent(in,  in)  is semidet.
+:- mode grandparent(in,  out) is nondet.
+:- mode grandparent(out, in)  is nondet.
+:- mode grandparent(out, out) is nondet.
+grandparent(PP, C) :- parent(PP, P), parent(P, C).
+
+main(!IO) :-
+    % solutions/2 recolecta todas las soluciones en una lista.
+    solutions(
+        (pred(PP::out) is nondet :- grandparent(PP, fay)),
+        GPs),
+    (
+        GPs = [],
+        io.write_string("fay no tiene abuelos registrados.\n", !IO)
+    ;
+        GPs = [_ | _],
+        io.write_string("Abuelos de fay: ", !IO),
+        io.write(GPs, !IO),
+        io.nl(!IO)
+    ).</code></pre>
+    </div>
+
+    <!-- I6: Suma -->
+    <h3>I6 · Entrada del usuario y manejo de errores</h3>
+    <p><code>io.read_line_as_string/3</code> devuelve un resultado que puede ser <code>ok(String)</code>, <code>eof</code> o <code>error(Error)</code>. El <em>disjunctive pattern matching</em> sobre ese tipo garantiza que todos los casos sean manejados — el compilador rechaza código que omita algún constructor.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">suma.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module suma.
+:- interface.
+:- import_module io.
+
+:- pred suma(int::in, int::in, int::out) is det.
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module int, string, list.
+
+suma(X, Y, Resultado) :- Resultado = X + Y.
+
+main(!IO) :-
+    io.read_line_as_string(Result1, !IO),
+    (
+        Result1 = ok(Line1),
+        ( if string.to_int(string.strip(Line1), X) then
+            io.read_line_as_string(Result2, !IO),
+            (
+                Result2 = ok(Line2),
+                ( if string.to_int(string.strip(Line2), Y) then
+                    suma(X, Y, Resultado),
+                    io.format("La suma de %d y %d es %d\n",
+                              [i(X), i(Y), i(Resultado)], !IO)
+                else
+                    io.write_string(
+                        "Error: el segundo valor no es un número válido.\n", !IO)
+                )
+            ;
+                Result2 = eof,
+                io.write_string(
+                    "Error: fin de entrada al leer el segundo número.\n", !IO)
+            ;
+                Result2 = error(Err2),
+                io.format("Error al leer el segundo número: %s\n",
+                          [s(io.error_message(Err2))], !IO)
+            )
+        else
+            io.write_string(
+                "Error: el primer valor no es un número válido.\n", !IO)
+        )
+    ;
+        Result1 = eof,
+        io.write_string(
+            "Error: fin de entrada al leer el primer número.\n", !IO)
+    ;
+        Result1 = error(Err1),
+        io.format("Error al leer el primer número: %s\n",
+                  [s(io.error_message(Err1))], !IO)
+    ).</code></pre>
+    </div>
+
   </div>
 </section>
 
@@ -921,6 +1257,448 @@ main(!IO) :-
     io.format("Suma:     %d\n", [i(Suma)], !IO),
     io.format("Producto: %d\n", [i(Prod)], !IO).</code></pre>
     </div>
+
+    <!-- A4: Martians -->
+    <h3 style="color:var(--on-dark)">A4 · Inferencia lógica y <code style="color:var(--on-dark)">cc_multi</code></h3>
+    <p style="color:var(--muted)">Un sistema de inferencia simple donde las propiedades se derivan de hechos y reglas. <code style="color:var(--on-dark)">cc_multi</code> (<em>committed choice multi</em>) indica que el predicado produce al menos una solución pero sólo se compromete con la primera — equivalente a un corte implícito, pero verificado por el compilador.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">martians.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">/* ngtrks es pequeño y verde.
+   pgvdrk es un marciano saltarín.
+   Todas las criaturas saltarinas son verdes.
+   Todas las criaturas pequeñas y saltarinas son marcianas.
+   Todas las criaturas verdes y marcianas son inteligentes.
+   ¿Cuál de los dos es inteligente? */
+
+:- module martians.
+:- interface.
+:- import_module io.
+
+:- pred main(io::di, io::uo) is cc_multi.
+
+:- implementation.
+
+:- type marciano ---> ngtrks ; pgvdrk.
+
+:- pred small(marciano::out)       is det.
+:- pred green(marciano::out)       is multi.
+:- pred martian(marciano::out)     is multi.
+:- pred jumping(marciano::out)     is det.
+:- pred intelligent(marciano::out) is nondet.
+
+small(ngtrks).
+green(ngtrks).
+martian(pgvdrk).
+jumping(pgvdrk).
+
+green(X)   :- jumping(X).
+martian(X) :- small(X), jumping(X).
+
+intelligent(X) :- green(X), martian(X).
+
+main(!IO) :-
+    io.write_string("¿Qué marciano es inteligente?: ", !IO),
+    ( if intelligent(X) then
+        io.write(X, !IO),
+        io.write_string(" es inteligente.\n", !IO)
+    else
+        io.write_string("No se puede determinar.\n", !IO)
+    ).</code></pre>
+    </div>
+
+    <!-- A5: ROT13 -->
+    <h3 style="color:var(--on-dark)">A5 · E/S recursiva y cifrado ROT13</h3>
+    <p style="color:var(--muted)">Lectura carácter a carácter con <code style="color:var(--on-dark)">io.read_char/3</code> en un bucle recursivo que termina al alcanzar <code style="color:var(--on-dark)">eof</code>. El cifrado ROT13 se implementa como una función de pattern matching exhaustivo sobre <code style="color:var(--on-dark)">char</code> — cada letra del alfabeto se mapea a su par rotado 13 posiciones.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">rot13.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module rot13.
+:- interface.
+:- import_module io.
+
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module char, list, string.
+
+main(!IO) :-
+    io.read_char(Result, !IO),
+    (
+        Result = ok(Char),
+        io.write_char(rot13(Char), !IO),
+        main(!IO)
+    ;
+        Result = eof
+    ;
+        Result = error(ErrorCode),
+        io.format("%s\n", [s(io.error_message(ErrorCode))], !IO)
+    ).
+
+:- func rot13(char) = char.
+rot13(Char) = (
+    if      Char = 'a' then 'n'  else if Char = 'b' then 'o'
+    else if Char = 'c' then 'p'  else if Char = 'd' then 'q'
+    else if Char = 'e' then 'r'  else if Char = 'f' then 's'
+    else if Char = 'g' then 't'  else if Char = 'h' then 'u'
+    else if Char = 'i' then 'v'  else if Char = 'j' then 'w'
+    else if Char = 'k' then 'x'  else if Char = 'l' then 'y'
+    else if Char = 'm' then 'z'  else if Char = 'n' then 'a'
+    else if Char = 'o' then 'b'  else if Char = 'p' then 'c'
+    else if Char = 'q' then 'd'  else if Char = 'r' then 'e'
+    else if Char = 's' then 'f'  else if Char = 't' then 'g'
+    else if Char = 'u' then 'h'  else if Char = 'v' then 'i'
+    else if Char = 'w' then 'j'  else if Char = 'x' then 'k'
+    else if Char = 'y' then 'l'  else if Char = 'z' then 'm'
+    else Char
+).</code></pre>
+    </div>
+
+    <!-- A6: Trash / GC -->
+    <h3 style="color:var(--on-dark)">A6 · Recolector de basura y tipos personalizados</h3>
+    <p style="color:var(--muted)">Mercury usa el GC de Boehm. Este ejemplo crea y descarta estructuras de datos sin liberar memoria manualmente: <code style="color:var(--on-dark)">DataList</code> e <code style="color:var(--on-dark)">IntList</code> se vuelven inalcanzables al final del predicado y el GC las libera automáticamente.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">trash.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module trash.
+:- interface.
+:- import_module io.
+
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module list, int.
+
+:- type my_data ---> data(int).
+
+:- func create_data_list(int) = list(my_data).
+create_data_list(N) =
+    ( if N =< 0 then [] else [data(N) | create_data_list(N - 1)] ).
+
+:- func process_data_list(list(my_data)) = list(int).
+process_data_list([]) = [].
+process_data_list([data(X) | Xs]) = [X | process_data_list(Xs)].
+
+main(!IO) :-
+    DataList = create_data_list(10),
+    IntList  = process_data_list(DataList),
+    io.write_list(IntList, ", ", io.write_int, !IO),
+    io.nl(!IO),
+    % DataList e IntList ya no son referenciadas.
+    % El recolector de basura (Boehm GC) libera su memoria automáticamente.
+    io.write_string(
+        "Memoria gestionada automáticamente por el recolector de basura.\n",
+        !IO).</code></pre>
+    </div>
+
+    <!-- A7: FFI C -->
+    <h3 style="color:var(--on-dark)">A7 · Interfaz con C — <code style="color:var(--on-dark)">foreign_proc</code></h3>
+    <p style="color:var(--muted)"><code style="color:var(--on-dark)">pragma foreign_proc</code> permite implementar un predicado directamente en C (o Java, C#). Las anotaciones le indican al compilador qué garantías ofrece el código externo: <code style="color:var(--on-dark)">will_not_call_mercury</code> (no reingresa en Mercury), <code style="color:var(--on-dark)">promise_pure</code> (es referencialmente transparente) y <code style="color:var(--on-dark)">thread_safe</code> (seguro para concurrencia).</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">addc.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module addc.
+:- interface.
+:- import_module io.
+
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module string, int.
+
+:- pred add(int::in, int::in, int::out) is det.
+:- pragma foreign_proc("C",
+    add(A::in, B::in, Result::out),
+    [will_not_call_mercury, promise_pure, thread_safe],
+"
+    Result = A + B;
+").
+
+main(!IO) :-
+    io.read_line_as_string(ResultA, !IO),
+    (
+        ResultA = ok(LineA),
+        ( if string.to_int(string.strip(LineA), A) then
+            io.read_line_as_string(ResultB, !IO),
+            (
+                ResultB = ok(LineB),
+                ( if string.to_int(string.strip(LineB), B) then
+                    add(A, B, Sum),
+                    io.write_string("La suma es: ", !IO),
+                    io.write_int(Sum, !IO),
+                    io.nl(!IO)
+                else
+                    io.write_string("Error: B no es un entero válido.\n", !IO)
+                )
+            ;
+                ResultB = eof,
+                io.write_string("Error: fin de entrada al leer B.\n", !IO)
+            ;
+                ResultB = error(ErrB),
+                io.format("Error al leer B: %s\n",
+                          [s(io.error_message(ErrB))], !IO)
+            )
+        else
+            io.write_string("Error: A no es un entero válido.\n", !IO)
+        )
+    ;
+        ResultA = eof,
+        io.write_string("Error: fin de entrada al leer A.\n", !IO)
+    ;
+        ResultA = error(ErrA),
+        io.format("Error al leer A: %s\n",
+                  [s(io.error_message(ErrA))], !IO)
+    ).</code></pre>
+    </div>
+
+    <!-- A8: Puzzle -->
+    <h3 style="color:var(--on-dark)">A8 · Resolución de restricciones — El puzzle de las casas</h3>
+    <p style="color:var(--muted)">Tres casas con colores, nacionalidades y mascotas distintas. Cada restricción se expresa como un predicado puro. <code style="color:var(--on-dark)">solutions/2</code> busca todas las asignaciones que satisfacen <strong>todas</strong> las restricciones simultáneamente — el motor de backtracking de Mercury hace el resto.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">puzzle.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module puzzle.
+:- interface.
+:- import_module io.
+
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module list, string, solutions.
+
+% El inglés vive en la casa roja.
+% El jaguar es la mascota de la familia española.
+% Los japoneses viven a la derecha del cuidador de caracoles.
+% El cuidador de caracoles vive a la izquierda de la casa azul.
+
+:- type origenes ---> ingles ; japones ; espanol.
+:- type colores  ---> rojo ; azul ; verde.
+:- type mascotas ---> jaguar ; caracol ; cebra.
+:- type casa     ---> casa(origen::origenes, color::colores, mascota::mascotas).
+
+:- pred distinct(casa::in, casa::in) is semidet.
+distinct(casa(O1,C1,M1), casa(O2,C2,M2)) :-
+    not (O1 = O2 ; C1 = C2 ; M1 = M2).
+
+:- pred fila(list(casa)::out) is nondet.
+fila([X, Y, Z]) :-
+    casa(X), casa(Y), casa(Z),
+    ( X^mascota = caracol <=> Y^origen = japones ),
+    ( Y^mascota = caracol <=> Z^origen = japones ),
+    ( Z^color   = azul    <=> Y^mascota = caracol ),
+    ( Y^color   = azul    <=> X^mascota = caracol ),
+    not X^origen = japones,
+    not Z^mascota = caracol,
+    distinct(X, Y), distinct(Y, Z), distinct(X, Z).
+
+:- pred casa(casa::out) is nondet.
+casa(casa(O, C, M)) :-
+    origen(O), color(C), mascota(M),
+    ( O = ingles  <=> C = rojo   ),
+    ( O = espanol <=> M = jaguar ),
+    not (O = japones, M = caracol),
+    not (M = caracol, C = azul).
+
+:- pred origen(origenes::out) is multi.
+origen(ingles). origen(japones). origen(espanol).
+
+:- pred color(colores).
+:- mode color(out) is multi.
+:- mode color(in)  is det.
+color(rojo). color(azul). color(verde).
+
+:- pred mascota(mascotas::out) is multi.
+mascota(jaguar). mascota(caracol). mascota(cebra).
+
+main(!IO) :-
+    solutions(fila, Soluciones),
+    ( if Soluciones = [] then
+        io.write_string("Sin solución.\n", !IO)
+    else
+        list.foldl(
+            (pred(L::in, !.IO::di, !:IO::uo) is det :-
+                io.print(L, !IO), io.nl(!IO)),
+            Soluciones, !IO)
+    ).</code></pre>
+    </div>
+
+    <!-- A9: Palomar -->
+    <h3 style="color:var(--on-dark)">A9 · Teorema del palomar</h3>
+    <p style="color:var(--muted)">El principio del casillero (<em>pigeonhole principle</em>) expresado como un predicado Mercury puro. Si hay más palomas que casilleros, algún casillero alberga más de una. Sin bucles, sin estado mutable — sólo lógica declarativa.</p>
+    <div class="code-wrap">
+      <div class="code-head">
+        <span class="code-fname">palomar.m</span>
+        <div class="code-actions">
+          <button class="btn-sm btn-sm-copy" onclick="copyCode(this)">Copiar</button>
+          <a href="https://glot.io/new/mercury" target="_blank" class="btn-sm btn-sm-run">▶ Glot.io</a>
+        </div>
+      </div>
+      <pre><code class="language-prolog">:- module palomar.
+:- interface.
+:- import_module io.
+
+:- pred main(io::di, io::uo) is det.
+
+:- implementation.
+:- import_module int, string, bool.
+
+:- pred pigeonhole(int::in, int::in, bool::out) is det.
+pigeonhole(N, M, Result) :-
+    ( if N > M then Result = yes else Result = no ).
+
+:- pred print_result(int::in, int::in, bool::in, io::di, io::uo) is det.
+print_result(N, M, Result, !IO) :-
+    ( if Result = yes then
+        io.format(
+            "%d palomas en %d casilleros: al menos uno tendrá más de una.\n",
+            [i(N), i(M)], !IO)
+    else
+        io.format(
+            "%d palomas en %d casilleros: ninguno tendrá más de una.\n",
+            [i(N), i(M)], !IO)
+    ).
+
+main(!IO) :-
+    pigeonhole(10, 9, R1), print_result(10, 9, R1, !IO),
+    pigeonhole(5,  5, R2), print_result(5,  5, R2, !IO),
+    pigeonhole(3,  7, R3), print_result(3,  7, R3, !IO).</code></pre>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── 07 RECURSOS Y PDF ─── -->
+<section id="recursos" class="section sec-parch">
+  <div class="container">
+    <p class="sec-label label-blue">07 — Recursos y PDF</p>
+    <h2>Material de apoyo y lectura</h2>
+    <p>El tutorial anterior del curso incluye un PDF con desarrollo profundo de cuatro temas: <strong>Modos</strong>, <strong>Predicados</strong>, <strong>Determinismo</strong> y <strong>Tipos</strong>. Es un complemento directo a las secciones 02 y 03 de este tutorial.</p>
+    <div style="margin: 32px 0 40px; text-align: center;">
+      <a href="../Mercury/TutorialMercury.pdf" target="_blank" class="btn btn-blue">
+        ⬇ Descargar Tutorial PDF
+      </a>
+      <p style="margin-top: 12px; font-size: 14px; color: var(--ink-48);">Modos · Predicados · Determinismo · Tipos</p>
+    </div>
+    <h3>Recursos adicionales</h3>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <h4>Crash Course avanzado</h4>
+        <p>Curso de Mercury en profundidad: módulos, tipos avanzados, E/S, concurrencia y más. Por Paul Bone.</p>
+        <a href="https://mercury-in.space/crash.html" target="_blank" style="font-size:13px; margin-top:10px; display:inline-block; color:var(--primary);">mercury-in.space/crash.html →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">📖</div>
+        <h4>Tutorial de Prolog</h4>
+        <p>Mercury está basado en Prolog. Este tutorial UNAL cubre los fundamentos de programación lógica necesarios como base.</p>
+        <a href="http://ferestrepoca.github.io/paradigmas-de-programacion/proglogica/tutoriales/prolog-gh-pages/index.html" target="_blank" style="font-size:13px; margin-top:10px; display:inline-block; color:var(--primary);">Tutorial Prolog UNAL →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h4>Manual de referencia</h4>
+        <p>Referencia completa del lenguaje: toda la sintaxis, módulos estándar, modos, determinismo y directivas del compilador.</p>
+        <a href="https://mercurylang.org/information/doc-release/reference_manual.pdf" target="_blank" style="font-size:13px; margin-top:10px; display:inline-block; color:var(--primary);">reference_manual.pdf →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛠️</div>
+        <h4>Guía del usuario</h4>
+        <p>Cómo compilar, depurar, generar documentación y usar el sistema de módulos en proyectos reales.</p>
+        <a href="https://mercurylang.org/information/doc-release/user_guide.pdf" target="_blank" style="font-size:13px; margin-top:10px; display:inline-block; color:var(--primary);">user_guide.pdf →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 08 CRÉDITOS ─── -->
+<section id="creditos" class="section sec-dark">
+  <div class="container">
+    <p class="sec-label label-sky">08 — Créditos</p>
+    <h2 style="color:var(--on-dark)">Autores</h2>
+    <p style="color:var(--muted)">Este tutorial integra el trabajo de dos generaciones de estudiantes del curso de Paradigmas de Programación de la Universidad Nacional de Colombia.</p>
+
+    <!-- ── VERSIÓN ACTUAL ── -->
+    <h3 style="color:var(--on-dark); margin-top:48px;">
+      ✦ Tutorial 2026-1
+      <span style="font-size:14px; font-weight:400; color:var(--primary-dark); margin-left:12px;">versión actual</span>
+    </h3>
+    <p style="color:var(--muted); margin-bottom:28px;">Diseño, contenido, ejemplos e integración del tutorial actualizado.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;">
+      <div style="background:rgba(41,151,255,.10); border:1px solid rgba(41,151,255,.30); border-radius:16px; padding:22px 20px; display:flex; align-items:center; gap:14px;">
+        <div style="width:42px;height:42px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#fff;flex-shrink:0;">JM</div>
+        <div>
+          <div style="color:var(--on-dark);font-weight:600;font-size:15px;letter-spacing:-.2px;">Juan José Medina</div>
+          <div style="color:var(--primary-dark);font-size:12px;margin-top:2px;">UNAL · 2026-1</div>
+        </div>
+      </div>
+      <div style="background:rgba(41,151,255,.10); border:1px solid rgba(41,151,255,.30); border-radius:16px; padding:22px 20px; display:flex; align-items:center; gap:14px;">
+        <div style="width:42px;height:42px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#fff;flex-shrink:0;">CM</div>
+        <div>
+          <div style="color:var(--on-dark);font-weight:600;font-size:15px;letter-spacing:-.2px;">Cristian Javier Medina</div>
+          <div style="color:var(--primary-dark);font-size:12px;margin-top:2px;">UNAL · 2026-1</div>
+        </div>
+      </div>
+      <div style="background:rgba(41,151,255,.10); border:1px solid rgba(41,151,255,.30); border-radius:16px; padding:22px 20px; display:flex; align-items:center; gap:14px;">
+        <div style="width:42px;height:42px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#fff;flex-shrink:0;">SV</div>
+        <div>
+          <div style="color:var(--on-dark);font-weight:600;font-size:15px;letter-spacing:-.2px;">Samuel Josué Vargas</div>
+          <div style="color:var(--primary-dark);font-size:12px;margin-top:2px;">UNAL · 2026-1</div>
+        </div>
+      </div>
+      <div style="background:rgba(41,151,255,.10); border:1px solid rgba(41,151,255,.30); border-radius:16px; padding:22px 20px; display:flex; align-items:center; gap:14px;">
+        <div style="width:42px;height:42px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#fff;flex-shrink:0;">DS</div>
+        <div>
+          <div style="color:var(--on-dark);font-weight:600;font-size:15px;letter-spacing:-.2px;">Daniel Felipe Soracipa</div>
+          <div style="color:var(--primary-dark);font-size:12px;margin-top:2px;">UNAL · 2026-1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DIVISOR ── -->
+    <div style="border-top:1px solid rgba(255,255,255,.10); margin:52px 0 40px;"></div>
+
+    <!-- ── TUTORIAL ANTERIOR ── -->
+    <h3 style="color:var(--on-dark);">
+      📜 Tutorial anterior
+      <span style="font-size:14px; font-weight:400; color:var(--muted); margin-left:12px;">base de este trabajo</span>
+    </h3>
+    <p style="color:var(--muted); margin-bottom:24px;">Los ejemplos, explicaciones y estructura del tutorial anterior fueron la base sobre la que se construyó esta versión actualizada.</p>
+    <div class="cards">
+      <div class="card-dark">
+        <div class="card-icon">👥</div>
+        <h4>Autores principales</h4>
+        <p>Juan Castelblanco · Ivan Cepeda · Camilo Rodriguez · Stevan Valbuena · Samuel Salgado · Diego Bulla</p>
+      </div>
+      <div class="card-dark">
+        <div class="card-icon">➕</div>
+        <h4>Ejemplos adicionales</h4>
+        <p>Simón Aparicio · Javier Toro · Juliana De Castro · William García</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -943,6 +1721,22 @@ main(!IO) :-
       <a href="https://mercurylang.org/information/doc-release/reference_manual.pdf" target="_blank">Manual de referencia (PDF)</a>
       <a href="https://mercurylang.org/information/doc-release/user_guide.pdf" target="_blank">Guía del usuario (PDF)</a>
       <a href="https://glot.io/new/mercury" target="_blank">Glot.io — Editor online</a>
+      <a href="../Mercury/TutorialMercury.pdf" target="_blank">Tutorial Mercury PDF (anterior)</a>
+    </div>
+    <div class="footer-col">
+      <h5>Créditos</h5>
+      <a href="#creditos">Ver créditos completos</a>
+      <span style="display:block; font-size:12px; color:var(--ink-48); line-height:2; margin-top:6px;">
+        <strong style="color:var(--ink-80)">2026-1:</strong><br>
+        J. J. Medina · C. J. Medina<br>
+        S. J. Vargas · D. F. Soracipa
+      </span>
+      <span style="display:block; font-size:12px; color:var(--ink-48); line-height:2; margin-top:6px;">
+        <strong style="color:var(--ink-80)">Anterior:</strong><br>
+        J. Castelblanco · I. Cepeda<br>
+        C. Rodriguez · S. Valbuena<br>
+        S. Salgado · D. Bulla
+      </span>
     </div>
     <div class="footer-col">
       <h5>Repositorio UNAL</h5>
@@ -953,7 +1747,10 @@ main(!IO) :-
     </div>
   </div>
   <div class="footer-copy">
-    © 2026 Paradigmas de Programación · UNAL
+    © 2026 Paradigmas de Programación · UNAL ·
+    Medina · Medina · Vargas · Soracipa ·
+    <a href="../Mercury/TutorialMercury.pdf" target="_blank" style="color:var(--primary);">Tutorial PDF</a>
+    por Castelblanco et al.
   </div>
 </footer>
 
