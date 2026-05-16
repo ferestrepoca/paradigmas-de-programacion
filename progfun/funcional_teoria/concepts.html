@@ -7,6 +7,15 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <meta charset='utf-8'>
     <title>Programación funcional </title>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body>
@@ -694,10 +703,21 @@ val result: Option[String] = maybeInt
 
 // result es Some("13")
                     </code></pre>
-                    <h4>Leyes de Monad</h4>
-                    <p>
-                        Las Monads deben cumplir con tres leyes: identidad izquierda, identidad derecha y asociatividad. Estas leyes aseguran que las Monads se comporten de manera predecible y consistente.
-                    </p>
+                    <details style="background: rgba(0,0,0,0.03); border-left: 4px solid #007acc; padding: 10px 15px; margin: 15px 0; border-radius: 4px; cursor: pointer;">
+                        <summary style="font-weight: bold; font-size: 1.1em; outline: none;">💡 Ver Leyes Monádicas (Haz clic para expandir)</summary>
+                        <div style="margin-top: 10px;">
+                            <h4>Leyes de Monad</h4>
+                            <p>
+                                Las Monads deben cumplir con tres leyes: identidad izquierda, identidad derecha y asociatividad. Estas leyes aseguran que las Monads se comporten de manera predecible y consistente.
+                            </p>
+                            <p><strong>Identidad izquierda:</strong></p>
+                            <p>$$\text{unit}(x).\text{flatMap}(f) \equiv f(x)$$</p>
+                            <p><strong>Identidad derecha:</strong></p>
+                            <p>$$m.\text{flatMap}(\text{unit}) \equiv m$$</p>
+                            <p><strong>Asociatividad:</strong></p>
+                            <p>$$(m.\text{flatMap}(f)).\text{flatMap}(g) \equiv m.\text{flatMap}(x \Rightarrow f(x).\text{flatMap}(g))$$</p>
+                        </div>
+                    </details>
                 </div>
             </div>
             <div class="row">
@@ -727,54 +747,150 @@ val numbers = List(1, 2, 3, 4)
 val doubled = numbers.map(_ * 2)
 // doubled es List(2, 4, 6, 8)
                     </code></pre>
-                    <h3>Leyes de Functor</h3>
-                    <p>
-                        Los Functors deben cumplir con dos leyes: la ley de identidad (map con la funci&oacute;n identidad no cambia el Functor) y la ley de composici&oacute;n (map con la composici&oacute;n de dos funciones es igual a map con la primera funci&oacute;n y luego map con la segunda).
-                    </p>
-                    <p>
-                        <b>Ejemplo en Scala:</b>
-                        <br>
-                        En Scala, los Functors son ampliamente utilizados en las colecciones y otros contextos que admiten transformaciones.
-                    </p>
+                    <details style="background: rgba(0,0,0,0.03); border-left: 4px solid #007acc; padding: 10px 15px; margin: 15px 0; border-radius: 4px; cursor: pointer;">
+                        <summary style="font-weight: bold; font-size: 1.1em; outline: none;">💡 Ver Leyes de Functores (Haz clic para expandir)</summary>
+                        <div style="margin-top: 10px;">
+                            <h3>Leyes de Functor</h3>
+                            <p>
+                                Los Functors deben cumplir con dos leyes: la ley de identidad y la ley de composici&oacute;n.
+                            </p>
+                            <p><strong>Ley de Identidad:</strong></p>
+                            <p>$$\text{map}(\text{id}) \equiv \text{id}$$</p>
+                            <p>Aplicar la funci&oacute;n identidad sobre un Functor no lo cambia.</p>
+                            <p><strong>Ley de Composici&oacute;n:</strong></p>
+                            <p>$$\text{map}(f \circ g) \equiv \text{map}(f) \circ \text{map}(g)$$</p>
+                            <p>Aplicar <code>map</code> con la composici&oacute;n de dos funciones es igual a aplicar <code>map</code> con la primera funci&oacute;n y luego <code>map</code> con la segunda.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-12">
+                    <h3>Comparativa Práctica: Map vs FlatMap</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px; margin: 20px 0;">
+                        <div style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; background: #fdfdfd;">
+                            <h4 style="margin-top:0; color: #333;">📦 Comportamiento Functor (<code>map</code>)</h4>
+                            <div style="display: flex; align-items: center; gap: 10px; font-family: monospace; flex-wrap: wrap;">
+                                <span style="background:#e3f2fd; padding:8px; border-radius:4px; border:1px dashed #2196f3;">Caja(A)</span>
+                                <strong>➔ f(A ➔ B) ➔</strong>
+                                <span style="background:#e3f2fd; padding:8px; border-radius:4px; border:1px dashed #2196f3;">Caja(B)</span>
+                            </div>
+                            <p style="font-size: 0.9em; color: #666; margin-bottom: 0; margin-top: 8px;">Aplica la transformación directamente al valor interno manteniendo la misma estructura exterior.</p>
+                        </div>
+
+                        <div style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; background: #fdfdfd;">
+                            <h4 style="margin-top:0; color: #333;">✨ Comportamiento Mónada (<code>flatMap</code>)</h4>
+                            <div style="display: flex; align-items: center; gap: 10px; font-family: monospace; flex-wrap: wrap;">
+                                <span style="background:#f3e5f5; padding:8px; border-radius:4px; border:1px dashed #9c27b0;">Caja(A)</span>
+                                <strong>➔ f(A ➔ Caja(B)) ➔</strong>
+                                <span style="background:#f3e5f5; padding:8px; border-radius:4px; border:1px dashed #9c27b0;">Caja(B)</span>
+                                <span style="color: #d32f2f; font-size: 0.85em;">(Aplana automáticamente Caja[Caja[B]])</span>
+                            </div>
+                            <p style="font-size: 0.9em; color: #666; margin-bottom: 0; margin-top: 8px;">Evita el anidamiento infinito fusionando el contexto devuelto por la función con el contexto original.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <h2>ADTs (Algebraic Data Types)</h2>
                 <div class="col-md-6 text-justify">
                     <p>
-                        Los Tipos de Datos Algebraicos (ADTs) son una forma de definir tipos de datos compuestos. Los dos ADTs m&aacute;s comunes son los productos (casos de clase) y las sumas (jerarqu&iacute;as selladas).
+                        Los Tipos de Datos Algebraicos (ADTs) son una forma de definir tipos de datos compuestos a partir de otros tipos. Son la base de la modelización de datos en programación funcional y permiten construir estructuras complejas de forma segura y expresiva. Los dos ADTs m&aacute;s comunes son los productos (casos de clase) y las sumas (jerarqu&iacute;as selladas).
                     </p>
-                    <h3>Definici&oacute;n de ADTs</h3>
+                    <h3>Tipos Producto</h3>
                     <p>
-                        Un tipo de producto se define utilizando casos de clase, y un tipo de suma se define utilizando una jerarqu&iacute;a sellada. Aqu&iacute; hay un ejemplo de cada uno:
+                        Un tipo producto combina m&uacute;ltiples valores en una sola estructura. Se llama "producto" porque el n&uacute;mero total de valores posibles es el producto cartesiano de los valores de cada campo. Por ejemplo, un <code>Person</code> con un <code>String</code> y un <code>Int</code> tiene infinitas combinaciones posibles.
                     </p>
-                    <h4>Tipo de Producto</h4>
+                    <h4>Ejemplo en Scala</h4>
                     <pre><code>
 case class Person(name: String, age: Int)
+case class Point(x: Double, y: Double, z: Double)
+                    </code></pre>
+                    <h4>Ejemplo en Haskell</h4>
+                    <pre><code>
+data Person = Person String Int
+data Point = Point Double Double Double
                     </code></pre>
                 </div>
                 <div class="col-md-6 text-justify">
-                    <h4>Tipo de Suma</h4>
+                    <h3>Tipos Suma</h3>
+                    <p>
+                        Un tipo suma representa una elecci&oacute;n entre m&uacute;ltiples alternativas. Se llama "suma" porque el n&uacute;mero total de valores posibles es la suma de los valores de cada alternativa. Son equivalentes a las uniones etiquetadas (tagged unions) en otros lenguajes.
+                    </p>
+                    <h4>Ejemplo en Scala</h4>
                     <pre><code>
 sealed trait Shape
 case class Circle(radius: Double) extends Shape
 case class Rectangle(width: Double, height: Double) extends Shape
+case class Triangle(base: Double, height: Double) extends Shape
                     </code></pre>
-                    <h3>Ejemplo de Uso</h3>
+                    <h4>Ejemplo en Haskell</h4>
+                    <pre><code>
+data Shape = Circle Double
+           | Rectangle Double Double
+           | Triangle Double Double
+                    </code></pre>
+                    <h3>Pattern Matching con ADTs</h3>
                     <p>
-                        Aqu&iacute; hay un ejemplo de c&oacute;mo usar ADTs:
+                        La potencia real de los ADTs se revela al combinarlos con pattern matching, permitiendo descomponer estructuras de forma segura y exhaustiva:
                     </p>
                     <pre><code>
 val shape: Shape = Circle(5.0)
 shape match {
     case Circle(r) => println(s"Circle with radius $r")
-    case Rectangle(w, h) => println(s"Rectangle with width $w and height $h")
+    case Rectangle(w, h) => println(s"Rectangle: ${w * h}")
+    case Triangle(b, h) => println(s"Triangle: ${0.5 * b * h}")
 }
                     </code></pre>
                     <p>
-                        <b>Ejemplo en Scala:</b>
-                        <br>
-                        En Scala, los ADTs son fundamentales para definir estructuras de datos complejas de manera segura y expresiva.
+                        El compilador puede verificar que todos los casos han sido cubiertos gracias al modificador <code>sealed</code>, evitando errores en tiempo de ejecuci&oacute;n.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-justify">
+                    <h3>ADTs Recursivos</h3>
+                    <p>
+                        Los ADTs pueden ser recursivos, lo que permite definir estructuras de datos como listas y &aacute;rboles de forma elegante:
+                    </p>
+                </div>
+                <div class="col-md-6 text-justify">
+                    <h4>Lista Enlazada</h4>
+                    <pre><code>
+sealed trait List[+A]
+case object Nil extends List[Nothing]
+case class Cons[+A](head: A, tail: List[A]) extends List[A]
+
+// Uso: Cons(1, Cons(2, Cons(3, Nil)))
+                    </code></pre>
+                </div>
+                <div class="col-md-6 text-justify">
+                    <h4>&Aacute;rbol Binario</h4>
+                    <pre><code>
+sealed trait Tree[+A]
+case class Leaf[A](value: A) extends Tree[A]
+case class Branch[A](left: Tree[A], right: Tree[A]) extends Tree[A]
+
+// Uso: Branch(Leaf(1), Branch(Leaf(2), Leaf(3)))
+                    </code></pre>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-justify">
+                    <h3>ADTs en la Industria</h3>
+                    <p>
+                        Los ADTs son fundamentales en ecosistemas funcionales modernos:
+                    </p>
+                    <ul>
+                        <li><strong>Option/Maybe:</strong> Representa la presencia o ausencia de un valor, eliminando los <code>null</code> pointers.</li>
+                        <li><strong>Either/Result:</strong> Modela c&aacute;lculos que pueden fallar, separando el camino feliz del error de forma expl&iacute;cita.</li>
+                        <li><strong>Validated:</strong> Acumula m&uacute;ltiples errores de validaci&oacute;n en lugar de fallar r&aacute;pidamente.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-justify">
+                    <h3>Relaci&oacute;n con Functores y M&oacute;nadas</h3>
+                    <p>
+                        Los ADTs son la base sobre la que se construyen las abstracciones funcionales. Por ejemplo, <code>Option</code> es simult&aacute;neamente un ADT (suma de <code>Some</code> y <code>None</code>), un Functor (implementa <code>map</code>) y una M&oacute;nada (implementa <code>flatMap</code>). Esta composici&oacute;n permite escribir c&oacute;digo declarativo y composicional sobre estructuras de datos seguras.
                     </p>
                 </div>
             </div>
@@ -837,10 +953,89 @@ printValue(123)  // "123"
                 </div>
             </div>
 
+            <div class="row">
+                <h2>El Estado del Arte: Efectos Algebraicos y Manejadores</h2>
+                <div class="col-md-12 text-justify">
+                    <p>
+                        Hacia la arquitectura post-monádica: cómo la investigación moderna resuelve los cuellos de botella de los contenedores funcionales clásicos.
+                    </p>
+                </div>
+                <div class="col-md-6 text-justify">
+                    <h3>El Cuello de Botella de las Mónadas</h3>
+                    <p>
+                        Aunque las Mónadas aportan un modelo matemático seguro para encapsular efectos secundarios, presentan un grave problema de escalabilidad arquitectónica en aplicaciones complejas: <strong>las mónadas no componen de forma natural entre sí</strong>.
+                    </p>
+                    <p>
+                        Para combinar múltiples efectos en una sola función (ej. asincronía, fallos y lectura de estado), los desarrolladores se ven obligados a utilizar estructuras complejas llamadas <strong>Monad Transformers</strong>, generando firmas de retorno profundamente anidadas como $\text{Promise}[\text{Either}[\text{Error}, \text{Option}[A]]]$. Esto provoca un fuerte acoplamiento, obliga a escribir código repetitivo para desempaquetar cada capa y penaliza el rendimiento al forzar al recolector de basura (Garbage Collector) a limpiar miles de objetos contenedores intermedios en la memoria.
+                    </p>
+                </div>
+                <div class="col-md-6 text-justify">
+                    <h3>La Solución: Separar la Intención de la Interpretación</h3>
+                    <p>
+                        Los <strong>Efectos Algebraicos (Algebraic Effects)</strong> proponen eliminar por completo las "cajas" intermedias. Permiten escribir código con un flujo de ejecución completamente plano y directo, preservando intacta la pureza matemática y la transparencia referencial. El modelo se divide en dos actores puros:
+                    </p>
+                    <h4>El Efecto</h4>
+                    <p>
+                        La función de dominio no ejecuta el código impuro ni devuelve un contenedor. Simplemente interrumpe su ejecución lanzando una señal pura mediante la instrucción <code>perform</code> describiendo qué necesita.
+                    </p>
+                    <pre><code>function procesarUsuario(id) {
+  // Lanza la señal pura y PAUSA su ejecución aquí
+  const user = perform(new LeerDB(`usr_${id}`)); 
+  if (!user.activo) perform(new Log("Inactivo"));
+  return user.saldo; // Retorno plano crudo
+}</code></pre>
+                    <h4>El Handler</h4>
+                    <p>
+                        Un bloque externo intercepta la señal, ejecuta el efecto impuro en el límite del sistema y, crucialmente, <strong>recibe una función de Continuación ($\text{resume}$)</strong> para reanudar la lógica pura original inyectándole el resultado final.
+                    </p>
+                    <pre><code>handle(() => procesarUsuario(42)) with {
+  on(LeerDB, (efecto, resume) => {
+    const data = db.fetch(efecto.query); // Impureza
+    resume(data); // ¡Reanuda la función original!
+  })
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <details style="background: rgba(0,0,0,0.03); border-left: 4px solid #007acc; padding: 10px 15px; margin: 15px 0; border-radius: 4px; cursor: pointer;">
+                        <summary style="font-weight: bold; font-size: 1.1em; outline: none;">Continuaciones Delimitadas (Haz clic para expandir)</summary>
+                        <div style="margin-top: 10px;">
+                            <p>
+                                El verdadero motor de los Efectos Algebraicos es el uso de la pila de llamadas nativa (<strong>Call Stack</strong>) en lugar de la memoria Heap.
+                            </p>
+                            <ul>
+                                <li><strong>Cero Basura en RAM:</strong> Al hacer <code>perform</code>, el motor del lenguaje congela eficientemente el puntero del Stack Frame actual. No se instancian objetos intermedios en el Heap, eliminando los cuellos de botella del Garbage Collector.</li>
+                                <li><strong>Desacoplamiento de Firmas:</strong> La firma de la función tipa los efectos como simples etiquetas requeridas ($A \xrightarrow{[\text{DB}]} B$), evitando el Efecto que obliga a envolver en cajas todo el código superior.</li>
+                                <li><strong>Trazas Nativas Transparentes:</strong> Al preservar la pila nativa, si ocurre un fallo crítico, el motor reconstruye un Stack Trace claro que apunta de forma directa a la línea de la lógica de dominio original.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 text-justify">
+                    <h3>Impacto en la Industria</h3>
+                    <p>
+                        Los Efectos Algebraicos han transitado de la investigación teórica a la implementación práctica en la ingeniería de software moderna:
+                    </p>
+                    <ul>
+                        <li><strong>OCaml 5:</strong> Integró soporte nativo para manejadores de efectos directamente en su entorno de ejecución (runtime) para concurrencia de alto rendimiento.</li>
+                        <li><strong>Lenguajes de Vanguardia:</strong> Compiladores de nueva generación como <strong>Koka</strong> y <strong>Unison</strong> basan toda su arquitectura estándar en este paradigma.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-justify">
+                    <h3>Inspiración en el Mainstream</h3>
+                    <p>
+                        Patrones arquitectónicos altamente adoptados como los <strong>React Hooks</strong> (interrumpir el render para pedir estado externo) o la sintaxis <code>async/await</code> operan bajo filosofías de diseño directamente inspiradas en el manejo algebraico de efectos.
+                    </p>
+                </div>
+            </div>
+
             <hr>
             <hr>
-
-
 
         </div>
 
