@@ -790,6 +790,35 @@
       </div>
     </section><!-- #content -->
 
+    <section id="flujo-trabajo" style="margin-top:50px;">
+      <div class="container">
+        <div class="text_cell_render border-box-sizing rendered_html">
+          <h2 class="title"><strong>Flujo básico de trabajo</strong></h2>
+          <p>
+            La programación lógica se organiza como un flujo simple y declarativo: se define el conocimiento,
+            se consulta y el sistema infiere soluciones.
+          </p>
+          <ol>
+            <li><strong>Definir hechos, reglas y predicados</strong> para construir la base de conocimientos.</li>
+            <li><strong>Plantear consultas</strong> (metas) sobre ese conocimiento.</li>
+            <li><strong>Obtener soluciones</strong> mediante inferencia lógica y backtracking.</li>
+          </ol>
+          <p>Ejemplo mínimo en Prolog:</p>
+          <pre>
+% Hechos
+padre(charles, william).
+padre(william, george).
+
+% Regla
+abuelo(X, Y) :- padre(X, Z), padre(Z, Y).
+
+% Consulta
+?- abuelo(charles, george).
+          </pre>
+        </div>
+      </div>
+    </section>
+
     <section id="ventajas" style="margin-top:50px; margin-bottom: 50px;">
       <div class="container">
           <div class="text_cell_render border-box-sizing rendered_html">
