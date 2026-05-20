@@ -1,0 +1,12 @@
+body{ font-family: Arial, Helvetica, sans-serif; background:#f8f8f8; color:#222; }
+.quiz-wrap{ max-width:860px; margin:30px auto; background:#fff; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+h1{ font-size:20px; margin:0 0 12px; }
+.question{ margin:14px 0; padding:10px; border-radius:4px; }
+.question.correct{ background:#e6ffed; }
+.question.wrong{ background:#fff3f3; }
+.choices{ list-style:none; padding:0; margin:8px 0 0; }
+.choices li{ margin:6px 0; }
+label{ margin-left:8px; }
+.controls{ margin-top:12px; }
+button{ padding:8px 12px; margin-right:8px; cursor:pointer; }
+.result{ margin-top:14px; font-size:16px; }
