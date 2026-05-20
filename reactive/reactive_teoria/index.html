@@ -743,9 +743,49 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 id="line8_1">RxPY </h4>
+
+                            <h4 id="line8_1">RxPY - Ejemplos de Programación Reactiva</h4>
+
+                            <hr>
+
+                            <h5>Ejemplo 1</h5>
+
+                            <p>
+                                El siguiente ejemplo muestra un uso básico de RxPY.
+                            </p>
 
                             <script src="https://gist.github.com/juankg214/e0f5ed1550993577ea302edbf10e775a.js"></script>
+
+                            <br><br>
+
+                            <h5>Ejemplo 2: Comparación entre Programación Tradicional y Reactiva</h5>
+
+                            <p>
+                                El siguiente ejemplo simula un sistema de monitoreo de mensajes
+                                en tiempo real. Se compara un enfoque tradicional, donde el programa
+                                controla manualmente el flujo de ejecución, con un enfoque reactivo
+                                utilizando RxPY, donde el sistema reacciona automáticamente cuando
+                                llegan nuevos eventos.
+                            </p>
+
+                            <p>
+                                En el enfoque reactivo los mensajes son tratados como un flujo de datos
+                                (stream), utilizando conceptos como observables, observers y suscripciones.
+                            </p>
+
+                            <script src="https://gist.github.com/bforero/681aad5ce6949008faa32a0c66e97ce2.js"></script>
+
+                            <br>
+
+                            <p>
+                                <strong>Conceptos utilizados:</strong>
+                                Stream, Observable, Observer, Subscriber y estrategia Push.
+                            </p>
+
+                            <p>
+                                Aunque ambos enfoques producen un resultado similar, la principal diferencia se encuentra en la manera en que se maneja el flujo de datos y la ejecución del programa. En el enfoque tradicional, el sistema controla manualmente cada paso mediante ciclos y validaciones explícitas, recorriendo constantemente los mensajes para procesarlos. En cambio, en el enfoque reactivo los mensajes son tratados como eventos dentro de un flujo de datos, permitiendo que el sistema reaccione automáticamente cuando llega nueva información. De esta manera, la programación reactiva se centra en responder a eventos y propagación de cambios, mientras que la programación tradicional se basa en el control manual de la ejecución.
+                            </p>
+
                         </div>
                         <!-- end col -->
                     </div>
