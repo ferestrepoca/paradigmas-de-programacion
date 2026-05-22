@@ -3,220 +3,765 @@
   <head>
     <meta charset="utf-8" />
     <meta name="description" content="Scala Tutorial" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="Scala.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap"
       rel="stylesheet"
     />
     <title>Tutorial Scala</title>
+
+    <!--
+      Actualización visual 2026-I.
+      Se agregan estilos locales para mejorar la presentación de Scala.html
+      sin modificar Scala.css ni recursos globales del repositorio.
+    -->
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: #eaeaea;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .top-nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 12px 24px;
+        background: rgba(255, 255, 255, 0.97);
+        border-bottom: 1px solid #ead3d3;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+        font-family: "Roboto", sans-serif;
+      }
+
+      .top-nav__brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #660000;
+        font-weight: 900;
+      }
+
+      .top-nav__brand img {
+        width: 42px;
+        max-height: 42px;
+      }
+
+      .top-nav__links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .top-nav__links a {
+        padding: 9px 12px;
+        border-radius: 999px;
+        color: #4a5659;
+        font-size: 0.88em;
+        font-weight: 900;
+        transition: 0.25s ease;
+      }
+
+      .top-nav__links a:hover {
+        color: white;
+        background: #660000;
+      }
+
+      .hero-scala {
+        margin-bottom: 1.5em;
+        padding: 3.2em 2em;
+        border-radius: 20px;
+        color: white;
+        background:
+          linear-gradient(135deg, rgba(74, 86, 89, 0.96), rgba(102, 0, 0, 0.92)),
+          url("imagenes/scala.png");
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+        font-family: "Roboto", sans-serif;
+      }
+
+      .hero-scala__tag {
+        display: inline-block;
+        padding: 8px 14px;
+        margin-bottom: 1em;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        font-size: 0.9em;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .hero-scala h1 {
+        margin: 0;
+        max-width: 900px;
+        font-size: clamp(2.1em, 5vw, 4.3em);
+        line-height: 1.05;
+        font-weight: 900;
+      }
+
+      .hero-scala p {
+        max-width: 820px;
+        margin: 1.1em 0 0;
+        font-size: 1.08em;
+        line-height: 1.65;
+      }
+
+      .hero-scala__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 1.8em;
+      }
+
+      .hero-scala__button {
+        display: inline-block;
+        padding: 12px 18px;
+        border-radius: 999px;
+        background: #ed2224;
+        color: white;
+        font-weight: 900;
+        transition: 0.25s ease;
+      }
+
+      .hero-scala__button:hover {
+        background: white;
+        color: #660000;
+        transform: translateY(-2px);
+      }
+
+      .hero-scala__button--secondary {
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.45);
+      }
+
+      .section-lead {
+        color: #4a5659;
+        line-height: 1.65;
+        margin-top: -0.2em;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 18px;
+        margin-top: 1.4em;
+      }
+
+      .main-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 18px;
+        margin-bottom: 1.5em;
+      }
+
+      .main-card,
+      .material-card,
+      .info-card {
+        border-radius: 18px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      .main-card {
+        display: block;
+        padding: 1.3em;
+        color: white;
+        background: linear-gradient(135deg, #660000, #ed2224);
+        transition: 0.25s ease;
+      }
+
+      .main-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+      }
+
+      .main-card__icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        margin-bottom: 0.9em;
+        border-radius: 50%;
+        color: #660000;
+        background: white;
+        font-weight: 900;
+      }
+
+      .main-card h3 {
+        margin: 0 0 0.55em;
+        font-size: 1.15em;
+      }
+
+      .main-card p {
+        margin: 0;
+        line-height: 1.55;
+      }
+
+      .material-card {
+        display: block;
+        padding: 1.25em;
+        min-height: 150px;
+        color: black;
+        background: white;
+        border-left: 7px solid #ed2224;
+        transition: 0.25s ease;
+      }
+
+      .material-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.14);
+      }
+
+      .material-card h3 {
+        margin: 0 0 0.65em;
+        color: #660000;
+      }
+
+      .material-card p {
+        margin: 0;
+        line-height: 1.55;
+      }
+
+      .material-card__label {
+        display: inline-block;
+        margin-bottom: 0.75em;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: #fff0f0;
+        color: #660000;
+        font-size: 0.8em;
+        font-weight: 900;
+      }
+
+      .info-card {
+        padding: 1.2em;
+        border: 1px solid #f0d0d0;
+        background: linear-gradient(180deg, #ffffff, #fff7f7);
+      }
+
+      .info-card__icon {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #660000;
+        color: white;
+        font-weight: 900;
+        margin-bottom: 0.9em;
+      }
+
+      .info-card h3 {
+        margin: 0 0 0.55em;
+        color: #660000;
+        font-size: 1.05em;
+      }
+
+      .info-card p {
+        margin: 0;
+        line-height: 1.55;
+      }
+
+      .code-showcase {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .code-box {
+        margin: 0;
+        padding: 1.3em;
+        border-radius: 16px;
+        overflow-x: auto;
+        color: #f4f4f4;
+        background: #2f383b;
+        line-height: 1.55;
+        font-size: 0.93em;
+      }
+
+      .highlight-note {
+        padding: 1.2em;
+        border-radius: 16px;
+        background: #fff3f3;
+        border: 1px solid #ffd0d0;
+        line-height: 1.6;
+      }
+
+      .link-list a {
+        color: #660000;
+        font-weight: 900;
+      }
+
+      .image-panel {
+        padding: 1em;
+        border-radius: 18px;
+        background: #ffffff;
+        border: 1px solid #eeeeee;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+      }
+
+      .image-panel img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 850px) {
+        .top-nav {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .top-nav__links {
+          justify-content: flex-start;
+        }
+
+        .code-showcase {
+          grid-template-columns: 1fr;
+        }
+
+        .content {
+          padding: 18px;
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <header>
-      <div class="header">
-        <img
-          class="header__logo"
-          src="imagenes/scala-logo.svg"
-          alt="imagen scala"
-        />
-        <!-- <a href="document/Scala.pdf">
-          <div class="header__button">PRESENTACIÓN</div>
-        </a> -->
-        <a href="document/taller.pdf">
-          <div class="header__button">TALLER</div>
+    <nav class="top-nav">
+      <a class="top-nav__brand" href="#inicio">
+        <img src="imagenes/scala-logo.svg" alt="Scala logo" />
+        <span>Tutorial Scala</span>
+      </a>
+      <div class="top-nav__links">
+        <a href="#presentaciones">Presentaciones</a>
+        <a href="#talleres">Talleres</a>
+        <a href="#ejemplos">Ejemplos</a>
+        <a href="#notebooks">Notebooks</a>
+        <a href="#teoria">Teoría</a>
+      </div>
+    </nav>
+
+    <div class="content" id="inicio">
+      <section class="hero-scala">
+        <span class="hero-scala__tag">Programación funcional · JVM · Scala</span>
+        <h1>Tutorial de Scala</h1>
+        <p>
+          Scala combina programación orientada a objetos y programación funcional. Su diseño
+          permite trabajar con funciones como valores, colecciones expresivas, inferencia de tipos
+          y ejecución sobre la máquina virtual de Java.
+        </p>
+        <div class="hero-scala__actions">
+          <a class="hero-scala__button" href="https://www.scala-lang.org/" target="_blank">Página oficial de Scala</a>
+          <a class="hero-scala__button hero-scala__button--secondary" href="#presentaciones">Ver material</a>
+          <a class="hero-scala__button hero-scala__button--secondary" href="#teoria">Ver teoría</a>
+        </div>
+      </section>
+
+      <div class="main-cards-grid">
+        <a class="main-card" href="#presentaciones">
+          <span class="main-card__icon">P</span>
+          <h3>Presentaciones</h3>
+          <p>Diapositivas históricas del tutorial.</p>
         </a>
-        <a href="https://www.scala-lang.org/">
-          <div class="header__button">PÁGINA OFICIAL</div>
+        <a class="main-card" href="#talleres">
+          <span class="main-card__icon">T</span>
+          <h3>Talleres</h3>
+          <p>Actividades para repasar los conceptos principales de Scala.</p>
         </a>
-        <a href="codigo.html">
-          <div class="header__button">EJEMPLOS</div>
+        <a class="main-card" href="#ejemplos">
+          <span class="main-card__icon">E</span>
+          <h3>Ejemplos</h3>
+          <p>Acceso a ejemplos de código y comparación práctica con Java.</p>
         </a>
-        <a
-          href="http://nbviewer.jupyter.org/url/ferestrepoca.github.io/paradigmas-de-programacion/progfun/tutoriales/Scala/document/Apoyo_presentacion_Tutorial_Scala.ipynb "
-        >
-          <div class="header__button">MATERIAL DE APOYO - 2022-1</div>
+        <a class="main-card" href="#notebooks">
+          <span class="main-card__icon">N</span>
+          <h3>Notebooks</h3>
+          <p>Material interactivo para revisar y ejecutar ejemplos guiados.</p>
         </a>
       </div>
-    </header>
 
-    <div class="content">
-      <div class="content__section">
+      <div class="content__section" id="presentaciones">
         <h2 class="content__section-title">Presentaciones</h2>
-        <ul>
-          <li>
-            <a
-              href="document/Scala.pdf"
-              target="_blank"
-              style="color: #660000; font-weight: 900"
-              >Presentación 2017-2</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://docs.google.com/presentation/d/1pUFZk3sGKoFqZH-XquUVlto8iOtXO0_NApq0oyB2-zc/edit?usp=sharing"
-              target="_blank"
-              style="color: #660000; font-weight: 900"
-              >Presentación 2020-2</a
-            >
-          </li>
-          <li>
-            <a
-              href="document/Tutorial_Scala.pdf"
-              target="_blank"
-              style="color: #660000; font-weight: 900"
-              >Presentación 2022-1</a
-            >
-          </li>
-          <li>
-            <a
-              href="document/tutorial_scala_2024-I.pdf"
-              target="_blank"
-              style="color: #660000; font-weight: 900"
-              >Presentación 2024-1 (Parte práctica)</a
-            >
-          </li>
-        </ul>
+        <p class="section-lead">
+          Material de exposición asociado al tutorial de Scala en distintos periodos académicos.
+        </p>
+        <div class="cards-grid">
+          <a class="material-card" href="document/Scala.pdf" target="_blank">
+            <span class="material-card__label">2017-2</span>
+            <h3>Presentación Scala</h3>
+            <p>Material histórico del tutorial de Scala.</p>
+          </a>
+          <a
+            class="material-card"
+            href="https://docs.google.com/presentation/d/1pUFZk3sGKoFqZH-XquUVlto8iOtXO0_NApq0oyB2-zc/edit?usp=sharing"
+            target="_blank"
+          >
+            <span class="material-card__label">2020-2</span>
+            <h3>Presentación Scala</h3>
+            <p>Presentación alojada en Google Slides.</p>
+          </a>
+          <a class="material-card" href="document/Tutorial_Scala.pdf" target="_blank">
+            <span class="material-card__label">2022-1</span>
+            <h3>Tutorial Scala</h3>
+            <p>Material de apoyo para el tutorial de Scala.</p>
+          </a>
+          <a class="material-card" href="document/tutorial_scala_2024-I.pdf" target="_blank">
+            <span class="material-card__label">2024-1</span>
+            <h3>Parte práctica</h3>
+            <p>Presentación práctica del tutorial.</p>
+          </a>
+          <a
+            class="material-card"
+            href="document/Programaci%C3%B3n%20funcional%20con%20Scala.pdf"
+            target="_blank"
+          >
+            <span class="material-card__label">2026-I</span>
+            <h3>Programación funcional con Scala</h3>
+            <p>Presentación nueva con conceptos, ejemplos y enfoque funcional.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="content__section" id="talleres">
+        <h2 class="content__section-title">Talleres</h2>
+        <p class="section-lead">
+          Actividades para practicar lo visto en el tutorial con preguntas de repaso sobre Scala, funciones, colecciones,
+          comparación con Java y ejemplo práctico.
+        </p>
+        <div class="cards-grid">
+          <a class="material-card" href="document/taller.pdf" target="_blank">
+            <span class="material-card__label">Taller anterior</span>
+            <h3>Taller Scala</h3>
+            <p>Actividad previamente incorporada al tutorial.</p>
+          </a>
+          <a class="material-card" href="document/Taller%20con%20respuestas.pdf" target="_blank">
+            <span class="material-card__label">2026-I</span>
+            <h3>Taller: Programación funcional con Scala</h3>
+            <p>Preguntas con respuestas sobre conceptos básicos, JVM, <code>val</code>, <code>var</code>, <code>map</code>, <code>filter</code> y funciones puras.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="content__section" id="ejemplos">
+        <h2 class="content__section-title">Ejemplos</h2>
+        <p class="section-lead">
+          Recursos para revisar código y comparar el estilo de Scala con otros lenguajes de la JVM.
+        </p>
+        <div class="cards-grid">
+          <a class="material-card" href="codigo.html">
+            <span class="material-card__label">Código</span>
+            <h3>Ejemplos de Scala</h3>
+            <p>Hipervínculo a la página de ejemplos ya existente dentro del tutorial.</p>
+          </a>
+          <a class="material-card" href="https://www.toptal.com/scala/why-should-i-learn-scala" target="_blank">
+            <span class="material-card__label">Comparación</span>
+            <h3>Scala vs Java</h3>
+            <p>Lectura complementaria para comparar Scala con Java y entender sus diferencias prácticas.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="content__section" id="notebooks">
+        <h2 class="content__section-title">Notebooks</h2>
+        <p class="section-lead">
+          Esta sección reúne los notebooks interactivos del tutorial. Estos recursos permiten
+          revisar explicaciones, ejecutar ejemplos y seguir ejercicios guiados. 
+        </p>
+        <div class="cards-grid">
+          <a
+            class="material-card"
+            href="http://nbviewer.jupyter.org/url/ferestrepoca.github.io/paradigmas-de-programacion/progfun/tutoriales/Scala/document/tutorialScala.ipynb"
+            target="_blank"
+          >
+            <span class="material-card__label">2026-I</span>
+            <h3>Notebook interactivo: Tutorial de Scala</h3>
+            <p>
+              Tutorial práctico con configuración del entorno, sintaxis básica, funciones,
+              colecciones, pattern matching y caso aplicado.
+            </p>
+          </a>
+          <a
+            class="material-card"
+            href="http://nbviewer.jupyter.org/url/ferestrepoca.github.io/paradigmas-de-programacion/progfun/tutoriales/Scala/document/Apoyo_presentacion_Tutorial_Scala.ipynb"
+            target="_blank"
+          >
+            <span class="material-card__label">2022-I</span>
+            <h3>Notebook de apoyo</h3>
+            <p>Material interactivo previamente incorporado al tutorial de Scala.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="content__section" id="teoria">
+        <h2 class="content__section-title">Teoría: ¿por qué Scala para programación funcional?</h2>
+        <p class="section-lead">
+          Scala permite escribir programas expresivos combinando objetos, funciones e inmutabilidad.
+          Su valor principal en este tutorial es mostrar cómo pasar de instrucciones que modifican
+          estado a transformaciones de datos más claras y composables.
+        </p>
+        <div class="cards-grid">
+          <div class="info-card">
+            <div class="info-card__icon">1</div>
+            <h3>Todo puede ser una expresión</h3>
+            <p>
+              En Scala, bloques, condicionales y coincidencias de patrones pueden producir
+              valores. Esto favorece código más compacto y fácil de encadenar.
+            </p>
+          </div>
+          <div class="info-card">
+            <div class="info-card__icon">2</div>
+            <h3>Inmutabilidad por defecto</h3>
+            <p>
+              El uso de <code>val</code> y colecciones inmutables ayuda a evitar cambios
+              inesperados de estado, lo que facilita pruebas, mantenimiento y concurrencia.
+            </p>
+          </div>
+          <div class="info-card">
+            <div class="info-card__icon">3</div>
+            <h3>Funciones como valores</h3>
+            <p>
+              Las funciones pueden guardarse en variables, pasarse como argumentos y devolverse
+              como resultado. Esta idea permite usar operaciones como <code>map</code>,
+              <code>filter</code> y <code>reduce</code>.
+            </p>
+          </div>
+          <div class="info-card">
+            <div class="info-card__icon">4</div>
+            <h3>Funciones puras</h3>
+            <p>
+              Una función pura produce siempre el mismo resultado para la misma entrada y no
+              modifica variables externas. Esto hace que el código sea más predecible y fácil
+              de probar.
+            </p>
+          </div>
+          <div class="info-card">
+            <div class="info-card__icon">5</div>
+            <h3>Transformación de colecciones</h3>
+            <p>
+              Operaciones como <code>map</code>, <code>filter</code> y <code>reduce</code>
+              permiten procesar listas sin alterar la colección original, favoreciendo un
+              estilo declarativo.
+            </p>
+          </div>
+          <div class="info-card">
+            <div class="info-card__icon">6</div>
+            <h3>Pattern matching</h3>
+            <p>
+              <code>match</code> permite clasificar datos de forma clara. Es útil para reemplazar
+              cadenas largas de condicionales y expresar casos de manera legible.
+            </p>
+          </div>
+        </div>
+
+        <div class="highlight-note" style="margin-top: 1.4em">
+          Mientras Java suele escribirse con un estilo más imperativo y orientado a objetos,
+          Scala permite expresar muchas soluciones de forma más declarativa, usando funciones,
+          colecciones inmutables y transformaciones sobre datos.
+        </div>
+
+        <div style="margin-top: 1.6em">
+          <h3>Ejemplo visual: del estilo imperativo al funcional</h3>
+          <p class="section-lead">
+            Una de las ideas centrales del tutorial es dejar de modificar variables paso a paso
+            y empezar a describir transformaciones sobre datos.
+          </p>
+          <div class="code-showcase">
+            <div>
+              <h3>Enfoque imperativo</h3>
+              <pre class="code-box"><code>var aprobados = List[String]()
+
+for (estudiante &lt;- estudiantes) {
+  if (estudiante.nota &gt;= 3.0) {
+    aprobados = aprobados :+ estudiante.nombre
+  }
+}</code></pre>
+            </div>
+            <div>
+              <h3>Enfoque funcional</h3>
+              <pre class="code-box"><code>val aprobados = estudiantes
+  .filter(_.nota &gt;= 3.0)
+  .map(_.nombre)</code></pre>
+            </div>
+          </div>
+          <div class="highlight-note" style="margin-top: 1.3em">
+            En el enfoque funcional no se modifica una lista existente. Se parte de una colección,
+            se filtran los datos que cumplen una condición y luego se transforman para obtener
+            únicamente los nombres. El resultado es más breve, más declarativo y más cercano al
+            objetivo del problema.
+          </div>
+        </div>
+
+        <div style="margin-top: 1.6em">
+          <h3>Ejemplo corto con <code>map</code>, <code>filter</code> y <code>reduce</code></h3>
+          <p class="section-lead">
+            Este ejemplo muestra cómo Scala permite transformar, filtrar y resumir datos sin
+            modificar directamente la lista original.
+          </p>
+          <pre class="code-box"><code>val notas = List(3.2, 4.5, 2.8, 5.0)
+
+val aprobadas = notas.filter(_ &gt;= 3.0)
+val notasEscaladas = notas.map(_ + 0.2)
+val promedio = notas.reduce(_ + _) / notas.length</code></pre>
+          <div class="highlight-note" style="margin-top: 1.3em">
+            <code>filter</code> selecciona los datos que cumplen una condición,
+            <code>map</code> transforma cada elemento y <code>reduce</code> combina los
+            valores de la colección para obtener un único resultado.
+          </div>
+        </div>
       </div>
 
       <div class="content__section">
         <h2 class="content__section-title">Introducción</h2>
         <ul>
-          <li>
-            Scala es un lenguaje multi-paradigma(orientado a objetos, funcional)
-          </li>
+          <li>Scala es un lenguaje multiparadigma: orientado a objetos y funcional.</li>
           <li>Fue diseñado por Martin Odersky en el año 2003.</li>
           <li>
             El nombre de Scala surge de la unión de dos palabras:
             <em>scalable</em> y <em>language</em>.
           </li>
           <li>
-            Su implementación actual corre en la máquina virtual de Java <br />
-            y es compatible con las aplicaciones Java existentes.
+            Su implementación actual corre en la máquina virtual de Java y es compatible
+            con aplicaciones Java existentes.
           </li>
         </ul>
         <img
           src="imagenes/poo.png"
           class="content__image--right"
           style="width: 20%"
+          alt="paradigmas de Scala"
         />
       </div>
 
       <div class="content__section">
         <h2 class="content__section-title">Instalación</h2>
-        Podemos trabajar en dos entornos: por consola y en un ide como eclipse,
-        para más información mira una guía paso a paso:
-        <ul>
+        <p>
+          Scala puede trabajarse desde consola, desde un IDE o desde notebooks interactivos.
+          Para este tutorial se recomienda revisar primero los notebooks, porque permiten
+          estudiar ejemplos ejecutables y comparar resultados paso a paso.
+        </p>
+        <ul class="link-list">
           <li>
             <a
               href="http://www.journaldev.com/7456/installing-scala-on-linuxunix-and-windows-os"
               target="_blank"
-              style="color: #660000; font-weight: 900"
-              >Consola</a
+              >Guía de instalación por consola</a
             >
           </li>
           <li>
             <a
               href="http://scala-ide.org/docs/current-user-doc/gettingstarted/index.html"
               target="_blank"
-              style="color: #660000; font-weight: 900"
-              >Ide</a
+              >Guía de instalación en IDE</a
             >
+          </li>
+          <li>
+            <a href="https://www.scala-lang.org/" target="_blank">Página oficial de Scala</a>
           </li>
         </ul>
       </div>
+
       <div class="content__section">
-        <img src="imagenes/cara.png" class="content__image--right" />
+        <img src="imagenes/cara.png" class="content__image--right" alt="imagen decorativa" />
         <h2 class="content__section-title">Características</h2>
         <ul>
           <li>Scala es orientado a objetos:</li>
           <ul>
-            <li>
-              Los tipos y comportamientos de objetos son descritos por clases y
-              traits.
-            </li>
+            <li>Los tipos y comportamientos de objetos son descritos por clases y traits.</li>
             <li>Las clases pueden ser extendidas a través de subclases.</li>
-            <li>
-              Posee un mecanismo de composición mezclada que provee remplazo
-              para la herencia múltiple.
-            </li>
+            <li>Posee composición mezclada como alternativa a la herencia múltiple.</li>
           </ul>
           <li>Scala es funcional:</li>
           <ul>
             <li>Toda función es un valor.</li>
-            <li>Scala provee una sintaxis para definir funciones anónimas.</li>
-            <li>Soporta funciones de primer orden.</li>
-            <li>Permite que las funciones sean anidadas</li>
-            <li>Soporta currying.</li>
+            <li>Permite definir funciones anónimas.</li>
+            <li>Soporta funciones de orden superior.</li>
+            <li>Permite funciones anidadas y currying.</li>
           </ul>
-          <li>Estáticamente tipado:</li>
+          <li>Scala es estáticamente tipado:</li>
           <ul>
             <li>Soporta clases genéricas.</li>
-            <li>Anotaciones variables.</li>
-            <li>Límites de tipado superiores e inferiores.</li>
-            <li>
-              Clases internas y tipos abstractos como miembros de objetos.
-            </li>
-            <li>Tipos compuestos.</li>
-            <li>Auto-referencias explicitamente tipadas.</li>
-            <li>Métodos polimórficos.</li>
+            <li>Permite métodos polimórficos.</li>
+            <li>Ofrece inferencia de tipos sin perder verificación en tiempo de compilación.</li>
           </ul>
-          <li>Scala es extensible:</li>
+          <li>Scala es extensible e interoperable:</li>
           <ul>
-            <li>
-              Cualquier método puede ser usado como un operador de infijo o
-              postfijo.
-            </li>
-            <li>
-              Closures son construidos automáticamente dependiendo del tipo
-              esperado (tipos objetivo).
-            </li>
-            <li>
-              Diseñado para interoperar bien con el popular Entorno de ejecución
-              de Java (JRE).
-            </li>
-            <li>Está disponible el soporte para el Framework .NET (CLR).</li>
+            <li>Cualquier método puede usarse como operador infijo o postfijo.</li>
+            <li>Interopera con el entorno de ejecución de Java.</li>
           </ul>
         </ul>
       </div>
+
       <div class="content__section">
         <h2 class="content__section-title">Tipos de datos</h2>
-        <center>
-          <img src="imagenes/tipos.png" alt="tipos" style="width: 60%" />
-        </center>
+        <div class="image-panel">
+          <center>
+            <img src="imagenes/tipos.png" alt="tipos" style="width: 60%" />
+          </center>
+        </div>
         <p>
-          Los tipos de datos de scala se corresponden con los tipos de datos de
-          java, el Unit equivale al Void, Nothing es el subtipo de cualquier
-          otro tipo; incluye no valores, Any es el supertipo de cualquier tipo;
-          cualquier objeto es de tipo Any.
+          Los tipos de datos de Scala se corresponden con los tipos de datos de Java.
+          <code>Unit</code> equivale a <code>void</code>; <code>Nothing</code> es subtipo
+          de cualquier otro tipo; y <code>Any</code> es el supertipo de todos los tipos.
         </p>
       </div>
+
       <div class="content__section">
         <h2 class="content__section-title">Operadores</h2>
-        <center>
-          <img src="imagenes/precedencia.png" alt="operadores" />
-        </center>
+        <div class="image-panel">
+          <center>
+            <img src="imagenes/precedencia.png" alt="operadores" />
+          </center>
+        </div>
       </div>
+
       <div class="content__section">
-        <h2>Coleciones</h2>
-        <center>
-          <img src="imagenes/colecciones.png" alt="colecciones" />
-        </center>
+        <h2 class="content__section-title">Colecciones</h2>
+        <div class="image-panel">
+          <center>
+            <img src="imagenes/colecciones.png" alt="colecciones" />
+          </center>
+        </div>
       </div>
+
       <div class="content__section">
-        Comparación entre la programación en java y la programación en scala con
-        ejemplos:
-        <a href="https://www.toptal.com/scala/why-should-i-learn-scala">
-          --> Scala vs Java <--</a
-        >
+        <h2 class="content__section-title">Scala y Java</h2>
+        <p>
+          Scala se ejecuta sobre la JVM y puede interoperar con bibliotecas Java. Sin embargo,
+          suele ofrecer una sintaxis más compacta para transformar colecciones y trabajar con
+          funciones de alto nivel.
+        </p>
+        <p class="link-list">
+          <a href="https://www.toptal.com/scala/why-should-i-learn-scala" target="_blank">
+            Comparación entre Scala y Java
+          </a>
+        </p>
       </div>
+
       <footer class="footer">
         <p>
-          En este tutorial nos centramos en la parte funcional de scala, no se
-          explicará la parte orientada a objetos.<br />
-          Diana Carolina Navarrete - Cristian Camilo Lozano
+          En este tutorial se enfatiza la parte funcional de Scala como complemento
+          al material histórico de la página.<br />
+          Diana Carolina Navarrete - Cristian Camilo Lozano<br />
+          Actualización 2026-I: presentación, notebook interactivo y taller de programación funcional con Scala.
         </p>
-        <span>© Copyright 2017</span>
+        <span>© Copyright 2017 - Actualizado 2026-I</span>
       </footer>
     </div>
   </body>
