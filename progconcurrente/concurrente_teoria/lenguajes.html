@@ -1421,9 +1421,76 @@ salida= Mensaje recibido:Hola
                 Thread 3 <br>
               </blockquote>
   
-              <ul>
-                <li>Ejemplo de concurrencia en <strong>Crystal</strong>:</li>
-              </ul>
+              <h4>Problema de lectores y escritores en Rust</h4>
+              <div style="float:left">
+                <img src="images/lectores-escritores.jpg" style="float:left; margin-right:20px; margin-bottom:20px" width="300px" height="300px" />
+                <p>
+                  El problema de lectores y escritores es un problema clásico en programación concurrente. </br>
+                  Tenemos un conjunto de hilos que quieren leer un dato, así como otro conjunto de hilos que quiere modificarlo. </br>
+                  Si un hilo modifica el dato mientras otro está leyéndolo se producirá una lectura stale. También se pueden producir errores por operaciones
+                  realizadas en una secuencia incorrecta entre los escritores. </br> </br>
+
+                  En este ejemplo tenemos un solo escritor y múltiples lectores. El acceso se serializa para todos mediante un Mutex. </br>
+                  Cada lector lee el valor protegido por el Mutex mientras que el escritor lo modifica sumándole 10 cada vez que obtiene acceso a él. </br>
+                  El Arc permite que el mismo recurso sea compartido por todos los hilos de forma segura </br>
+                </p>
+              </div>
+              <pre><code class="language-rust">
+                use std::sync::{Arc, Mutex};
+                use std::thread;
+                use std::time::Duration;
+
+                fn lector(id: usize, dato: Arc&ltMutex&lti32>>) {
+                    for _ in 0..3 {
+                        let num = dato.lock().unwrap();
+
+                        println!("Lector {} lee valor: {}", id, *num);
+                        thread::sleep(Duration::from_millis(500));
+                    }
+                }
+
+                fn escritor(dato: Arc&ltMutex&lti32>>) {
+                    for _ in 1..=3 {
+                        {
+                            let mut num = dato.lock().unwrap();
+
+                            *num += 10;
+                            println!("Escritor modifica valor a: {}", *num);
+                        }
+
+                        thread::sleep(Duration::from_millis(700));
+                    }
+                }
+
+                fn main() {
+                    let dato = Arc::new(Mutex::new(0));
+
+                    let mut handles = vec![];
+
+                    // Lectores
+                    for i in 0..3 {
+                        let dato_clonado = Arc::clone(&dato);
+                        let handle = thread::spawn(move || lector(i, dato_clonado));
+                        handles.push(handle);
+                    }
+
+                    // Escritor
+                    let dato_clonado = Arc::clone(&dato);
+                    let handle_escritor = thread::spawn(move || escritor(dato_clonado));
+
+                    handles.push(handle_escritor);
+
+                    // Esperar todos los hilos
+                    for handle in handles {
+                        handle.join().unwrap();
+                    }
+                }
+              </code></pre>
+            </div>
+              
+
+              <!-- Ejemplos de Crystal -->
+              <h3><strong>Crystal:</strong></h3>
               <p>
                 Crystal usa hilos llamados fibras para lograr concurrencia. Las fibras se comunican entre sí mediante
                 canales, como en Go o Clojure, sin tener que recurrir a la memoria compartida o bloqueos.
