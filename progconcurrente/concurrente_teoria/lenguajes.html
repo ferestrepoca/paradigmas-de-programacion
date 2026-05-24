@@ -327,63 +327,65 @@
         </div>
       </section>
 
+
+
       <section id="ejemplosLenguajes" style="margin-top:50px;">
         <div class="container">
           <div class="text_cell_render border-box-sizing rendered_html">
-            <h2 class="title"><strong>Ejemplos Lenguages</strong></h2>
-  
-              <ul>
-                <li>Ejemplo en <strong>python</strong>: Este es un pequeño ejemplo con el fin de ilustrar como podemos
-                  lanzar un hilo en python</li>
-              </ul>
-  
-              <div class="highlight highlight-source-python">
-                <pre><span class="pl-k">from</span> threading <span class="pl-k">import</span> Thread
-  <span class="pl-k">import</span> time
-  
-  <span class="pl-k">def</span> <span class="pl-en">say_hello</span>(<span class="pl-smi">name</span>):
-      <span class="pl-c1">print</span> (name, <span class="pl-s"><span class="pl-pds">"</span>Hola<span class="pl-pds">"</span></span>)
-  
-  t <span class="pl-k">=</span> Thread(<span class="pl-v">target</span><span class="pl-k">=</span>say_hello, <span class="pl-v">args</span><span class="pl-k">=</span>(<span class="pl-s"><span class="pl-pds">"</span>world<span class="pl-pds">"</span></span>,))
-  t.start()
-  t.join()</pre>
-              </div>
-  
+
+            <h2 class="title"><strong>Ejemplos Lenguajes</strong></h2>
+
+
+              <!-- Ejemplos de Python -->
+        	    <h3><strong>Python</strong></h3>
+              <pre><code class="language-python">
+                from threading import Thread
+                import time
+              
+                def say_hello(name):
+                    print (name, "Hola")
+              
+                t = Thread(target=say_hello, args=("world",))
+                t.start()
+                t.join()
+              </code></pre>
+
               <p><strong>Ejecucion:</strong> python archivo.py</p>
   
               <blockquote>
                 <p>('world', 'Hola')</p>
               </blockquote>
   
-              <ul>
-                <li>Ejemplo en <em>GO</em>: En este ejemplo podemos visualizar que los hilos no se ejecutan en el orden
-                  ascedente si no esto lo decide el scheduler del sistema operativo</li>
-              </ul>
-  
-              <div class="highlight highlight-source-go">
-                <pre><span class="pl-k">package</span> main
-  
-  <span class="pl-k">import</span> (
-      <span class="pl-s"><span class="pl-pds">"</span>fmt<span class="pl-pds">"</span></span>
-      <span class="pl-s"><span class="pl-pds">"</span>time<span class="pl-pds">"</span></span>
-  )
-  
-  <span class="pl-k">const</span> <span class="pl-v">FINAL</span> = <span class="pl-c1">100</span> * time.<span class="pl-smi">Millisecond</span>
-  
-  <span class="pl-k">func</span> <span class="pl-en">saluda</span>(<span class="pl-v">i</span> <span class="pl-v">int</span>) {
-      time.<span class="pl-c1">Sleep</span>(<span class="pl-c1">10</span> * time.<span class="pl-c1">Duration</span>(i%<span class="pl-c1">5</span>) * time.<span class="pl-smi">Millisecond</span> )
-      fmt.<span class="pl-c1">Println</span>(<span class="pl-s"><span class="pl-pds">"</span>Hola a todos<span class="pl-pds">"</span></span>, i)
-  }
-  
-  <span class="pl-k">func</span> <span class="pl-en">main</span>() {
-      <span class="pl-k">for</span> <span class="pl-smi">i</span> <span class="pl-k">:=</span> <span class="pl-c1">1</span>; i &lt;= <span class="pl-c1">6</span>; i++ {
-          <span class="pl-c">// Lanzamos nuestro hilo solo anteponiendo la palabra go a la funcion</span>
-          <span class="pl-k">go</span> <span class="pl-c1">saluda</span>(i)
-      }
-      time.<span class="pl-c1">Sleep</span>(FINAL)
-  }</pre>
-              </div>
-  
+
+
+              <!-- Ejemplos de Go -->
+  	          <h3><strong>Go</strong>:</h3>
+              <p>En este ejemplo podemos visualizar que los hilos no se ejecutan en el orden
+              ascedente si no esto lo decide el scheduler del sistema operativo</p>
+	            <pre><code class="language-go">
+                package main
+
+                import (
+                  "fmt"
+                  "time"
+                )
+
+                const FINAL = 100 * time.Millisecond
+
+                func saluda(i int) {
+                  time.Sleep(10 * time.Duration(i%5) * time.Millisecond)
+                  fmt.Println("Hola a todos", i)
+                }
+
+                func main() {
+                  for i := 1; i <= 6; i++ {
+                    // Lanzamos nuestro hilo solo anteponiendo la palabra go a la funcion
+                    go saluda(i)
+                  }
+                  time.Sleep(FINAL)
+                }
+	            </code></pre>
+	
               <p><strong>Ejecucion:</strong> go run archivo.go</p>
   
               <blockquote>
@@ -400,66 +402,67 @@
                 <p>Hola a todos 4</p>
               </blockquote>
   
-              <ul>
-                <li>Ejemplos semaforo en <strong>C</strong>: El siguiente codigo fuente solo sirve sistemas operativos
-                  basado en unix.</li>
-              </ul>
+
+
+              <!-- Ejemplos de C -->
+              <h3><strong>C:</strong></h3> 
+              <p>El siguiente código fuente implementa un semáforo y solo sirve sistemas operativos
+              basado en unix.</p>
   
-              <div class="highlight highlight-source-c">
-                <pre>#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>stdlib.h<span class="pl-pds">&gt;</span></span>
-  #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>stdio.h<span class="pl-pds">&gt;</span></span>
-  #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>pthread.h<span class="pl-pds">&gt;</span></span>
-  #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>unistd.h<span class="pl-pds">&gt;</span></span>
-  #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>sys/types.h<span class="pl-pds">&gt;</span></span>
-  #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>fcntl.h<span class="pl-pds">&gt;</span></span>
-  #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>sys/stat.h<span class="pl-pds">&gt;</span></span>
-  #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>semaphore.h<span class="pl-pds">&gt;</span></span>
-  
-  #<span class="pl-k">define</span> <span class="pl-en">NUMHILOS</span> <span class="pl-c1">5</span>
-  
-  <span class="pl-c1">sem_t</span> *semaforo;
-  <span class="pl-k">int</span> error, i, parametro, a;
-  <span class="pl-k">char</span> t;
-  <span class="pl-k">void</span> *z;
-  
-  <span class="pl-k">void</span> *<span class="pl-en">fun</span>(<span class="pl-k">void</span> *ap )
-  {
-      <span class="pl-c1">sem_t</span> *sem = ap;
-      <span class="pl-k">char</span> t;
-      <span class="pl-c1">sem_wait</span>( sem ); <span class="pl-c">// Bloqueamos seccion critica</span>
-      <span class="pl-c1">printf</span>( <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span> Hilo ENTRO a seccion critica<span class="pl-pds">"</span></span> );
-      <span class="pl-c1">fflush</span>( stdout );
-      <span class="pl-c1">sleep</span>( <span class="pl-c1">1</span> );
-      <span class="pl-c1">printf</span>( <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span> Hilo SALIO a seccion critica<span class="pl-cce">\n\n</span><span class="pl-pds">"</span></span> );
-      <span class="pl-c1">fflush</span>( stdout );
-      <span class="pl-c1">sem_post</span>( sem ); <span class="pl-c">// Desbloqueamos seccion critica</span>
-  }
-  
-  <span class="pl-k">int</span> <span class="pl-en">main</span>()
-  {
-      <span class="pl-c">// Creamos nuestro semaforo</span>
-      semaforo = <span class="pl-c1">sem_open</span>( <span class="pl-s"><span class="pl-pds">"</span>sema<span class="pl-pds">"</span></span>, O_CREAT, <span class="pl-c1">0666</span>, <span class="pl-c1">1</span> );
-  
-      <span class="pl-c">// Declaramos el descritor de los hilos</span>
-      <span class="pl-c1">pthread_t</span> hilos[NUMHILOS];
-  
-      <span class="pl-c">// Creamos nuestros hilos</span>
-      <span class="pl-k">for</span>( i = <span class="pl-c1">0</span>; i &lt; NUMHILOS; i++ )
-          <span class="pl-c1">pthread_create</span>( &amp;hilos[i], <span class="pl-c1">NULL</span>, (<span class="pl-k">void</span> *)fun, semaforo );
-  
-      <span class="pl-c">// Esperamos a que nuestro hilos de ejecutan antes de terminar el programa</span>
-      <span class="pl-k">for</span>( i = <span class="pl-c1">0</span>; i &lt; NUMHILOS; i++ )
-          <span class="pl-c1">pthread_join</span>( hilos[i], (<span class="pl-k">void</span> *)&amp;z );
-  
-      <span class="pl-c">// Destruimos nuestro semaforo</span>
-      <span class="pl-c1">sem_unlink</span>( <span class="pl-s"><span class="pl-pds">"</span>sema<span class="pl-pds">"</span></span> );
-      <span class="pl-c1">sem_close</span>( semaforo );
-      <span class="pl-k">return</span> <span class="pl-c1">0</span>;
-  }</pre>
-              </div>
+              <pre><code class="language-clike">
+                #include &ltstdlib.h>
+                #include &ltstdio.h>
+                #include &ltpthread.h>
+                #include &ltunistd.h>
+                #include &ltsys/types.h>
+                #include &ltfcntl.h>
+                #include &ltsys/stat.h>
+                #include &ltsemaphore.h>
+                
+                #define NUMHILOS 5
+                
+                sem_t *semaforo;
+                int error, i, parametro, a;
+                char t;
+                void *z;
+                
+                void *fun(void *ap )
+                {
+                    sem_t *sem = ap;
+                    char t;
+                    sem_wait( sem ); // Bloqueamos seccion critica
+                    printf( "\n Hilo ENTRO a seccion critica" );
+                    fflush( stdout );
+                    sleep( 1 );
+                    printf( "\n Hilo SALIO a seccion critica\n\n" );
+                    fflush( stdout );
+                    sem_post( sem ); // Desbloqueamos seccion critica
+                }
+                
+                int main()
+                {
+                    // Creamos nuestro semaforo
+                    semaforo = sem_open( "sema", O_CREAT, 0666, 1 );
+                
+                    // Declaramos el descritor de los hilos
+                    pthread_t hilos[NUMHILOS];
+                
+                    // Creamos nuestros hilos
+                    for( i = 0; i < NUMHILOS; i++ )
+                        pthread_create( &hilos[i], NULL, (void *)fun, semaforo );
+                
+                    // Esperamos a que nuestro hilos de ejecutan antes de terminar el programa
+                    for( i = 0; i < NUMHILOS; i++ )
+                        pthread_join( hilos[i], (void *)&z );
+                
+                    // Destruimos nuestro semaforo
+                    sem_unlink( "sema" );
+                    sem_close( semaforo );
+                    return 0;
+                }
+              </code></pre>
   
               <p>Compilamos: <strong>gcc semaforo.c -o semaforo -pthread</strong></p>
-  
               <p>Ejecutamos: <strong>./semaforo</strong></p>
   
               <blockquote>
@@ -476,70 +479,69 @@
                 <p>Hilo SALIO a sección critica</p>
               </blockquote>
   
-              <ul>
-                <li>Ejemplo en <strong>C++</strong>: Calculamos el numero pi con 4 hilos con la ayuda de <a
-                    href="https://es.wikipedia.org/wiki/Serie_de_Leibniz">Serie de Leibniz</a> </li>
-              </ul>
-  
-              <div class="highlight highlight-source-c++">
-                <pre>#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>iostream<span class="pl-pds">&gt;</span></span>
-  #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>thread<span class="pl-pds">&gt;</span></span>
-  #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>vector<span class="pl-pds">&gt;</span></span>
-  
-  <span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
-  vector&lt;<span class="pl-k">double</span>&gt; <span class="pl-en">valorCal</span>( <span class="pl-c1">4</span>, <span class="pl-c1">0.0</span> ), limites;
-  
-  <span class="pl-k">void</span> <span class="pl-en">calcularIntervalo</span> (<span class="pl-k">int</span> index)
-  {
-      <span class="pl-k">for</span> (<span class="pl-k">int</span> i = limites[<span class="pl-c1">index</span>]; i &lt; limites[<span class="pl-c1">index</span>+<span class="pl-c1">1</span>]; i++)
-          <span class="pl-k">if</span> (i % <span class="pl-c1">2</span> == <span class="pl-c1">0</span>)
-              valorCal[<span class="pl-c1">index</span>] += <span class="pl-c1">1.0</span>/(<span class="pl-c1">2</span>*i+<span class="pl-c1">1</span>);
-          <span class="pl-k">else</span>
-              valorCal[<span class="pl-c1">index</span>] -= <span class="pl-c1">1.0</span>/(<span class="pl-c1">2</span>*i+<span class="pl-c1">1</span>);
-  }
-  
-  <span class="pl-k">int</span> <span class="pl-en">main</span>()
-  {
-      <span class="pl-c">// Creamos nuestro limites</span>
-      <span class="pl-k">int</span> numeroSerie = <span class="pl-c1">1000000000</span>;
-      limites.<span class="pl-c1">push_back</span>( <span class="pl-c1">0</span> );
-      limites.<span class="pl-c1">push_back</span>( numeroSerie/<span class="pl-c1">4</span> );
-      limites.<span class="pl-c1">push_back</span>( numeroSerie/<span class="pl-c1">2</span> );
-      limites.<span class="pl-c1">push_back</span>( <span class="pl-c1">3</span>*(numeroSerie/<span class="pl-c1">4</span>) );
-      limites.<span class="pl-c1">push_back</span>( numeroSerie );
-  
-      <span class="pl-c">// Creamos a hilos</span>
-      thread hilos[<span class="pl-c1">4</span>];
-  
-      <span class="pl-c">// Inicializamos nuestros hilos</span>
-      <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; <span class="pl-c1">4</span>; i++)
-          hilos[i] = <span class="pl-c1">thread</span>( calcularIntervalo, i );
-  
-      <span class="pl-c">// Esperemos a que nuestros hilos terminen</span>
-      <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; <span class="pl-c1">4</span>; i++)
-          hilos[i].<span class="pl-c1">join</span>();
-  
-      <span class="pl-c">// Calculamos nuestra respuesta</span>
-      <span class="pl-k">double</span> answer = <span class="pl-c1">0</span>;
-      <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; <span class="pl-c1">4</span>; i++)
-          answer += valorCal[i];
-      answer *= <span class="pl-c1">4</span>;
-      <span class="pl-c1">printf</span>( <span class="pl-s"><span class="pl-pds">"</span>EL valor de pi es:<span class="pl-cce">\t</span><span class="pl-c1">%.20f</span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>, answer );
-      <span class="pl-k">return</span> <span class="pl-c1">0</span>;
-  }</pre>
-              </div>
-  
+
+
+              <!-- Ejemplos de C++ -->
+              <h3><strong>C++:</strong></h3>
+              <p> Calculamos el numero pi con 4 hilos con la ayuda de <a
+                    href="https://es.wikipedia.org/wiki/Serie_de_Leibniz">Serie de Leibniz</a>
+              </p>
+              
+              <pre><code class="language-clike">
+                #include &ltiostream>
+                #include &ltthread>
+                #include &ltvector>
+
+                using namespace std;
+                vector&ltdouble> valorCal(4, 0.0), limites;
+
+                void calcularIntervalo(int index) {
+                    for (int i = limites[index]; i < limites[index + 1]; i++)
+                        if (i % 2 == 0)
+                            valorCal[index] += 1.0 / (2 * i + 1);
+                        else
+                            valorCal[index] -= 1.0 / (2 * i + 1);
+                }
+
+                int main() {
+                    // Creamos nuestro limites
+                    int numeroSerie = 1000000000;
+                    limites.push_back(0);
+                    limites.push_back(numeroSerie / 4);
+                    limites.push_back(numeroSerie / 2);
+                    limites.push_back(3 * (numeroSerie / 4));
+                    limites.push_back(numeroSerie);
+
+                    // Creamos a hilos
+                    thread hilos[4];
+
+                    // Inicializamos nuestros hilos
+                    for (int i = 0; i < 4; i++) 
+                        hilos[i] = thread(calcularIntervalo, i);
+
+                    // Esperemos a que nuestros hilos terminen
+                    for (int i = 0; i < 4; i++) 
+                        hilos[i].join();
+
+                    // Calculamos nuestra respuesta
+                    double answer = 0;
+                    for (int i = 0; i < 4; i++) answer += valorCal[i];
+                    answer *= 4;
+                    printf("EL valor de pi es:\t%.20f\n", answer);
+                    return 0;
+                }
+              </code></pre>
               <p>Compilar: <strong>g++ pi.cpp -o pi -std=c++11 -pthread</strong></p>
-  
               <p>Ejecutar: <strong>./pi</strong></p>
   
               <blockquote>
                 <p>EL valor de pi es: 3.14159265258921038821</p>
               </blockquote>
   
-              <ul>
-                <li>Ejemplo en <strong>Java</strong>:</li>
-              </ul>
+
+
+              <!-- Ejemplos de Java -->
+              <h3><strong>Java</strong></h3>
               <p>Un grupo de personas trata de ir de una isla(Oahu) a la otra(Molokai) con un solo bote.</p>
               <p><img src="https://s1-ssl.dmcdn.net/hjNxe/x240-XWg.jpg" alt=""></p>
   
@@ -562,224 +564,223 @@
                 hay que tener en cuenta que no hay algo como unidad principal que controle cuando pasará cada persona,
                 cada hilo deberá saber cuando
                 ejecutar sus instrucciones dependiendo de la sincronización con los otros</p>
-              <pre class="prettyprint">
-  
-  import java.util.concurrent.Semaphore;
-  
-  //extiende de thread y sobreescribe run sin nada
-  public class Persona extends Thread{
-  
-    int Tamano;
-    String ubicacion;
-    static String boatUbication="Oahu";
-    public static String getBoatUbication() {
-      return boatUbication;
-    }
-  
-    public static void setBoatUbication(String boatUbication) {
-      Persona.boatUbication = boatUbication;
-    }
-  
-    public Persona(int tamano, String ubicacion) {
-      super();
-      this.Tamano = tamano;
-      this.ubicacion = ubicacion;
-    }
-  
-    @Override
-      public void run() {
-  
-    }
-  
-  
-  
-  }
-  
-  
-  
-  import java.util.logging.Level;
-  import java.util.logging.Logger;
-  
-  //extiende de persona
-  public class Adult extends Persona {
-    public Adult() {
-      super(2, "Oahu");
-    }
-    //sobreescribe run
-    @Override
-      public void run() {
-      //mientras no hayan pasado todas las personas
-      while(Boat.ContMolokai < Boat.ContTotalPersonas){
-       try {
-         //semaforo encargado de que un niño y adulto no luchen por el bote
-         Boat.classExclus.acquire();
-               if (this.ubicacion.equals("Oahu") && boatUbication.equals(this.ubicacion) && Boat.ContChildBack%2!=0 && Boat.ContAdultOahu != 0){
-                 //si ve que puede pasar lo hace, adquiere las dos posiciones del bote
-                 Boat.available.acquire();
-                 Boat.available.acquire();
-                 Boat.bg.AdultRowToMolokai();
-                 this.ubicacion="Molokai";
-                 boatUbication="Molokai";
-                 Boat.ContMolokai++;
-                  Boat.ContOahu--;
-                  Boat.ContAdultOahu--;
-                  //al llegar libera las dos posiciones del bote
-                 Boat.available.release();
-                 Boat.available.release();
-               }
-  
-               Boat.classExclus.release();
-           } catch (InterruptedException ex) {
-               Logger.getLogger(Child.class.getName()).log(Level.SEVERE, null, ex);
-           }
-    }
-    }
-  }
-  
-  
-  import java.util.concurrent.Semaphore;
-  import java.util.logging.Level;
-  import java.util.logging.Logger;
-  
-  //parecida a Adult
-  public class Child extends Persona {
-    public Child() {
-      super(1, "Oahu");
-    }
-    @Override
-      public void run() {
-      while(Boat.ContMolokai < Boat.ContTotalPersonas ){
-       try {
-         Boat.classExclus.acquire();
-               if (this.ubicacion.equals("Oahu") && boatUbication.equals(this.ubicacion) && (Boat.ContChildBack%2==0 || Boat.ContAdultOahu == 0) ){
-                 //a diferencia del adulto el niño solo adquiere una posicion del bote
-                 Boat.available.acquire();
-                 Boat.UbicacionDispon--;
-                 if (Boat.UbicacionDispon==1) Boat.bg.ChildRowToMolokai();
-                 this.ubicacion="Molokai";
-                 Boat.ContMolokai++;
-                 Boat.ContOahu--;
-                 if(Boat.UbicacionDispon==0){
-                   Boat.bg.ChildRideToMolokai();
-                   boatUbication="Molokai";
-                   Boat.UbicacionDispon=2;
-                 }
-                 Boat.available.release();
-               }
-               //parte de la seccion critica encargada de que el niño regrese desde Molokai a Oahu
-                 if (this.ubicacion.equals("Molokai") && boatUbication.equals(this.ubicacion) && (Boat.ContMolokai < Boat.ContTotalPersonas ) ){
-                   //para evitar que se regresen dos niños el niño adquiere las dos posiciones
-                   //del bote
-                   Boat.available.acquire();
-                   Boat.available.acquire();
-                   Boat.bg.ChildRowToOahu();
-                     this.ubicacion="Oahu";
-                     boatUbication="Oahu";
-                     Boat.ContMolokai--;
-                     Boat.ContOahu++;
-                     Boat.ContChildBack++;
-                     //llega y libera las dos posiciones
-                     Boat.available.release();
-                     Boat.available.release();
-                 }
-  
-                 Boat.classExclus.release();
-           } catch (InterruptedException ex) {
-               Logger.getLogger(Child.class.getName()).log(Level.SEVERE, null, ex);
-           }
-  
-      }
-    }
-  
-  }
-  
-  
-  
-  import java.util.Scanner;
-  import java.util.concurrent.Semaphore;
-  import java.util.LinkedList;
-  
-  public class Boat {
-    //se instancian los dos semaforos
-    public static Semaphore available = new Semaphore(2, true);
-    public static Semaphore classExclus = new Semaphore(1, true);
-    static Scanner sc = new Scanner(System.in);
-    //contadores para la comunicacion
-    static int childrenTot=0;
-    static int adultTot=0;
-    static int ContChilds=0;
-    static int ContAdults=0;
-    static int ContTotalPersonas=0;
-    static int ContOahu=0;
-    static int ContMolokai=0;
-    static int ContAdultOahu=0;
-    static int UbicacionDispon=2;
-    static int ContChildBack=0;
-  
-    //arreglo de personas
-    static LinkedList<Child> ChildList = new LinkedList<Child>();
-    static LinkedList<Adult> AdultList = new LinkedList<Adult>();
-    static BoatGrader bg= new BoatGrader();
-  
-    //se crean los hilos
-    static public void begin(){
-      for(Child element : ChildList){
-        element.start();
-  
-  
-      }
-      for(Adult element : AdultList){
-        element.start();
-  
-      }
-      //al terminar los hilos hacen join con el hilo principal
-      for(Child element : ChildList){
-        try {
-          element.join();
-        } catch (InterruptedException e) {
-          // TODO Auto-generated catch block
-          e.printStackTrace();
-        }
-      }
-      for(Adult element : AdultList){
-        try {
-          element.join();
-        } catch (InterruptedException e) {
-          // TODO Auto-generated catch block
-          e.printStackTrace();
-        }
-      }
-  
-  
-  
-    }
-  
-    public static void main(String args[]) {
-      //entradas del programa
-      while (childrenTot< 2){
-        System.out.println("Introduzca el numero de niños (mayor a 1): ");
-        childrenTot=sc.nextInt();
-      }
-      System.out.println("Introduzca el numero de adultos: ");
-      adultTot=sc.nextInt();
-        for (int i=0;i< childrenTot;i++){
-          ChildList.add(new Child());
-          ContChilds++;
-        }
-        for (int i=0;i< adultTot;i++){
-          AdultList.add(new Adult());
-          ContAdults++;
-        }
-        ContTotalPersonas=ContChilds+ContAdults;
-        ContAdultOahu=ContAdults;
-      ContOahu=ContTotalPersonas;
-  
-        Boat.begin();
-        System.out.println("llegaron "+ContMolokai+" personas");
-    }
-  }
-  </pre>
-              <p>ejecución:</p>
+              <pre><code class="language-java">
+                import java.util.concurrent.Semaphore;
+                
+                //extiende de thread y sobreescribe run sin nada
+                public class Persona extends Thread{
+                
+                  int Tamano;
+                  String ubicacion;
+                  static String boatUbication="Oahu";
+                  public static String getBoatUbication() {
+                    return boatUbication;
+                  }
+                
+                  public static void setBoatUbication(String boatUbication) {
+                    Persona.boatUbication = boatUbication;
+                  }
+                
+                  public Persona(int tamano, String ubicacion) {
+                    super();
+                    this.Tamano = tamano;
+                    this.ubicacion = ubicacion;
+                  }
+                
+                  @Override
+                    public void run() {
+                      //Intencionalmente vacío
+                    }
+                }
+              </code></pre>
+                
+              <pre><code class="language-java">
+                import java.util.logging.Level;
+                import java.util.logging.Logger;
+                
+                //extiende de persona
+                public class Adult extends Persona {
+                  public Adult() {
+                    super(2, "Oahu");
+                  }
+                  //sobreescribe run
+                  @Override
+                    public void run() {
+                    //mientras no hayan pasado todas las personas
+                    while(Boat.ContMolokai < Boat.ContTotalPersonas){
+                    try {
+                      //semaforo encargado de que un niño y adulto no luchen por el bote
+                      Boat.classExclus.acquire();
+                            if (this.ubicacion.equals("Oahu") && boatUbication.equals(this.ubicacion) && Boat.ContChildBack%2!=0 && Boat.ContAdultOahu != 0){
+                              //si ve que puede pasar lo hace, adquiere las dos posiciones del bote
+                              Boat.available.acquire();
+                              Boat.available.acquire();
+                              Boat.bg.AdultRowToMolokai();
+                              this.ubicacion="Molokai";
+                              boatUbication="Molokai";
+                              Boat.ContMolokai++;
+                                Boat.ContOahu--;
+                                Boat.ContAdultOahu--;
+                                //al llegar libera las dos posiciones del bote
+                              Boat.available.release();
+                              Boat.available.release();
+                            }
+                
+                            Boat.classExclus.release();
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Child.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                  }
+                }
+              </code></pre>
+                
+              <pre><code class="language-java">
+                import java.util.concurrent.Semaphore;
+                import java.util.logging.Level;
+                import java.util.logging.Logger;
+
+                // parecida a Adult
+                public class Child extends Persona {
+                    public Child() {
+                        super(1, "Oahu");
+                    }
+                    @Override
+                    public void run() {
+                        while (Boat.ContMolokai < Boat.ContTotalPersonas) {
+                            try {
+                                Boat.classExclus.acquire();
+                                if (this.ubicacion.equals("Oahu")
+                                    && boatUbication.equals(this.ubicacion)
+                                    && (Boat.ContChildBack % 2 == 0
+                                        || Boat.ContAdultOahu == 0)) {
+                                    // a diferencia del adulto el niño solo adquiere una
+                                    // posicion del bote
+                                    Boat.available.acquire();
+                                    Boat.UbicacionDispon--;
+                                    if (Boat.UbicacionDispon == 1)
+                                        Boat.bg.ChildRowToMolokai();
+                                    this.ubicacion = "Molokai";
+                                    Boat.ContMolokai++;
+                                    Boat.ContOahu--;
+                                    if (Boat.UbicacionDispon == 0) {
+                                        Boat.bg.ChildRideToMolokai();
+                                        boatUbication = "Molokai";
+                                        Boat.UbicacionDispon = 2;
+                                    }
+                                    Boat.available.release();
+                                }
+                                // parte de la seccion critica encargada de que el niño regrese
+                                // desde Molokai a Oahu
+                                if (this.ubicacion.equals("Molokai")
+                                    && boatUbication.equals(this.ubicacion)
+                                    && (Boat.ContMolokai < Boat.ContTotalPersonas)) {
+                                    // para evitar que se regresen dos niños el niño adquiere
+                                    // las dos posiciones del bote
+                                    Boat.available.acquire();
+                                    Boat.available.acquire();
+                                    Boat.bg.ChildRowToOahu();
+                                    this.ubicacion = "Oahu";
+                                    boatUbication = "Oahu";
+                                    Boat.ContMolokai--;
+                                    Boat.ContOahu++;
+                                    Boat.ContChildBack++;
+                                    // llega y libera las dos posiciones
+                                    Boat.available.release();
+                                    Boat.available.release();
+                                }
+
+                                Boat.classExclus.release();
+                            } catch (InterruptedException ex) {
+                                Logger.getLogger(Child.class.getName())
+                                    .log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }
+                }
+              </code></pre>
+                
+              <pre><code class="language-java">
+                import java.util.Scanner;
+                import java.util.concurrent.Semaphore;
+                import java.util.LinkedList;
+                
+                public class Boat {
+                  //se instancian los dos semaforos
+                  public static Semaphore available = new Semaphore(2, true);
+                  public static Semaphore classExclus = new Semaphore(1, true);
+                  static Scanner sc = new Scanner(System.in);
+                  //contadores para la comunicacion
+                  static int childrenTot=0;
+                  static int adultTot=0;
+                  static int ContChilds=0;
+                  static int ContAdults=0;
+                  static int ContTotalPersonas=0;
+                  static int ContOahu=0;
+                  static int ContMolokai=0;
+                  static int ContAdultOahu=0;
+                  static int UbicacionDispon=2;
+                  static int ContChildBack=0;
+                
+                  //arreglo de personas
+                  static LinkedList<Child> ChildList = new LinkedList<Child>();
+                  static LinkedList<Adult> AdultList = new LinkedList<Adult>();
+                  static BoatGrader bg= new BoatGrader();
+                
+                  //se crean los hilos
+                  static public void begin(){
+                    for(Child element : ChildList){
+                      element.start();
+                    }
+                    for(Adult element : AdultList){
+                      element.start();
+                    }
+                    //al terminar los hilos hacen join con el hilo principal
+                    for(Child element : ChildList){
+                      try {
+                        element.join();
+                      } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                      }
+                    }
+                    for(Adult element : AdultList){
+                      try {
+                        element.join();
+                      } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                      }
+                    }
+                  }
+                
+                  public static void main(String args[]) {
+                    //entradas del programa
+                    while (childrenTot< 2){
+                      System.out.println("Introduzca el numero de niños (mayor a 1): ");
+                      childrenTot=sc.nextInt();
+                    }
+                    System.out.println("Introduzca el numero de adultos: ");
+                    adultTot=sc.nextInt();
+                      for (int i=0;i< childrenTot;i++){
+                        ChildList.add(new Child());
+                        ContChilds++;
+                      }
+                      for (int i=0;i< adultTot;i++){
+                        AdultList.add(new Adult());
+                        ContAdults++;
+                      }
+                      ContTotalPersonas=ContChilds+ContAdults;
+                      ContAdultOahu=ContAdults;
+                    ContOahu=ContTotalPersonas;
+                
+                      Boat.begin();
+                      System.out.println("llegaron "+ContMolokai+" personas");
+                  }
+                }
+              </code></pre>
+
+              <p>Ejecución:</p>
               <pre class="prettyprint">
     Introduzca el numero de niños (mayor a 1):
     3
@@ -816,93 +817,97 @@
     **Child rowing to Molokai.
     **Child arrived on Molokai as a passenger.
     llegaron 8 personas
-  
-  
-  </pre>
-              <ul>
-                <li>Ejemplo en <strong>Go</strong>:</li>
-              </ul>
-              <pre class="prettyprint">
-    package main
-    import(
-      "fmt"
-      "time"
-    )
-    func main() {
-        fmt.Println("iniciando")
-        go printForward()
-        go printBackwards()
-      time.Sleep(time.Second * 5)
-        fmt.Println("terminando")
-    }
-    func printForward() {
-        for i := 0; i < 10; i++ {
-            fmt.Println(i)
-            time.Sleep(time.Millisecond)
-        }
-    }
-    func printBackwards() {
-        for i := 10; i <= 20; i++ {
-            fmt.Println(i)
-            time.Sleep(time.Millisecond)
-        }
-    }
-  </pre>
+              </pre>
+
+
+
+              <h3><strong>Go:</strong></h3>
+              <pre><code class="language-go">
+                package main
+
+                import (
+                  "fmt"
+                  "time"
+                )
+
+                func main() {
+                  fmt.Println("iniciando")
+                  go printForward()
+                  go printBackwards()
+                  time.Sleep(time.Second * 5)
+                  fmt.Println("terminando")
+                }
+                func printForward() {
+                  for i := 0; i < 10; i++ {
+                    fmt.Println(i)
+                    time.Sleep(time.Millisecond)
+                  }
+                }
+                func printBackwards() {
+                  for i := 10; i <= 20; i++ {
+                    fmt.Println(i)
+                    time.Sleep(time.Millisecond)
+                  }
+                }
+              </code></pre>
+
               <p>En Go tenemos rutinas que tienen su propio stack, aunque estos no son hilos como tal, pero si se pueden
                 aprovechar de esta forma</p>
+              <pre><code class="language-go">
+                package main
+                import(
+                  "fmt"
+                  "time"
+                )
+                func main() {
+                    c := make(chan string)
+                    go echo(c)
+                    c < - "Hola"
+                    mensaje := < - c
+                    fmt.Println(mensaje)
+                }
+                
+                func echo(c chan string) {
+                    msg := < - c
+                    time.Sleep(time.Second * 1)
+                    c < - fmt.Sprintf("Mensaje recibido: %s", msg)
+                }
+              </code></pre>
               <pre class="prettyprint">
-  package main
-  import(
-    "fmt"
-    "time"
-  )
-  func main() {
-      c := make(chan string)
-      go echo(c)
-      c < - "Hola"
-      mensaje := < - c
-      fmt.Println(mensaje)
-  }
-  
-  func echo(c chan string) {
-      msg := < - c
-      time.Sleep(time.Second * 1)
-      c < - fmt.Sprintf("Mensaje recibido: %s", msg)
-  }
-  
-  salida= Mensaje recibido:Hola
-  </pre>
+salida= Mensaje recibido:Hola
+</pre>
   
               <p>En Go tenemos el Select es como un switch, pero que espera mensajes en canales.
                 Su finalidad es comunicar, no comparar valores. </p>
-              <pre class="prettyprint">
-  package main
-  import(
-    "fmt"
-    "time"
-  )
-  func main() {
-      process1 := processExpensiveTransaction()
-      process2 := processExpensiveTransaction()
-      for i := 0; i < 2; i++ {
-          select {
-              case msg1 := <- process1:
-                  fmt.Println("Proceso 1 termino con status ", msg1)
-              case msg2 := <- process2:
-                  fmt.Println("Proceso 2 termino con status ", msg2)
-          }
-      }
-  }
-  
-  func processExpensiveTransaction() chan string {
-      c := make(chan string)
-      go func() {
-          time.Sleep(time.Duration(rand.Intn(6)) * time.Second)
-          c <- "ok"
-      } ()
-      return c
-  }
-  </pre>
+              <pre><code class="language-go">
+                package main
+                import(
+                  "fmt"
+                  "time"
+                )
+                func main() {
+                    process1 := processExpensiveTransaction()
+                    process2 := processExpensiveTransaction()
+                    for i := 0; i < 2; i++ {
+                        select {
+                            case msg1 := <- process1:
+                                fmt.Println("Proceso 1 termino con status ", msg1)
+                            case msg2 := <- process2:
+                                fmt.Println("Proceso 2 termino con status ", msg2)
+                        }
+                    }
+                }
+                
+                func processExpensiveTransaction() chan string {
+                    c := make(chan string)
+                    go func() {
+                        time.Sleep(time.Duration(rand.Intn(6)) * time.Second)
+                        c <- "ok"
+                    } ()
+                    return c
+                }
+              </code></pre>
+
               <ul>
                 <li>Otro Ejemplo en <strong>Go</strong>:</li>
               </ul>
@@ -911,32 +916,32 @@
                 concurrencia,
                 el siguiente código es la aplicación implementada de manera secuencial:
               </p>
-              <pre class="prettyprint">
-  package main
-  import (
-    "fmt"
-    "log"
-    "net/http"
-    "os"
-  )
-  func sendRequest(url string){
-    res, err := http.Get(url)
-    if err != nil{
-      panic(err)
-    }
-    fmt.Printf("Estado: %d URL: %s\n", res.StatusCode,url)
-  }
-  
-  func main() {
-    if len(os.Args) < 2 {
-      log.Fatalln("Uso: go run main.go url1 url2 .. urln")
-    }
-  
-    for _, url := range os.Args[1:] {
-      sendRequest("https://" + url)
-    }
-  }
-  </pre>
+              <pre><code class="language-go">
+                package main
+                import (
+                  "fmt"
+                  "log"
+                  "net/http"
+                  "os"
+                )
+                func sendRequest(url string){
+                  res, err := http.Get(url)
+                  if err != nil{
+                    panic(err)
+                  }
+                  fmt.Printf("Estado: %d URL: %s\n", res.StatusCode,url)
+                }
+                
+                func main() {
+                  if len(os.Args) < 2 {
+                    log.Fatalln("Uso: go run main.go url1 url2 .. urln")
+                  }
+                
+                  for _, url := range os.Args[1:] {
+                    sendRequest("https://" + url)
+                  }
+                }
+              </code></pre>
               <p>
                 Para hacer uso del programa, usamos el siguiente comando:
               <pre class="prettyprint">
@@ -984,32 +989,32 @@
                 debido a que tiene que esperar que cada petición termine para poder realizar la siguiente.
                 Ahora vamos a modificar este programa inicial para usar concurrencia y optimizar nuestra aplicación:
               </p>
-              <pre class="prettyprint">
-    package main
-    import (
-      "fmt"
-      "log"
-      "net/http"
-      "os"
-    )
-    func sendRequest(url string){
-      res, err := http.Get(url)
-      if err != nil{
-        panic(err)
-      }
-      fmt.Printf("Estado: %d URL: %s\n", res.StatusCode,url)
-    }
-    
-    func main() {
-      if len(os.Args) < 2 {
-        log.Fatalln("Uso: go run main.go url1 url2 .. urln")
-      }
-    
-      for _, url := range os.Args[1:] {
-        go sendRequest("https://" + url)
-      }
-    }
-  </pre>
+              <pre><code class="language-go">
+                package main
+                import (
+                  "fmt"
+                  "log"
+                  "net/http"
+                  "os"
+                )
+                func sendRequest(url string){
+                  res, err := http.Get(url)
+                  if err != nil{
+                    panic(err)
+                  }
+                  fmt.Printf("Estado: %d URL: %s\n", res.StatusCode,url)
+                }
+                
+                func main() {
+                  if len(os.Args) < 2 {
+                    log.Fatalln("Uso: go run main.go url1 url2 .. urln")
+                  }
+                
+                  for _, url := range os.Args[1:] {
+                    go sendRequest("https://" + url)
+                  }
+                }
+              </code></pre>
               <p>
                 Con solo agregar la palabra go, hacemos que cada consulta se ejecute en goroutines separadas
                 y si ejecutamos el comando de Benchmark anteriormente mencionado vamos a observar que
@@ -1034,38 +1039,38 @@
                 Para corregir esto vamos a hacer uso de WaitGroup, el cual ayuda a contabilizar las rutinas que se tienen
                 activas:
               </p>
-              <pre class="prettyprint">
-    package main
-    import (
-      "fmt"
-      "log"
-      "net/http"
-      "os"
-    )
-  
-    var wg sync.WaitGroup
-  
-    func sendRequest(url string){
-      defer wg.Done() //Decrementa el contador de goroutines 
-      res, err := http.Get(url)
-      if err != nil{
-        panic(err)
-      }
-      fmt.Printf("Estado: %d URL: %s\n", res.StatusCode,url)
-    }
-    
-    func main() {
-      if len(os.Args) < 2 {
-        log.Fatalln("Uso: go run main.go url1 url2 .. urln")
-      }
-    
-      for _, url := range os.Args[1:] {
-        go sendRequest("https://" + url)
-        wg.Add(1) //Incrementa el contador de goroutines 
-      }
-      wg.Wait() //Indica que toca esperar a que todas las goroutines terminen
-    }
-  </pre>
+              <pre><code class="language-go">
+                package main
+                import (
+                  "fmt"
+                  "log"
+                  "net/http"
+                  "os"
+                )
+              
+                var wg sync.WaitGroup
+              
+                func sendRequest(url string){
+                  defer wg.Done() //Decrementa el contador de goroutines 
+                  res, err := http.Get(url)
+                  if err != nil{
+                    panic(err)
+                  }
+                  fmt.Printf("Estado: %d URL: %s\n", res.StatusCode,url)
+                }
+                
+                func main() {
+                  if len(os.Args) < 2 {
+                    log.Fatalln("Uso: go run main.go url1 url2 .. urln")
+                  }
+                
+                  for _, url := range os.Args[1:] {
+                    go sendRequest("https://" + url)
+                    wg.Add(1) //Incrementa el contador de goroutines 
+                  }
+                  wg.Wait() //Indica que toca esperar a que todas las goroutines terminen
+                }
+              </code></pre>
               <p>
                 Si ejecutamos de nuevo nuestro programa, vamos a ver que los resultados ahora si se muestran en consola.
               </p>
@@ -1087,57 +1092,59 @@
                 compartidos, como es el caso de la consola.
                 Para hacer uso de Mutex, hacemos lo siguiente:
               </p>
-              <pre class="prettyprint">
-      package main
-      import (
-        "fmt"
-        "log"
-        "net/http"
-        "os"
-      )
-    
-      var wg sync.WaitGroup
-      var mut sync.Mutex
-    
-      func sendRequest(url string){
-        defer wg.Done() //Decrementa el contador de goroutines
-        res, err := http.Get(url)
-        if err != nil{
-          panic(err)
-        }
-        mut.Lock()  //Bloquea el recurso inferior para que solo esta gorutine 
-                    //pueda hacer uso de este
-        defer mut.Unlock() //Desbloquea el recursos despues de haber terminado de usarlo
-        fmt.Printf("Estado: %d URL: %s\n", res.StatusCode,url)
-      }
-      
-      func main() {
-        if len(os.Args) < 2 {
-          log.Fatalln("Uso: go run main.go url1 url2 .. urln")
-        }
-      
-        for _, url := range os.Args[1:] {
-          go sendRequest("https://" + url)
-          wg.Add(1) //Incrementa el contador de goroutines
-        }
-        wg.Wait() //Indica que toca esperar a que todas las goroutines terminen
-      }
-    </pre>
-              <ul>
-                <li>Ejemplo de concurrecia en <strong>Erlang</strong>:</li>
-              </ul>
+              <pre><code class="language-go">
+                package main
+                import (
+                  "fmt"
+                  "log"
+                  "net/http"
+                  "os"
+                )
+              
+                var wg sync.WaitGroup
+                var mut sync.Mutex
+              
+                func sendRequest(url string){
+                  defer wg.Done() //Decrementa el contador de goroutines
+                  res, err := http.Get(url)
+                  if err != nil{
+                    panic(err)
+                  }
+                  mut.Lock()  //Bloquea el recurso inferior para que solo esta gorutine 
+                              //pueda hacer uso de este
+                  defer mut.Unlock() //Desbloquea el recursos despues de haber terminado de usarlo
+                  fmt.Printf("Estado: %d URL: %s\n", res.StatusCode,url)
+                }
+                
+                func main() {
+                  if len(os.Args) < 2 {
+                    log.Fatalln("Uso: go run main.go url1 url2 .. urln")
+                  }
+                
+                  for _, url := range os.Args[1:] {
+                    go sendRequest("https://" + url)
+                    wg.Add(1) //Incrementa el contador de goroutines
+                  }
+                  wg.Wait() //Indica que toca esperar a que todas las goroutines terminen
+                }
+              </code></pre>
+
+              
+
+              <!-- Ejemplos de Erlang -->
+              <h3><strong>Erlang:</strong></h3>
               <p>
-                La función spawn en Erlang nos permiete crear un proceso en paralelo.
+                La función spawn en Erlang nos permite crear un proceso en paralelo.
               </p>
-              <pre class="prettyprint">
-    -module(helloworld).
-    -export([start/0]).
-    start() ->
-      Pid = spawn(fun() -> server("Hello") end),
-  
-    server(Message) ->
-      io:fwrite("~p",[Message]).
-  </pre>
+              <pre><code class="language-erlang">
+                -module(helloworld).
+                -export([start/0]).
+                start() ->
+                  Pid = spawn(fun() -> server("Hello") end),
+              
+                server(Message) ->
+                  io:fwrite("~p",[Message]).
+              </code></pre>
               <p>
                 La salida es la siguiente:
               </p>
@@ -1148,16 +1155,16 @@
               <p>
                 El operador ! nos permite enviar mensajes a los procesos.
               </p>
-              <pre class="prettyprint">
-    -module(helloworld).
-    -export([start/0]).
-    start() ->
-      Pid = spawn(fun() -> server("Hello") end),
-      Pid ! {hello}.
-  
-    server(Message) ->
-      io:fwrite("~p",[Message]).
-  </pre>
+              <pre><code class="language-erlang">
+                -module(helloworld).
+                -export([start/0]).
+                start() ->
+                  Pid = spawn(fun() -> server("Hello") end),
+                  Pid ! {hello}.
+              
+                server(Message) ->
+                  io:fwrite("~p",[Message]).
+              </code></pre>
               <p>
                 La salida es la siguiente:
               </p>
@@ -1169,29 +1176,29 @@
               <p>
                 receive permite recibir mensajes que son enviados a los procesos.
               </p>
-              <pre class="prettyprint">
-    -module(helloworld).
-    -export([loop/0,start/0]).
-  
-    loop() ->
-       receive
-          {rectangle, Width, Ht} ->
-             io:fwrite("Area of rectangle is ~p~n" ,[Width * Ht]),
-             loop();
-          {circle, R} ->
-          io:fwrite("Area of circle is ~p~n" , [3.14159 * R * R]),
-          loop();
-       Other ->
-          io:fwrite("Unknown"),
-          loop()
-       end.
-  
-    start() ->
-       Pid = spawn(fun() -> loop() end),
-       Pid ! {rectangle, 6, 10},
-       Pid ! {circle, 6},
-       Pid ! {square, 4, 4}.
-  </pre>
+              <pre><code class="language-erlang">
+                -module(helloworld).
+                -export([loop/0,start/0]).
+              
+                loop() ->
+                  receive
+                      {rectangle, Width, Ht} ->
+                        io:fwrite("Area of rectangle is ~p~n" ,[Width * Ht]),
+                        loop();
+                      {circle, R} ->
+                      io:fwrite("Area of circle is ~p~n" , [3.14159 * R * R]),
+                      loop();
+                  Other ->
+                      io:fwrite("Unknown"),
+                      loop()
+                  end.
+              
+                start() ->
+                  Pid = spawn(fun() -> loop() end),
+                  Pid ! {rectangle, 6, 10},
+                  Pid ! {circle, 6},
+                  Pid ! {square, 4, 4}.
+              </code></pre>
               <p>
                 La salida es la siguiente:
               </p>
@@ -1201,9 +1208,10 @@
                 Unknown<br>
               </blockquote>
   
-              <ul>
-                <li>Ejemplo de concurrecia en <strong>Rust</strong>:</li>
-              </ul>
+
+
+              <!-- Ejemplos de Rust -->
+              <h3><strong>Rust:</strong></h3>
               <p>
                 Rust facilita la programación concurrente con las comprobaciones que se hacen en tiempo de compilación y
                 con la gestión de memoria que realiza.
@@ -1211,16 +1219,18 @@
               <p>
                 Hilos: creamos hilos con el comando thread::spawn, que recibe un closure y se lanza justo al definirlo.
               </p>
-              <pre class="prettyprint">
-    use std::thread;
-  
-    fn main() {
-        let child = thread::spawn(|| {
-            println!("Hello from a thread!");
-        });
-        let _ = child.join();
-    }
-  </pre>
+
+              <pre><code class="language-rust">
+                use std::thread;
+              
+                fn main() {
+                    let child = thread::spawn(|| {
+                        println!("Hello from a thread!");
+                    });
+                    let _ = child.join();
+                }
+              </code></pre>
+
               <p>
                 La salida es la siguiente:
               </p>
@@ -1246,24 +1256,24 @@
                 Si reiniciamos este programa, su salida y la visualización de los números serán diferentes; es imposible
                 de predecir el orden de los números que aparecerán. Pero, si utilizamos el sistema de bloqueo y
                 desbloqueo, para que cada hilo espere hasta que el anterior termine, el orden será perfecto.</p>
-              <pre class="prettyprint">
-    use std::thread;
-  
-    fn main() {
-      let mut childs = vec![];
-  
-      for i in 0..10 {
-          let child = thread::spawn(move || {
-              println!("Hello from a thread! {}", i);
-          });
-          childs.push(child);
-      }
-  
-      for c in childs {
-          let _ = c.join();
-      }
-    }
-  </pre>
+              <pre><code class="language-rust">
+                use std::thread;
+              
+                fn main() {
+                  let mut childs = vec![];
+              
+                  for i in 0..10 {
+                      let child = thread::spawn(move || {
+                          println!("Hello from a thread! {}", i);
+                      });
+                      childs.push(child);
+                  }
+              
+                  for c in childs {
+                      let _ = c.join();
+                  }
+                }
+              </code></pre>
               <p>
                 La salida es la siguiente:
               </p>
@@ -1288,33 +1298,32 @@
                 Mutex implementa el bloqueo asociado a la variable en concreto.
   
               </p>
-              <pre class="prettyprint">
-    use std::thread;
-    use std::sync::{Arc, Mutex};
-  
-    fn main() {
-        let mut childs = vec![];
-        let shared = Arc::new(Mutex::new(String::from("")));
-  
-        for i in 0..10 {
-            let s = shared.clone();
-            let child = thread::spawn(move || {
-                println!("In thread {}", i);
-  
-                let out = String::from("Thread ") + &i.to_string() + "\n";
-                s.lock().unwrap().push_str(&out);
-            });
-            childs.push(child);
-        }
-  
-        for c in childs {
-            let _ = c.join();
-        }
-  
-        println!("\nOutput:\n{}", *(shared.lock().unwrap()));
-    }
-  
-  </pre>
+              <pre><code class="language-rust">
+                use std::thread;
+                use std::sync::{Arc, Mutex};
+              
+                fn main() {
+                    let mut childs = vec![];
+                    let shared = Arc::new(Mutex::new(String::from("")));
+              
+                    for i in 0..10 {
+                        let s = shared.clone();
+                        let child = thread::spawn(move || {
+                            println!("In thread {}", i);
+              
+                            let out = String::from("Thread ") + &i.to_string() + "\n";
+                            s.lock().unwrap().push_str(&out);
+                        });
+                        childs.push(child);
+                    }
+              
+                    for c in childs {
+                        let _ = c.join();
+                    }
+              
+                    println!("\nOutput:\n{}", *(shared.lock().unwrap()));
+                }
+              </code></pre>
               <p>
                 La salida es la siguiente:
               </p>
@@ -1352,39 +1361,38 @@
                 diferentes tipos de datos por el mismo canal.
   
               </p>
-              <pre class="prettyprint">
-    use std::thread;
-    use std::sync::mpsc;
-  
-    fn main() {
-        let (tx, rx) = mpsc::channel();
-        let mut childs = vec![];
-  
-        for i in 0..10 {
-            let tx = tx.clone();
-            let child = thread::spawn(move || {
-                println!("In thread {}", i);
-  
-                let out = String::from("Thread ") + &i.to_string();
-                tx.send(out).unwrap();
-            });
-            childs.push(child);
-        }
-  
-        for c in childs {
-            let _ = c.join();
-        }
-  
-        println!("\nOutput:");
-        loop {
-            match rx.try_recv() {
-                Ok(x) => println!("{}", x),
-                Err(_) => break
-            }
-        }
-    }
-  
-  </pre>
+              <pre><code class="language-rust">
+                use std::thread;
+                use std::sync::mpsc;
+              
+                fn main() {
+                    let (tx, rx) = mpsc::channel();
+                    let mut childs = vec![];
+              
+                    for i in 0..10 {
+                        let tx = tx.clone();
+                        let child = thread::spawn(move || {
+                            println!("In thread {}", i);
+              
+                            let out = String::from("Thread ") + &i.to_string();
+                            tx.send(out).unwrap();
+                        });
+                        childs.push(child);
+                    }
+              
+                    for c in childs {
+                        let _ = c.join();
+                    }
+              
+                    println!("\nOutput:");
+                    loop {
+                        match rx.try_recv() {
+                            Ok(x) => println!("{}", x),
+                            Err(_) => break
+                        }
+                    }
+                }
+              </code></pre>
               <p>
                 La salida es la siguiente:
               </p>
@@ -1434,15 +1442,15 @@
               Fibras: Para generar una fibra se usa el comando spawn
               </p>
   
-              <pre class="prettyprint">
-    spawn do
-      loop do
-        puts "Hello!"
-      end
-    end
-  
-    sleep 1.second
-  </pre>
+              <pre><code class="language-crystal">
+                spawn do
+                  loop do
+                    puts "Hello!"
+                  end
+                end
+              
+                sleep 1.second
+              </code></pre>
               <p>
                 Este programa imprimirá "¡Hello!" por un segundo y luego saldrá. Esto se debe a que la llamada de espera
                 programará la fibra principal que se ejecutará en un segundo y luego ejecutará otra fibra "lista para
@@ -1450,16 +1458,15 @@
                 <br><br>
                 Otra manera seria:
               </p>
-  
-              <pre class="prettyprint">
-    spawn do
-      loop do
-        puts "Hello!"
-      end
-    end
-  
-    Fiber.yield
-  </pre>
+              <pre><code class="language-crystal">
+                spawn do
+                  loop do
+                    puts "Hello!"
+                  end
+                end
+              
+                Fiber.yield
+              </code></pre>
   
               <p>
                 Fiber.yield le dirá al scheduler que ejecute la otra fibra. Esto imprimirá "Hello" hasta los bloques de
@@ -1473,21 +1480,20 @@
                 copia y la fibra engendrada recibe una copia.
               </p>
   
-              <pre class="prettyprint">
-    i = 0
-    while i < 10
-      proc = ->(x : Int32) do
-        spawn do
-          puts(x)
-        end
-      end
-      proc.call(i)
-      i += 1
-    end
-  
-    Fiber.yield
-  </pre>
-  
+              <pre><code class="language-crystal">
+                i = 0
+                while i < 10
+                  proc = ->(x : Int32) do
+                    spawn do
+                      puts(x)
+                    end
+                  end
+                  proc.call(i)
+                  i += 1
+                end
+              
+                Fiber.yield
+              </code></pre>
               <p>
                 La salida es la siguiente:
               </p>
@@ -1512,24 +1518,24 @@
                 Cuando se ejecuta un envió, la ejecución continúa con la fibra que estaba esperando en ese canal.
               </p>
   
-              <pre class="prettyprint">
-    channel = Channel(Int32).new
-  
-    spawn do
-      puts "Before first send"
-      channel.send(1)
-      puts "Before second send"
-      channel.send(2)
-    end
-  
-    puts "Before first receive"
-    value = channel.receive
-    puts value # => 1
-  
-    puts "Before second receive"
-    value = channel.receive
-    puts value # => 2
-  </pre>
+              <pre><code class="language-crystal">
+                channel = Channel(Int32).new
+              
+                spawn do
+                  puts "Before first send"
+                  channel.send(1)
+                  puts "Before second send"
+                  channel.send(2)
+                end
+              
+                puts "Before first receive"
+                value = channel.receive
+                puts value # => 1
+              
+                puts "Before second receive"
+                value = channel.receive
+                puts value # => 2
+              </code></pre>
               <p>
                 La salida es la siguiente:
               </p>
@@ -1543,55 +1549,53 @@
   
               </blockquote>
   
-              <ul>
-                <li>Ejemplo en <strong>C</strong> con el juego de pacman:<br />
+
+
+              <!-- Ejemplos de C -->
+              <h3><strong>C:</strong></h3>
+                  Ejemplo con el juego Pacman <br />
                   Aquí, el programa debe poder recibir la entrada teclado del usuario. Pero también, al mismo tiempo,
                   tienes que:
                   <br />
                   - Calcula los movimientos de los enemigos gracias a la inteligencia artificial.<br />
                   - Ver los diferentes desplazamientos.<br />
                   - Actualizar el mapa<br />
-                </li>
-              </ul>
   
-              <div class="highlight highlight-source-python">
-                <pre>
-  <span class="pl-k">int</span> <span class="pl-en">main_loop</span>(<span class="pl-smi">IGame *Game, IGui *curse</span>):
-    {
-      <span class="pl-k">board</span> game;
-      <span class="pl-k">t_orientation</span> dir;
-      <span class="pl-k">int</span> k = 0;
-  
-      <span class="pl-s">while</span> (k == 0)
-      {
-        dir = curse-><span class="pl-c1">get_touch</span>();
-        <span class="pl-s">if</span> (dir > 4)
-          <span class="pl-c1">return</span> (dir);
-        k = Game-><span class="pl-c1">check_move</span>(dir);
-        game = Game-><span class="pl-c1">get_board</span>();
-        <span class="pl-s">if</span> (curse-><span class="pl-c1">display</span>(game) == -1)
-          <span class="pl-c1">return</span> (0);
-      }
-      <span class="pl-c1">delete</span> curse;
-      <span class="pl-c1">delete</span> Game;
-      <span class="pl-c1">return</span> (0);
-    }
-  </pre>
-              </div>
+              <pre><code class="language-clike">
+                int main_loop(IGame *Game, IGui *curse) {
+                  board game;
+                  t_orientation dir;
+                  int k = 0;
+              
+                  while (k == 0) {
+                    dir = curse->get_touch();
+                    if (dir > 4)
+                      return (dir);
+                    k = Game->check_move(dir);
+                    game = Game->get_board();
+                    if (curse->display(game) == -1)
+                      return (0);
+                  }
+                  delete curse;
+                  delete Game;
+                  return (0);
+                }
+              </code></pre>
   
               <p>Si observamos el código que se muestra, la función get_touch iniciará un hilo que se ocupará de recuperar
                 la entrada del teclado pero no bloqueará el resto del programa: no esperará a recuperar una tecla para
                 continuar.</p>
   
-              <img src="images/Pacman.gif"><br /><br /><br />
-  
-  
-     
+              <img src="images/Pacman.gif"><br /><br /><br />   
           </div>
         </div>
 
 
       </section><!-- #about -->
+
+
+
+      <!-- Ejemplo comparativo con tres lenguajes -->
       <section id="ejemploComparativo" style="margin-top: 50px;">
         <div class="container">
           <div class="text_cell_render border-box-sizing rendered_html">
@@ -1603,274 +1607,271 @@
                 Esta solución será implementada en tres lenguajes diferentes: Go, Elixir y Rust. Cada lenguaje tiene sus propias características y formas de manejar la concurrencia.
                 A continuación, se presenta el código para cada uno de estos lenguajes seguido de una tabla comparativa que detalla las diferentes secciones del código y cómo se implementan en cada lenguaje.
             </p>
-            <h3>Go</h3>
-            <pre class="prettyprint"><code>
-    package main
+            <h3><strong>Go</strong></h3>
+            <pre><code class="language-go">
+              package main
 
-    import (
-    "fmt"
-    "sync"
-    )
+              import (
+                "fmt"
+                "sync"
+              )
 
-    func worker(arr []int, wg *sync.WaitGroup, resultChan chan int) {
-    defer wg.Done()
-    sum := 0
-    for _, num := range arr {
-      sum += num
-    }
-    resultChan <- sum
-    }
+              func worker(arr []int, wg *sync.WaitGroup, resultChan chan int) {
+                defer wg.Done()
+                sum := 0
+                for _, num := range arr {
+                  sum += num
+                }
+                resultChan <- sum
+              }
 
-    func main() {
-    arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-    numWorkers := 2
-    chunkSize := len(arr) / numWorkers
-    resultChan := make(chan int, numWorkers)
-    var wg sync.WaitGroup
+              func main() {
+                arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+                numWorkers := 2
+                chunkSize := len(arr) / numWorkers
+                resultChan := make(chan int, numWorkers)
+                var wg sync.WaitGroup
 
-    for i := 0; i < numWorkers; i++ {
-      start := i * chunkSize
-      end := start + chunkSize
-      if i == numWorkers-1 {
-          end = len(arr)
-      }
-      wg.Add(1)
-      go worker(arr[start:end], &wg, resultChan)
-    }
+                for i := 0; i < numWorkers; i++ {
+                  start := i * chunkSize
+                  end := start + chunkSize
+                  if i == numWorkers-1 {
+                    end = len(arr)
+                  }
+                  wg.Add(1)
+                  go worker(arr[start:end], &wg, resultChan)
+                }
 
-    wg.Wait()
-    close(resultChan)
+                wg.Wait()
+                close(resultChan)
 
-    totalSum := 0
-    for sum := range resultChan {
-      totalSum += sum
-    }
+                totalSum := 0
+                for sum := range resultChan {
+                  totalSum += sum
+                }
 
-    fmt.Printf("Total Sum: %d\n", totalSum)
-    }
-</code> </pre>
+                fmt.Printf("Total Sum: %d\n", totalSum)
+              }
+            </code></pre>
 
-            <h3>Elixir</h3>
-            <pre class="prettyprint">
+            <h3><strong>Elixir</strong></h3>
+            <pre><code class="language-elixir">
+              defmodule ConcurrentSum do
+              def worker(pid, list) do
+              sum = Enum.sum(list)
+              send(pid, {self(), sum})
+              end
 
-    defmodule ConcurrentSum do
-    def worker(pid, list) do
-    sum = Enum.sum(list)
-    send(pid, {self(), sum})
-    end
+              def start(list) do
+              num_workers = 2
+              chunk_size = div(length(list), num_workers)
+              pids = for i <- 1..num_workers do
+              start = (i - 1) * chunk_size + 1
+              finish = min(start + chunk_size - 1, length(list))
+              spawn(ConcurrentSum, :worker, [self(), Enum.slice(list, start - 1, finish - start + 1)])
+              end
+              receive_results(pids, 0)
+              end
 
-    def start(list) do
-    num_workers = 2
-    chunk_size = div(length(list), num_workers)
-    pids = for i <- 1..num_workers do
-    start = (i - 1) * chunk_size + 1
-    finish = min(start + chunk_size - 1, length(list))
-    spawn(ConcurrentSum, :worker, [self(), Enum.slice(list, start - 1, finish - start + 1)])
-    end
-    receive_results(pids, 0)
-    end
+              defp receive_results([], acc) do
+              IO.puts("Total Sum: #{acc}")
+              end
 
-    defp receive_results([], acc) do
-    IO.puts("Total Sum: #{acc}")
-    end
+              defp receive_results(pids, acc) do
+              receive do
+              {_, sum} -> 
+                receive_results(tl(pids), acc + sum)
+              end
+              end
+              end
 
-    defp receive_results(pids, acc) do
-    receive do
-    {_, sum} -> 
-      receive_results(tl(pids), acc + sum)
-    end
-    end
-    end
+              ConcurrentSum.start([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+            </code></pre>
 
-    ConcurrentSum.start([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-                </pre>
+            <h3><strong>Rust</strong></h3>
+            <pre><code class="language-rust">
+              use std::sync::mpsc;
+              use std::thread;
 
-                <h3>Rust</h3>
-                <pre class="prettyprint">
+              fn worker(arr: &[i32], tx: mpsc::Sender<i32>) {
+              let sum: i32 = arr.iter().sum();
+              tx.send(sum).expect("Could not send data!");
+              }
 
-    use std::sync::mpsc;
-    use std::thread;
+              fn main() {
+              let arr = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+              let num_workers = 2;
+              let chunk_size = arr.len() / num_workers;
 
-    fn worker(arr: &[i32], tx: mpsc::Sender<i32>) {
-    let sum: i32 = arr.iter().sum();
-    tx.send(sum).expect("Could not send data!");
-    }
+              let (tx, rx) = mpsc::channel();
+              let mut handles = vec![];
 
-    fn main() {
-    let arr = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    let num_workers = 2;
-    let chunk_size = arr.len() / num_workers;
+              for i in 0..num_workers {
+                let start = i * chunk_size;
+                let end = if i == num_workers - 1 {
+                    arr.len()
+                } else {
+                    start + chunk_size
+                };
+                let chunk = arr[start..end].to_vec();
+                let tx = tx.clone();
+                let handle = thread::spawn(move || {
+                    worker(&chunk, tx);
+                });
+                handles.push(handle);
+              }
 
-    let (tx, rx) = mpsc::channel();
-    let mut handles = vec![];
+              for handle in handles {
+                handle.join().expect("Thread couldn't join!");
+              }
 
-    for i in 0..num_workers {
-      let start = i * chunk_size;
-      let end = if i == num_workers - 1 {
-          arr.len()
-      } else {
-          start + chunk_size
-      };
-      let chunk = arr[start..end].to_vec();
-      let tx = tx.clone();
-      let handle = thread::spawn(move || {
-          worker(&chunk, tx);
-      });
-      handles.push(handle);
-    }
-
-    for handle in handles {
-      handle.join().expect("Thread couldn't join!");
-    }
-
-    let total_sum: i32 = rx.iter().take(num_workers).sum();
-    println!("Total Sum: {}", total_sum);
-    }
-            </pre>
+              let total_sum: i32 = rx.iter().take(num_workers).sum();
+              println!("Total Sum: {}", total_sum);
+              }
+            </code></pre>
 
             <h2>Tabla Comparativa</h2>
-    <table>
-        <thead>
-            <tr>
-                <th class="narrow-col">Sección</th>
-                <th>Go</th>
-                <th>Elixir</th>
-                <th>Rust</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>División del Trabajo</td>
-                <td>
-                    <ul>
-                        <li>El arreglo se divide en partes iguales según el número de workers.</li>
-                        <li>Cada parte del arreglo se procesa concurrentemente por una goroutine (goroutines son ligeras y se gestionan por el runtime de Go).</li>
-                    </ul>
-                    <pre class="prettyprint">
-  for i := 0; i < numWorkers; i++ {
-      start := i * chunkSize
-      end := start + chunkSize
-      if i == numWorkers-1 {
-          end = len(arr)
-      }
-      wg.Add(1)
-      go worker(arr[start:end], &wg, resultChan)
-  }
-                    </pre>
-                </td>
-                <td>
-                    <ul>
-                        <li>El arreglo se divide en partes iguales según el número de workers.</li>
-                        <li>Cada parte del arreglo se procesa concurrentemente por un proceso ligero en Elixir.</li>
-                    </ul>
-                    <pre class="prettyprint">
-  pids = for i <- 1..num_workers do
-    start = (i - 1) * chunk_size + 1
-    finish = min(start + chunk_size - 1, length(list))
-    spawn(ConcurrentSum, :worker, [self(), Enum.slice(list, start - 1, finish - start + 1)])
-  end
-                    </pre>
-                </td>
-                <td>
-                    <ul>
-                        <li>El arreglo se divide en partes iguales según el número de workers.</li>
-                        <li>Cada parte del arreglo se procesa concurrentemente por un hilo.</li>
-                    </ul>
-                    <pre class="prettyprint">
-  for i in 0..num_workers {
-      let start = i * chunk_size;
-      let end = if i == num_workers - 1 { arr.len() } else { start + chunk_size };
-      let chunk = arr[start..end].to_vec();
-      let result = Arc::clone(&result);
+            <table>
+                <thead>
+                    <tr>
+                        <th class="narrow-col">Sección</th>
+                        <th>Go</th>
+                        <th>Elixir</th>
+                        <th>Rust</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>División del Trabajo</td>
+                        <td>
+                            <ul>
+                                <li>El arreglo se divide en partes iguales según el número de workers.</li>
+                                <li>Cada parte del arreglo se procesa concurrentemente por una goroutine (goroutines son ligeras y se gestionan por el runtime de Go).</li>
+                            </ul>
+                            <pre><code class="language-go">
+                              for i := 0; i < numWorkers; i++ {
+                                  start := i * chunkSize
+                                  end := start + chunkSize
+                                  if i == numWorkers-1 {
+                                      end = len(arr)
+                                  }
+                                  wg.Add(1)
+                                  go worker(arr[start:end], &wg, resultChan)
+                              }
+                            </code></pre>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>El arreglo se divide en partes iguales según el número de workers.</li>
+                                <li>Cada parte del arreglo se procesa concurrentemente por un proceso ligero en Elixir.</li>
+                            </ul>
+                            <pre><code class="language-elixir">
+                              pids = for i <- 1..num_workers do
+                                start = (i - 1) * chunk_size + 1
+                                finish = min(start + chunk_size - 1, length(list))
+                                spawn(ConcurrentSum, :worker, [self(), Enum.slice(list, start - 1, finish - start + 1)])
+                              end
+                            </code></pre>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>El arreglo se divide en partes iguales según el número de workers.</li>
+                                <li>Cada parte del arreglo se procesa concurrentemente por un hilo.</li>
+                            </ul>
+                            <pre><code class="language-Rust">
+                              for i in 0..num_workers {
+                                  let start = i * chunk_size;
+                                  let end = if i == num_workers - 1 { arr.len() } else { start + chunk_size };
+                                  let chunk = arr[start..end].to_vec();
+                                  let result = Arc::clone(&result);
 
-      let handle = thread::spawn(move || {
-          let sum: i32 = chunk.iter().sum();
-          let mut total = result.lock().unwrap();
-          *total += sum;
-      });
-      handles.push(handle);
-  }
-                    </pre>
-                </td>
-            </tr>
-            <tr>
-                <td>Sincronización</td>
-                <td>
-                    <ul>
-                        <li>Se utiliza un sync.WaitGroup para esperar a que todas las goroutines terminen su trabajo.</li>
-                        <li>Los resultados parciales se envían a través de un canal (resultChan).</li>
-                    </ul>
-                    <pre class="prettyprint">
-  var wg sync.WaitGroup
+                                  let handle = thread::spawn(move || {
+                                      let sum: i32 = chunk.iter().sum();
+                                      let mut total = result.lock().unwrap();
+                                      *total += sum;
+                                  });
+                                  handles.push(handle);
+                              }
+                            </code></pre>
+                        </td>
+                      </tr>
+                      <tr>
+                      <td>Sincronización</td>
+                      <td>
+                          <ul>
+                              <li>Se utiliza un sync.WaitGroup para esperar a que todas las goroutines terminen su trabajo.</li>
+                              <li>Los resultados parciales se envían a través de un canal (resultChan).</li>
+                          </ul>
+                          <pre><code class="language-go">
+                            var wg sync.WaitGroup
 
-  wg.Wait()
-  close(resultChan)
-                    </pre>
-                </td>
-                <td>
-                    <ul>
-                        <li>Los procesos workers envían las sumas parciales al proceso principal mediante mensajes.</li>
-                    </ul>
-                    <pre class="prettyprint">
-  send(pid, {self(), sum})
-                    </pre>
-                </td>
-                <td>
-                    <ul>
-                        <li>Usa Arc (Atomic Reference Counted) para compartir el resultado entre los hilos.</li>
-                        <li>Usa Mutex para proteger el acceso concurrente al resultado compartido.</li>
-                    </ul>
-                    <pre class="prettyprint">
-  let result = Arc::new(Mutex::new(0));
-                    </pre>
-                </td>
-            </tr>
-            <tr>
-                <td>Recolección de Resultados</td>
-                <td>
-                    <ul>
-                        <li>El canal resultChan se cierra cuando todos los workers han terminado.</li>
-                        <li>Se suma cada resultado parcial recibido del canal para obtener la suma total.</li>
-                    </ul>
-                    <pre class="prettyprint">
-  totalSum := 0
-  for sum := range resultChan {
-      totalSum += sum
-  }
+                            wg.Wait()
+                            close(resultChan)
+                          </code></pre>
+                      </td>
+                      <td>
+                          <ul>
+                              <li>Los procesos workers envían las sumas parciales al proceso principal mediante mensajes.</li>
+                          </ul>
+                          <pre><code class="language-elixir">
+                            send(pid, {self(), sum})
+                          </pre>
+                      </td>
+                      <td>
+                          <ul>
+                              <li>Usa Arc (Atomic Reference Counted) para compartir el resultado entre los hilos.</li>
+                              <li>Usa Mutex para proteger el acceso concurrente al resultado compartido.</li>
+                          </ul>
+                          <pre><code class="language-rust">
+                            let result = Arc::new(Mutex::new(0));
+                          </code></pre>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Recolección de Resultados</td>
+                      <td>
+                          <ul>
+                              <li>El canal resultChan se cierra cuando todos los workers han terminado.</li>
+                              <li>Se suma cada resultado parcial recibido del canal para obtener la suma total.</li>
+                          </ul>
+                          <pre><code class="language-go">
+                            totalSum := 0
+                            for sum := range resultChan {
+                                totalSum += sum
+                            }
 
-  fmt.Printf("Total Sum: %d\n", totalSum)
-                    </pre>
-                </td>
-                <td>
-                    <ul>
-                        <li>El proceso principal recibe los resultados parciales de cada worker y los suma.</li>
-                    </ul>
-                    <pre class="prettyprint">
-  receive do
-    {_, sum} -> 
-      receive_results(tl(pids), acc + sum)
-  end
-                    </pre>
-                </td>
-                <td>
-                    <ul>
-                        <li>Cada hilo añade su suma parcial al resultado total protegido por un Mutex.</li>
-                    </ul>
-                    <pre class="prettyprint">
-  for handle in handles {
-      handle.join().unwrap();
-  }
+                            fmt.Printf("Total Sum: %d\n", totalSum)
+                          </code></pre>
+                      </td>
+                      <td>
+                          <ul>
+                              <li>El proceso principal recibe los resultados parciales de cada worker y los suma.</li>
+                          </ul>
+                          <pre><code class="language-elixir">
+                            receive do
+                              {_, sum} -> 
+                                receive_results(tl(pids), acc + sum)
+                            end
+                          </pre>
+                      </td>
+                      <td>
+                          <ul>
+                              <li>Cada hilo añade su suma parcial al resultado total protegido por un Mutex.</li>
+                          </ul>
+                          <pre><code class="language-rust">
+                            for handle in handles {
+                                handle.join().unwrap();
+                            }
 
-  println!("Total Sum: {}", *result.lock().unwrap());
-                    </pre>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-          </div>
-        </div>
-      </section>
-      
+                            println!("Total Sum: {}", *result.lock().unwrap());
+                          </pre>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
       <!-- #about -->
     </main>
 
