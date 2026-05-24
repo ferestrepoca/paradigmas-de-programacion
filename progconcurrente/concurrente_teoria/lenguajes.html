@@ -1447,6 +1447,159 @@ salida= Mensaje recibido:Hola
                 Thread 9 <br>
                 Thread 3 <br>
               </blockquote>
+              <h4>Ejemplo Manejo de Hilos en RUST:</h4>
+              <p>
+                Este programa crea 10 tareas concurrentes utilizando <strong>thread::spawn</strong>, donde cada tarea alterna entre esperar datos (I/O simulado) con <strong>thread::sleep</strong> y realizar cálculos pesados de CPU. En una máquina con 1 núcleo físico y 2 hilos de hardware, aunque se creen 10 threads, el procesador solo puede ejecutar aproximadamente 2 tareas al mismo tiempo.
+              </p>
+              <p>
+                <strong>¿Qué demuestra el ejemplo?</strong><br />
+                Concurrencia: muchas tareas progresan al mismo tiempo.<br />
+                Paralelismo: limitado por la cantidad de hilos físicos y lógicos disponibles.<br />
+                Mientras una tarea está bloqueada esperando I/O, otra puede usar el CPU.<br />
+                El sistema operativo intercambia constantemente los threads activos para aprovechar mejor el procesador.
+              </p>
+              <p>
+                <strong>Idea clave:</strong> crear muchos threads no significa que todos se ejecuten físicamente al mismo tiempo. La concurrencia permite administrar múltiples tareas de forma eficiente, mientras que el paralelismo real depende del hardware disponible.
+              </p>
+
+              <div style="text-align: center; margin: 20px 0;">
+                <div style="display: inline-block; width: 46%; max-width: 480px; margin: 8px; vertical-align: top;">
+                  <img src="images/rust-sequential.png" alt="Rust secuencial" style="width: 100%; height: auto;" />
+                  <p style="margin-top: 8px;"><strong>Ejecución secuencial</strong></p>
+                </div>
+                <div style="display: inline-block; width: 46%; max-width: 480px; margin: 8px; vertical-align: top;">
+                  <img src="images/rust-concurrency.png" alt="Rust concurrente" style="width: 100%; height: auto;" />
+                  <p style="margin-top: 8px;"><strong>Ejecución concurrente</strong></p>
+                </div>
+              </div>
+
+              <p><strong>Código:</strong></p>
+              <pre><code class="language-rust">
+                use std::thread;
+                use std::time::{Duration, Instant};
+
+                fn calculo_pesado(limite: u64) {
+                    let mut acumulador: f64 = 0.0;
+
+                    for i in 0..limite {
+                        acumulador = acumulador * (i as f64);
+                    }
+                }
+
+                fn ejecutar_tarea(i: u64, n_partes: u64, carga: u64) {
+                    for j in 0..n_partes {
+                        // --- Simulando operacion I/O ---
+                        println!("Tarea {:02} [{:?}] -> Requiriendo datos en disco", i, thread::current().id());
+                        thread::sleep(Duration::from_millis((100 * i * (n_partes - j)) % 10000));
+
+                        // --- PARTE n ---
+                        println!("Tarea {:02} [{:?}] -> Iniciando PARTE {:02}", i, thread::current().id(), j + 1);
+                        calculo_pesado(carga);
+                    }
+
+                    println!("Tarea {:02} [{:?}] Trabajo finalizado", i, thread::current().id());
+                }
+
+                fn main() {
+                    let inicio_programa = Instant::now();
+                    let mut handles = vec![];
+
+                    let n_tareas = 10;
+                    let n_partes = 5;
+                    let carga = 50_000_000;
+
+                    for i in 0..n_tareas {
+                        let handle = thread::spawn(move || ejecutar_tarea(i, n_partes, carga));
+                        handles.push(handle);
+                    }
+
+                    // Esperar a que todos terminen
+                    for h in handles {
+                        h.join().unwrap();
+                    }
+
+                    let duracion_total = inicio_programa.elapsed();
+
+                    println!("--- Todas las tareas han finalizado. ---");
+                    println!("DURACIÓN TOTAL DEL PROGRAMA: {:?}", duracion_total);
+                }
+                              </code></pre>
+
+                              <p><strong>Salida:</strong> <em>(muestra abreviada)</em></p>
+                              <pre class="prettyprint">
+Tarea 01 [ThreadId(3)] -> Requiriendo datos en disco
+Tarea 00 [ThreadId(2)] -> Requiriendo datos en disco
+Tarea 00 [ThreadId(2)] -> Iniciando PARTE 01
+Tarea 02 [ThreadId(4)] -> Requiriendo datos en disco
+Tarea 03 [ThreadId(5)] -> Requiriendo datos en disco
+Tarea 06 [ThreadId(8)] -> Requiriendo datos en disco
+Tarea 04 [ThreadId(6)] -> Requiriendo datos en disco
+Tarea 07 [ThreadId(9)] -> Requiriendo datos en disco
+Tarea 08 [ThreadId(10)] -> Requiriendo datos en disco
+Tarea 09 [ThreadId(11)] -> Requiriendo datos en disco
+Tarea 05 [ThreadId(7)] -> Requiriendo datos en disco
+Tarea 01 [ThreadId(3)] -> Iniciando PARTE 01
+Tarea 00 [ThreadId(2)] -> Requiriendo datos en disco
+Tarea 00 [ThreadId(2)] -> Iniciando PARTE 02
+Tarea 02 [ThreadId(4)] -> Iniciando PARTE 01
+Tarea 03 [ThreadId(5)] -> Iniciando PARTE 01
+Tarea 04 [ThreadId(6)] -> Iniciando PARTE 01
+Tarea 05 [ThreadId(7)] -> Iniciando PARTE 01
+Tarea 01 [ThreadId(3)] -> Requiriendo datos en disco
+Tarea 06 [ThreadId(8)] -> Iniciando PARTE 01
+Tarea 01 [ThreadId(3)] -> Iniciando PARTE 02
+Tarea 07 [ThreadId(9)] -> Iniciando PARTE 01
+Tarea 00 [ThreadId(2)] -> Requiriendo datos en disco
+Tarea 00 [ThreadId(2)] -> Iniciando PARTE 03
+Tarea 08 [ThreadId(10)] -> Iniciando PARTE 01
+Tarea 02 [ThreadId(4)] -> Requiriendo datos en disco
+Tarea 09 [ThreadId(11)] -> Iniciando PARTE 01
+Tarea 02 [ThreadId(4)] -> Iniciando PARTE 02
+Tarea 03 [ThreadId(5)] -> Requiriendo datos en disco
+Tarea 03 [ThreadId(5)] -> Iniciando PARTE 02
+Tarea 04 [ThreadId(6)] -> Requiriendo datos en disco
+Tarea 05 [ThreadId(7)] -> Requiriendo datos en disco
+Tarea 01 [ThreadId(3)] -> Requiriendo datos en disco
+Tarea 06 [ThreadId(8)] -> Requiriendo datos en disco
+Tarea 01 [ThreadId(3)] -> Iniciando PARTE 03
+Tarea 00 [ThreadId(2)] -> Requiriendo datos en disco
+Tarea 00 [ThreadId(2)] -> Iniciando PARTE 04
+Tarea 07 [ThreadId(9)] -> Requiriendo datos en disco
+Tarea 08 [ThreadId(10)] -> Requiriendo datos en disco
+Tarea 04 [ThreadId(6)] -> Iniciando PARTE 02
+Tarea 09 [ThreadId(11)] -> Requiriendo datos en disco
+Tarea 02 [ThreadId(4)] -> Requiriendo datos en disco
+Tarea 02 [ThreadId(4)] -> Iniciando PARTE 03
+Tarea 05 [ThreadId(7)] -> Iniciando PARTE 02
+Tarea 06 [ThreadId(8)] -> Iniciando PARTE 02
+Tarea 03 [ThreadId(5)] -> Requiriendo datos en disco
+Tarea 01 [ThreadId(3)] -> Requiriendo datos en disco
+Tarea 00 [ThreadId(2)] -> Requiriendo datos en disco
+Tarea 00 [ThreadId(2)] -> Iniciando PARTE 05
+Tarea 01 [ThreadId(3)] -> Iniciando PARTE 04
+Tarea 07 [ThreadId(9)] -> Iniciando PARTE 02
+Tarea 03 [ThreadId(5)] -> Iniciando PARTE 03
+Tarea 08 [ThreadId(10)] -> Iniciando PARTE 02
+Tarea 04 [ThreadId(6)] -> Requiriendo datos en disco
+Tarea 09 [ThreadId(11)] -> Iniciando PARTE 02
+Tarea 04 [ThreadId(6)] -> Iniciando PARTE 03
+Tarea 02 [ThreadId(4)] -> Requiriendo datos en disco
+Tarea 02 [ThreadId(4)] -> Iniciando PARTE 04
+Tarea 05 [ThreadId(7)] -> Requiriendo datos en disco
+Tarea 06 [ThreadId(8)] -> Requiriendo datos en disco
+Tarea 05 [ThreadId(7)] -> Iniciando PARTE 03
+Tarea 06 [ThreadId(8)] -> Iniciando PARTE 03
+Tarea 03 [ThreadId(5)] -> Requiriendo datos en disco
+Tarea 07 [ThreadId(9)] -> Requiriendo datos en disco
+Tarea 00 [ThreadId(2)] Trabajo finalizado
+...
+--- Todas las tareas han finalizado. ---
+DURACIÓN TOTAL DEL PROGRAMA: 29.79427011s
+              </pre>
+
+              <p>
+                La salida evidencia una ejecución altamente intercalada entre hilos, lo que confirma que el programa aprovecha la concurrencia para avanzar varias tareas a la vez, aunque no necesariamente en paralelo físico completo. Se observa también que unas tareas entran en espera por I/O mientras otras continúan ejecutándose, lo cual mejora el aprovechamiento del CPU. Sin embargo, el tiempo total no disminuye de forma proporcional al número de threads, porque el rendimiento final depende del scheduler y de los recursos reales del hardware.
+              </p>
   
               <h4>Problema de lectores y escritores en Rust</h4>
               <div style="float:left">
