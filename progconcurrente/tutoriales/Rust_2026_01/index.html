@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rust 2026 | Programaci&oacute;n Concurrente</title>
+  <style>
+    :root {
+      --ink: #16120f;
+      --muted: #675f58;
+      --paper: #fffaf4;
+      --panel: #ffffff;
+      --panel-2: #f3efe8;
+      --rust: #b7410e;
+      --rust-dark: #7d2e12;
+      --teal: #0f766e;
+      --gold: #d99b2b;
+      --line: rgba(22, 18, 15, 0.12);
+      --code: #111827;
+      --code-line: rgba(255, 255, 255, 0.09);
+      --shadow: 0 18px 45px rgba(22, 18, 15, 0.12);
+      --shadow-soft: 0 10px 24px rgba(22, 18, 15, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 250, 244, 0.92);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      width: min(1160px, calc(100% - 32px));
+      min-height: 70px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a,
+    .button {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 9px 13px;
+      color: var(--ink);
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .button:hover {
+      transform: translateY(-1px);
+      border-color: var(--line);
+      background: #fff;
+    }
+
+    .button.primary {
+      color: #fff;
+      border-color: var(--rust-dark);
+      background: var(--rust);
+      box-shadow: 0 10px 20px rgba(183, 65, 14, 0.2);
+    }
+
+    .button.secondary {
+      border-color: var(--line);
+      background: #fff;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: calc(100vh - 70px);
+      display: grid;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(112deg, rgba(255, 250, 244, 0.97) 0%, rgba(255, 250, 244, 0.9) 50%, rgba(234, 255, 251, 0.64) 100%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 130px;
+      background: linear-gradient(to bottom, rgba(255, 250, 244, 0), var(--paper));
+      pointer-events: none;
+    }
+
+    .hero-inner,
+    .section-inner {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+      align-items: center;
+      gap: clamp(28px, 5vw, 70px);
+      padding: 62px 0 108px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(620px, 100%);
+      padding: 0;
+    }
+
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      min-width: 0;
+    }
+
+    .hero-visual img {
+      width: min(100%, 620px);
+      filter: drop-shadow(0 24px 34px rgba(22, 18, 15, 0.14));
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--rust-dark);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      background: var(--rust);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.55rem, 7vw, 5.8rem);
+      max-width: 780px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      max-width: 820px;
+    }
+
+    h3 {
+      font-size: 1.18rem;
+    }
+
+    .lead {
+      max-width: 640px;
+      margin: 24px 0 0;
+      color: #3e3832;
+      font-size: clamp(1.08rem, 2vw, 1.35rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 34px;
+      max-width: 680px;
+    }
+
+    .stat {
+      min-height: 112px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 12px 25px rgba(22, 18, 15, 0.08);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--rust-dark);
+      font-size: 1.55rem;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    section {
+      padding: 88px 0;
+    }
+
+    .section-alt {
+      background: var(--panel-2);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 34px;
+    }
+
+    .section-head p {
+      max-width: 430px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      min-height: 100%;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 10px 30px rgba(22, 18, 15, 0.07);
+    }
+
+    .card.visual-card {
+      display: grid;
+      grid-template-rows: 170px 1fr;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .visual-card .image-frame {
+      display: grid;
+      place-items: center;
+      min-height: 170px;
+      background: #1f2937;
+    }
+
+    .visual-card .image-frame.light {
+      background: #fff;
+    }
+
+    .visual-card img {
+      width: min(72%, 230px);
+      height: min(72%, 150px);
+      object-fit: contain;
+      padding: 18px;
+    }
+
+    .visual-card .card-body {
+      padding: 22px;
+    }
+
+    .card p,
+    .flow-step p,
+    .resource p,
+    .history-card p,
+    .decision-item p {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      margin-bottom: 14px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      color: var(--rust-dark);
+      background: #f7dfd4;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .flow-step {
+      position: relative;
+      min-height: 220px;
+      padding: 24px;
+      border-right: 1px solid var(--line);
+    }
+
+    .flow-step:last-child {
+      border-right: 0;
+    }
+
+    .flow-step strong {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--teal);
+      font-family: Consolas, "Liberation Mono", monospace;
+    }
+
+    .code-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .code-card {
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 8px;
+      background: var(--code);
+      box-shadow: var(--shadow);
+    }
+
+    .code-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 52px;
+      padding: 0 18px;
+      color: #fff;
+      border-bottom: 1px solid var(--code-line);
+      background: #1f2937;
+      font-weight: 800;
+    }
+
+    .code-title span {
+      color: #f4b56b;
+      font-family: Consolas, "Liberation Mono", monospace;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    pre {
+      margin: 0;
+      padding: 20px;
+      overflow-x: auto;
+      color: #e5e7eb;
+      font-family: Consolas, "Liberation Mono", monospace;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      tab-size: 2;
+    }
+
+    code {
+      font-family: Consolas, "Liberation Mono", monospace;
+    }
+
+    :not(pre) > code {
+      padding: 0.12rem 0.32rem;
+      border-radius: 4px;
+      color: var(--rust-dark);
+      background: #f7dfd4;
+      font-size: 0.92em;
+    }
+
+    .kw {
+      color: #fbbf24;
+    }
+
+    .ty {
+      color: #67e8f9;
+    }
+
+    .fn {
+      color: #93c5fd;
+    }
+
+    .st {
+      color: #86efac;
+    }
+
+    .cm {
+      color: #9ca3af;
+    }
+
+    .concurrency-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .concurrency-strip figure {
+      margin: 0;
+      padding: 24px;
+      border-right: 1px solid var(--line);
+    }
+
+    .concurrency-strip figure:last-child {
+      border-right: 0;
+    }
+
+    .concurrency-strip img {
+      width: 100%;
+      min-height: 220px;
+      object-fit: contain;
+    }
+
+    figcaption {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .resource-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .resource {
+      min-height: 170px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .resource:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(22, 18, 15, 0.1);
+    }
+
+    .resource strong {
+      display: block;
+      color: var(--rust-dark);
+      font-size: 1.05rem;
+    }
+
+    .note {
+      margin-top: 24px;
+      padding: 20px;
+      border-left: 5px solid var(--gold);
+      background: #fff;
+      color: #4a413a;
+    }
+
+    .decision-board {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .decision-item {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 16px;
+      align-items: start;
+      min-height: 154px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .decision-icon {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--teal);
+      font-family: Consolas, "Liberation Mono", monospace;
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .history-shell {
+      position: relative;
+    }
+
+    .history-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(280px, 32%);
+      gap: 18px;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: inline mandatory;
+      padding: 4px 4px 18px;
+      scrollbar-color: var(--rust) rgba(22, 18, 15, 0.12);
+    }
+
+    .history-card {
+      overflow: hidden;
+      scroll-snap-align: start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .history-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .history-preview {
+      display: grid;
+      place-items: center;
+      height: 190px;
+      background: #f5f0e9;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .history-preview.brand-preview {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(183, 65, 14, 0.12), rgba(15, 118, 110, 0.14)),
+        #fffaf4;
+    }
+
+    .history-preview.brand-preview::before,
+    .history-preview.brand-preview::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(22, 18, 15, 0.1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .history-preview.brand-preview::before {
+      inset: 26px 30px 42px;
+      box-shadow: 0 14px 28px rgba(22, 18, 15, 0.1);
+    }
+
+    .history-preview.brand-preview::after {
+      width: 46%;
+      height: 12px;
+      left: 50%;
+      bottom: 26px;
+      transform: translateX(-50%);
+      background: var(--rust);
+      opacity: 0.72;
+    }
+
+    .history-preview img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 18px;
+    }
+
+    .history-preview.brand-preview img {
+      width: min(44%, 128px);
+      height: min(58%, 112px);
+      padding: 0;
+      filter: drop-shadow(0 10px 16px rgba(22, 18, 15, 0.18));
+    }
+
+    .history-body {
+      padding: 20px;
+    }
+
+    .history-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+      color: var(--rust-dark);
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .carousel-button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #fff;
+      color: var(--ink);
+      font-size: 1.35rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    .carousel-button:hover {
+      transform: translateY(-1px);
+      background: #fff7ed;
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 58px 0 76px;
+      }
+
+      .hero-content {
+        width: min(680px, 100%);
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .hero-visual img {
+        width: min(100%, 520px);
+      }
+
+      .stats,
+      .grid.two,
+      .grid.three,
+      .code-grid,
+      .timeline,
+      .concurrency-strip,
+      .resource-list,
+      .decision-board {
+        grid-template-columns: 1fr;
+      }
+
+      .history-track {
+        grid-auto-columns: minmax(260px, 82%);
+      }
+
+      .flow-step,
+      .concurrency-strip figure {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .flow-step:last-child,
+      .concurrency-strip figure:last-child {
+        border-bottom: 0;
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-links a,
+      .button {
+        width: 100%;
+      }
+
+      .nav-links,
+      .hero-actions {
+        width: 100%;
+      }
+
+      .hero-inner {
+        padding-top: 42px;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Navegaci&oacute;n principal">
+      <a class="brand" href="#inicio">
+        <img src="images/rust-logo.png" alt="Logo de Rust">
+        <span>Tutorial Rust 2026-01</span>
+      </a>
+      <div class="nav-links">
+        <a href="#conceptos">Conceptos</a>
+        <a href="#ejemplos">Ejemplos</a>
+        <a href="#concurrencia">Concurrencia</a>
+        <a href="#historial">Historial</a>
+        <a href="#recursos">Recursos</a>
+        <a href="Presentacion_RUST_2026_01.pdf">Presentación</a>
+        <a href="https://nbviewer.org/github/nmart1nezl/paradigmas-de-programacion/blob/gh-pages/progconcurrente/tutoriales/Rust_2026_01/Tutorial_Rust_2026_I.ipynb">Notebook</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inicio">
+    <section class="hero" aria-labelledby="titulo">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <p class="eyebrow">Programaci&oacute;n Concurrente</p>
+          <h1 id="titulo">Tutorial Rust 2026-01</h1>
+          <p class="lead">Aprende Rust desde sus fundamentos hasta sus mecanismos de concurrencia: instalaci&oacute;n, ownership, borrow checker, tipos, manejo de errores, hilos, canales, sincronizaci&oacute;n y tareas as&iacute;ncronas.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://nbviewer.org/github/nmart1nezl/paradigmas-de-programacion/blob/gh-pages/progconcurrente/tutoriales/Rust_2026_01/Tutorial_Rust_2026_I.ipynb">Abrir notebook</a>
+            <a class="button secondary" href="Presentacion_RUST_2026_01.pdf">Ver presentaci&oacute;n</a>
+          </div>
+          <div class="stats" aria-label="Puntos clave de Rust">
+            <div class="stat">
+              <strong>1</strong>
+              <span>due&ntilde;o por valor para razonar sobre memoria</span>
+            </div>
+            <div class="stat">
+              <strong>&amp;</strong>
+              <span>referencias controladas por el borrow checker</span>
+            </div>
+            <div class="stat">
+              <strong>Send</strong>
+              <span>tipos que pueden moverse entre hilos de forma segura</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <img src="images/rust-thread-map.svg" alt="">
+        </div>
+      </div>
+    </section>
+
+    <section id="conceptos">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Lo que hace distinto a Rust</h2>
+          <p>Rust empuja errores comunes hacia compilaci&oacute;n: uso despu&eacute;s de liberar memoria, punteros colgantes, carreras de datos y acceso concurrente sin sincronizaci&oacute;n.</p>
+        </div>
+        <div class="grid three">
+          <article class="card">
+            <span class="tag">Memoria</span>
+            <h3>Ownership y movimiento</h3>
+            <p>Cada valor tiene un due&ntilde;o. Cuando se asigna un <code>String</code> a otra variable, la propiedad se mueve y la variable anterior queda invalidada.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Pr&eacute;stamos</span>
+            <h3>Borrow checker</h3>
+            <p>Las referencias permiten leer o modificar sin transferir propiedad. Muchas referencias inmutables pueden coexistir, pero una mutable exige acceso exclusivo.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Errores</span>
+            <h3><code>Option</code> y <code>Result</code></h3>
+            <p>Rust evita depender de valores nulos. Los casos de ausencia o error se modelan como tipos y se resuelven con <code>match</code>.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Tipos</span>
+            <h3>Tipado est&aacute;tico</h3>
+            <p>El compilador infiere tipos cuando puede, pero los par&aacute;metros y retornos de funciones se declaran expl&iacute;citamente para mantener contratos claros.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Modelado</span>
+            <h3>Structs, enums e <code>impl</code></h3>
+            <p>Los <code>structs</code> agrupan datos, los <code>enums</code> representan estados y los bloques <code>impl</code> agregan m&eacute;todos al tipo.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Rendimiento</span>
+            <h3>Abstracciones cero costo</h3>
+            <p>Iteradores, closures y tipos expresivos mantienen c&oacute;digo de alto nivel sin pagar penalizaciones innecesarias en tiempo de ejecuci&oacute;n.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>De una idea a un proyecto Rust</h2>
+          <p>El notebook propone instalar Rust con <code>rustup</code>, crear un proyecto con <code>cargo</code> y, para ejemplos as&iacute;ncronos, sumar Tokio como runtime.</p>
+        </div>
+        <div class="timeline">
+          <div class="flow-step">
+            <strong>1</strong>
+            <h3>Instalar</h3>
+            <p><code>rustup</code> configura el compilador, Cargo y el entorno base de Rust.</p>
+          </div>
+          <div class="flow-step">
+            <strong>2</strong>
+            <h3>Crear</h3>
+            <p><code>cargo new rust_playground</code> genera la estructura inicial del proyecto.</p>
+          </div>
+          <div class="flow-step">
+            <strong>3</strong>
+            <h3>Ejecutar</h3>
+            <p><code>cargo run</code> compila y ejecuta. <code>cargo test</code>, <code>fmt</code> y <code>clippy</code> ayudan a mantener calidad.</p>
+          </div>
+          <div class="flow-step">
+            <strong>4</strong>
+            <h3>Escalar</h3>
+            <p>Crates como <code>rand</code> o <code>tokio</code> ampl&iacute;an el proyecto sin abandonar el flujo de Cargo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ejemplos">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Ejemplos esenciales</h2>
+          <p>Fragmentos compactos inspirados en el notebook para explicar la mec&aacute;nica mental de Rust antes de entrar a concurrencia.</p>
+        </div>
+        <div class="code-grid">
+          <article class="code-card">
+            <div class="code-title">Ownership <span>move</span></div>
+            <pre><code><span class="kw">fn</span> <span class="fn">main</span>() {
+    <span class="kw">let</span> s1 = <span class="ty">String</span>::from(<span class="st">"Hola"</span>);
+    <span class="kw">let</span> s2 = s1;
+
+    <span class="cm">// println!("{}", s1); // error: valor movido</span>
+    println!(<span class="st">"{}"</span>, s2);
+}</code></pre>
+          </article>
+          <article class="code-card">
+            <div class="code-title">Borrowing <span>&amp;T</span></div>
+            <pre><code><span class="kw">fn</span> <span class="fn">longitud</span>(texto: &amp;<span class="ty">String</span>) -&gt; <span class="ty">usize</span> {
+    texto.len()
+}
+
+<span class="kw">fn</span> <span class="fn">main</span>() {
+    <span class="kw">let</span> saludo = <span class="ty">String</span>::from(<span class="st">"Hola Rust"</span>);
+    println!(<span class="st">"{}"</span>, longitud(&amp;saludo));
+    println!(<span class="st">"{}"</span>, saludo);
+}</code></pre>
+          </article>
+          <article class="code-card">
+            <div class="code-title">Pattern matching <span>Option</span></div>
+            <pre><code><span class="kw">fn</span> <span class="fn">divide</span>(a: <span class="ty">f64</span>, b: <span class="ty">f64</span>) -&gt; <span class="ty">Option</span>&lt;<span class="ty">f64</span>&gt; {
+    <span class="kw">if</span> b == 0.0 { <span class="ty">None</span> } <span class="kw">else</span> { <span class="ty">Some</span>(a / b) }
+}
+
+<span class="kw">fn</span> <span class="fn">main</span>() {
+    <span class="kw">match</span> divide(10.0, 2.0) {
+        <span class="ty">Some</span>(r) =&gt; println!(<span class="st">"Resultado: {}"</span>, r),
+        <span class="ty">None</span> =&gt; println!(<span class="st">"Division por cero"</span>),
+    }
+}</code></pre>
+          </article>
+          <article class="code-card">
+            <div class="code-title">Closures e iteradores <span>zero-cost</span></div>
+            <pre><code><span class="kw">fn</span> <span class="fn">main</span>() {
+    <span class="kw">let</span> numeros = vec![1, 2, 3, 4, 5];
+
+    <span class="kw">let</span> suma: <span class="ty">i32</span> = numeros
+        .iter()
+        .filter(|x| *x % 2 == 0)
+        .map(|x| x * 2)
+        .sum();
+
+    println!(<span class="st">"{}"</span>, suma);
+}</code></pre>
+          </article>
+        </div>
+        <div class="note">
+          En Google Colab, el notebook define una <em>cell magic</em> <code>%%rust</code> para escribir el contenido de una celda en <code>src/main.rs</code> y ejecutarlo con <code>cargo run</code>. Es pr&aacute;ctico para clase, aunque la sintaxis se vea como Python dentro de Colab.
+        </div>
+      </div>
+    </section>
+
+    <section id="concurrencia" class="section-alt">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Concurrencia sin miedo</h2>
+          <p>Rust combina hilos del sistema, comunicaci&oacute;n por canales, sincronizaci&oacute;n con <code>Arc</code>/<code>Mutex</code> y asincron&iacute;a con <code>async/await</code>.</p>
+        </div>
+        <div class="concurrency-strip" aria-label="Im&aacute;genes de ejecuci&oacute;n secuencial y concurrente">
+          <figure>
+            <img src="images/rust-sequential.png" alt="Ejecuci&oacute;n secuencial en Rust">
+            <figcaption>La ejecuci&oacute;n secuencial concentra el trabajo en una ruta de control.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/rust-concurrency.png" alt="Ejecuci&oacute;n concurrente en Rust">
+            <figcaption>La ejecuci&oacute;n concurrente reparte tareas y exige reglas claras de propiedad y sincronizaci&oacute;n.</figcaption>
+          </figure>
+        </div>
+
+        <div class="grid three" style="margin-top: 28px;">
+          <article class="card">
+            <span class="tag">Threads</span>
+            <h3><code>thread::spawn</code></h3>
+            <p>Un closure con <code>move</code> transfiere datos al hilo. <code>join</code> espera su finalizaci&oacute;n y evita que el programa termine antes.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Estado compartido</span>
+            <h3><code>Arc&lt;Mutex&lt;T&gt;&gt;</code></h3>
+            <p><code>Arc</code> comparte propiedad entre hilos y <code>Mutex</code> garantiza acceso exclusivo al dato protegido.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Mensajes</span>
+            <h3><code>mpsc::channel</code></h3>
+            <p>Los sensores concurrentes del notebook env&iacute;an lecturas de temperatura y humedad a un receptor central.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Patrones de concurrencia en c&oacute;digo</h2>
+          <p>Estos ejemplos muestran tres estilos complementarios: compartir memoria, pasar mensajes y trabajar con tareas as&iacute;ncronas.</p>
+        </div>
+        <div class="code-grid">
+          <article class="code-card">
+            <div class="code-title">Hilo con propiedad movida <span>std::thread</span></div>
+            <pre><code><span class="kw">use</span> std::thread;
+
+<span class="kw">fn</span> <span class="fn">main</span>() {
+    <span class="kw">let</span> numeros = vec![1, 2, 3];
+
+    <span class="kw">let</span> handle = thread::spawn(<span class="kw">move</span> || {
+        println!(<span class="st">"{:?}"</span>, numeros);
+    });
+
+    handle.join().unwrap();
+}</code></pre>
+          </article>
+          <article class="code-card">
+            <div class="code-title">Lectores y escritor <span>Arc + Mutex</span></div>
+            <pre><code><span class="kw">use</span> std::sync::{Arc, Mutex};
+<span class="kw">use</span> std::thread;
+
+<span class="kw">fn</span> <span class="fn">main</span>() {
+    <span class="kw">let</span> dato = Arc::new(Mutex::new(0));
+    <span class="kw">let</span> mut handles = vec![];
+
+    <span class="kw">for</span> id <span class="kw">in</span> 0..3 {
+        <span class="kw">let</span> copia = Arc::clone(&amp;dato);
+        handles.push(thread::spawn(<span class="kw">move</span> || {
+            <span class="kw">let</span> valor = copia.lock().unwrap();
+            println!(<span class="st">"lector {} ve {}"</span>, id, *valor);
+        }));
+    }
+
+    <span class="kw">for</span> h <span class="kw">in</span> handles { h.join().unwrap(); }
+}</code></pre>
+          </article>
+          <article class="code-card">
+            <div class="code-title">Sensores concurrentes <span>mpsc</span></div>
+            <pre><code><span class="kw">use</span> std::sync::mpsc;
+<span class="kw">use</span> std::thread;
+
+<span class="kw">fn</span> <span class="fn">main</span>() {
+    <span class="kw">let</span> (tx, rx) = mpsc::channel();
+
+    <span class="kw">let</span> tx_temp = tx.clone();
+    thread::spawn(<span class="kw">move</span> || {
+        <span class="kw">for</span> temp <span class="kw">in</span> [22, 24, 27] {
+            tx_temp.send((<span class="st">"temperatura"</span>, temp)).unwrap();
+        }
+    });
+
+    thread::spawn(<span class="kw">move</span> || {
+        <span class="kw">for</span> hum <span class="kw">in</span> [65, 62, 70] {
+            tx.send((<span class="st">"humedad"</span>, hum)).unwrap();
+        }
+    });
+
+    <span class="kw">for</span> lectura <span class="kw">in</span> rx.iter().take(6) {
+        println!(<span class="st">"{:?}"</span>, lectura);
+    }
+}</code></pre>
+          </article>
+          <article class="code-card">
+            <div class="code-title">Clientes masivos <span>Tokio</span></div>
+            <pre><code><span class="kw">use</span> tokio::time::{sleep, Duration};
+
+<span class="kw">async fn</span> <span class="fn">cliente</span>(id: <span class="ty">u32</span>) {
+    println!(<span class="st">"Cliente {} conectado"</span>, id);
+    sleep(Duration::from_millis(100)).await;
+    println!(<span class="st">"Cliente {} desconectado"</span>, id);
+}
+
+#[tokio::main]
+<span class="kw">async fn</span> <span class="fn">main</span>() {
+    <span class="kw">for</span> id <span class="kw">in</span> 0..10 {
+        tokio::spawn(cliente(id));
+    }
+}</code></pre>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Rust tambi&eacute;n es dise&ntilde;o de tipos</h2>
+          <p>La concurrencia segura no aparece al final: depende de funciones, tipos personalizados y traits que expresan qu&eacute; puede moverse o compartirse.</p>
+        </div>
+        <div class="grid three">
+          <article class="card visual-card">
+            <div class="image-frame light">
+              <img src="images/rust-concurrency-logo.png" alt="Logo de Rust en el material de concurrencia">
+            </div>
+            <div class="card-body">
+              <h3><code>Send</code></h3>
+              <p>Un tipo que implementa <code>Send</code> puede transferir su propiedad a otro hilo.</p>
+            </div>
+          </article>
+          <article class="card visual-card">
+            <div class="image-frame">
+              <img src="images/concurrency-unit.png" alt="Unidad b&aacute;sica de concurrencia">
+            </div>
+            <div class="card-body">
+              <h3><code>Sync</code></h3>
+              <p>Un tipo que implementa <code>Sync</code> permite compartir referencias entre hilos cuando hacerlo es seguro.</p>
+            </div>
+          </article>
+          <article class="card visual-card">
+            <div class="image-frame light">
+              <img src="images/concurrent-process.png" alt="Procesos concurrentes">
+            </div>
+            <div class="card-body">
+              <h3>Estado expl&iacute;cito</h3>
+              <p><code>enum</code>, <code>struct</code> e <code>impl</code> ayudan a modelar estados, mensajes y responsabilidades.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Qu&eacute; herramienta usar y cu&aacute;ndo</h2>
+          <p>Una parte valiosa de Rust es que no obliga a un solo estilo de concurrencia. El dise&ntilde;o depende de si quieres aislar tareas, compartir estado o coordinar muchas esperas de I/O.</p>
+        </div>
+        <div class="decision-board">
+          <article class="decision-item">
+            <div class="decision-icon">T</div>
+            <div>
+              <h3>Usa hilos cuando el trabajo sea CPU-bound</h3>
+              <p>Para c&aacute;lculo pesado o tareas independientes, <code>std::thread</code> permite repartir trabajo real entre n&uacute;cleos. Comb&iacute;nalo con <code>move</code> para transferir propiedad de forma expl&iacute;cita.</p>
+            </div>
+          </article>
+          <article class="decision-item">
+            <div class="decision-icon">M</div>
+            <div>
+              <h3>Usa <code>Arc&lt;Mutex&lt;T&gt;&gt;</code> cuando haya estado compartido</h3>
+              <p>El contador, una cache o una estructura global necesitan una regla clara de acceso. <code>Arc</code> comparte propiedad y <code>Mutex</code> evita escrituras simult&aacute;neas peligrosas.</p>
+            </div>
+          </article>
+          <article class="decision-item">
+            <div class="decision-icon">C</div>
+            <div>
+              <h3>Usa channels cuando el modelo sea productor-consumidor</h3>
+              <p>Los canales son ideales para sensores, pipelines y tareas que env&iacute;an eventos. Separan a quien produce datos de quien decide qu&eacute; hacer con ellos.</p>
+            </div>
+          </article>
+          <article class="decision-item">
+            <div class="decision-icon">A</div>
+            <div>
+              <h3>Usa async cuando haya muchas esperas</h3>
+              <p>Con Tokio, miles de conexiones o solicitudes pueden avanzar sin crear miles de hilos. Es fuerte para red, archivos, temporizadores y servidores concurrentes.</p>
+            </div>
+          </article>
+        </div>
+        <div class="note">
+          Regla de oro: si el compilador se queja en concurrencia, casi siempre est&aacute; mostrando una decisi&oacute;n de dise&ntilde;o que falta. Revisa qui&eacute;n posee el dato, qui&eacute;n lo presta, y si realmente debe compartirse.
+        </div>
+      </div>
+    </section>
+
+    <section id="recursos">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Materiales para seguir</h2>
+          <p>Enlaces directos al material de la carpeta y a recursos oficiales que conectan con los temas del tutorial.</p>
+        </div>
+        <div class="resource-list">
+          <a class="resource" href="https://nbviewer.org/github/nmart1nezl/paradigmas-de-programacion/blob/gh-pages/progconcurrente/tutoriales/Rust_2026_01/Tutorial_Rust_2026_I.ipynb">
+            <strong>Notebook en nbviewer</strong>
+            <p>Vista renderizada del tutorial con instalaci&oacute;n, ejemplos y celdas de Rust para Colab.</p>
+          </a>
+          <a class="resource" href="Presentaci%C3%B3n.pdf">
+            <strong>Presentaci&oacute;n PDF</strong>
+            <p>Diapositivas de la sesi&oacute;n pr&aacute;ctica de Rust y programaci&oacute;n concurrente.</p>
+          </a>
+          <a class="resource" href="https://doc.rust-lang.org/book/">
+            <strong>The Rust Book</strong>
+            <p>Gu&iacute;a oficial para profundizar en ownership, tipos, errores y concurrencia.</p>
+          </a>
+          <a class="resource" href="https://tokio.rs/">
+            <strong>Tokio</strong>
+            <p>Runtime as&iacute;ncrono usado para tareas concurrentes masivas con <code>async/await</code>.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="historial" class="section-alt">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Historial de tutoriales Rust</h2>
+          <p>Versiones anteriores del material para comparar enfoques, ejemplos y recursos usados en otros semestres.</p>
+        </div>
+        <div class="history-shell">
+          <div class="history-track" id="historyTrack" aria-label="Carrusel de p&aacute;ginas anteriores de Rust">
+            <a class="history-card" href="../Rust/index.html">
+              <div class="history-preview brand-preview">
+                <img src="images/history-rust.png" alt="Previsualizaci&oacute;n de la p&aacute;gina Rust original">
+              </div>
+              <div class="history-body">
+                <h3>Rust</h3>
+                <p>Recursos introductorios, documentaci&oacute;n, tutoriales y material de apoyo para aprender el lenguaje.</p>
+                <div class="history-meta">
+                  <span>Versi&oacute;n base</span>
+                  <span>Ver p&aacute;gina</span>
+                </div>
+              </div>
+            </a>
+            <a class="history-card" href="../Rust_201903/index.html">
+              <div class="history-preview">
+                <img src="images/history-rust-2019-02.png" alt="Previsualizaci&oacute;n de Rust 2019-02">
+              </div>
+              <div class="history-body">
+                <h3>Rust 2019-02</h3>
+                <p>Presentaci&oacute;n interactiva en HTML con notebooks, ejemplos y taller pr&aacute;ctico.</p>
+                <div class="history-meta">
+                  <span>2019-02</span>
+                  <span>Ver p&aacute;gina</span>
+                </div>
+              </div>
+            </a>
+            <a class="history-card" href="../Rust_2021_01/index.html">
+              <div class="history-preview">
+                <img src="images/history-rust-2021-01.png" alt="Previsualizaci&oacute;n de Rust 2021-01">
+              </div>
+              <div class="history-body">
+                <h3>Rust 2021-01</h3>
+                <p>Material con presentaci&oacute;n, tutorial HTML y un notebook amplio para la sesi&oacute;n pr&aacute;ctica.</p>
+                <div class="history-meta">
+                  <span>2021-01</span>
+                  <span>Ver p&aacute;gina</span>
+                </div>
+              </div>
+            </a>
+            <a class="history-card" href="../Rust_2023_02/index.html">
+              <div class="history-preview brand-preview">
+                <img src="images/rust-logo.png" alt="Previsualizaci&oacute;n de Rust 2023-02">
+              </div>
+              <div class="history-body">
+                <h3>Rust 2023-02</h3>
+                <p>P&aacute;gina con playground, ejemplos de sintaxis, ownership, borrowing y concurrencia con channels y mutex.</p>
+                <div class="history-meta">
+                  <span>2023-02</span>
+                  <span>Ver p&aacute;gina</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="carousel-controls" aria-label="Controles del carrusel">
+            <button class="carousel-button" type="button" data-scroll-history="-1" aria-label="Ver tutorial anterior">&lsaquo;</button>
+            <button class="carousel-button" type="button" data-scroll-history="1" aria-label="Ver tutorial siguiente">&rsaquo;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const historyTrack = document.getElementById("historyTrack");
+    document.querySelectorAll("[data-scroll-history]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const direction = Number(button.dataset.scrollHistory);
+        const distance = Math.max(280, historyTrack.clientWidth * 0.85);
+        historyTrack.scrollBy({ left: direction * distance, behavior: "smooth" });
+      });
+    });
+  </script>
+</body>
+
+</html>

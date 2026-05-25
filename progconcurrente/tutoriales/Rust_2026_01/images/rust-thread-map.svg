@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 680" role="img" aria-labelledby="title desc">
+  <title id="title">Mapa visual de concurrencia en Rust</title>
+  <desc id="desc">Diagrama abstracto con ownership, threads, canales, mutex y async alrededor del logo de Rust.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff7ed"/>
+      <stop offset="0.55" stop-color="#f4f0e8"/>
+      <stop offset="1" stop-color="#e6fffb"/>
+    </linearGradient>
+    <linearGradient id="rust" x1="0" x2="1">
+      <stop offset="0" stop-color="#b7410e"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#16120f" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="920" height="680" rx="34" fill="url(#bg)"/>
+  <g opacity="0.28" fill="none" stroke="#0f766e" stroke-width="2">
+    <path d="M86 180h748M86 342h748M86 504h748"/>
+    <path d="M180 84v512M338 84v512M496 84v512M654 84v512"/>
+  </g>
+  <g filter="url(#shadow)">
+    <circle cx="460" cy="338" r="120" fill="#16120f"/>
+    <circle cx="460" cy="338" r="88" fill="#fffaf4"/>
+    <circle cx="460" cy="338" r="48" fill="url(#rust)"/>
+    <g fill="#16120f">
+      <rect x="449" y="178" width="22" height="56" rx="9"/>
+      <rect x="449" y="442" width="22" height="56" rx="9"/>
+      <rect x="300" y="327" width="56" height="22" rx="9"/>
+      <rect x="564" y="327" width="56" height="22" rx="9"/>
+      <rect x="353" y="222" width="22" height="56" rx="9" transform="rotate(-45 364 250)"/>
+      <rect x="545" y="398" width="22" height="56" rx="9" transform="rotate(-45 556 426)"/>
+      <rect x="545" y="222" width="22" height="56" rx="9" transform="rotate(45 556 250)"/>
+      <rect x="353" y="398" width="22" height="56" rx="9" transform="rotate(45 364 426)"/>
+    </g>
+  </g>
+  <g fill="#fff" stroke="#16120f" stroke-width="2.5" filter="url(#shadow)">
+    <rect x="88" y="100" width="238" height="96" rx="14"/>
+    <rect x="594" y="96" width="238" height="100" rx="14"/>
+    <rect x="76" y="462" width="260" height="110" rx="14"/>
+    <rect x="584" y="458" width="260" height="114" rx="14"/>
+  </g>
+  <g font-family="Inter, Segoe UI, Arial, sans-serif" fill="#16120f">
+    <text x="116" y="137" font-size="18" font-weight="800">Ownership</text>
+    <text x="116" y="166" font-size="15">un dueno por valor</text>
+    <text x="622" y="133" font-size="18" font-weight="800">Threads</text>
+    <text x="622" y="162" font-size="15">trabajo paralelo seguro</text>
+    <text x="104" y="501" font-size="18" font-weight="800">Channels</text>
+    <text x="104" y="530" font-size="15">mensajes entre tareas</text>
+    <text x="612" y="497" font-size="18" font-weight="800">Arc + Mutex</text>
+    <text x="612" y="526" font-size="15">estado compartido con bloqueo</text>
+    <text x="392" y="344" font-size="21" font-weight="900" fill="#fff">Rust</text>
+  </g>
+  <g fill="none" stroke="#b7410e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M326 148c72 6 109 50 124 96"/>
+    <path d="M594 148c-72 6-109 50-124 96"/>
+    <path d="M336 517c78-24 111-70 119-118"/>
+    <path d="M584 516c-78-24-111-70-119-118"/>
+  </g>
+  <g fill="#0f766e">
+    <circle cx="450" cy="244" r="8"/>
+    <circle cx="470" cy="244" r="8"/>
+    <circle cx="455" cy="398" r="8"/>
+    <circle cx="465" cy="398" r="8"/>
+  </g>
+</svg>
