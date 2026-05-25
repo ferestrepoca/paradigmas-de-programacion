@@ -743,9 +743,48 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 id="line8_1">RxPY </h4>
+
+                            <h4 id="line8_1">RxPY - Ejemplos de Programación Reactiva</h4>
+
+                            <hr>
+
+                            <h5>Ejemplo 1</h5>
+
+                            <p>
+                                El siguiente ejemplo muestra un uso básico de RxPY.
+                            </p>
 
                             <script src="https://gist.github.com/juankg214/e0f5ed1550993577ea302edbf10e775a.js"></script>
+
+                            <br><br>
+
+                            <h5>Ejemplo 2: Comparación entre Programación Tradicional y Reactiva</h5>
+
+                            <p>
+                                El siguiente ejemplo simula un sistema de monitoreo de mensajes
+                                en tiempo real. Se compara un enfoque tradicional, donde el programa
+                                controla manualmente el flujo de ejecución, con un enfoque reactivo
+                                utilizando RxPY, donde el sistema reacciona automáticamente cuando
+                                llegan nuevos eventos.
+                            </p>
+
+                            <p>
+                                En el enfoque reactivo los mensajes son tratados como un flujo de datos
+                                (stream), utilizando conceptos como observables, observers y suscripciones.
+                            </p>
+
+                            <script src="https://gist.github.com/bforero/681aad5ce6949008faa32a0c66e97ce2.js"></script>
+
+                            <br>
+
+                            <p>
+                                <strong>Conceptos utilizados:</strong>
+                                Stream, Observable, Observer, Subscriber y estrategia Push.
+                            </p>
+
+                            <p>
+                                Aunque ambos enfoques producen un resultado similar, la principal diferencia se encuentra en la manera en que se maneja el flujo de datos y la ejecución del programa. En el enfoque tradicional, el sistema controla manualmente cada paso mediante ciclos y validaciones explícitas, recorriendo constantemente los mensajes para procesarlos. En cambio, en el enfoque reactivo los mensajes son tratados como eventos dentro de un flujo de datos, permitiendo que el sistema reaccione automáticamente cuando llega nueva información. De esta manera, la programación reactiva se centra en responder a eventos y propagación de cambios, mientras que la programación tradicional se basa en el control manual de la ejecución.
+                            </p>
 
                         </div>
                         <!-- end col -->
@@ -960,8 +999,30 @@
                             <p><strong>Jafar Husain</strong>, Desarrollador Senior en el equipo de Interfaz de Usuario de TV en <strong> Netflix</strong> comenta lo siguiente:<br>
                                 <cite>"Over the last year, Netflix has reinvented our client-server interaction model. One of the key building blocks of our platform is Microsoft’s open-source Reactive Extensions library (Rx). Netflix is a big believer in the Rx model, because Rx has made it much easier for us to build complex asynchronous programs."</cite>
                             </p>
-                            <p>Husain También menciona que actualmente Netflix es de las pocas compañías que utiliza la programación reactiva tanto en el servidor como en el cliente, sin embargo, no son la única: <strong> Felipe Lima</strong>, Miembro del equipos de desarrollo de Android en <strong>Airbnb</strong>, menciona por qué decidieron inclinarse hacia la programación reactiva mediante RxJava:<br> <cite >" It’s easy to switch back and forth between threads. It’s built right into the framework, Async can be very cumbersome and error-prone, and RxJava is one reason we you don’t need to do that anymore, and why you can compose different tasks together".</cite> </p>
+                            <p>Husain También menciona que actualmente Netflix es de las pocas compañías que utiliza la programación reactiva tanto en el servidor como en el cliente, sin embargo, no son la única: <strong> Felipe Lima</strong>, Miembro del equipos de desarrollo de Android en <strong>Airbnb</strong>, menciona por qué decidieron inclinarse hacia la programación reactiva mediante RxJava:<br> <cite >" It’s easy to switch back and forth between threads. Its built right into the framework, Async can be very cumbersome and error-prone, and RxJava is one reason we you don’t need to do that anymore, and why you can compose different tasks together".</cite> </p>
+                            <p>
+                                <strong><a href="https://discord.com/blog/how-discord-scaled-elixir-to-5-000-000-concurrent-users" target="_blank">
+                                Discord
+                                </a></strong> logró escalar su plataforma para soportar más de 5 millones de usuarios concurrentes utilizando tecnologías orientadas a eventos y procesamiento asíncrono con <strong>Elixir</strong>. Gracias a este enfoque, Discord puede manejar en tiempo real millones de mensajes, notificaciones y actualizaciones de estado entre usuarios, un escenario donde los principios de la programación reactiva resultan fundamentales para reaccionar eficientemente a grandes flujos de eventos simultáneos.
+                                <br>
+                                
+                            </p>
 
+                            <p>
+                                <strong><a href="https://www.uber.com/co/en/blog/new-rider-app-architecture/" target="_blank">
+                                    Uber
+                                </a></strong> rediseñó la arquitectura de su aplicación para pasajeros utilizando un enfoque modular y basado en eventos que permite actualizar información en tiempo real como ubicaciones, rutas y estados del viaje. Este tipo de arquitectura comparte principios con la programación reactiva, ya que el sistema responde automáticamente a cambios continuos provenientes de múltiples servicios y dispositivos.
+                                <br>
+                                
+                            </p>
+
+                            <p>
+                                <strong><a href="https://slack.engineering/flannel-an-application-level-edge-cache-to-make-slack-scale/" target="_blank">
+                                    Slack
+                                </a></strong> implementó soluciones de escalabilidad basadas en procesamiento distribuido y manejo eficiente de eventos para soportar millones de conexiones y mensajes simultáneos. Mediante sistemas de caché y comunicación en tiempo real, Slack optimiza la propagación de cambios y actualizaciones instantáneas entre usuarios, un comportamiento muy relacionado con los principios de la programación reactiva.
+                                <br>
+                                
+                            </p>
                             <p>La programación reactiva se ha aplicado durante varios años en el <a href="http://reactivex.io/"><strong>Front-end</strong></a> Mediante el uso de cambios de estado en los diferentes componentes <a href="https://dev.to/petyosi/reactive-programming-for-react-developers-the-absolute-beginner-guide-5eeg">Reactive Programming for React Developers</a></p>
                             <center><a href="http://reactivex.io/" data-rel="frontend"><img src="images/frontend.PNG" alt="Frontend en Reactivex" class="img-responsive img-thumbnail"></a>
                                 <figcaption>Uno de los principales usos de Recativex</figcaption>
@@ -1093,6 +1154,12 @@
                                 <li>17. <a href="https://spring.io/blog/2016/06/07/notes-on-reactive-programming-part-i-the-reactive-landscape">Notes on Reactive Programming</a></li>
                                 <li>18. <a href="https://akarnokd.blogspot.com/2016/03/operator-fusion-part-1.html">Generations of reactive classification</a></li>
                                 <li>19. <a href="https://itnext.io/demystifying-functional-reactive-programming-67767dbe520b">Demystifying Functional Reactive Programming</a></li>
+                                <li>20. <a href="https://netflixtechblog.com/reactive-programming-in-the-netflix-api-with-rxjava-7811c3a1496a">Reactive Programming in the Netflix API with RxJava</a></li>
+                                <li>21. <a href="https://discord.com/blog/how-discord-scaled-elixir-to-5-000-000-concurrent-users">Cómo Discord escaló Elixir a 5 000 000 de usuarios simultáneos</a></li>
+                                <li>22. <a href="https://www.uber.com/co/en/blog/new-rider-app-architecture/">Engineering the Architecture Behind Ubers New Rider App</a></li>
+                                <li>23. <a href="https://slack.engineering/flannel-an-application-level-edge-cache-to-make-slack-scale/">Flannel: An Application-Level Edge Cache to Make Slack Scale</a></li>
+                                <li>24. <a href="https://ed.team/blog/que-es-la-programacion-reactiva-y-como-funciona">¿Qué es la programación reactiva y cómo funciona?</a></li>
+                                <li>25. <a href="https://profile.es/blog/que-es-la-programacion-reactiva-una-introduccion/">¿Qué es la Programación Reactiva? Una introducción</a></li>
                             </ul>
 
                         </div>
