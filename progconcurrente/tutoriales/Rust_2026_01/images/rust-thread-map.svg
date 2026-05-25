@@ -50,7 +50,6 @@
     <text x="104" y="530" font-size="15">mensajes entre tareas</text>
     <text x="612" y="497" font-size="18" font-weight="800">Arc + Mutex</text>
     <text x="612" y="526" font-size="15">estado compartido con bloqueo</text>
-    <text x="392" y="344" font-size="21" font-weight="900" fill="#fff">Rust</text>
   </g>
   <g fill="none" stroke="#b7410e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
     <path d="M326 148c72 6 109 50 124 96"/>

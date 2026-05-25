@@ -799,6 +799,7 @@
       </a>
       <div class="nav-links">
         <a href="#conceptos">Conceptos</a>
+        <a href="#aplicaciones">Aplicaciones</a>
         <a href="#ejemplos">Ejemplos</a>
         <a href="#concurrencia">Concurrencia</a>
         <a href="#historial">Historial</a>
@@ -837,6 +838,50 @@
         </div>
         <div class="hero-visual" aria-hidden="true">
           <img src="images/rust-thread-map.svg" alt="">
+        </div>
+      </div>
+    </section>
+
+    <section id="aplicaciones">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Aplicaciones y tendencias actuales</h2>
+          <p>Rust ya no es solo un lenguaje de nicho para sistemas: hoy aparece en seguridad, infraestructura web, sistemas operativos, tooling, WebAssembly y software embebido.</p>
+        </div>
+        <div class="grid three">
+          <article class="card">
+            <span class="tag">Seguridad</span>
+            <h3>Memoria segura en sistemas reales</h3>
+            <p>Android, Windows y Linux lo exploran o adoptan para reducir clases completas de errores como use-after-free, buffer overflows y data races.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Infraestructura</span>
+            <h3>Proxies, redes y servicios de alto tr&aacute;fico</h3>
+            <p>Rust encaja bien en servidores, proxies, balanceadores y componentes de red donde importan latencia, eficiencia y control de recursos.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Backend</span>
+            <h3>APIs y microservicios eficientes</h3>
+            <p>Frameworks como Axum, Actix Web y Rocket permiten construir servicios web r&aacute;pidos con modelos async basados en Tokio.</p>
+          </article>
+          <article class="card">
+            <span class="tag">WebAssembly</span>
+            <h3>Rust en navegador, edge y plugins</h3>
+            <p>Su compilaci&oacute;n a WebAssembly lo vuelve atractivo para c&oacute;digo portable, extensiones, procesamiento intensivo y runtimes en el borde.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Embebidos</span>
+            <h3>IoT, firmware y tiempo real</h3>
+            <p>El control sin garbage collector y la seguridad del sistema de tipos ayudan en dispositivos con poca memoria y alta exigencia de confiabilidad.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Migraci&oacute;n</span>
+            <h3>Convivencia con C y C++</h3>
+            <p>La tendencia no es reescribir todo: Rust se introduce gradualmente en m&oacute;dulos cr&iacute;ticos, bibliotecas nuevas y fronteras donde la seguridad paga m&aacute;s.</p>
+          </article>
+        </div>
+        <div class="note">
+          Para programaci&oacute;n concurrente, la tendencia m&aacute;s importante es esta: Rust no elimina la complejidad de coordinar tareas, pero s&iacute; obliga a declarar propiedad, acceso compartido y sincronizaci&oacute;n de manera expl&iacute;cita.
         </div>
       </div>
     </section>
@@ -1192,7 +1237,7 @@
             <strong>Notebook en nbviewer</strong>
             <p>Vista renderizada del tutorial con instalaci&oacute;n, ejemplos y celdas de Rust para Colab.</p>
           </a>
-          <a class="resource" href="Presentaci%C3%B3n.pdf">
+          <a class="resource" href="Presentacion_RUST_2026_01.pdf">
             <strong>Presentaci&oacute;n PDF</strong>
             <p>Diapositivas de la sesi&oacute;n pr&aacute;ctica de Rust y programaci&oacute;n concurrente.</p>
           </a>
