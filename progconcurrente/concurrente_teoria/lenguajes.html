@@ -1,341 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Programación Concurrente UNAL</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="" name="keywords" />
-    <meta content="" name="description" />
 
-    <!-- Favicons -->
-    <link href="images/favicon.ico" rel="icon" />
+<head>
+  <meta charset="utf-8" />
+  <title>Programación Concurrente UNAL</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="" name="keywords" />
+  <meta content="" name="description" />
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
-      rel="stylesheet"
-    />
+  <!-- Favicons -->
+  <link href="images/favicon.ico" rel="icon" />
 
-    <!-- Bootstrap CSS File -->
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+    rel="stylesheet" />
 
-    <!-- Libraries CSS Files -->
-    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Main Stylesheet File -->
-    <link href="stylesheets/style.css" rel="stylesheet" />
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="lib/animate/animate.min.css" rel="stylesheet" />
 
-    <!-- PrettyPrint CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css" rel="stylesheet">
+  <!-- Main Stylesheet File -->
+  <link href="stylesheets/style.css" rel="stylesheet" />
 
-    <!-- PrettyPrint JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+  <!-- PrettyPrint CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css" rel="stylesheet">
 
-  </head>
+  <!-- PrettyPrint JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
 
-  <body>
-    <header id="header">
-      <div class="container">
-        <div id="logo" class="pull-left">
-          <a><img src="images/logo.png" class="resize" /></a>
-        </div>
+</head>
 
-        <nav id="nav-menu-container">
-          <ul class="nav-menu">
-            <li class="menu-has-children"><a href="index.html#hero">Programación concurrente</a>
-              <ul>
-                  <li><a href="index.html#definicion">¿Qué es?</a></li>
-                  <li><a href="index.html#filosofia">Filosofía del paradigma</a></li>
-                  <li><a href="index.html#historia">Historia</a></li>
-                  <li><a href="index.html#concurvsparal">Concurrencia vs paralelismo</a></li>
-                  <li><a href="index.html#conceptos">Conceptos</a></li>
-                  <li><a href="index.html#ventajas">Ventajas</a></li>
-                  <li><a href="index.html#desventajas">Desventajas</a></li>
-              </ul>
-            </li>
-      
-            <li class="menu-active menu-has-children"><a href="lenguajes.html">Lenguajes</a>
-              <ul>
-                <li><a href="lenguajes.html#elixir">Elixir</a></li>
-                <li><a href="lenguajes.html#ada">Ada</a></li>
-                <li><a href="lenguajes.html#rust">Rust</a></li>
-                <li><a href="lenguajes.html#erlang">Erlang</a></li>
-                <li><a href="lenguajes.html#go">Go</a></li>
-                <li><a href="lenguajes.html#haskel">Haskel</a></li>
-                <li><a href="lenguajes.html#crystal">Crystal</a></li>
-                <li><a href="lenguajes.html#javal">Java</a></li>
-                <li><a href="lenguajes.html#python">Python</a></li>
-                <li><a href="lenguajes.html#c">C</a></li>
-                <li><a href="lenguajes.html#ejemplosLenguajes">Ejemplos</a></li>
-                <li><a href="lenguajes.html#ejemploComparativo">Ejemplo Comparativo</a></li>
-              </ul>
-            </li>
-            <li class="menu-has-children"><a href="index.html#aplicaciones">Aplicaciones</a>
-              <ul>
-                <li><a href="index.html#aplicaciones">Aplicaciones generales</a></li>
-                <li><a href="index.html#aplicacionesReales">Aplicaciones reales</a></li>
-              </ul>
-            </li>
-            <li><a href="quiz/index.html">Quiz</a></li>
-            <li class="menu-has-children"><a href="references.html">Referencias</a>
-              <ul>
-                  <li><a href="references.html#referencias">Referencias</a></li>
-                  <li><a href="references.html#integrantes">Integrantes</a></li>
-                  <li><a href="references.html#presentacion">Presentaciones</a></li>
-                </ul>
-          </li>
-          </ul>
-        </nav><!-- #nav-menu-container -->
+<body>
+  <header id="header">
+    <div class="container">
+      <div id="logo" class="pull-left">
+        <a><img src="images/logo.png" class="resize" /></a>
       </div>
-    </header>
-    <!-- #header -->
 
-    <main id="main">
-      <br /><br />
-      <br /><br />
-      <section id="lenguajes" style="margin-top: 50px">
-        <div class="container">
-            <div class="text_cell_render border-box-sizing rendered_html">
-                <h2 class="title"><strong>Lenguajes</strong></h2>
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-has-children"><a href="index.html#hero">Programación concurrente</a>
+            <ul>
+              <li><a href="index.html#definicion">¿Qué es?</a></li>
+              <li><a href="index.html#filosofia">Filosofía del paradigma</a></li>
+              <li><a href="index.html#historia">Historia</a></li>
+              <li><a href="index.html#concurvsparal">Concurrencia vs paralelismo</a></li>
+              <li class="menu-has-children"><a href="index.html#conceptos">Conceptos</a>
+                <ul>
+                  <li><a href="index.html#hilo">Hilos y Procesos</a></li>
+                  <li><a href="index.html#posix">POSIX y Fork</a></li>
+                  <li><a href="index.html#calendarizacion">Planificación</a></li>
+                  <li><a href="index.html#propiedades">Propiedades</a></li>
+                  <li><a href="index.html#sincronizacion">Sincronización</a></li>
+                </ul>
+              </li>
+              <li><a href="index.html#ventajas">Ventajas</a></li>
+              <li><a href="index.html#desventajas">Desventajas</a></li>
+            </ul>
+          </li>
 
-                <!-- Ada -->
-                <div id="ada">
-                    <h3><strong>Ada</strong></h3>
-                    <center>
-                        <img src="images/ada-coin.jpg" width="150px" height="150px" />
-                    </center>
-                    <p>
-                        <strong>Historia:</strong> Ada es un lenguaje nacido de un proyecto en los 70s del ejército de los Estados Unidos, con la principal prioridad en la seguridad y la minimización de errores.
-                    </p>
-                    <p>
-                        <strong>Concurrencia en el lenguaje:</strong> Sincroniza las tareas por rendez vous.
-                    </p>
-                    <p>
-                        <strong>Herramientas para aprovechar la concurrencia:</strong> Amplio uso en la industria de las infraestructuras de riesgo grande, como sistemas de aviones, trenes, tanques y misiles.
-                    </p>
-                    <p>
-                        <strong>Aplicaciones notables:</strong> Sistemas de planeación aérea y naval.
-                    </p>
-                </div>
-                <br />
+          <li class="menu-active menu-has-children"><a href="lenguajes.html">Lenguajes</a>
+            <ul>
+              <li><a href="lenguajes.html#elixir">Elixir</a></li>
+              <li><a href="lenguajes.html#ada">Ada</a></li>
+              <li><a href="lenguajes.html#rust">Rust</a></li>
+              <li><a href="lenguajes.html#erlang">Erlang</a></li>
+              <li><a href="lenguajes.html#go">Go</a></li>
+              <li><a href="lenguajes.html#haskel">Haskel</a></li>
+              <li><a href="lenguajes.html#crystal">Crystal</a></li>
+              <li><a href="lenguajes.html#javal">Java</a></li>
+              <li><a href="lenguajes.html#python">Python</a></li>
+              <li><a href="lenguajes.html#c">C</a></li>
+              <li><a href="lenguajes.html#c++">C++</a></li>
+              <li><a href="lenguajes.html#ejemplosLenguajes">Ejemplos</a></li>
+              <li><a href="lenguajes.html#ejemploComparativo">Ejemplo Comparativo</a></li>
+            </ul>
+          </li>
+          <li class="menu-has-children"><a href="index.html#aplicaciones">Aplicaciones</a>
+            <ul>
+              <li><a href="index.html#aplicaciones">Aplicaciones generales</a></li>
+              <li><a href="index.html#aplicacionesReales">Aplicaciones reales</a></li>
+            </ul>
+          </li>
+          <li><a href="quiz/index.html">Quiz</a></li>
+          <li class="menu-has-children"><a href="references.html">Referencias</a>
+            <ul>
+              <li><a href="references.html#referencias">Referencias</a></li>
+              <li><a href="references.html#integrantes">Integrantes</a></li>
+              <li><a href="references.html#presentacion">Presentaciones</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header>
+  <!-- #header -->
 
-                <!-- Haskell -->
-                <div id="haskell">
-                    <h3><strong>Haskell</strong></h3>
-                    <center>
-                        <img src="images/haskell.png" width="150px" height="150px" />
-                    </center>
-                    <p>
-                        <strong>Historia:</strong> Haskell es un lenguaje polimórficamente tipificado, perezoso, puramente funcional, muy diferente a la mayoría de los otros lenguajes de programación.
-                    </p>
-                    <p>
-                        <strong>Concurrencia en el lenguaje:</strong> La concurrencia es "ligera", lo que significa que tanto la creación de hilos como los gastos generales de cambio de contexto son extremadamente bajos.
-                    </p>
-                    <p>
-                        <strong>Herramientas para aprovechar la concurrencia:</strong> La programación de los hilos de Haskell se hace internamente y no hace uso de ningún paquete de hilos suministrado por el sistema operativo.
-                    </p>
-                    <p>
-                        <strong>Aplicaciones notables:</strong> Análisis de sintaxis en código alojado en GitHub.
-                    </p>
-                </div>
-                <br />
+  <main id="main">
+    <br /><br />
+    <br /><br />
+    <section id="lenguajes" style="margin-top: 50px">
+      <div class="container">
+        <div class="text_cell_render border-box-sizing rendered_html">
+          <h2 class="title"><strong>Lenguajes</strong></h2>
 
-                <!-- Erlang -->
-                <div id="erlang">
-                    <h3><strong>Erlang</strong></h3>
-                    <center>
-                        <img src="images/erlang.png" width="150px" height="150px" />
-                    </center>
-                    <p>
-                        <strong>Historia:</strong>  Creado por Ericsson en 1986 con el propósito de desarrollar sistemas de telecomunicaciones. Diseñado para soportar numerosos procesos concurrentes. Liberado como software libre en 1998. A llevado al desarrollo de otros lenguajes que priorizan la concurrencia.
-                    </p>
-                    <p>
-                        <strong>Concurrencia en el lenguaje:</strong> Modelo de concurrencia basado en actores, esto quiere decir que cuenta con procesos aislados que no comparten memoria, estos procesos se comunican a través de mensajes y son procesos ligeros gestionados por la máquina virtual BEAM. 
-                    </p>
-                    <p>
-                        <strong>Herramientas para aprovechar la concurrencia:</strong> Erlang ofrece diversas herramientas y bibliotecas que facilitan la gestión de la concurrencia y la construcción de sistemas distribuidos. La principal de estas es OTP (Open Telecom Platform) que proporciona componentes como supervisores, gen_servers, y otros patrones de diseño que facilitan la gestión de la concurrencia y la tolerancia a fallos. 
-                        <ul>
-                          <li>Supervisores: Procesos especiales que supervisan otros procesos</li>
-                          <li>Gen_servers: Gestionan el ciclo de vida de los procesos y la comunicación entre ellos.</li>
-                        </ul>
-                    </p>
-                    <p>
-                        <strong>Aplicaciones notables:</strong> Lógica de negocio de aplicaciones como WhatsApp.
-                    </p>
-                </div>
-                <br />
+          <!-- Ada -->
+          <div id="ada">
+            <h3><strong>Ada</strong></h3>
+            <center>
+              <img src="images/ada-coin.jpg" width="150px" height="150px" />
+            </center>
+            <p>
+              <strong>Historia:</strong> Ada es un lenguaje nacido de un proyecto en los 70s del ejército de los Estados
+              Unidos, con la principal prioridad en la seguridad y la minimización de errores.
+            </p>
+            <p>
+              <strong>Concurrencia en el lenguaje:</strong> Sincroniza las tareas por rendez vous.
+            </p>
+            <p>
+              <strong>Herramientas para aprovechar la concurrencia:</strong> Amplio uso en la industria de las
+              infraestructuras de riesgo grande, como sistemas de aviones, trenes, tanques y misiles.
+            </p>
+            <p>
+              <strong>Aplicaciones notables:</strong> Sistemas de planeación aérea y naval.
+            </p>
+          </div>
+          <br />
 
-                <!-- Elixir -->
-                <div id="elixir">
-                    <h3><strong>Elixir</strong></h3>
-                    <center>
-                        <img src="images/elixir.png" width="150px" height="150px" />
-                    </center>
-                    <p>
-                        <strong>Historia:</strong> Elixir es un lenguaje de programación de propósito general, concurrente y funcional. Comenzó en 2011 con el objetivo de aprovechar la robustez y el rendimiento de Erlang y su máquina virtual, introduciendo características y mejoras que hicieran el lenguaje más productivo para los desarrolladores modernos, lo que lo ha hecho popular en el entorno de desarrollo web.
-                    </p>
-                    <p>
-                        <strong>Concurrencia en el lenguaje:</strong> Al igual que Erlang, Elixir se basa en el modelo de actores y aprovecha la máquina virtual BEAM, ofreciendo aislamiento de procesos, comunicación mediante mensajes y la ligereza de los procesos.
-                    </p>
-                    <p>
-                        <strong>Herramientas para aprovechar la concurrencia:</strong> Además de las herramientas OTP, podemos encontrar Phoenix Web Framework, capaz de manejar un alto tráfico concurrente y adecuado para aplicaciones con notificaciones en tiempo real; Task, para ejecutar funciones de forma concurrente; y Agent, para gestionar el estado compartido entre procesos.
-                    </p>
-                    <p>
-                        <strong>Aplicaciones notables:</strong> Changelog, una plataforma de podcasts para desarrolladores.
-                    </p>
-                </div>
-                <br />
+          <!-- Haskell -->
+          <div id="haskell">
+            <h3><strong>Haskell</strong></h3>
+            <center>
+              <img src="images/haskell.png" width="150px" height="150px" />
+            </center>
+            <p>
+              <strong>Historia:</strong> Haskell es un lenguaje polimórficamente tipificado, perezoso, puramente
+              funcional, muy diferente a la mayoría de los otros lenguajes de programación.
+            </p>
+            <p>
+              <strong>Concurrencia en el lenguaje:</strong> La concurrencia es "ligera", lo que significa que tanto la
+              creación de hilos como los gastos generales de cambio de contexto son extremadamente bajos.
+            </p>
+            <p>
+              <strong>Herramientas para aprovechar la concurrencia:</strong> La programación de los hilos de Haskell se
+              hace internamente y no hace uso de ningún paquete de hilos suministrado por el sistema operativo.
+            </p>
+            <p>
+              <strong>Aplicaciones notables:</strong> Análisis de sintaxis en código alojado en GitHub.
+            </p>
+          </div>
+          <br />
 
-                <!-- Rust -->
-                <div id="rust">
-                    <h3><strong>Rust</strong></h3>
-                    <center>
-                        <img src="images/rust.png" width="150px" height="150px" />
-                    </center>
-                    <p>
-                        <strong>Historia:</strong> Rust es un lenguaje de programación compilado, de propósito general y multiparadigma. Patrocinado por Mozilla desde 2009, Rust tiene como propósito ofrecer seguridad en memoria y concurrencia, diseñado específicamente para evitar problemas comunes como condiciones de carrera, desbordamiento de búfer y violaciones de acceso a memoria.
-                    </p>
-                    <p>
-                        <strong>Concurrencia en el lenguaje:</strong> En el modelo de propiedad y préstamos de Rust, la propiedad asegura que solo un propietario pueda modificar un valor a la vez, mientras que los préstamos permiten el acceso seguro a datos compartidos. En cuanto a los tipos de concurrencia, Rust soporta concurrencia basada en hilos (threads) y basada en tareas asíncronas. Además, proporciona seguridad en la concurrencia al verificar las condiciones de seguridad en tiempo de compilación.
-                    </p>
-                    <p>
-                        <strong>Herramientas para aprovechar la concurrencia:</strong> En Rust, std::thread permite crear y gestionar hilos de manera segura, mientras que std::sync proporciona primitivas de sincronización para manejar el acceso concurrente a los datos. Además, las funciones async/await facilitan la escritura de código asíncrono y concurrente.
-                    </p>
-                    <p>
-                        <strong>Aplicaciones notables:</strong> Partes del kernel de Linux, cuya escritura es soportada desde octubre de 2022.
-                    </p>
-                </div>
-                <br />
+          <!-- Erlang -->
+          <div id="erlang">
+            <h3><strong>Erlang</strong></h3>
+            <center>
+              <img src="images/erlang.png" width="150px" height="150px" />
+            </center>
+            <p>
+              <strong>Historia:</strong> Creado por Ericsson en 1986 con el propósito de desarrollar sistemas de
+              telecomunicaciones. Diseñado para soportar numerosos procesos concurrentes. Liberado como software libre
+              en 1998. A llevado al desarrollo de otros lenguajes que priorizan la concurrencia.
+            </p>
+            <p>
+              <strong>Concurrencia en el lenguaje:</strong> Modelo de concurrencia basado en actores, esto quiere decir
+              que cuenta con procesos aislados que no comparten memoria, estos procesos se comunican a través de
+              mensajes y son procesos ligeros gestionados por la máquina virtual BEAM.
+            </p>
+            <p>
+              <strong>Herramientas para aprovechar la concurrencia:</strong> Erlang ofrece diversas herramientas y
+              bibliotecas que facilitan la gestión de la concurrencia y la construcción de sistemas distribuidos. La
+              principal de estas es OTP (Open Telecom Platform) que proporciona componentes como supervisores,
+              gen_servers, y otros patrones de diseño que facilitan la gestión de la concurrencia y la tolerancia a
+              fallos.
+            <ul>
+              <li>Supervisores: Procesos especiales que supervisan otros procesos</li>
+              <li>Gen_servers: Gestionan el ciclo de vida de los procesos y la comunicación entre ellos.</li>
+            </ul>
+            </p>
+            <p>
+              <strong>Aplicaciones notables:</strong> Lógica de negocio de aplicaciones como WhatsApp.
+            </p>
+          </div>
+          <br />
 
-                <!-- GO -->
-                <div id="go">
-                    <h3><strong>GO</strong></h3>
-                    <center>
-                        <img src="images/go.png" width="150px" height="150px" />
-                    </center>
-                    <p>
-                        <strong>Historia:</strong> Diseñado en Google en 2007, Go (también conocido como Golang) tenía como objetivo combinar lo mejor de los lenguajes compilados, como la eficiencia y la seguridad, con las ventajas de los lenguajes interpretados, como la facilidad de uso y la productividad. Hoy en día, Go es popular en sistemas distribuidos, microservicios y aplicaciones en la nube
-                    </p>
-                    <p>
-                        <strong>Concurrencia y herramientas en el lenguaje:</strong> En Go, las goroutines son funciones que se ejecutan concurrentemente en el mismo espacio de direcciones y son gestionadas por el runtime de Go. Los canales permiten la comunicación y sincronización entre goroutines, pudiendo ser sincrónicos o asincrónicos.
-                    </p>
-                    <p>
-                        <strong>Aplicaciones notables:</strong> El código backend de Uber.
-                    </p>
-                </div>
-                <br />
+          <!-- Elixir -->
+          <div id="elixir">
+            <h3><strong>Elixir</strong></h3>
+            <center>
+              <img src="images/elixir.png" width="150px" height="150px" />
+            </center>
+            <p>
+              <strong>Historia:</strong> Elixir es un lenguaje de programación de propósito general, concurrente y
+              funcional. Comenzó en 2011 con el objetivo de aprovechar la robustez y el rendimiento de Erlang y su
+              máquina virtual, introduciendo características y mejoras que hicieran el lenguaje más productivo para los
+              desarrolladores modernos, lo que lo ha hecho popular en el entorno de desarrollo web.
+            </p>
+            <p>
+              <strong>Concurrencia en el lenguaje:</strong> Al igual que Erlang, Elixir se basa en el modelo de actores
+              y aprovecha la máquina virtual BEAM, ofreciendo aislamiento de procesos, comunicación mediante mensajes y
+              la ligereza de los procesos.
+            </p>
+            <p>
+              <strong>Herramientas para aprovechar la concurrencia:</strong> Además de las herramientas OTP, podemos
+              encontrar Phoenix Web Framework, capaz de manejar un alto tráfico concurrente y adecuado para aplicaciones
+              con notificaciones en tiempo real; Task, para ejecutar funciones de forma concurrente; y Agent, para
+              gestionar el estado compartido entre procesos.
+            </p>
+            <p>
+              <strong>Aplicaciones notables:</strong> Changelog, una plataforma de podcasts para desarrolladores.
+            </p>
+          </div>
+          <br />
 
-                <!-- Crystal -->
-                <div id="crystal">
-                    <h3><strong>Crystal</strong></h3>
-                    <center>
-                        <img src="images/crystal.png" width="150px" height="150px" />
-                    </center>
-                    <p>
-                        <strong>Historia:</strong> Crystal es uno de los nuevos lenguajes en la escena, iniciado en 2012. Tiene una sintaxis similar a Ruby, estáticamente tipado, compilado y es self-hosted (Crystal está escrito en Crystal).
-                    </p>
-                    <p>
-                        <strong>Concurrencia en el lenguaje:</strong> Crystal viene con una primitiva de concurrencia llamada fibras, que son básicamente una versión más ligera de hilos. Las otras primitivas de concurrencia son canales.
-                    </p>
-                    <p>
-                        <strong>Herramientas para aprovechar la concurrencia:</strong> Utiliza canales para la concurrencia, similar a Go.
-                    </p>
-                    <p>
-                        <strong>Aplicaciones notables:</strong> Servicios web de compañías como Errordeck, GigSmart, Appmonitor, etc.
-                    </p>
-                </div>
-                <br />
+          <!-- Rust -->
+          <div id="rust">
+            <h3><strong>Rust</strong></h3>
+            <center>
+              <img src="images/rust.png" width="150px" height="150px" />
+            </center>
+            <p>
+              <strong>Historia:</strong> Rust es un lenguaje de programación compilado, de propósito general y
+              multiparadigma. Patrocinado por Mozilla desde 2009, Rust tiene como propósito ofrecer seguridad en memoria
+              y concurrencia, diseñado específicamente para evitar problemas comunes como condiciones de carrera,
+              desbordamiento de búfer y violaciones de acceso a memoria.
+            </p>
+            <p>
+              <strong>Concurrencia en el lenguaje:</strong> En el modelo de propiedad y préstamos de Rust, la propiedad
+              asegura que solo un propietario pueda modificar un valor a la vez, mientras que los préstamos permiten el
+              acceso seguro a datos compartidos. En cuanto a los tipos de concurrencia, Rust soporta concurrencia basada
+              en hilos (threads) y basada en tareas asíncronas. Además, proporciona seguridad en la concurrencia al
+              verificar las condiciones de seguridad en tiempo de compilación.
+            </p>
+            <p>
+              <strong>Herramientas para aprovechar la concurrencia:</strong> En Rust, std::thread permite crear y
+              gestionar hilos de manera segura, mientras que std::sync proporciona primitivas de sincronización para
+              manejar el acceso concurrente a los datos. Además, las funciones async/await facilitan la escritura de
+              código asíncrono y concurrente.
+            </p>
+            <p>
+              <strong>Aplicaciones notables:</strong> Partes del kernel de Linux, cuya escritura es soportada desde
+              octubre de 2022.
+            </p>
+          </div>
+          <br />
 
-                <!-- Java -->
-                <div id="java">
-                    <h3><strong>Java</strong></h3>
-                    <center>
-                        <img src="images/java.png" width="200px" height="150px" />
-                    </center>
-                    <p>
-                        <strong>Historia:</strong> Java es un lenguaje de programación orientado a objetos creado en 1991 y publicado en 1995 por Sun Microsystem (adquirida por Oracle en 2010), con la intención de que los programadores escribieran el código solo una vez y lo ejecutaran en cualquier dispositivo.
-                    </p>
-                    <p>
-                        <strong>Concurrencia en el lenguaje:</strong> Java permite realizar concurrencia con la librería threads. Además, cuenta con otras librerías que implementan métodos de planificación y control de procesos (variables atómicas, semáforos, entre otros) traídos del paquete concurrent.
-                    </p>
-                    <p>
-                        <strong>Aplicaciones notables:</strong> Innumerables. Desde servicios web backend mediante Spring Boot hasta desarrollo de videojuegos con LWJGL, la librería usada para escribir Minecraft.
-                    </p>
-                </div>
-                <br />
+          <!-- GO -->
+          <div id="go">
+            <h3><strong>GO</strong></h3>
+            <center>
+              <img src="images/go.png" width="150px" height="150px" />
+            </center>
+            <p>
+              <strong>Historia:</strong> Diseñado en Google en 2007, Go (también conocido como Golang) tenía como
+              objetivo combinar lo mejor de los lenguajes compilados, como la eficiencia y la seguridad, con las
+              ventajas de los lenguajes interpretados, como la facilidad de uso y la productividad. Hoy en día, Go es
+              popular en sistemas distribuidos, microservicios y aplicaciones en la nube
+            </p>
+            <p>
+              <strong>Concurrencia y herramientas en el lenguaje:</strong> En Go, las goroutines son funciones que se
+              ejecutan concurrentemente en el mismo espacio de direcciones y son gestionadas por el runtime de Go. Los
+              canales permiten la comunicación y sincronización entre goroutines, pudiendo ser sincrónicos o
+              asincrónicos.
+            </p>
+            <p>
+              <strong>Aplicaciones notables:</strong> El código backend de Uber.
+            </p>
+          </div>
+          <br />
 
-                <!-- Python -->
-                <div id="python">
-                    <h3><strong>Python</strong></h3>
-                    <center>
-                        <img src="images/python.png" width="96px" height="96px" />
-                    </center>
-                    <p>
-                        <strong>Historia:</strong> Python es el lenguaje más utilizado a nivel mundial (según revista IEEE). Es un lenguaje de sintaxis simple y cubre una gran cantidad de áreas del conocimiento como inteligencia artificial y ciencia de datos.
-                    </p>
-                    <p>
-                        <strong>Concurrencia en el lenguaje:</strong> Cuenta con varias librerías para la implementación de programación concurrente y su respectivo control, como lo son la librería "Thread" y "Multiprocessing".
-                    </p>
-                    <p>
-                        <strong>Herramientas para aprovechar la concurrencia:</strong> La librería "Thread" incluye una interfaz de alto nivel orientada a objetos para trabajar con concurrencia desde Python. Los objetos Thread se ejecutan al mismo tiempo dentro del mismo proceso y comparten memoria.
-                    </p>
-                    <p>
-                        <strong>Aplicaciones notables:</strong> El backend de Instagram.
-                    </p>
-                </div>
-                <br />
+          <!-- Crystal -->
+          <div id="crystal">
+            <h3><strong>Crystal</strong></h3>
+            <center>
+              <img src="images/crystal.png" width="150px" height="150px" />
+            </center>
+            <p>
+              <strong>Historia:</strong> Crystal es uno de los nuevos lenguajes en la escena, iniciado en 2012. Tiene
+              una sintaxis similar a Ruby, estáticamente tipado, compilado y es self-hosted (Crystal está escrito en
+              Crystal).
+            </p>
+            <p>
+              <strong>Concurrencia en el lenguaje:</strong> Crystal viene con una primitiva de concurrencia llamada
+              fibras, que son básicamente una versión más ligera de hilos. Las otras primitivas de concurrencia son
+              canales.
+            </p>
+            <p>
+              <strong>Herramientas para aprovechar la concurrencia:</strong> Utiliza canales para la concurrencia,
+              similar a Go.
+            </p>
+            <p>
+              <strong>Aplicaciones notables:</strong> Servicios web de compañías como Errordeck, GigSmart, Appmonitor,
+              etc.
+            </p>
+          </div>
+          <br />
 
-                <!-- C -->
-                <div id="c">
-                    <h3><strong>C</strong></h3>
-                    <center>
-                        <img src="images/c.jpg" width="180px" height="96px" />
-                    </center>
-                    <p>
-                        <strong>Historia:</strong> C es uno de los lenguajes más rápidos que existen puesto a que es un lenguaje compilado. Es altamente usado en el diseño y desarrollo de los sistemas operativos que hoy en día se usan.
-                    </p>
-                    <p>
-                        <strong>Concurrencia en el lenguaje:</strong> En cuanto a programación concurrente, usa la librería pthread.h para la creación de hilos y métodos de control muy básicos como la implementación de un semáforo.
-                    </p>
-                    <p>
-                        <strong>Aplicaciones notables:</strong> El kernel de Linux y otros lenguajes como Python y C++.
-                    </p>
-                </div>
-                <br />
+          <!-- Java -->
+          <div id="java">
+            <h3><strong>Java</strong></h3>
+            <center>
+              <img src="images/java.png" width="200px" height="150px" />
+            </center>
+            <p>
+              <strong>Historia:</strong> Java es un lenguaje de programación orientado a objetos creado en 1991 y
+              publicado en 1995 por Sun Microsystem (adquirida por Oracle en 2010), con la intención de que los
+              programadores escribieran el código solo una vez y lo ejecutaran en cualquier dispositivo.
+            </p>
+            <p>
+              <strong>Concurrencia en el lenguaje:</strong> Java permite realizar concurrencia con la librería threads.
+              Además, cuenta con otras librerías que implementan métodos de planificación y control de procesos
+              (variables atómicas, semáforos, entre otros) traídos del paquete concurrent.
+            </p>
+            <p>
+              <strong>Aplicaciones notables:</strong> Innumerables. Desde servicios web backend mediante Spring Boot
+              hasta desarrollo de videojuegos con LWJGL, la librería usada para escribir Minecraft.
+            </p>
+          </div>
+          <br />
 
-                <!-- C++ -->
-                <div id="c++">
-                    <h3><strong>C++</strong></h3>
-                    <center>
-                        <img src="images/cpp.png" width="96px" height="96px" />
-                    </center>
-                    <p>
-                        <strong>Historia:</strong> Fue diseñado a mediados de los años 80 por el danés Bjarne Stroustrup. Su intención fue la de extender el lenguaje de programación C para que tuviese los mecanismos necesarios para manipular objetos.
-                    </p>
-                    <p>
-                        <strong>Concurrencia en el lenguaje:</strong> C++ contiene los paradigmas de la programación estructurada y orientada a objetos. Se puede usar una librería thread que es básicamente una sección de código independiente que el procesador puede ejecutar de forma concurrente junto a otros threads o hilos de ejecución.
-                    </p>
-                    <p>
-                        <strong>Aplicaciones notables:</strong> Motores gráficos como Source de Valve, usado en videojuegos como Half-Life y Counter-Strike.
-                    </p>
-                </div>
-            </div>
+          <!-- Python -->
+          <div id="python">
+            <h3><strong>Python</strong></h3>
+            <center>
+              <img src="images/python.png" width="96px" height="96px" />
+            </center>
+            <p>
+              <strong>Historia:</strong> Python es el lenguaje más utilizado a nivel mundial (según revista IEEE). Es un
+              lenguaje de sintaxis simple y cubre una gran cantidad de áreas del conocimiento como inteligencia
+              artificial y ciencia de datos.
+            </p>
+            <p>
+              <strong>Concurrencia en el lenguaje:</strong> Cuenta con varias librerías para la implementación de
+              programación concurrente y su respectivo control, como lo son la librería "Thread" y "Multiprocessing".
+            </p>
+            <p>
+              <strong>Herramientas para aprovechar la concurrencia:</strong> La librería "Thread" incluye una interfaz
+              de alto nivel orientada a objetos para trabajar con concurrencia desde Python. Los objetos Thread se
+              ejecutan al mismo tiempo dentro del mismo proceso y comparten memoria.
+            </p>
+            <p>
+              <strong>Limitación importante: El GIL (Global Interpreter Lock):</strong> CPython (la implementación
+              estándar de Python) incluye un mecanismo llamado Global Interpreter Lock que garantiza que solo un hilo
+              ejecute código Python a la vez, incluso en sistemas multinúcleo. Esto significa que los hilos de Python NO
+              logran paralelismo real para tareas que consumen CPU (CPU-bound tasks).
+            </p>
+            <ul>
+              <li>
+                <strong>I/O-bound tasks</strong> (lectura de archivos, peticiones HTTP, bases de datos): los hilos
+                sí mejoran el rendimiento porque el GIL se libera durante esperas de I/O. Usar <code>threading</code>
+                o <code>asyncio</code>.
+              </li>
+              <li>
+                <strong>CPU-bound tasks</strong> (cálculo numérico, procesamiento de imágenes): usar
+                <code>multiprocessing</code> en lugar de <code>threading</code>, ya que cada proceso tiene su
+                propio GIL y memoria independiente.
+              </li>
+              <li>
+                <strong>asyncio</strong>: modelo de concurrencia cooperativa con event loop para tareas I/O,
+                sin necesidad de múltiples hilos. Ideal para servidores web de alta concurrencia.
+              </li>
+              <li>
+                <strong>concurrent.futures.ProcessPoolExecutor</strong>: abstracción de alto nivel sobre
+                <code>multiprocessing</code> para paralelismo real entre múltiples CPUs.
+              </li>
+              <li>
+                <strong>Python 3.13+</strong>: introduce experimentalmente la posibilidad de compilar Python
+                sin GIL (PEP 703 — "Making the Global Interpreter Lock Optional"), abriendo la puerta al
+                paralelismo real de hilos en el futuro.
+              </li>
+            </ul>
+            <p>
+              <strong>Aplicaciones notables:</strong> El backend de Instagram.
+            </p>
+          </div>
+          <br />
+
+          <!-- C -->
+          <div id="c">
+            <h3><strong>C</strong></h3>
+            <center>
+              <img src="images/c.jpg" width="180px" height="96px" />
+            </center>
+            <p>
+              <strong>Historia:</strong> C es uno de los lenguajes más rápidos que existen puesto a que es un lenguaje
+              compilado. Es altamente usado en el diseño y desarrollo de los sistemas operativos que hoy en día se usan.
+            </p>
+            <p>
+              <strong>Concurrencia en el lenguaje:</strong> En cuanto a programación concurrente, usa la librería
+              pthread.h para la creación de hilos y métodos de control muy básicos como la implementación de un
+              semáforo.
+            </p>
+            <p>
+              <strong>POSIX y la interfaz estándar de concurrencia:</strong> C es el lenguaje en el que se implementa la
+              interfaz POSIX (Portable Operating System Interface, estándar IEEE 1003), que define la API para gestión
+              de hilos, procesos y sincronización en sistemas Unix/Linux. Las bibliotecas POSIX más relevantes para
+              concurrencia son:
+            </p>
+            <ul>
+              <li><code>&lt;pthread.h&gt;</code> — POSIX Threads: creación y gestión de hilos.</li>
+              <li><code>&lt;semaphore.h&gt;</code> — Semáforos POSIX nombrados y sin nombre.</li>
+              <li><code>&lt;unistd.h&gt;</code> — Incluye <code>fork()</code> y <code>exec()</code> para creación de
+                procesos.</li>
+              <li><code>&lt;sys/wait.h&gt;</code> — <code>wait()</code> y <code>waitpid()</code> para sincronización
+                padre-hijo.</li>
+            </ul>
+            <p>
+              <strong>Fork y creación de procesos concurrentes:</strong> La llamada al sistema <code>fork()</code>
+              permite a un proceso C crear una copia de sí mismo (proceso hijo). El patrón fork+exec es el mecanismo
+              estándar para lanzar nuevos procesos en Unix. A diferencia de los hilos, los procesos creados con
+              <code>fork()</code> tienen espacios de memoria independientes, lo que los hace más robustos ante fallos
+              pero con mayor overhead de comunicación.
+            </p>
+            <pre class="prettyprint">
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
+
+int main() {
+    pid_t pid = fork();
+
+    if (pid == 0) {
+        /* Proceso hijo */
+        printf("Hijo: PID=%d\n", getpid());
+        /* execlp("otro_programa", "otro_programa", NULL); */
+    } else if (pid &gt; 0) {
+        /* Proceso padre */
+        printf("Padre: PID=%d, hijo=%d\n", getpid(), pid);
+        wait(NULL); /* Esperar a que el hijo termine */
+    } else {
+        perror("fork");
+        return 1;
+    }
+    return 0;
+}
+                    </pre>
+            <p><strong>Compilar:</strong> <code>gcc fork_demo.c -o fork_demo</code></p>
+            <p><strong>Ejecutar:</strong> <code>./fork_demo</code></p>
+            <blockquote>
+              Padre: PID=5000, hijo=5001<br>
+              Hijo: PID=5001
+            </blockquote>
+            <p>
+              <strong>Aplicaciones notables:</strong> El kernel de Linux y otros lenguajes como Python y C++.
+            </p>
+          </div>
+          <br />
+
+          <!-- C++ -->
+          <div id="c++">
+            <h3><strong>C++</strong></h3>
+            <center>
+              <img src="images/cpp.png" width="96px" height="96px" />
+            </center>
+            <p>
+              <strong>Historia:</strong> Fue diseñado a mediados de los años 80 por el danés Bjarne Stroustrup. Su
+              intención fue la de extender el lenguaje de programación C para que tuviese los mecanismos necesarios para
+              manipular objetos.
+            </p>
+            <p>
+              <strong>Concurrencia en el lenguaje:</strong> C++ contiene los paradigmas de la programación estructurada
+              y orientada a objetos. Se puede usar una librería thread que es básicamente una sección de código
+              independiente que el procesador puede ejecutar de forma concurrente junto a otros threads o hilos de
+              ejecución.
+            </p>
+            <p>
+              <strong>Aplicaciones notables:</strong> Motores gráficos como Source de Valve, usado en videojuegos como
+              Half-Life y Counter-Strike.
+            </p>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="ejemplosLenguajes" style="margin-top:50px;">
-        <div class="container">
-          <div class="text_cell_render border-box-sizing rendered_html">
-            <h2 class="title"><strong>Ejemplos Lenguages</strong></h2>
-  
-              <ul>
-                <li>Ejemplo en <strong>python</strong>: Este es un pequeño ejemplo con el fin de ilustrar como podemos
-                  lanzar un hilo en python</li>
-              </ul>
-  
-              <div class="highlight highlight-source-python">
-                <pre><span class="pl-k">from</span> threading <span class="pl-k">import</span> Thread
+    <section id="ejemplosLenguajes" style="margin-top:50px;">
+      <div class="container">
+        <div class="text_cell_render border-box-sizing rendered_html">
+          <h2 class="title"><strong>Ejemplos Lenguajes</strong></h2>
+
+          <ul>
+            <li>Ejemplo en <strong>python</strong>: Este es un pequeño ejemplo con el fin de ilustrar como podemos
+              lanzar un hilo en python</li>
+          </ul>
+
+          <div class="highlight highlight-source-python">
+            <pre><span class="pl-k">from</span> threading <span class="pl-k">import</span> Thread
   <span class="pl-k">import</span> time
   
   <span class="pl-k">def</span> <span class="pl-en">say_hello</span>(<span class="pl-smi">name</span>):
@@ -344,21 +496,21 @@
   t <span class="pl-k">=</span> Thread(<span class="pl-v">target</span><span class="pl-k">=</span>say_hello, <span class="pl-v">args</span><span class="pl-k">=</span>(<span class="pl-s"><span class="pl-pds">"</span>world<span class="pl-pds">"</span></span>,))
   t.start()
   t.join()</pre>
-              </div>
-  
-              <p><strong>Ejecucion:</strong> python archivo.py</p>
-  
-              <blockquote>
-                <p>('world', 'Hola')</p>
-              </blockquote>
-  
-              <ul>
-                <li>Ejemplo en <em>GO</em>: En este ejemplo podemos visualizar que los hilos no se ejecutan en el orden
-                  ascedente si no esto lo decide el scheduler del sistema operativo</li>
-              </ul>
-  
-              <div class="highlight highlight-source-go">
-                <pre><span class="pl-k">package</span> main
+          </div>
+
+          <p><strong>Ejecucion:</strong> python archivo.py</p>
+
+          <blockquote>
+            <p>('world', 'Hola')</p>
+          </blockquote>
+
+          <ul>
+            <li>Ejemplo en <em>GO</em>: En este ejemplo podemos visualizar que los hilos no se ejecutan en el orden
+              ascedente si no esto lo decide el scheduler del sistema operativo</li>
+          </ul>
+
+          <div class="highlight highlight-source-go">
+            <pre><span class="pl-k">package</span> main
   
   <span class="pl-k">import</span> (
       <span class="pl-s"><span class="pl-pds">"</span>fmt<span class="pl-pds">"</span></span>
@@ -379,31 +531,31 @@
       }
       time.<span class="pl-c1">Sleep</span>(FINAL)
   }</pre>
-              </div>
-  
-              <p><strong>Ejecucion:</strong> go run archivo.go</p>
-  
-              <blockquote>
-                <p>Hola a todos 5</p>
-  
-                <p>Hola a todos 6</p>
-  
-                <p>Hola a todos 1</p>
-  
-                <p>Hola a todos 2</p>
-  
-                <p>Hola a todos 3</p>
-  
-                <p>Hola a todos 4</p>
-              </blockquote>
-  
-              <ul>
-                <li>Ejemplos semaforo en <strong>C</strong>: El siguiente codigo fuente solo sirve sistemas operativos
-                  basado en unix.</li>
-              </ul>
-  
-              <div class="highlight highlight-source-c">
-                <pre>#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>stdlib.h<span class="pl-pds">&gt;</span></span>
+          </div>
+
+          <p><strong>Ejecucion:</strong> go run archivo.go</p>
+
+          <blockquote>
+            <p>Hola a todos 5</p>
+
+            <p>Hola a todos 6</p>
+
+            <p>Hola a todos 1</p>
+
+            <p>Hola a todos 2</p>
+
+            <p>Hola a todos 3</p>
+
+            <p>Hola a todos 4</p>
+          </blockquote>
+
+          <ul>
+            <li>Ejemplos semaforo en <strong>C</strong>: El siguiente codigo fuente solo sirve sistemas operativos
+              basado en unix.</li>
+          </ul>
+
+          <div class="highlight highlight-source-c">
+            <pre>#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>stdlib.h<span class="pl-pds">&gt;</span></span>
   #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>stdio.h<span class="pl-pds">&gt;</span></span>
   #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>pthread.h<span class="pl-pds">&gt;</span></span>
   #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>unistd.h<span class="pl-pds">&gt;</span></span>
@@ -453,33 +605,33 @@
       <span class="pl-c1">sem_close</span>( semaforo );
       <span class="pl-k">return</span> <span class="pl-c1">0</span>;
   }</pre>
-              </div>
-  
-              <p>Compilamos: <strong>gcc semaforo.c -o semaforo -pthread</strong></p>
-  
-              <p>Ejecutamos: <strong>./semaforo</strong></p>
-  
-              <blockquote>
-                <p>Hilo ENTRO a sección critica</p>
-  
-                <p>Hilo SALIO a sección critica</p>
-  
-                <p>Hilo ENTRO a sección critica</p>
-  
-                <p>Hilo SALIO a sección critica</p>
-  
-                <p>Hilo ENTRO a sección critica</p>
-  
-                <p>Hilo SALIO a sección critica</p>
-              </blockquote>
-  
-              <ul>
-                <li>Ejemplo en <strong>C++</strong>: Calculamos el numero pi con 4 hilos con la ayuda de <a
-                    href="https://es.wikipedia.org/wiki/Serie_de_Leibniz">Serie de Leibniz</a> </li>
-              </ul>
-  
-              <div class="highlight highlight-source-c++">
-                <pre>#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>iostream<span class="pl-pds">&gt;</span></span>
+          </div>
+
+          <p>Compilamos: <strong>gcc semaforo.c -o semaforo -pthread</strong></p>
+
+          <p>Ejecutamos: <strong>./semaforo</strong></p>
+
+          <blockquote>
+            <p>Hilo ENTRO a sección critica</p>
+
+            <p>Hilo SALIO a sección critica</p>
+
+            <p>Hilo ENTRO a sección critica</p>
+
+            <p>Hilo SALIO a sección critica</p>
+
+            <p>Hilo ENTRO a sección critica</p>
+
+            <p>Hilo SALIO a sección critica</p>
+          </blockquote>
+
+          <ul>
+            <li>Ejemplo en <strong>C++</strong>: Calculamos el numero pi con 4 hilos con la ayuda de <a
+                href="https://es.wikipedia.org/wiki/Serie_de_Leibniz">Serie de Leibniz</a> </li>
+          </ul>
+
+          <div class="highlight highlight-source-c++">
+            <pre>#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>iostream<span class="pl-pds">&gt;</span></span>
   #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>thread<span class="pl-pds">&gt;</span></span>
   #<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>vector<span class="pl-pds">&gt;</span></span>
   
@@ -524,43 +676,43 @@
       <span class="pl-c1">printf</span>( <span class="pl-s"><span class="pl-pds">"</span>EL valor de pi es:<span class="pl-cce">\t</span><span class="pl-c1">%.20f</span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>, answer );
       <span class="pl-k">return</span> <span class="pl-c1">0</span>;
   }</pre>
-              </div>
-  
-              <p>Compilar: <strong>g++ pi.cpp -o pi -std=c++11 -pthread</strong></p>
-  
-              <p>Ejecutar: <strong>./pi</strong></p>
-  
-              <blockquote>
-                <p>EL valor de pi es: 3.14159265258921038821</p>
-              </blockquote>
-  
-              <ul>
-                <li>Ejemplo en <strong>Java</strong>:</li>
-              </ul>
-              <p>Un grupo de personas trata de ir de una isla(Oahu) a la otra(Molokai) con un solo bote.</p>
-              <p><img src="https://s1-ssl.dmcdn.net/hjNxe/x240-XWg.jpg" alt=""></p>
-  
-              <p>Reglas:</p>
-              <ul>
-                <li>Cada persona es un hilo.</li>
-                <li>La persona puede ser un adulto o un niño.</li>
-                <li>Pueden ir dos niños en el bote o solo un adulto.</li>
-                <li>El bote necesita como mínimo un piloto./li>
-                <li>las personas solo se pueden comunicar con los que estén en la misma isla.</li>
-                <li>Siempre hay mínimo dos niños.</li>
-              </ul>
-  
-              <p>El principal objetivo del ejemplo es mostrar la sincronización de los hilos, la solución al problema
-                consiste en llevar dos niños
-                a Molokai, hacer que uno se devuelva con el bote, subir un adulto en oahu, cuando este llegue a Molokai se
-                devolverá el otro niño
-                que estaba ahí, y en Oahu se volverán a subir dos niños, este proceso se repetirá hasta que todas las
-                personas estén en Oahu,
-                hay que tener en cuenta que no hay algo como unidad principal que controle cuando pasará cada persona,
-                cada hilo deberá saber cuando
-                ejecutar sus instrucciones dependiendo de la sincronización con los otros</p>
-              <pre class="prettyprint">
-  
+          </div>
+
+          <p>Compilar: <strong>g++ pi.cpp -o pi -std=c++11 -pthread</strong></p>
+
+          <p>Ejecutar: <strong>./pi</strong></p>
+
+          <blockquote>
+            <p>EL valor de pi es: 3.14159265258921038821</p>
+          </blockquote>
+
+          <ul>
+            <li>Ejemplo en <strong>Java</strong>:</li>
+          </ul>
+          <p>Un grupo de personas trata de ir de una isla(Oahu) a la otra(Molokai) con un solo bote.</p>
+          <p><img src="https://s1-ssl.dmcdn.net/hjNxe/x240-XWg.jpg" alt=""></p>
+
+          <p>Reglas:</p>
+          <ul>
+            <li>Cada persona es un hilo.</li>
+            <li>La persona puede ser un adulto o un niño.</li>
+            <li>Pueden ir dos niños en el bote o solo un adulto.</li>
+            <li>El bote necesita como mínimo un piloto.</li>
+            <li>las personas solo se pueden comunicar con los que estén en la misma isla.</li>
+            <li>Siempre hay mínimo dos niños.</li>
+          </ul>
+
+          <p>El principal objetivo del ejemplo es mostrar la sincronización de los hilos, la solución al problema
+            consiste en llevar dos niños
+            a Molokai, hacer que uno se devuelva con el bote, subir un adulto en oahu, cuando este llegue a Molokai se
+            devolverá el otro niño
+            que estaba ahí, y en Oahu se volverán a subir dos niños, este proceso se repetirá hasta que todas las
+            personas estén en Oahu,
+            hay que tener en cuenta que no hay algo como unidad principal que controle cuando pasará cada persona,
+            cada hilo deberá saber cuando
+            ejecutar sus instrucciones dependiendo de la sincronización con los otros</p>
+          <pre class="prettyprint">
+
   import java.util.concurrent.Semaphore;
   
   //extiende de thread y sobreescribe run sin nada
@@ -776,8 +928,8 @@
     }
   }
   </pre>
-              <p>ejecución:</p>
-              <pre class="prettyprint">
+          <p>ejecución:</p>
+          <pre class="prettyprint">
     Introduzca el numero de niños (mayor a 1):
     3
     Introduzca el numero de adultos:
@@ -816,10 +968,10 @@
   
   
   </pre>
-              <ul>
-                <li>Ejemplo en <strong>Go</strong>:</li>
-              </ul>
-              <pre class="prettyprint">
+          <ul>
+            <li>Ejemplo en <strong>Go</strong>:</li>
+          </ul>
+          <pre class="prettyprint">
     package main
     import(
       "fmt"
@@ -845,9 +997,9 @@
         }
     }
   </pre>
-              <p>En Go tenemos rutinas que tienen su propio stack, aunque estos no son hilos como tal, pero si se pueden
-                aprovechar de esta forma</p>
-              <pre class="prettyprint">
+          <p>En Go tenemos rutinas que tienen su propio stack, aunque estos no son hilos como tal, pero si se pueden
+            aprovechar de esta forma</p>
+          <pre class="prettyprint">
   package main
   import(
     "fmt"
@@ -869,10 +1021,10 @@
   
   salida= Mensaje recibido:Hola
   </pre>
-  
-              <p>En Go tenemos el Select es como un switch, pero que espera mensajes en canales.
-                Su finalidad es comunicar, no comparar valores. </p>
-              <pre class="prettyprint">
+
+          <p>En Go tenemos el Select es como un switch, pero que espera mensajes en canales.
+            Su finalidad es comunicar, no comparar valores. </p>
+          <pre class="prettyprint">
   package main
   import(
     "fmt"
@@ -900,15 +1052,15 @@
       return c
   }
   </pre>
-              <ul>
-                <li>Otro Ejemplo en <strong>Go</strong>:</li>
-              </ul>
-              <p>
-                En este ejemplo vamos a optimizar una aplicación que realiza peticiones http, haciendo uso de
-                concurrencia,
-                el siguiente código es la aplicación implementada de manera secuencial:
-              </p>
-              <pre class="prettyprint">
+          <ul>
+            <li>Otro Ejemplo en <strong>Go</strong>:</li>
+          </ul>
+          <p>
+            En este ejemplo vamos a optimizar una aplicación que realiza peticiones http, haciendo uso de
+            concurrencia,
+            el siguiente código es la aplicación implementada de manera secuencial:
+          </p>
+          <pre class="prettyprint">
   package main
   import (
     "fmt"
@@ -934,36 +1086,36 @@
     }
   }
   </pre>
-              <p>
-                Para hacer uso del programa, usamos el siguiente comando:
-              <pre class="prettyprint">
+          <p>
+            Para hacer uso del programa, usamos el siguiente comando:
+          <pre class="prettyprint">
       go run main.go url1 url2 .. urln
     </pre>
-              Donde url1 a urln se reemplazan por urls a las cuales queremos hacer la petición Get.
-              Los resultados de esto deberían ser los siguientes, en el caso de haber usado las urls de google, youtube y
-              facebook:
-              </p>
-              <pre class="prettyprint">
+          Donde url1 a urln se reemplazan por urls a las cuales queremos hacer la petición Get.
+          Los resultados de esto deberían ser los siguientes, en el caso de haber usado las urls de google, youtube y
+          facebook:
+          </p>
+          <pre class="prettyprint">
   Estado: 200 URL: https://facebook.com
   Estado: 200 URL: https://youtube.com
   Estado: 200 URL: https://google.com
   </pre>
-              <p>
-                Para medir el tiempo de ejecución se debe usar el siguiente comando:
-              </p>
-              <p>
-                Para Windows:
-              <pre class="prettyprint">
+          <p>
+            Para medir el tiempo de ejecución se debe usar el siguiente comando:
+          </p>
+          <p>
+            Para Windows:
+          <pre class="prettyprint">
       Measure-Command {go run main.go url1 url2 .. urln}
       </pre>
-              Para Linux:
-              <pre class="prettyprint">
+          Para Linux:
+          <pre class="prettyprint">
       time go run main.go url1 url2 .. urln
       </pre>
-              Este tiempo de ejecución es importante para comparar el antes y el después de usar concurrencia. Haciendo
-              uso del comando de Windows, obtuvimos como resultado:
-              </p>
-              <pre class="prettyprint">
+          Este tiempo de ejecución es importante para comparar el antes y el después de usar concurrencia. Haciendo
+          uso del comando de Windows, obtuvimos como resultado:
+          </p>
+          <pre class="prettyprint">
   Days              : 0
   Hours             : 0
   Minutes           : 0
@@ -976,12 +1128,12 @@
   TotalSeconds      : 1,9702343
   TotalMilliseconds : 1970,2343
   </pre>
-              <p>
-                Actualmente nuestra aplicación funciona de manera síncrona, lo cual ralentiza su procesamiento,
-                debido a que tiene que esperar que cada petición termine para poder realizar la siguiente.
-                Ahora vamos a modificar este programa inicial para usar concurrencia y optimizar nuestra aplicación:
-              </p>
-              <pre class="prettyprint">
+          <p>
+            Actualmente nuestra aplicación funciona de manera síncrona, lo cual ralentiza su procesamiento,
+            debido a que tiene que esperar que cada petición termine para poder realizar la siguiente.
+            Ahora vamos a modificar este programa inicial para usar concurrencia y optimizar nuestra aplicación:
+          </p>
+          <pre class="prettyprint">
     package main
     import (
       "fmt"
@@ -1007,12 +1159,12 @@
       }
     }
   </pre>
-              <p>
-                Con solo agregar la palabra go, hacemos que cada consulta se ejecute en goroutines separadas
-                y si ejecutamos el comando de Benchmark anteriormente mencionado vamos a observar que
-                el tiempo de ejecucion es mucho menor:
-              </p>
-              <pre class="prettyprint">
+          <p>
+            Con solo agregar la palabra go, hacemos que cada consulta se ejecute en goroutines separadas
+            y si ejecutamos el comando de Benchmark anteriormente mencionado vamos a observar que
+            el tiempo de ejecucion es mucho menor:
+          </p>
+          <pre class="prettyprint">
   Days              : 0
   Hours             : 0
   Minutes           : 0
@@ -1025,13 +1177,13 @@
   TotalSeconds      : 0,8328442
   TotalMilliseconds : 832,8442
   </pre>
-              <p>
-                Pero nos vamos a encontrar con un problema: no se imprimen los resultados de las goroutines
-                en consola.
-                Para corregir esto vamos a hacer uso de WaitGroup, el cual ayuda a contabilizar las rutinas que se tienen
-                activas:
-              </p>
-              <pre class="prettyprint">
+          <p>
+            Pero nos vamos a encontrar con un problema: no se imprimen los resultados de las goroutines
+            en consola.
+            Para corregir esto vamos a hacer uso de WaitGroup, el cual ayuda a contabilizar las rutinas que se tienen
+            activas:
+          </p>
+          <pre class="prettyprint">
     package main
     import (
       "fmt"
@@ -1063,28 +1215,28 @@
       wg.Wait() //Indica que toca esperar a que todas las goroutines terminen
     }
   </pre>
-              <p>
-                Si ejecutamos de nuevo nuestro programa, vamos a ver que los resultados ahora si se muestran en consola.
-              </p>
-              <pre class="prettyprint">
+          <p>
+            Si ejecutamos de nuevo nuestro programa, vamos a ver que los resultados ahora si se muestran en consola.
+          </p>
+          <pre class="prettyprint">
       Estado: 200 URL: https://facebook.com
       Estado: 200 URL: https://youtube.com
       Estado: 200 URL: https://google.com
     </pre>
-              <p>
-                Es posible que las goroutines se mezclen en consola, debido a que pueden terminar al mismo tiempo. Dando
-                como resultado:
-              </p>
-              <pre class="prettyprint">
+          <p>
+            Es posible que las goroutines se mezclen en consola, debido a que pueden terminar al mismo tiempo. Dando
+            como resultado:
+          </p>
+          <pre class="prettyprint">
       Estado: 200 URL: Estado: 200 URL: https://youtube.comhttps://facebook.com
       Estado: 200 URL: https://google.com
     </pre>
-              <p>
-                Para evitar que esto ocurra vamos a hacer uso de Mutex, el cual ayuda a sincronizar el acceso a recursos
-                compartidos, como es el caso de la consola.
-                Para hacer uso de Mutex, hacemos lo siguiente:
-              </p>
-              <pre class="prettyprint">
+          <p>
+            Para evitar que esto ocurra vamos a hacer uso de Mutex, el cual ayuda a sincronizar el acceso a recursos
+            compartidos, como es el caso de la consola.
+            Para hacer uso de Mutex, hacemos lo siguiente:
+          </p>
+          <pre class="prettyprint">
       package main
       import (
         "fmt"
@@ -1120,13 +1272,13 @@
         wg.Wait() //Indica que toca esperar a que todas las goroutines terminen
       }
     </pre>
-              <ul>
-                <li>Ejemplo de concurrecia en <strong>Erlang</strong>:</li>
-              </ul>
-              <p>
-                La función spawn en Erlang nos permiete crear un proceso en paralelo.
-              </p>
-              <pre class="prettyprint">
+          <ul>
+            <li>Ejemplo de concurrecia en <strong>Erlang</strong>:</li>
+          </ul>
+          <p>
+            La función spawn en Erlang nos permiete crear un proceso en paralelo.
+          </p>
+          <pre class="prettyprint">
     -module(helloworld).
     -export([start/0]).
     start() ->
@@ -1135,17 +1287,17 @@
     server(Message) ->
       io:fwrite("~p",[Message]).
   </pre>
-              <p>
-                La salida es la siguiente:
-              </p>
-              <blockquote>
-                "Hello"
-              </blockquote>
-  
-              <p>
-                El operador ! nos permite enviar mensajes a los procesos.
-              </p>
-              <pre class="prettyprint">
+          <p>
+            La salida es la siguiente:
+          </p>
+          <blockquote>
+            "Hello"
+          </blockquote>
+
+          <p>
+            El operador ! nos permite enviar mensajes a los procesos.
+          </p>
+          <pre class="prettyprint">
     -module(helloworld).
     -export([start/0]).
     start() ->
@@ -1155,18 +1307,18 @@
     server(Message) ->
       io:fwrite("~p",[Message]).
   </pre>
-              <p>
-                La salida es la siguiente:
-              </p>
-              <blockquote>
-                "Hello"
-              </blockquote>
-  
-  
-              <p>
-                receive permite recibir mensajes que son enviados a los procesos.
-              </p>
-              <pre class="prettyprint">
+          <p>
+            La salida es la siguiente:
+          </p>
+          <blockquote>
+            "Hello"
+          </blockquote>
+
+
+          <p>
+            receive permite recibir mensajes que son enviados a los procesos.
+          </p>
+          <pre class="prettyprint">
     -module(helloworld).
     -export([loop/0,start/0]).
   
@@ -1189,26 +1341,26 @@
        Pid ! {circle, 6},
        Pid ! {square, 4, 4}.
   </pre>
-              <p>
-                La salida es la siguiente:
-              </p>
-              <blockquote>
-                Area of rectangle is 60<br>
-                Area of circle is 113.09723999999999<br>
-                Unknown<br>
-              </blockquote>
-  
-              <ul>
-                <li>Ejemplo de concurrecia en <strong>Rust</strong>:</li>
-              </ul>
-              <p>
-                Rust facilita la programación concurrente con las comprobaciones que se hacen en tiempo de compilación y
-                con la gestión de memoria que realiza.
-              </p>
-              <p>
-                Hilos: creamos hilos con el comando thread::spawn, que recibe un closure y se lanza justo al definirlo.
-              </p>
-              <pre class="prettyprint">
+          <p>
+            La salida es la siguiente:
+          </p>
+          <blockquote>
+            Area of rectangle is 60<br>
+            Area of circle is 113.09723999999999<br>
+            Unknown<br>
+          </blockquote>
+
+          <ul>
+            <li>Ejemplo de concurrecia en <strong>Rust</strong>:</li>
+          </ul>
+          <p>
+            Rust facilita la programación concurrente con las comprobaciones que se hacen en tiempo de compilación y
+            con la gestión de memoria que realiza.
+          </p>
+          <p>
+            Hilos: creamos hilos con el comando thread::spawn, que recibe un closure y se lanza justo al definirlo.
+          </p>
+          <pre class="prettyprint">
     use std::thread;
   
     fn main() {
@@ -1218,32 +1370,32 @@
         let _ = child.join();
     }
   </pre>
-              <p>
-                La salida es la siguiente:
-              </p>
-              <blockquote>
-                Hello from a thread!
-              </blockquote>
-  
-              <p>
-                Para esperar a que un hilo termine se puede utilizar el método join.
-              </p>
-              <p>
-                Podemos lanzar varios hilos dentro de un bucle
-              </p>
-              <!--<p>
+          <p>
+            La salida es la siguiente:
+          </p>
+          <blockquote>
+            Hello from a thread!
+          </blockquote>
+
+          <p>
+            Para esperar a que un hilo termine se puede utilizar el método join.
+          </p>
+          <p>
+            Podemos lanzar varios hilos dentro de un bucle
+          </p>
+          <!--<p>
     Se crea un Vec donde se meten todos los hilos para luego poder hacer un join y esperar a que todos terminen. Dentro del hilo se imprime por pantalla el índice de la iteración.
   </p>-->
-              <p>Aquí, en cada vuelta del bucle, iniciaremos un hilo con un iterador asociado. El primer hilo se inicia
-                con el número 0, el segundo con el número 1 y así sucesivamente.
-                Podemos ver en el resultado lo que se dijo antes: los subprocesos se lanzaron en un orden específico y,
-                sin embargo, al mostrar los resultados, vemos que está completamente desordenado: de hecho, la velocidad
-                de la ejecución de cada uno de los hilos variará.
-  
-                Si reiniciamos este programa, su salida y la visualización de los números serán diferentes; es imposible
-                de predecir el orden de los números que aparecerán. Pero, si utilizamos el sistema de bloqueo y
-                desbloqueo, para que cada hilo espere hasta que el anterior termine, el orden será perfecto.</p>
-              <pre class="prettyprint">
+          <p>Aquí, en cada vuelta del bucle, iniciaremos un hilo con un iterador asociado. El primer hilo se inicia
+            con el número 0, el segundo con el número 1 y así sucesivamente.
+            Podemos ver en el resultado lo que se dijo antes: los subprocesos se lanzaron en un orden específico y,
+            sin embargo, al mostrar los resultados, vemos que está completamente desordenado: de hecho, la velocidad
+            de la ejecución de cada uno de los hilos variará.
+
+            Si reiniciamos este programa, su salida y la visualización de los números serán diferentes; es imposible
+            de predecir el orden de los números que aparecerán. Pero, si utilizamos el sistema de bloqueo y
+            desbloqueo, para que cada hilo espere hasta que el anterior termine, el orden será perfecto.</p>
+          <pre class="prettyprint">
     use std::thread;
   
     fn main() {
@@ -1261,31 +1413,31 @@
       }
     }
   </pre>
-              <p>
-                La salida es la siguiente:
-              </p>
-              <blockquote>
-                Hello from a thread! 1 <br>
-                Hello from a thread! 0 <br>
-                Hello from a thread! 5 <br>
-                Hello from a thread! 3 <br>
-                Hello from a thread! 7 <br>
-                Hello from a thread! 4 <br>
-                Hello from a thread! 8 <br>
-                Hello from a thread! 6 <br>
-                Hello from a thread! 2 <br>
-                Hello from a thread! 9 <br>
-  
-              </blockquote>
-  
-  
-              <p>
-                Mutex y Arc: Para compartir una referencia a memoria entre hilos se usa Arc y Mutex en combinación.
-                Arc es un contador de referencias que se puede compartir entre hilos.
-                Mutex implementa el bloqueo asociado a la variable en concreto.
-  
-              </p>
-              <pre class="prettyprint">
+          <p>
+            La salida es la siguiente:
+          </p>
+          <blockquote>
+            Hello from a thread! 1 <br>
+            Hello from a thread! 0 <br>
+            Hello from a thread! 5 <br>
+            Hello from a thread! 3 <br>
+            Hello from a thread! 7 <br>
+            Hello from a thread! 4 <br>
+            Hello from a thread! 8 <br>
+            Hello from a thread! 6 <br>
+            Hello from a thread! 2 <br>
+            Hello from a thread! 9 <br>
+
+          </blockquote>
+
+
+          <p>
+            Mutex y Arc: Para compartir una referencia a memoria entre hilos se usa Arc y Mutex en combinación.
+            Arc es un contador de referencias que se puede compartir entre hilos.
+            Mutex implementa el bloqueo asociado a la variable en concreto.
+
+          </p>
+          <pre class="prettyprint">
     use std::thread;
     use std::sync::{Arc, Mutex};
   
@@ -1312,44 +1464,44 @@
     }
   
   </pre>
-              <p>
-                La salida es la siguiente:
-              </p>
-              <blockquote>
-                In thread 0 <br>
-                In thread 3 <br>
-                In thread 5 <br>
-                In thread 4 <br>
-                In thread 2 <br>
-                In thread 6 <br>
-                In thread 7 <br>
-                In thread 8 <br>
-                In thread 1 <br>
-                In thread 9 <br>
-                <br>
-                Output: <br>
-                Thread 0 <br>
-                Thread 3 <br>
-                Thread 5 <br>
-                Thread 4 <br>
-                Thread 2 <br>
-                Thread 6 <br>
-                Thread 7 <br>
-                Thread 8 <br>
-                Thread 1 <br>
-                Thread 9 <br>
-              </blockquote>
-  
-              <p>
-                En este ejemplo se define la cadena dentro de un Mutex y este dentro de un Arc, así se comparte la memoria
-                entre hilos.
-                <br>
-                channel crea un transmisor, tx, y un receptor, rx, en cada hilo, clona el transmisor y escribe en este la
-                salida. En el send se puede enviar cualquier tipo de dato según se cree el channel, no se pueden enviar
-                diferentes tipos de datos por el mismo canal.
-  
-              </p>
-              <pre class="prettyprint">
+          <p>
+            La salida es la siguiente:
+          </p>
+          <blockquote>
+            In thread 0 <br>
+            In thread 3 <br>
+            In thread 5 <br>
+            In thread 4 <br>
+            In thread 2 <br>
+            In thread 6 <br>
+            In thread 7 <br>
+            In thread 8 <br>
+            In thread 1 <br>
+            In thread 9 <br>
+            <br>
+            Output: <br>
+            Thread 0 <br>
+            Thread 3 <br>
+            Thread 5 <br>
+            Thread 4 <br>
+            Thread 2 <br>
+            Thread 6 <br>
+            Thread 7 <br>
+            Thread 8 <br>
+            Thread 1 <br>
+            Thread 9 <br>
+          </blockquote>
+
+          <p>
+            En este ejemplo se define la cadena dentro de un Mutex y este dentro de un Arc, así se comparte la memoria
+            entre hilos.
+            <br>
+            channel crea un transmisor, tx, y un receptor, rx, en cada hilo, clona el transmisor y escribe en este la
+            salida. En el send se puede enviar cualquier tipo de dato según se cree el channel, no se pueden enviar
+            diferentes tipos de datos por el mismo canal.
+
+          </p>
+          <pre class="prettyprint">
     use std::thread;
     use std::sync::mpsc;
   
@@ -1382,56 +1534,56 @@
     }
   
   </pre>
-              <p>
-                La salida es la siguiente:
-              </p>
-              <blockquote>
-                In thread 0 <br>
-                In thread 2 <br>
-                In thread 1 <br>
-                In thread 4 <br>
-                In thread 5 <br>
-                In thread 6 <br>
-                In thread 3 <br>
-                In thread 8 <br>
-                In thread 7 <br>
-                In thread 9 <br>
-                <br>
-                Output: <br>
-                Thread 0 <br>
-                Thread 2 <br>
-                Thread 1 <br>
-                Thread 4 <br>
-                Thread 5 <br>
-                Thread 6 <br>
-                Thread 8 <br>
-                Thread 7 <br>
-                Thread 9 <br>
-                Thread 3 <br>
-              </blockquote>
-  
-              <ul>
-                <li>Ejemplo de concurrencia en <strong>Crystal</strong>:</li>
-              </ul>
-              <p>
-                Crystal usa hilos llamados fibras para lograr concurrencia. Las fibras se comunican entre sí mediante
-                canales, como en Go o Clojure, sin tener que recurrir a la memoria compartida o bloqueos.
-                <br>
-                Cuando se inicia un programa, se activa la fibra principal que ejecutará su código de nivel superior.
-                Allí, uno puede engendrar (spawn) más fibras.
-                Los componentes de un programa son:
-              <ul>
-                <li>Runtime Scheduler, a cargo de ejecutar todas las fibras cuando sea el momento adecuado. </li>
-                <li>El bucle de eventos, que es solo otra fibra, está a cargo de tareas asíncronas, como por ejemplo
-                  archivos, sockets, pipes, señales y temporizadores.</li>
-                <li>Canales, para comunicar datos entre fibras. Runtime Scheduler coordinará fibras y canales para su
-                  comunicación.</li>
-                <li>Garbage collector: para limpiar la memoria que "ya no se usa".</li>
-              </ul>
-              Fibras: Para generar una fibra se usa el comando spawn
-              </p>
-  
-              <pre class="prettyprint">
+          <p>
+            La salida es la siguiente:
+          </p>
+          <blockquote>
+            In thread 0 <br>
+            In thread 2 <br>
+            In thread 1 <br>
+            In thread 4 <br>
+            In thread 5 <br>
+            In thread 6 <br>
+            In thread 3 <br>
+            In thread 8 <br>
+            In thread 7 <br>
+            In thread 9 <br>
+            <br>
+            Output: <br>
+            Thread 0 <br>
+            Thread 2 <br>
+            Thread 1 <br>
+            Thread 4 <br>
+            Thread 5 <br>
+            Thread 6 <br>
+            Thread 8 <br>
+            Thread 7 <br>
+            Thread 9 <br>
+            Thread 3 <br>
+          </blockquote>
+
+          <ul>
+            <li>Ejemplo de concurrencia en <strong>Crystal</strong>:</li>
+          </ul>
+          <p>
+            Crystal usa hilos llamados fibras para lograr concurrencia. Las fibras se comunican entre sí mediante
+            canales, como en Go o Clojure, sin tener que recurrir a la memoria compartida o bloqueos.
+            <br>
+            Cuando se inicia un programa, se activa la fibra principal que ejecutará su código de nivel superior.
+            Allí, uno puede engendrar (spawn) más fibras.
+            Los componentes de un programa son:
+          <ul>
+            <li>Runtime Scheduler, a cargo de ejecutar todas las fibras cuando sea el momento adecuado. </li>
+            <li>El bucle de eventos, que es solo otra fibra, está a cargo de tareas asíncronas, como por ejemplo
+              archivos, sockets, pipes, señales y temporizadores.</li>
+            <li>Canales, para comunicar datos entre fibras. Runtime Scheduler coordinará fibras y canales para su
+              comunicación.</li>
+            <li>Garbage collector: para limpiar la memoria que "ya no se usa".</li>
+          </ul>
+          Fibras: Para generar una fibra se usa el comando spawn
+          </p>
+
+          <pre class="prettyprint">
     spawn do
       loop do
         puts "Hello!"
@@ -1440,15 +1592,15 @@
   
     sleep 1.second
   </pre>
-              <p>
-                Este programa imprimirá "¡Hello!" por un segundo y luego saldrá. Esto se debe a que la llamada de espera
-                programará la fibra principal que se ejecutará en un segundo y luego ejecutará otra fibra "lista para
-                ejecutarse", que en este caso es la de arriba.
-                <br><br>
-                Otra manera seria:
-              </p>
-  
-              <pre class="prettyprint">
+          <p>
+            Este programa imprimirá "¡Hello!" por un segundo y luego saldrá. Esto se debe a que la llamada de espera
+            programará la fibra principal que se ejecutará en un segundo y luego ejecutará otra fibra "lista para
+            ejecutarse", que en este caso es la de arriba.
+            <br><br>
+            Otra manera seria:
+          </p>
+
+          <pre class="prettyprint">
     spawn do
       loop do
         puts "Hello!"
@@ -1457,20 +1609,20 @@
   
     Fiber.yield
   </pre>
-  
-              <p>
-                Fiber.yield le dirá al scheduler que ejecute la otra fibra. Esto imprimirá "Hello" hasta los bloques de
-                salida estándar y luego la ejecución continuará con la fibra principal y el programa saldrá.
-              </p>
-  
-              <p>
-                Creando(spawn) una llamada:
-                <br><br>
-                El programa imprime los números del 0 al 9. Se crea un Proc y se invoca pasando I, por lo que el valor se
-                copia y la fibra engendrada recibe una copia.
-              </p>
-  
-              <pre class="prettyprint">
+
+          <p>
+            Fiber.yield le dirá al scheduler que ejecute la otra fibra. Esto imprimirá "Hello" hasta los bloques de
+            salida estándar y luego la ejecución continuará con la fibra principal y el programa saldrá.
+          </p>
+
+          <p>
+            Creando(spawn) una llamada:
+            <br><br>
+            El programa imprime los números del 0 al 9. Se crea un Proc y se invoca pasando I, por lo que el valor se
+            copia y la fibra engendrada recibe una copia.
+          </p>
+
+          <pre class="prettyprint">
     i = 0
     while i < 10
       proc = ->(x : Int32) do
@@ -1484,32 +1636,32 @@
   
     Fiber.yield
   </pre>
-  
-              <p>
-                La salida es la siguiente:
-              </p>
-  
-              <blockquote>
-                0 <br>
-                1 <br>
-                2 <br>
-                3 <br>
-                4 <br>
-                5 <br>
-                6 <br>
-                7 <br>
-                8 <br>
-                9 <br>
-              </blockquote>
-  
-              <p>
-                Canales:
-                <br>
-                Cuando el programa ejecuta una recepción, esa fibra se bloquea y la ejecución continúa con la otra fibra.
-                Cuando se ejecuta un envió, la ejecución continúa con la fibra que estaba esperando en ese canal.
-              </p>
-  
-              <pre class="prettyprint">
+
+          <p>
+            La salida es la siguiente:
+          </p>
+
+          <blockquote>
+            0 <br>
+            1 <br>
+            2 <br>
+            3 <br>
+            4 <br>
+            5 <br>
+            6 <br>
+            7 <br>
+            8 <br>
+            9 <br>
+          </blockquote>
+
+          <p>
+            Canales:
+            <br>
+            Cuando el programa ejecuta una recepción, esa fibra se bloquea y la ejecución continúa con la otra fibra.
+            Cuando se ejecuta un envió, la ejecución continúa con la fibra que estaba esperando en ese canal.
+          </p>
+
+          <pre class="prettyprint">
     channel = Channel(Int32).new
   
     spawn do
@@ -1527,32 +1679,32 @@
     value = channel.receive
     puts value # => 2
   </pre>
-              <p>
-                La salida es la siguiente:
-              </p>
-              <blockquote>
-                Before first receive <br>
-                Before first send <br>
-                1 <br>
-                Before second receive <br>
-                Before second send <br>
-                2 <br>
-  
-              </blockquote>
-  
-              <ul>
-                <li>Ejemplo en <strong>C</strong> con el juego de pacman:<br />
-                  Aquí, el programa debe poder recibir la entrada teclado del usuario. Pero también, al mismo tiempo,
-                  tienes que:
-                  <br />
-                  - Calcula los movimientos de los enemigos gracias a la inteligencia artificial.<br />
-                  - Ver los diferentes desplazamientos.<br />
-                  - Actualizar el mapa<br />
-                </li>
-              </ul>
-  
-              <div class="highlight highlight-source-python">
-                <pre>
+          <p>
+            La salida es la siguiente:
+          </p>
+          <blockquote>
+            Before first receive <br>
+            Before first send <br>
+            1 <br>
+            Before second receive <br>
+            Before second send <br>
+            2 <br>
+
+          </blockquote>
+
+          <ul>
+            <li>Ejemplo en <strong>C</strong> con el juego de pacman:<br />
+              Aquí, el programa debe poder recibir la entrada teclado del usuario. Pero también, al mismo tiempo,
+              tienes que:
+              <br />
+              - Calcula los movimientos de los enemigos gracias a la inteligencia artificial.<br />
+              - Ver los diferentes desplazamientos.<br />
+              - Actualizar el mapa<br />
+            </li>
+          </ul>
+
+          <div class="highlight highlight-source-python">
+            <pre>
   <span class="pl-k">int</span> <span class="pl-en">main_loop</span>(<span class="pl-smi">IGame *Game, IGui *curse</span>):
     {
       <span class="pl-k">board</span> game;
@@ -1574,34 +1726,37 @@
       <span class="pl-c1">return</span> (0);
     }
   </pre>
-              </div>
-  
-              <p>Si observamos el código que se muestra, la función get_touch iniciará un hilo que se ocupará de recuperar
-                la entrada del teclado pero no bloqueará el resto del programa: no esperará a recuperar una tecla para
-                continuar.</p>
-  
-              <img src="images/Pacman.gif"><br /><br /><br />
-  
-  
-     
           </div>
+
+          <p>Si observamos el código que se muestra, la función get_touch iniciará un hilo que se ocupará de recuperar
+            la entrada del teclado pero no bloqueará el resto del programa: no esperará a recuperar una tecla para
+            continuar.</p>
+
+          <img src="images/Pacman.gif"><br /><br /><br />
+
+
+
         </div>
+      </div>
 
 
-      </section><!-- #about -->
-      <section id="ejemploComparativo" style="margin-top: 50px;">
-        <div class="container">
-          <div class="text_cell_render border-box-sizing rendered_html">
-            <h2 class="title"><strong>Ejemplo Comparativo</strong></h2>
-            
-            <h2>Suma concurrente</h2>
-            <p>
-                Dado un arreglo de números, queremos sumar todos sus elementos. Utilizaremos programación concurrente para dividir el trabajo entre varios workers y sumar los resultados parciales.
-                Esta solución será implementada en tres lenguajes diferentes: Go, Elixir y Rust. Cada lenguaje tiene sus propias características y formas de manejar la concurrencia.
-                A continuación, se presenta el código para cada uno de estos lenguajes seguido de una tabla comparativa que detalla las diferentes secciones del código y cómo se implementan en cada lenguaje.
-            </p>
-            <h3>Go</h3>
-            <pre class="prettyprint"><code>
+    </section><!-- #about -->
+    <section id="ejemploComparativo" style="margin-top: 50px;">
+      <div class="container">
+        <div class="text_cell_render border-box-sizing rendered_html">
+          <h2 class="title"><strong>Ejemplo Comparativo</strong></h2>
+
+          <h2>Suma concurrente</h2>
+          <p>
+            Dado un arreglo de números, queremos sumar todos sus elementos. Utilizaremos programación concurrente para
+            dividir el trabajo entre varios workers y sumar los resultados parciales.
+            Esta solución será implementada en tres lenguajes diferentes: Go, Elixir y Rust. Cada lenguaje tiene sus
+            propias características y formas de manejar la concurrencia.
+            A continuación, se presenta el código para cada uno de estos lenguajes seguido de una tabla comparativa que
+            detalla las diferentes secciones del código y cómo se implementan en cada lenguaje.
+          </p>
+          <h3>Go</h3>
+          <pre class="prettyprint"><code>
     package main
 
     import (
@@ -1647,8 +1802,8 @@
     }
 </code> </pre>
 
-            <h3>Elixir</h3>
-            <pre class="prettyprint">
+          <h3>Elixir</h3>
+          <pre class="prettyprint">
 
     defmodule ConcurrentSum do
     def worker(pid, list) do
@@ -1682,8 +1837,8 @@
     ConcurrentSum.start([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
                 </pre>
 
-                <h3>Rust</h3>
-                <pre class="prettyprint">
+          <h3>Rust</h3>
+          <pre class="prettyprint">
 
     use std::sync::mpsc;
     use std::thread;
@@ -1725,25 +1880,26 @@
     }
             </pre>
 
-            <h2>Tabla Comparativa</h2>
-    <table>
-        <thead>
-            <tr>
+          <h2>Tabla Comparativa</h2>
+          <table>
+            <thead>
+              <tr>
                 <th class="narrow-col">Sección</th>
                 <th>Go</th>
                 <th>Elixir</th>
                 <th>Rust</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
                 <td>División del Trabajo</td>
                 <td>
-                    <ul>
-                        <li>El arreglo se divide en partes iguales según el número de workers.</li>
-                        <li>Cada parte del arreglo se procesa concurrentemente por una goroutine (goroutines son ligeras y se gestionan por el runtime de Go).</li>
-                    </ul>
-                    <pre class="prettyprint">
+                  <ul>
+                    <li>El arreglo se divide en partes iguales según el número de workers.</li>
+                    <li>Cada parte del arreglo se procesa concurrentemente por una goroutine (goroutines son ligeras y
+                      se gestionan por el runtime de Go).</li>
+                  </ul>
+                  <pre class="prettyprint">
   for i := 0; i < numWorkers; i++ {
       start := i * chunkSize
       end := start + chunkSize
@@ -1756,11 +1912,11 @@
                     </pre>
                 </td>
                 <td>
-                    <ul>
-                        <li>El arreglo se divide en partes iguales según el número de workers.</li>
-                        <li>Cada parte del arreglo se procesa concurrentemente por un proceso ligero en Elixir.</li>
-                    </ul>
-                    <pre class="prettyprint">
+                  <ul>
+                    <li>El arreglo se divide en partes iguales según el número de workers.</li>
+                    <li>Cada parte del arreglo se procesa concurrentemente por un proceso ligero en Elixir.</li>
+                  </ul>
+                  <pre class="prettyprint">
   pids = for i <- 1..num_workers do
     start = (i - 1) * chunk_size + 1
     finish = min(start + chunk_size - 1, length(list))
@@ -1769,11 +1925,11 @@
                     </pre>
                 </td>
                 <td>
-                    <ul>
-                        <li>El arreglo se divide en partes iguales según el número de workers.</li>
-                        <li>Cada parte del arreglo se procesa concurrentemente por un hilo.</li>
-                    </ul>
-                    <pre class="prettyprint">
+                  <ul>
+                    <li>El arreglo se divide en partes iguales según el número de workers.</li>
+                    <li>Cada parte del arreglo se procesa concurrentemente por un hilo.</li>
+                  </ul>
+                  <pre class="prettyprint">
   for i in 0..num_workers {
       let start = i * chunk_size;
       let end = if i == num_workers - 1 { arr.len() } else { start + chunk_size };
@@ -1789,15 +1945,15 @@
   }
                     </pre>
                 </td>
-            </tr>
-            <tr>
+              </tr>
+              <tr>
                 <td>Sincronización</td>
                 <td>
-                    <ul>
-                        <li>Se utiliza un sync.WaitGroup para esperar a que todas las goroutines terminen su trabajo.</li>
-                        <li>Los resultados parciales se envían a través de un canal (resultChan).</li>
-                    </ul>
-                    <pre class="prettyprint">
+                  <ul>
+                    <li>Se utiliza un sync.WaitGroup para esperar a que todas las goroutines terminen su trabajo.</li>
+                    <li>Los resultados parciales se envían a través de un canal (resultChan).</li>
+                  </ul>
+                  <pre class="prettyprint">
   var wg sync.WaitGroup
 
   wg.Wait()
@@ -1805,31 +1961,31 @@
                     </pre>
                 </td>
                 <td>
-                    <ul>
-                        <li>Los procesos workers envían las sumas parciales al proceso principal mediante mensajes.</li>
-                    </ul>
-                    <pre class="prettyprint">
+                  <ul>
+                    <li>Los procesos workers envían las sumas parciales al proceso principal mediante mensajes.</li>
+                  </ul>
+                  <pre class="prettyprint">
   send(pid, {self(), sum})
                     </pre>
                 </td>
                 <td>
-                    <ul>
-                        <li>Usa Arc (Atomic Reference Counted) para compartir el resultado entre los hilos.</li>
-                        <li>Usa Mutex para proteger el acceso concurrente al resultado compartido.</li>
-                    </ul>
-                    <pre class="prettyprint">
+                  <ul>
+                    <li>Usa Arc (Atomic Reference Counted) para compartir el resultado entre los hilos.</li>
+                    <li>Usa Mutex para proteger el acceso concurrente al resultado compartido.</li>
+                  </ul>
+                  <pre class="prettyprint">
   let result = Arc::new(Mutex::new(0));
                     </pre>
                 </td>
-            </tr>
-            <tr>
+              </tr>
+              <tr>
                 <td>Recolección de Resultados</td>
                 <td>
-                    <ul>
-                        <li>El canal resultChan se cierra cuando todos los workers han terminado.</li>
-                        <li>Se suma cada resultado parcial recibido del canal para obtener la suma total.</li>
-                    </ul>
-                    <pre class="prettyprint">
+                  <ul>
+                    <li>El canal resultChan se cierra cuando todos los workers han terminado.</li>
+                    <li>Se suma cada resultado parcial recibido del canal para obtener la suma total.</li>
+                  </ul>
+                  <pre class="prettyprint">
   totalSum := 0
   for sum := range resultChan {
       totalSum += sum
@@ -1839,10 +1995,10 @@
                     </pre>
                 </td>
                 <td>
-                    <ul>
-                        <li>El proceso principal recibe los resultados parciales de cada worker y los suma.</li>
-                    </ul>
-                    <pre class="prettyprint">
+                  <ul>
+                    <li>El proceso principal recibe los resultados parciales de cada worker y los suma.</li>
+                  </ul>
+                  <pre class="prettyprint">
   receive do
     {_, sum} -> 
       receive_results(tl(pids), acc + sum)
@@ -1850,10 +2006,10 @@
                     </pre>
                 </td>
                 <td>
-                    <ul>
-                        <li>Cada hilo añade su suma parcial al resultado total protegido por un Mutex.</li>
-                    </ul>
-                    <pre class="prettyprint">
+                  <ul>
+                    <li>Cada hilo añade su suma parcial al resultado total protegido por un Mutex.</li>
+                  </ul>
+                  <pre class="prettyprint">
   for handle in handles {
       handle.join().unwrap();
   }
@@ -1861,52 +2017,53 @@
   println!("Total Sum: {}", *result.lock().unwrap());
                     </pre>
                 </td>
-            </tr>
-        </tbody>
-    </table>
-          </div>
-        </div>
-      </section>
-      
-      <!-- #about -->
-    </main>
-
-
-    <footer id="footer">
-      <div class="container">
-        <div class="credits">
-          Creado por estudiantes del curso Lenguajes de Programación de la
-          Universidad Nacional de Colombia.
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-    </footer>
-    <!-- #footer -->
+    </section>
 
-    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <!-- #about -->
+  </main>
 
-    <!-- JavaScript Libraries -->
-    <script src="lib/jquery/jquery.min.js"></script>
-    <script src="lib/jquery/jquery-migrate.min.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
 
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/superfish/hoverIntent.js"></script>
-    <script src="lib/superfish/superfish.min.js"></script>
+  <footer id="footer">
+    <div class="container">
+      <div class="credits">
+        Creado por estudiantes del curso Lenguajes de Programación de la
+        Universidad Nacional de Colombia.
+      </div>
+    </div>
+  </footer>
+  <!-- #footer -->
 
-    <!-- Contact Form JavaScript File -->
-    <script src="contactform/contactform.js"></script>
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-    <!-- Template Main Javascript File -->
-    <script src="js/main.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        prettyPrint();
-      });
-    </script>
-    
-  </body>
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
+
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/counterup/counterup.min.js"></script>
+  <script src="lib/superfish/hoverIntent.js"></script>
+  <script src="lib/superfish/superfish.min.js"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      prettyPrint();
+    });
+  </script>
+
+</body>
+
 </html>

@@ -1,943 +1,844 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Programación Concurrente UNAL</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="" name="keywords" />
-    <meta content="" name="description" />
 
-    <!-- Favicons -->
-    <link href="images/favicon.ico" rel="icon" />
+<head>
+  <meta charset="utf-8" />
+  <title>Programación Concurrente UNAL</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="" name="keywords" />
+  <meta content="" name="description" />
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
-      rel="stylesheet"
-    />
+  <!-- Favicons -->
+  <link href="images/favicon.ico" rel="icon" />
 
-    <!-- Bootstrap CSS File -->
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+    rel="stylesheet" />
 
-    <!-- Libraries CSS Files -->
-    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Main Stylesheet File -->
-    <link href="stylesheets/style.css" rel="stylesheet" />
-  </head>
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="lib/animate/animate.min.css" rel="stylesheet" />
 
-  <body>
-    <header id="header">
+  <!-- Main Stylesheet File -->
+  <link href="stylesheets/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <header id="header">
+    <div class="container">
+      <div id="logo" class="pull-left">
+        <a><img src="images/logo.png" class="resize" /></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-has-children"><a href="index.html#hero">Programación concurrente</a>
+            <ul>
+              <li><a href="index.html#definicion">¿Qué es?</a></li>
+              <li><a href="index.html#filosofia">Filosofía del paradigma</a></li>
+              <li><a href="index.html#historia">Historia</a></li>
+              <li><a href="index.html#concurvsparal">Concurrencia vs paralelismo</a></li>
+              <li class="menu-has-children"><a href="index.html#conceptos">Conceptos</a>
+                <ul>
+                  <li><a href="index.html#hilo">Hilos y Procesos</a></li>
+                  <li><a href="index.html#posix">POSIX y Fork</a></li>
+                  <li><a href="index.html#calendarizacion">Planificación</a></li>
+                  <li><a href="index.html#propiedades">Propiedades</a></li>
+                  <li><a href="index.html#sincronizacion">Sincronización</a></li>
+                </ul>
+              </li>
+              <li><a href="index.html#ventajas">Ventajas</a></li>
+              <li><a href="index.html#desventajas">Desventajas</a></li>
+            </ul>
+          </li>
+
+          <li class="menu-has-children"><a href="lenguajes.html">Lenguajes</a>
+            <ul>
+              <li><a href="lenguajes.html#elixir">Elixir</a></li>
+              <li><a href="lenguajes.html#ada">Ada</a></li>
+              <li><a href="lenguajes.html#rust">Rust</a></li>
+              <li><a href="lenguajes.html#erlang">Erlang</a></li>
+              <li><a href="lenguajes.html#go">Go</a></li>
+              <li><a href="lenguajes.html#haskel">Haskel</a></li>
+              <li><a href="lenguajes.html#crystal">Crystal</a></li>
+              <li><a href="lenguajes.html#javal">Java</a></li>
+              <li><a href="lenguajes.html#python">Python</a></li>
+              <li><a href="lenguajes.html#c">C</a></li>
+              <li><a href="lenguajes.html#ejemplosLenguajes">Ejemplos</a></li>
+              <li><a href="lenguajes.html#ejemploComparativo">Ejemplo Comparativo</a></li>
+            </ul>
+          </li>
+          <li class="menu-has-children"><a href="index.html#aplicaciones">Aplicaciones</a>
+            <ul>
+              <li><a href="index.html#aplicaciones">Aplicaciones generales</a></li>
+              <li><a href="index.html#aplicacionesReales">Aplicaciones reales</a></li>
+            </ul>
+          </li>
+          <li><a href="quiz/index.html">Quiz</a></li>
+          <li class="menu-active menu-has-children"><a href="references.html">Referencias</a>
+            <ul>
+              <li><a href="references.html#referencias">Referencias</a></li>
+              <li><a href="references.html#integrantes">Integrantes</a></li>
+              <li><a href="references.html#presentacion">Presentaciones</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header>
+  <!-- #header -->
+
+  <main id="main">
+    <br /><br />
+    <br /><br />
+
+    <section id="referencias" style="margin-top: 50px">
       <div class="container">
-        <div id="logo" class="pull-left">
-          <a><img src="images/logo.png" class="resize" /></a>
-        </div>
+        <div class="text_cell_render border-box-sizing rendered_html">
+          <h2 class="title"><strong>Referencias</strong></h2>
 
-        <nav id="nav-menu-container">
-            <ul class="nav-menu">
-              <li class="menu-has-children"><a href="index.html#hero">Programación concurrente</a>
-                <ul>
-                    <li><a href="index.html#definicion">¿Qué es?</a></li>
-                    <li><a href="index.html#filosofia">Filosofía del paradigma</a></li>
-                    <li><a href="index.html#historia">Historia</a></li>
-                    <li><a href="index.html#concurvsparal">Concurrencia vs paralelismo</a></li>
-                    <li><a href="index.html#conceptos">Conceptos</a></li>
-                    <li><a href="index.html#ventajas">Ventajas</a></li>
-                    <li><a href="index.html#desventajas">Desventajas</a></li>
-                </ul>
-              </li>
-        
-              <li class="menu-has-children"><a href="lenguajes.html">Lenguajes</a>
-                <ul>
-                  <li><a href="lenguajes.html#elixir">Elixir</a></li>
-                  <li><a href="lenguajes.html#ada">Ada</a></li>
-                  <li><a href="lenguajes.html#rust">Rust</a></li>
-                  <li><a href="lenguajes.html#erlang">Erlang</a></li>
-                  <li><a href="lenguajes.html#go">Go</a></li>
-                  <li><a href="lenguajes.html#haskel">Haskel</a></li>
-                  <li><a href="lenguajes.html#crystal">Crystal</a></li>
-                  <li><a href="lenguajes.html#javal">Java</a></li>
-                  <li><a href="lenguajes.html#python">Python</a></li>
-                  <li><a href="lenguajes.html#c">C</a></li>
-                  <li><a href="lenguajes.html#ejemplosLenguajes">Ejemplos</a></li>
-                  <li><a href="lenguajes.html#ejemploComparativo">Ejemplo Comparativo</a></li>
-                </ul>
-              </li>
-              <li class="menu-has-children"><a href="index.html#aplicaciones">Aplicaciones</a>
-                <ul>
-                  <li><a href="index.html#aplicaciones">Aplicaciones generales</a></li>
-                  <li><a href="index.html#aplicacionesReales">Aplicaciones reales</a></li>
-                </ul>
-              </li>
-              <li><a href="quiz/index.html">Quiz</a></li>
-              <li class="menu-active menu-has-children"><a href="references.html">Referencias</a>
-                <ul>
-                    <li><a href="references.html#referencias">Referencias</a></li>
-                    <li><a href="references.html#integrantes">Integrantes</a></li>
-                    <li><a href="references.html#presentacion">Presentaciones</a></li>
-                  </ul>
+          <ul>
+            <li style="background-color: #ffffff">
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://go-tour-es.appspot.com/#1">https://go-tour-es.appspot.com/#1</a>
             </li>
-            </ul>
-          </nav><!-- #nav-menu-container -->
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="https://geekytheory.com/concurrencia-en-javascript/">https://geekytheory.com/concurrencia-en-javascript/</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="http://www.ctr.unican.es/asignaturas/procodis_3_ii/doc/procodis_3_01.pdf">http://www.ctr.unican.es/asignaturas/procodis_3_ii/doc/procodis_3_01.pdf</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="http://www.genbetadev.com/python/multiprocesamiento-en-python-threads-a-fondo-introduccion">http://www.genbetadev.com/python/multiprocesamiento-en-python-threads-a-fondo-introduccion</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="http://www.ctr.unican.es/asignaturas/procodis_3_ii/doc/procodis_1_01.pdf">http://www.ctr.unican.es/asignaturas/procodis_3_ii/doc/procodis_1_01.pdf</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-189-multicore-programming-primer-january-iap-2007/lecture-notes-and-video/l4-introduction-to-concurrent-programming/">http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-189-multicore-programming-primer-january-iap-2007/lecture-notes-and-video/l4-introduction-to-concurrent-programming/</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="https://sites.google.com/a/unal.edu.co/sistemas-operativos/">https://sites.google.com/a/unal.edu.co/sistemas-operativos/</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="https://www.fing.edu.uy/tecnoinf/mvd/cursos/so/material/teo/so07-concurrencia.pdf">https://www.fing.edu.uy/tecnoinf/mvd/cursos/so/material/teo/so07-concurrencia.pdf</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="http://www2.ulpgc.es/hege/almacen/download/20/20233/tema1.pdf">http://www2.ulpgc.es/hege/almacen/download/20/20233/tema1.pdf</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="http://concurrencia-go.appspot.com/">http://concurrencia-go.appspot.com/</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="https://buguroo.com/es/concurrencia-real-en-python">https://buguroo.com/es/concurrencia-real-en-python</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="http://www.noesispoint.com/jsp/scjp/SCJPch12.htm">http://www.noesispoint.com/jsp/scjp/SCJPch12.htm</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="http://www.javaworld.com/article/2076774/java-concurrency/programming-java-threads-in-the-real-world--part-1.html">http://www.javaworld.com/article/2076774/java-concurrency/programming-java-threads-in-the-real-world--part-1.html</a>
+            </li>
+            <li>
+              Abraham Silberschatz-Operating System Concepts (9th,2012.12)
+            </li>
+            <li>
+              Abraham Silberschatz-Operating System Concepts Essentials
+              (2nd,2013)
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="http://wiki.inf.utfsm.cl/index.php?title=Monitores#.C2.BFQu.C3.A9_son_los_Monitores.3F
+    ">http://wiki.inf.utfsm.cl/index.php?title=Monitores#.C2.BFQu.C3.A9_son_los_Monitores.3F
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="http://1984.lsi.us.es/wiki-ssoo/index.php/Mensajería">http://1984.lsi.us.es/wiki-ssoo/index.php/Mensajería
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="http://sistop.gwolf.org/html/03_planificacion_de_procesos.html#sec-1">http://sistop.gwolf.org/html/03_planificacion_de_procesos.html#sec-1</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="https://es.wikipedia.org/wiki/Problema_productor-consumidor">https://es.wikipedia.org/wiki/Problema_productor-consumidor</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://www.slant.co/topics/6024/~programming-languages-for-concurrent-programming
+    ">https://www.slant.co/topics/6024/~programming-languages-for-concurrent-programming
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="https://blanchardspace.wordpress.com/2016/08/19/rust-lenguaje/">https://blanchardspace.wordpress.com/2016/08/19/rust-lenguaje/</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://www.genbetadev.com/frameworks/elixir
+    ">https://www.genbetadev.com/frameworks/elixir
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://www.genbetadev.com/frameworks/elixir
+    ">https://www.genbetadev.com/frameworks/elixir
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://www.ecured.cu/Lenguaje_de_programaci%C3%B3n_Go
+    ">https://www.ecured.cu/Lenguaje_de_programaci%C3%B3n_Go
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://wiki.haskell.org/Es/Introduccion
+    ">https://wiki.haskell.org/Es/Introduccion
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="http://g3ortega.com/programming_languages/2016/06/10/crystal-lenguaje-de-programacion-el-por-que-y-el-como.html">http://g3ortega.com/programming_languages/2016/06/10/crystal-lenguaje-de-programacion-el-por-que-y-el-como.html</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://en.wikipedia.org/wiki/Crystal_(programming_language)
+    ">https://en.wikipedia.org/wiki/Crystal_(programming_language)
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="https://www.tutorialspoint.com/erlang/erlang_concurrency.htm">https://www.tutorialspoint.com/erlang/erlang_concurrency.htm</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="http://concurrencia-go.appspot.com/
+    ">http://concurrencia-go.appspot.com/
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="http://www.ctr.unican.es/asignaturas/procodis_3_II/Doc/Procodis_1_01.pdf">Programación
+                concurrente - J.M. Drake
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="http://pegasus.javeriana.edu.co/~scada/concurrencia.html">http://pegasus.javeriana.edu.co/~scada/concurrencia.html
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="http://babel.upm.es/teaching/concurrencia/material/slides/groman/CC_CondCarrera.pdf">Condición de
+                Carrera
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://takuti.me/note/parallel-vs-concurrent/">Parallel programming vs. Concurrent
+                Programming
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="http://repository.cmu.edu/cgi/viewcontent.cgi?article=1107&context=sei">Concepts of
+                concurrent programming</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="https://books.google.com.co/books?id=k1cIQwg23vAC&pg=PA10&lpg=PA11&dq=Concurrent+computing+history&source=bl&ots=CqOM6TbQ8e&sig=A16KtMDjujSMg34iVx7RPnLE3tc&hl=es-419&sa=X&ved=2ahUKEwjA1JrumonfAhWNm1kKHfPFANUQ6AEwCHoECAkQAQ#v=onepage&q=Concurrent%20computing%20history&f=false">Historia
+                Computacion concurrente</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  "
+                href="https://books.google.com.co/books?id=JeT9wlXhUTMC&pg=PA92&dq=Shortest+Process+next+(SPN)&hl=es-419&sa=X&ved=0ahUKEwjUzu2jpYnfAhXLq1kKHUcKAFoQ6AEILDAA#v=onepage&q=Shortest%20Process%20next%20(SPN)&f=false">Principles
+                of Modern Operating Systems</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://www.oscarblancarteblog.com/2017/03/29/concurrencia-vs-paralelismo/">Concurrencia vs
+                Paralelismo</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://webprogramacion.com/44/sistemas-operativos/exclusion-mutua.aspx">Paso de mensajes</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://www.youtube.com/watch?v=3atNYmqXyV4">Ejemplo Go Concurrencia</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://www.dlsi.ua.es/asignaturas/pc/teoria/t01.pdf">Conceptos fundamentales Programación
+                Concurrente</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://www.researchgate.net/publication/268289930_Programacion_concurrente">Programación
+                concurrente</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://platzi.com/clases/1984-servidores-rust/35177-creacion-de-hilos-con-rust/">Creación de
+                hilos con Rust</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://aws.amazon.com/es/blogs/compute/managing-aws-lambda-function-concurrency/">Managing
+                AWS Lambda Function Concurrency | AWS Compute
+                Blog</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://es.acervolima.com/multithreading-en-python-conjunto-2sincronizacion/">Multithreading
+                en Python | Conjunto 2(sincronización)</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://www.amazon.com/Rust-Programming-Example-concurrent-applications/dp/1788390636">Rust
+                Programming By Example: Enter the world of Rust by
+                building engaging, concurrent, reactive, and robust
+                applications</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://cs.lmu.edu/~ray/notes/introconcurrency/">Introduction to Concurrency</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://ericnormand.me/article/concurrency-vs-parallelism">Concurrency and Parallelism in the
+                Real World</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://www.quora.com/What-is-concurrency-and-why-is-it-used-in-programming">What is
+                concurrency used for?</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://www.geeksforgeeks.org/concurrency-in-operating-system/">Concurrency in operating
+                system</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  ">Python in a Nutshell</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  ">Concurrent Programming: The Java Programming Language -
+                Stephen Hartley y Paul Tymann</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  ">Concurrent Programming in Java: Design Principles and
+                Patterns - Doug Lea
+              </a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://arxiv.org/ftp/arxiv/papers/1008/1008.1459.pdf">Actor Model of Computation: Scalable
+                Robust Information
+                Systems</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://deadlockempire.github.io/">Aprende Concurrencia matando dragones</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://archive.org/details/softwareengineer0002booc">Software Engineering with Ada</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://medium.com/aviabird/10-amazing-open-source-elixir-phoenix-apps-e2c52ee25053">10
+                Amazing open source Elixir/Phoenix Apps</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://www.mycplus.com/featured-articles/source-game-development-engine/">Source Game
+                Development Engine</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://towardsdatascience.com/top-16-python-applications-in-real-world-a0404111ac23">Top 16
+                Python Applications in Real-World</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://crystal-lang.org/used_in_prod/">Crystal: Used in production</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://serokell.io/blog/top-software-written-in-haskell">11 Companies That Use Haskell in
+                Production</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://www.linkedin.com/pulse/3-best-apps-made-golang-codalien/">3 best apps made with
+                Golang</a>
+            </li>
+            <li>
+              <a style="
+                    background-color: #ffffff;
+                    color: blue;
+                    text-align: left;
+                  " href="https://codesync.global/media/successful-companies-using-elixir-and-erlang/">Successful
+                Companies Use Erlang and Elixir</a>
+            </li>
+            <li>
+              <a style="background-color: #ffffff; color: blue; text-align: left;"
+                href="https://www.theregister.com/2022/10/05/rust_kernel_pull_request_pulled/">Linux 6.1: Rust to hit
+                mainline kernel</a>
+            </li>
+          </ul>
+
+          <h3>Referencias académicas y técnicas actualizadas</h3>
+          <ul>
+            <li>
+              Goetz, B., Peierls, T., Bloch, J., Bowbeer, J., Holmes, D., &amp; Lea, D. (2006).
+              <em>Java Concurrency in Practice</em>. Addison-Wesley Professional.
+              — Referencia estándar de la industria para concurrencia en Java.
+            </li>
+            <li>
+              <a style="background-color: #ffffff; color: blue; text-align: left;"
+                href="https://www.youtube.com/watch?v=cN_DpYBzKso">Pike, R. (2012). <em>Concurrency is not
+                  Parallelism</em>. Heroku Waza Conference.</a>
+              — Talk del creador de Go distinguiendo concurrencia de paralelismo.
+            </li>
+            <li>
+              <a style="background-color: #ffffff; color: blue; text-align: left;"
+                href="https://doc.rust-lang.org/book/ch16-00-concurrency.html">Klabnik, S. &amp; Nichols, C. (2023).
+                <em>The Rust Programming Language</em> — Cap. 16: Fearless Concurrency.</a>
+              — Documentación oficial de Rust sobre su modelo de concurrencia sin condiciones de carrera.
+            </li>
+            <li>
+              Hewitt, C., Bishop, P., &amp; Steiger, R. (1973).
+              <em>A Universal Modular ACTOR Formalism for Artificial Intelligence</em>. IJCAI.
+              — Paper original que formaliza el modelo de actores.
+            </li>
+            <li>
+              Hoare, C. A. R. (1978).
+              <em>Communicating Sequential Processes</em>. Communications of the ACM, 21(8), 666–677.
+              — Paper seminal que define CSP, base teórica de la concurrencia en Go y Erlang.
+            </li>
+            <li>
+              Dijkstra, E. W. (1968).
+              <em>Cooperating Sequential Processes</em>. En F. Genuys (Ed.), Programming Languages.
+              — Artículo fundacional que introduce semáforos y problemas clásicos de concurrencia.
+            </li>
+            <li>
+              <a style="background-color: #ffffff; color: blue; text-align: left;"
+                href="https://docs.python.org/3/library/asyncio.html">Python Software Foundation. <em>asyncio —
+                  Asynchronous I/O</em>. Documentación oficial de Python 3.</a>
+            </li>
+            <li>
+              <a style="background-color: #ffffff; color: blue; text-align: left;"
+                href="https://go.dev/blog/pipelines">Sameer, A. &amp; Donovan, A. (2014). <em>Go Concurrency Patterns:
+                  Pipelines and cancellation</em>. The Go Blog.</a>
+            </li>
+            <li>
+              <a style="background-color: #ffffff; color: blue; text-align: left;"
+                href="https://rust-lang.github.io/async-book/">The Rust Async Book. <em>Asynchronous Programming in
+                  Rust</em>. Rust Foundation.</a>
+            </li>
+            <li>
+              <a style="background-color: #ffffff; color: blue; text-align: left;"
+                href="https://peps.python.org/pep-0703/">Wouters, T. (2023). <em>PEP 703 – Making the Global Interpreter
+                  Lock Optional in CPython</em>. Python Enhancement Proposals.</a>
+              — Propuesta para eliminar el GIL en Python 3.13+.
+            </li>
+            <li>
+              <a style="background-color: #ffffff; color: blue; text-align: left;"
+                href="https://man7.org/linux/man-pages/man2/fork.2.html">Linux man-pages. <em>fork(2) — Linux manual
+                  page</em>. The Linux Kernel Organization.</a>
+              — Referencia oficial de la llamada al sistema fork() en Linux/POSIX.
+            </li>
+            <li>
+              <a style="background-color: #ffffff; color: blue; text-align: left;"
+                href="https://pubs.opengroup.org/onlinepubs/9699919799/functions/pthread_create.html">The Open Group.
+                <em>POSIX.1-2017: pthread_create</em>. IEEE/The Open Group.</a>
+              — Especificación estándar de POSIX Threads.
+            </li>
+          </ul>
+        </div>
       </div>
-    </header>
-    <!-- #header -->
+    </section>
+    <!-- #about -->
 
-    <main id="main">
-      <br /><br />
-      <br /><br />
-
-      <section id="referencias" style="margin-top: 50px">
-        <div class="container">
-          <div class="text_cell_render border-box-sizing rendered_html">
-            <h2 class="title"><strong>Referencias</strong></h2>
-
-            <ul>
-              <li style="background-color: #ffffff">
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://go-tour-es.appspot.com/#1"
-                  >https://go-tour-es.appspot.com/#1</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://geekytheory.com/concurrencia-en-javascript/"
-                  >https://geekytheory.com/concurrencia-en-javascript/</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://www.ctr.unican.es/asignaturas/procodis_3_ii/doc/procodis_3_01.pdf"
-                  >http://www.ctr.unican.es/asignaturas/procodis_3_ii/doc/procodis_3_01.pdf</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://www.genbetadev.com/python/multiprocesamiento-en-python-threads-a-fondo-introduccion"
-                  >http://www.genbetadev.com/python/multiprocesamiento-en-python-threads-a-fondo-introduccion</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://www.ctr.unican.es/asignaturas/procodis_3_ii/doc/procodis_1_01.pdf"
-                  >http://www.ctr.unican.es/asignaturas/procodis_3_ii/doc/procodis_1_01.pdf</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-189-multicore-programming-primer-january-iap-2007/lecture-notes-and-video/l4-introduction-to-concurrent-programming/"
-                  >http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-189-multicore-programming-primer-january-iap-2007/lecture-notes-and-video/l4-introduction-to-concurrent-programming/</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://sites.google.com/a/unal.edu.co/sistemas-operativos/"
-                  >https://sites.google.com/a/unal.edu.co/sistemas-operativos/</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.fing.edu.uy/tecnoinf/mvd/cursos/so/material/teo/so07-concurrencia.pdf"
-                  >https://www.fing.edu.uy/tecnoinf/mvd/cursos/so/material/teo/so07-concurrencia.pdf</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://www2.ulpgc.es/hege/almacen/download/20/20233/tema1.pdf"
-                  >http://www2.ulpgc.es/hege/almacen/download/20/20233/tema1.pdf</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://concurrencia-go.appspot.com/"
-                  >http://concurrencia-go.appspot.com/</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://buguroo.com/es/concurrencia-real-en-python"
-                  >https://buguroo.com/es/concurrencia-real-en-python</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://www.noesispoint.com/jsp/scjp/SCJPch12.htm"
-                  >http://www.noesispoint.com/jsp/scjp/SCJPch12.htm</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://www.javaworld.com/article/2076774/java-concurrency/programming-java-threads-in-the-real-world--part-1.html"
-                  >http://www.javaworld.com/article/2076774/java-concurrency/programming-java-threads-in-the-real-world--part-1.html</a
-                >
-              </li>
-              <li>
-                Abraham Silberschatz-Operating System Concepts (9th,2012.12)
-              </li>
-              <li>
-                Abraham Silberschatz-Operating System Concepts Essentials
-                (2nd,2013)
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://wiki.inf.utfsm.cl/index.php?title=Monitores#.C2.BFQu.C3.A9_son_los_Monitores.3F
-    "
-                  >http://wiki.inf.utfsm.cl/index.php?title=Monitores#.C2.BFQu.C3.A9_son_los_Monitores.3F
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://1984.lsi.us.es/wiki-ssoo/index.php/Mensajería"
-                  >http://1984.lsi.us.es/wiki-ssoo/index.php/Mensajería
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://sistop.gwolf.org/html/03_planificacion_de_procesos.html#sec-1"
-                  >http://sistop.gwolf.org/html/03_planificacion_de_procesos.html#sec-1</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://es.wikipedia.org/wiki/Problema_productor-consumidor"
-                  >https://es.wikipedia.org/wiki/Problema_productor-consumidor</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.slant.co/topics/6024/~programming-languages-for-concurrent-programming
-    "
-                  >https://www.slant.co/topics/6024/~programming-languages-for-concurrent-programming
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://blanchardspace.wordpress.com/2016/08/19/rust-lenguaje/"
-                  >https://blanchardspace.wordpress.com/2016/08/19/rust-lenguaje/</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.genbetadev.com/frameworks/elixir
-    "
-                  >https://www.genbetadev.com/frameworks/elixir
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.genbetadev.com/frameworks/elixir
-    "
-                  >https://www.genbetadev.com/frameworks/elixir
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.ecured.cu/Lenguaje_de_programaci%C3%B3n_Go
-    "
-                  >https://www.ecured.cu/Lenguaje_de_programaci%C3%B3n_Go
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://wiki.haskell.org/Es/Introduccion
-    "
-                  >https://wiki.haskell.org/Es/Introduccion
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://g3ortega.com/programming_languages/2016/06/10/crystal-lenguaje-de-programacion-el-por-que-y-el-como.html"
-                  >http://g3ortega.com/programming_languages/2016/06/10/crystal-lenguaje-de-programacion-el-por-que-y-el-como.html</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://en.wikipedia.org/wiki/Crystal_(programming_language)
-    "
-                  >https://en.wikipedia.org/wiki/Crystal_(programming_language)
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.tutorialspoint.com/erlang/erlang_concurrency.htm"
-                  >https://www.tutorialspoint.com/erlang/erlang_concurrency.htm</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://concurrencia-go.appspot.com/
-    "
-                  >http://concurrencia-go.appspot.com/
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://www.ctr.unican.es/asignaturas/procodis_3_II/Doc/Procodis_1_01.pdf"
-                  >Programación concurrente - J.M. Drake
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://pegasus.javeriana.edu.co/~scada/concurrencia.html"
-                  >http://pegasus.javeriana.edu.co/~scada/concurrencia.html
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://babel.upm.es/teaching/concurrencia/material/slides/groman/CC_CondCarrera.pdf"
-                  >Condición de Carrera
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://takuti.me/note/parallel-vs-concurrent/"
-                  >Parallel programming vs. Concurrent Programming
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="http://repository.cmu.edu/cgi/viewcontent.cgi?article=1107&context=sei"
-                  >Concepts of concurrent programming</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://books.google.com.co/books?id=k1cIQwg23vAC&pg=PA10&lpg=PA11&dq=Concurrent+computing+history&source=bl&ots=CqOM6TbQ8e&sig=A16KtMDjujSMg34iVx7RPnLE3tc&hl=es-419&sa=X&ved=2ahUKEwjA1JrumonfAhWNm1kKHfPFANUQ6AEwCHoECAkQAQ#v=onepage&q=Concurrent%20computing%20history&f=false"
-                  >Historia Computacion concurrente</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://books.google.com.co/books?id=JeT9wlXhUTMC&pg=PA92&dq=Shortest+Process+next+(SPN)&hl=es-419&sa=X&ved=0ahUKEwjUzu2jpYnfAhXLq1kKHUcKAFoQ6AEILDAA#v=onepage&q=Shortest%20Process%20next%20(SPN)&f=false"
-                  >Principles of Modern Operating Systems</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.oscarblancarteblog.com/2017/03/29/concurrencia-vs-paralelismo/"
-                  >Concurrencia vs Paralelismo</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://webprogramacion.com/44/sistemas-operativos/exclusion-mutua.aspx"
-                  >Paso de mensajes</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.youtube.com/watch?v=3atNYmqXyV4"
-                  >Ejemplo Go Concurrencia</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.dlsi.ua.es/asignaturas/pc/teoria/t01.pdf"
-                  >Conceptos fundamentales Programación Concurrente</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.researchgate.net/publication/268289930_Programacion_concurrente"
-                  >Programación concurrente</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://platzi.com/clases/1984-servidores-rust/35177-creacion-de-hilos-con-rust/"
-                  >Creación de hilos con Rust</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://aws.amazon.com/es/blogs/compute/managing-aws-lambda-function-concurrency/"
-                  >Managing AWS Lambda Function Concurrency | AWS Compute
-                  Blog</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://es.acervolima.com/multithreading-en-python-conjunto-2sincronizacion/"
-                  >Multithreading en Python | Conjunto 2(sincronización)</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.amazon.com/Rust-Programming-Example-concurrent-applications/dp/1788390636"
-                  >Rust Programming By Example: Enter the world of Rust by
-                  building engaging, concurrent, reactive, and robust
-                  applications</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://cs.lmu.edu/~ray/notes/introconcurrency/"
-                  >Introduction to Concurrency</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://ericnormand.me/article/concurrency-vs-parallelism"
-                  >Concurrency and Parallelism in the Real World</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.quora.com/What-is-concurrency-and-why-is-it-used-in-programming"
-                  >What is concurrency used for?</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.geeksforgeeks.org/concurrency-in-operating-system/"
-                  >Concurrency in operating system</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  >Python in a Nutshell</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  >Concurrent Programming: The Java Programming Language -
-                  Stephen Hartley y Paul Tymann</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  >Concurrent Programming in Java: Design Principles and
-                  Patterns - Doug Lea
-                </a>
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://arxiv.org/ftp/arxiv/papers/1008/1008.1459.pdf"
-                  >Actor Model of Computation: Scalable Robust Information
-                  Systems</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://deadlockempire.github.io/"
-                  >Aprende Concurrencia matando dragones</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://archive.org/details/softwareengineer0002booc"
-                  >Software Engineering with Ada</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://medium.com/aviabird/10-amazing-open-source-elixir-phoenix-apps-e2c52ee25053"
-                  >10 Amazing open source Elixir/Phoenix Apps</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.mycplus.com/featured-articles/source-game-development-engine/"
-                  >Source Game Development Engine</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://towardsdatascience.com/top-16-python-applications-in-real-world-a0404111ac23"
-                  >Top 16 Python Applications in Real-World</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://crystal-lang.org/used_in_prod/"
-                  >Crystal: Used in production</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://serokell.io/blog/top-software-written-in-haskell"
-                  >11 Companies That Use Haskell in Production</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.linkedin.com/pulse/3-best-apps-made-golang-codalien/"
-                  >3 best apps made with Golang</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://codesync.global/media/successful-companies-using-elixir-and-erlang/"
-                  >Successful Companies Use Erlang and Elixir</a
-                >
-              </li>
-              <li>
-                <a
-                  style="
-                    background-color: #ffffff;
-                    color: blue;
-                    text-align: left;
-                  "
-                  href="https://www.theregister.com/2022/10/05/rust_kernel_pull_request_pulled/"
-                  >Linux 6.1: Rust to hit mainline kernel</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <!-- #about -->
-
-      <section id="integrantes" style="margin-top: 50px">
-        <div class="container">
-          <div class="text_cell_render border-box-sizing rendered_html">
-            <h2 class="title"><strong>Integrantes</strong></h2>
-
-            <ul>
-              <li>Carlos Julián Cordero Guevara</li>
-              <li>Cristian Alejandro Chávez Becerra</li>
-              <li>Jorge Alberto Rodríguez Corredor</li>
-              <li>Manuel David Medrano Monroy</li>
-              <li>Bryam Diaz</li>
-              <li>Santiago Marquez</li>
-              <li>Christian Vaca</li>
-              <li>Kevin Mendez Paez</li>
-              <li>Diego Alejandro Guevara Rocha</li>
-              <li>Jhon Emmanuel Torres</li>
-              <li>Raul Ramirez Penagos</li>
-              <li>Diego Rodriguez</li>
-              <li>Fabian David Conejo</li>
-              <li>Milder Hernandez</li>
-              <li>Diego Felipe Rodriguez Chaparro</li>
-              <li>Nicolas Ricardo Enciso</li>
-              <li>Camilo Alfonso Mosquera Benavides</li>
-              <li>Juan Sebastián Herrera Maldonado</li>
-              <li>Florent Sebag</li>
-              <li>Karen Ximena Combita Alfonso</li>
-              <li>Michael Tomas Velasquez Gordillo</li>
-              <li>Cristian David Martinez Collazos</li>
-              <li>Alejandro Sebastián Alejo Patarroyo</li>
-              <li>Laura Vanessa Bohórquez Ramirez</li>
-              <li>Johan Sebastian Salamanca Gonzalez</li>
-              <li>Mauricio Mesa Burbano</li>
-              <li>Cesar Augusto Torres Ardila</li>
-              <li>Nicolas Mateo Casas Ramos</li>
-              <li>Marcelo Escamilla Sanchez</li>
-              <li>Ivan Delgado Gonzalez</li>
-              <li>David Santiago Fajardo Barrera</li>
-              <li>Juan Camilo Acosta Rojas</li>
-              <li>Cristian Santiago Vargas Ortiz</li>
-              <li>Juan Esteban Rozo Urbina</li>
-              <li>Camilo Andres Carranza Carvajal</li>
-              <li>Julio Javier Muñoz</li>
-              <li>Elkin Mauricio Mendez</li>
-              <li>Santiago Morales Pulido</li>
-              <li>Catalina Aldana Mongui</li>
-              <li>Santiago Hernandez Montaño</li>
-              <li>Cristian Camilo Garcia Barrera</li>
-              <li>Diego Armando Velasquez Vargas</li>
-              <li>Daniel Santiago Gaitán</li>
-              <li>Carlos Andres Rios Rojas</li>
-              <li>Juan Sebastian Peñafiel Ojeda</li>
-              <li>Diego Efrain Mojica Mendez</li>
-              <li>Juliana Cardozo Pedraza</li>
-              <li>Santiago Mondragón Gómez</li>
-            </ul>
-          </div>
-        </div>
-        
-      </section>
-
-      <section id="presentacion" style="margin-top:50px;">
-        <div class="container">
-          <div class="text_cell_render border-box-sizing rendered_html">
-            <h2 class="title"><strong>Presentaciones</strong></h2>
-  
-            <div>
-              <a href="https://drive.google.com/open?id=0B_B-BoNU4ZaIOTNrUWlWXzBjNmc">Enlace</a>
-              <br>
-              <a
-                href="https://docs.google.com/a/unal.edu.co/presentation/d/1qwH2qt_KMMoaIlgN5xVuBpEylf9bC_TNVD3nE5foKBo/edit?usp=sharing">Enlace
-                2</a>
-              <br>
-              <a
-                href="https://docs.google.com/presentation/d/1q_2wpfu53nHfQR1IbmdUpXmySJa0J-8b_C6rLYsoe54/edit?usp=sharing">Enlace
-                3
-              </a>
-              <br>
-              <a
-                href="https://docs.google.com/presentation/d/17fNIbIREBY8tKs3orhIl18sEO1qxzxMrLisaH3QjIAY/edit?usp=sharing">Enlace
-                4
-              </a>
-              <h3>
-                <a id="taller" class="anchor" aria-hidden="true"><span aria-hidden="true"
-                    class="octicon octicon-link"></span></a>Taller
-              </h3>
-              <a href="https://drive.google.com/open?id=0B_B-BoNU4ZaIcEZQX2ttZU1mVFk">Enlace</a>
-              <br>
-              <a
-                href="https://docs.google.com/a/unal.edu.co/document/d/1wLW-AtC3ap86P4z547Tqse0R3X7bGChVAk6QHdkfu4E/edit?usp=sharing">Enlace
-                2</a>
-    
-    
-              </div>
-          </div>
-        </div>
-
-
-      </section><!-- #about -->
-
-      <aside id="sidebar">
-        <a href="https://github.com/ferestrepoca/paradigmas-de-programacion/archive/gh-pages.zip" class="button">
-          <small>Download</small>
-          .zip file
-        </a>
-        <a href="https://github.com/ferestrepoca/paradigmas-de-programacion/archive/gh-pages.tar.gz" class="button">
-          <small>Download</small>
-          .tar.gz file
-        </a>
-
-        <p class="repo-owner"><a href="http://ferestrepoca.github.io/paradigmas-de-programacion/"></a> is maintained by
-          <a href="http://dis.unal.edu.co/~ferestrepoca/">Felipe Restrepo.</a>
-        </p>
-
-        <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by
-          <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </p>
-      </aside>
-      <!-- #about -->
-    </main>
-
-    <footer id="footer">
+    <section id="integrantes" style="margin-top: 50px">
       <div class="container">
-        <div class="credits">
-          Creado por estudiantes del curso Lenguajes de Programación de la
-          Universidad Nacional de Colombia.
+        <div class="text_cell_render border-box-sizing rendered_html">
+          <h2 class="title"><strong>Integrantes</strong></h2>
+
+          <ul>
+            <li>Carlos Julián Cordero Guevara</li>
+            <li>Cristian Alejandro Chávez Becerra</li>
+            <li>Jorge Alberto Rodríguez Corredor</li>
+            <li>Manuel David Medrano Monroy</li>
+            <li>Bryam Diaz</li>
+            <li>Santiago Marquez</li>
+            <li>Christian Vaca</li>
+            <li>Kevin Mendez Paez</li>
+            <li>Diego Alejandro Guevara Rocha</li>
+            <li>Jhon Emmanuel Torres</li>
+            <li>Raul Ramirez Penagos</li>
+            <li>Diego Rodriguez</li>
+            <li>Fabian David Conejo</li>
+            <li>Milder Hernandez</li>
+            <li>Diego Felipe Rodriguez Chaparro</li>
+            <li>Nicolas Ricardo Enciso</li>
+            <li>Camilo Alfonso Mosquera Benavides</li>
+            <li>Juan Sebastián Herrera Maldonado</li>
+            <li>Florent Sebag</li>
+            <li>Karen Ximena Combita Alfonso</li>
+            <li>Michael Tomas Velasquez Gordillo</li>
+            <li>Cristian David Martinez Collazos</li>
+            <li>Alejandro Sebastián Alejo Patarroyo</li>
+            <li>Laura Vanessa Bohórquez Ramirez</li>
+            <li>Johan Sebastian Salamanca Gonzalez</li>
+            <li>Mauricio Mesa Burbano</li>
+            <li>Cesar Augusto Torres Ardila</li>
+            <li>Nicolas Mateo Casas Ramos</li>
+            <li>Marcelo Escamilla Sanchez</li>
+            <li>Ivan Delgado Gonzalez</li>
+            <li>David Santiago Fajardo Barrera</li>
+            <li>Juan Camilo Acosta Rojas</li>
+            <li>Cristian Santiago Vargas Ortiz</li>
+            <li>Juan Esteban Rozo Urbina</li>
+            <li>Camilo Andres Carranza Carvajal</li>
+            <li>Julio Javier Muñoz</li>
+            <li>Elkin Mauricio Mendez</li>
+            <li>Santiago Morales Pulido</li>
+            <li>Catalina Aldana Mongui</li>
+            <li>Santiago Hernandez Montaño</li>
+            <li>Cristian Camilo Garcia Barrera</li>
+            <li>Diego Armando Velasquez Vargas</li>
+            <li>Daniel Santiago Gaitán</li>
+            <li>Carlos Andres Rios Rojas</li>
+            <li>Juan Sebastian Peñafiel Ojeda</li>
+            <li>Diego Efrain Mojica Mendez</li>
+            <li>Juliana Cardozo Pedraza</li>
+            <li>Santiago Mondragón Gómez</li>
+            <li>Juan Esteban Hunter Malaver</li>
+            <li>Jose Simon Ramos Sandoval</li>
+            <li>Juan Esteban Cardenas Huertas</li>
+            <li>Carlos Santiago Sandoval Casallas</li>
+          </ul>
         </div>
       </div>
-    </footer>
-    <!-- #footer -->
 
-    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    </section>
 
-    <!-- JavaScript Libraries -->
-    <script src="lib/jquery/jquery.min.js"></script>
-    <script src="lib/jquery/jquery-migrate.min.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
+    <section id="presentacion" style="margin-top:50px;">
+      <div class="container">
+        <div class="text_cell_render border-box-sizing rendered_html">
+          <h2 class="title"><strong>Presentaciones</strong></h2>
 
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/superfish/hoverIntent.js"></script>
-    <script src="lib/superfish/superfish.min.js"></script>
+          <div>
+            <a href="https://drive.google.com/open?id=0B_B-BoNU4ZaIOTNrUWlWXzBjNmc">Enlace</a>
+            <br>
+            <a
+              href="https://docs.google.com/a/unal.edu.co/presentation/d/1qwH2qt_KMMoaIlgN5xVuBpEylf9bC_TNVD3nE5foKBo/edit?usp=sharing">Enlace
+              2</a>
+            <br>
+            <a
+              href="https://docs.google.com/presentation/d/1q_2wpfu53nHfQR1IbmdUpXmySJa0J-8b_C6rLYsoe54/edit?usp=sharing">Enlace
+              3
+            </a>
+            <br>
+            <a
+              href="https://docs.google.com/presentation/d/17fNIbIREBY8tKs3orhIl18sEO1qxzxMrLisaH3QjIAY/edit?usp=sharing">Enlace
+              4
+            </a>
+            <br>
+            <a
+              href="https://docs.google.com/presentation/d/1SsNnpUHFJnRUoq8ud9IWlG9WQQ89rDBAFC56C-W9W88/edit?usp=sharing">Presentación
+              2026-1
+            </a>
+            <h3>
+              <a id="taller" class="anchor" aria-hidden="true"><span aria-hidden="true"
+                  class="octicon octicon-link"></span></a>Taller
+            </h3>
+            <a href="https://drive.google.com/open?id=0B_B-BoNU4ZaIcEZQX2ttZU1mVFk">Enlace</a>
+            <br>
+            <a
+              href="https://docs.google.com/a/unal.edu.co/document/d/1wLW-AtC3ap86P4z547Tqse0R3X7bGChVAk6QHdkfu4E/edit?usp=sharing">Enlace
+              2</a>
 
-    <!-- Contact Form JavaScript File -->
-    <script src="contactform/contactform.js"></script>
 
-    <!-- Template Main Javascript File -->
-    <script src="js/main.js"></script>
-  </body>
+          </div>
+        </div>
+      </div>
+
+
+    </section><!-- #about -->
+
+    <aside id="sidebar">
+      <a href="https://github.com/ferestrepoca/paradigmas-de-programacion/archive/gh-pages.zip" class="button">
+        <small>Download</small>
+        .zip file
+      </a>
+      <a href="https://github.com/ferestrepoca/paradigmas-de-programacion/archive/gh-pages.tar.gz" class="button">
+        <small>Download</small>
+        .tar.gz file
+      </a>
+
+      <p class="repo-owner"><a href="http://ferestrepoca.github.io/paradigmas-de-programacion/"></a> is maintained by
+        <a href="http://dis.unal.edu.co/~ferestrepoca/">Felipe Restrepo.</a>
+      </p>
+
+      <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by
+        <a href="https://twitter.com/jasonlong">Jason Long</a>.
+      </p>
+    </aside>
+    <!-- #about -->
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="credits">
+        Creado por estudiantes del curso Lenguajes de Programación de la
+        Universidad Nacional de Colombia.
+      </div>
+    </div>
+  </footer>
+  <!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
+
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/counterup/counterup.min.js"></script>
+  <script src="lib/superfish/hoverIntent.js"></script>
+  <script src="lib/superfish/superfish.min.js"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+</body>
+
 </html>
