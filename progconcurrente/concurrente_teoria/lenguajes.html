@@ -70,7 +70,7 @@
                 <li><a href="lenguajes.html#javal">Java</a></li>
                 <li><a href="lenguajes.html#python">Python</a></li>
                 <li><a href="lenguajes.html#c">C</a></li>
-                <li><a href="lenguajes.html#ejemplosLenguajes">Ejemplos</a></li>
+                <li><a href="lenguajes.html#ejemplosLenguajes">Ejemplos </a></li>
                 <li><a href="lenguajes.html#ejemploComparativo">Ejemplo Comparativo</a></li>
               </ul>
             </li>
@@ -102,8 +102,27 @@
             <div class="text_cell_render border-box-sizing rendered_html">
                 <h2 class="title"><strong>Lenguajes</strong></h2>
 
+                <!-- Tabs Navigation -->
+                <div class="language-tabs-container" id="tabsContainer">
+                    <div class="language-tabs">
+                        <div class="language-tab active" data-lang="ada">Ada</div>
+                        <div class="language-tab" data-lang="haskell">Haskell</div>
+                        <div class="language-tab" data-lang="erlang">Erlang</div>
+                        <div class="language-tab" data-lang="elixir">Elixir</div>
+                        <div class="language-tab" data-lang="rust">Rust</div>
+                        <div class="language-tab" data-lang="go">Go</div>
+                        <div class="language-tab" data-lang="crystal">Crystal</div>
+                        <div class="language-tab" data-lang="java">Java</div>
+                        <div class="language-tab" data-lang="python">Python</div>
+                        <div class="language-tab" data-lang="c">C</div>
+                        <div class="language-tab" data-lang="cpp">C++</div>
+                        <div class="language-tab" data-lang="ejemplosLenguajes">Ejemplos Lenguajes</div>
+                        <div class="language-tab" data-lang="ejemploComparativo">Ejemplos Comparativos</div>
+                    </div>
+                </div>
+
                 <!-- Resumen de Ada -->
-                <div id="ada">
+                <div id="ada" class="language-content active" style="display: block;">
                     <h3><strong>Ada</strong></h3>
                     <center>
                         <img src="images/ada-coin.jpg" width="150px" height="150px" />
@@ -121,10 +140,9 @@
                         <strong>Aplicaciones notables:</strong> Sistemas de planeación aérea y naval.
                     </p>
                 </div>
-                <br />
 
                 <!-- Resumen de Haskell -->
-                <div id="haskell">
+                <div id="haskell" class="language-content" style="display: none;">
                     <h3><strong>Haskell</strong></h3>
                     <center>
                         <img src="images/haskell.png" width="150px" height="150px" />
@@ -142,10 +160,9 @@
                         <strong>Aplicaciones notables:</strong> Análisis de sintaxis en código alojado en GitHub.
                     </p>
                 </div>
-                <br />
 
                 <!-- Resumen de Erlang -->
-                <div id="erlang">
+                <div id="erlang" class="language-content" style="display: none;">
                     <h3><strong>Erlang</strong></h3>
                     <center>
                         <img src="images/erlang.png" width="150px" height="150px" />
@@ -167,10 +184,9 @@
                         <strong>Aplicaciones notables:</strong> Lógica de negocio de aplicaciones como WhatsApp.
                     </p>
                 </div>
-                <br />
 
                 <!-- Resumen de Elixir -->
-                <div id="elixir">
+                <div id="elixir" class="language-content" style="display: none;">
                     <h3><strong>Elixir</strong></h3>
                     <center>
                         <img src="images/elixir.png" width="150px" height="150px" />
@@ -188,14 +204,14 @@
                         <strong>Aplicaciones notables:</strong> Changelog, una plataforma de podcasts para desarrolladores.
                     </p>
                 </div>
-                <br />
 
                 <!-- Resumen de Rust -->
-                <div id="rust">
+                <div id="rust" class="language-content" style="display: none;">
                     <h3><strong>Rust</strong></h3>
                     <center>
                         <img src="images/rust.png" width="150px" height="150px" />
                     </center>
+                    <p></p>
                     <p>
                         <strong>Historia:</strong> Rust es un lenguaje de programación compilado, de propósito general y multiparadigma. Patrocinado por Mozilla desde 2009, Rust tiene como propósito ofrecer seguridad en memoria y concurrencia, diseñado específicamente para evitar problemas comunes como condiciones de carrera, desbordamiento de búfer y violaciones de acceso a memoria.
                     </p>
@@ -235,11 +251,151 @@
                             </a>
                         </li>
                     </ul>
+
+                    <p></p>
+                    <h4><strong>Ejemplo: Channels en Rust</strong></h4>
+                    
+                    <p>
+                        <strong>Nota:</strong> Para entender el concepto general de Channels,
+                        visita la sección <b><a href="index.html#conceptos">Conceptos → Mecanismos de Comunicación</a>.</b>
+                    </p>
+
+                    <p>
+                        En Rust, los <strong>channels</strong> son mecanismos de comunicación entre hilos que permiten enviar y recibir datos
+                        de forma segura en entornos concurrentes, evitando la necesidad de usar <code>Mutex<T></code> para compartir memoria directamente.
+                    </p>
+
+                    <p><strong>Sintaxis básica:</strong></p>
+                    <ul>
+                        <li>Importar la librería estándar: <code>use std::sync::mpsc;</code></li>
+                        <li>Crear un canal de comunicación: <code>mpsc::channel()</code></li>
+                        <li>Enviar datos por el canal: <code>send(T)</code></li>
+                        <li>Recibir datos del canal: <code>recv()</code></li>
+                    </ul>
+
+                    <p></p>
+                    <h5><strong>Ejemplo Práctico: Sistema de Monitoreo de Sensores</strong></h5>
+                    
+                    <p>
+                        Este ejemplo demuestra cómo dos sensores (temperatura y humedad) envían datos concurrentemente
+                        a un hilo central de monitoreo usando channels.
+                    </p>
+
+                    <center>
+                        <img src="images/Sensores.png" alt="Sistema de Sensores con Channels" style="max-width: 100%; height: auto; margin: 20px 0;">
+                    </center>
+
+                    <p><strong>Código:</strong></p>
+                    <pre><code class="language-rust">use std::sync::mpsc;
+use std::thread;
+use std::time::Duration;
+
+fn sensor_temperatura(tx: mpsc::Sender<(String, i32)>) {
+    let temperaturas = [22, 24, 27, 31, 29];
+
+    for temp in temperaturas {
+        println!("[Sensor Temperatura {:?}] Nueva lectura: {}°C",
+                 thread::current().id(), temp);
+
+        tx.send(("Temperatura".to_string(), temp)).unwrap();
+        thread::sleep(Duration::from_millis(700));
+    }
+}
+
+fn sensor_humedad(tx: mpsc::Sender<(String, i32)>) {
+    let humedades = [40, 45, 50, 48, 43];
+
+    for hum in humedades {
+        println!("[Sensor Humedad {:?}] Nueva lectura: {}%",
+                 thread::current().id(), hum);
+
+        tx.send(("Humedad".to_string(), hum)).unwrap();
+        thread::sleep(Duration::from_millis(500));
+    }
+}
+
+fn main() {
+    let (tx, rx) = mpsc::channel();
+
+    // Sensor temperatura
+    let tx_temp = tx.clone();
+    let h1 = thread::spawn(move || {
+        sensor_temperatura(tx_temp);
+    });
+
+    // Sensor humedad
+    let tx_hum = tx.clone();
+    let h2 = thread::spawn(move || {
+        sensor_humedad(tx_hum);
+    });
+
+    // Cerrar sender principal
+    drop(tx);
+
+    // Centro de monitoreo
+    for (tipo, valor) in rx {
+        println!("[CENTRAL] Dato recibido -> {}: {}", tipo, valor);
+    }
+
+    h1.join().unwrap();
+    h2.join().unwrap();
+
+    println!("--- Monitoreo finalizado ---");
+}</code></pre>
+
+                    <p><strong>Explicación del Código:</strong></p>
+                    <ol>
+                        <li><strong>Creación del canal:</strong> <code>mpsc::channel()</code> crea un canal de comunicación múltiple productor, único consumidor.</li>
+                        <li><strong>Clonación del transmisor:</strong> <code>tx.clone()</code> permite que múltiples hilos envíen datos por el mismo canal.</li>
+                        <li><strong>Hilos concurrentes:</strong> Cada sensor se ejecuta en su propio hilo, enviando datos independientemente.</li>
+                        <li><strong>Comunicación segura:</strong> Los datos se envían sin necesidad de locks o mutex explícitos.</li>
+                        <li><strong>Recepción centralizada:</strong> El hilo principal recibe todos los mensajes en orden de llegada.</li>
+                    </ol>
+
+                    <p><strong>Salida de Ejecución:</strong></p>
+                    <pre>[Sensor Humedad ThreadId(3)] Nueva lectura: 40%
+[Sensor Temperatura ThreadId(2)] Nueva lectura: 22°C
+[CENTRAL] Dato recibido -> Humedad: 40
+[CENTRAL] Dato recibido -> Temperatura: 22
+[Sensor Humedad ThreadId(3)] Nueva lectura: 45%
+[CENTRAL] Dato recibido -> Humedad: 45
+[Sensor Temperatura ThreadId(2)] Nueva lectura: 24°C
+[CENTRAL] Dato recibido -> Temperatura: 24
+[Sensor Humedad ThreadId(3)] Nueva lectura: 50%
+[CENTRAL] Dato recibido -> Humedad: 50
+[Sensor Temperatura ThreadId(2)] Nueva lectura: 27°C
+[CENTRAL] Dato recibido -> Temperatura: 27
+[Sensor Humedad ThreadId(3)] Nueva lectura: 48%
+[CENTRAL] Dato recibido -> Humedad: 48
+[Sensor Humedad ThreadId(3)] Nueva lectura: 43%
+[CENTRAL] Dato recibido -> Humedad: 43
+[Sensor Temperatura ThreadId(2)] Nueva lectura: 31°C
+[CENTRAL] Dato recibido -> Temperatura: 31
+[Sensor Temperatura ThreadId(2)] Nueva lectura: 29°C
+[CENTRAL] Dato recibido -> Temperatura: 29
+--- Monitoreo finalizado ---</pre>
+
+                    <p><strong>Observaciones Clave:</strong></p>
+                    <ul>
+                        <li>Los sensores operan <strong>concurrentemente</strong> con diferentes velocidades (700ms vs 500ms).</li>
+                        <li>Los mensajes llegan a la central en el <strong>orden en que son enviados</strong>, no necesariamente en orden de sensor.</li>
+                        <li>El sensor de humedad es más rápido, por lo que envía más datos en menos tiempo.</li>
+                        <li><strong>No hay condiciones de carrera</strong> gracias al sistema de ownership de Rust.</li>
+                        <li>La comunicación es <strong>type-safe</strong>: solo se pueden enviar tuplas <code>(String, i32)</code>.</li>
+                    </ul>
+
+                    <p><strong>Ventajas de usar Channels:</strong></p>
+                    <ul>
+                        <li><strong>Seguridad:</strong> Sin data races ni condiciones de carrera</li>
+                        <li><strong>Simplicidad:</strong> No requiere locks o mutex explícitos</li>
+                        <li><strong>Escalabilidad:</strong> Múltiples productores, un consumidor</li>
+                        <li><strong>Type-Safe:</strong> Verificación de tipos en compilación</li>
+                    </ul>
+                    <p></p>
                 </div>
-                <br />
 
                 <!-- Resumen de GO -->
-                <div id="go">
+                <div id="go" class="language-content" style="display: none;">
                     <h3><strong>GO</strong></h3>
                     <center>
                         <img src="images/go.png" width="150px" height="150px" />
@@ -254,10 +410,9 @@
                         <strong>Aplicaciones notables:</strong> El código backend de Uber.
                     </p>
                 </div>
-                <br />
 
                 <!-- Resumen de Crystal -->
-                <div id="crystal">
+                <div id="crystal" class="language-content" style="display: none;">
                     <h3><strong>Crystal</strong></h3>
                     <center>
                         <img src="images/crystal.png" width="150px" height="150px" />
@@ -275,10 +430,9 @@
                         <strong>Aplicaciones notables:</strong> Servicios web de compañías como Errordeck, GigSmart, Appmonitor, etc.
                     </p>
                 </div>
-                <br />
 
                 <!-- Resumen de Java -->
-                <div id="java">
+                <div id="java" class="language-content" style="display: none;">
                     <h3><strong>Java</strong></h3>
                     <center>
                         <img src="images/java.png" width="200px" height="150px" />
@@ -293,10 +447,9 @@
                         <strong>Aplicaciones notables:</strong> Innumerables. Desde servicios web backend mediante Spring Boot hasta desarrollo de videojuegos con LWJGL, la librería usada para escribir Minecraft.
                     </p>
                 </div>
-                <br />
 
                 <!-- Resumen de Python -->
-                <div id="python">
+                <div id="python" class="language-content" style="display: none;">
                     <h3><strong>Python</strong></h3>
                     <center>
                         <img src="images/python.png" width="96px" height="96px" />
@@ -314,10 +467,9 @@
                         <strong>Aplicaciones notables:</strong> El backend de Instagram.
                     </p>
                 </div>
-                <br />
 
                 <!-- Resumen de C -->
-                <div id="c">
+                <div id="c" class="language-content" style="display: none;">
                     <h3><strong>C</strong></h3>
                     <center>
                         <img src="images/c.jpg" width="180px" height="96px" />
@@ -332,10 +484,9 @@
                         <strong>Aplicaciones notables:</strong> El kernel de Linux y otros lenguajes como Python y C++.
                     </p>
                 </div>
-                <br />
 
                 <!-- Resumen de C++ -->
-                <div id="c++">
+                <div id="cpp" class="language-content" style="display: none;">
                     <h3><strong>C++</strong></h3>
                     <center>
                         <img src="images/cpp.png" width="96px" height="96px" />
@@ -350,17 +501,10 @@
                         <strong>Aplicaciones notables:</strong> Motores gráficos como Source de Valve, usado en videojuegos como Half-Life y Counter-Strike.
                     </p>
                 </div>
-            </div>
-        </div>
-      </section>
 
-
-
-      <section id="ejemplosLenguajes" style="margin-top:50px;">
-        <div class="container">
-          <div class="text_cell_render border-box-sizing rendered_html">
-
-            <h2 class="title"><strong>Ejemplos Lenguajes</strong></h2>
+                <!-- Sección de Ejemplos -->
+                <div id="ejemplosLenguajes" class="language-content" style="display: none;">
+                    <h2 class="title"><strong>Ejemplos Lenguajes</strong></h2>
 
 
               <!-- Ejemplos de Python -->
@@ -1666,7 +1810,6 @@ DURACIÓN TOTAL DEL PROGRAMA: 29.79427011s
                     }
                 }
               </code></pre>
-            </div>
               
 
               <!-- Ejemplos de Crystal -->
@@ -1833,20 +1976,12 @@ DURACIÓN TOTAL DEL PROGRAMA: 29.79427011s
                 la entrada del teclado pero no bloqueará el resto del programa: no esperará a recuperar una tecla para
                 continuar.</p>
   
-              <img src="images/Pacman.gif"><br /><br /><br />   
-          </div>
-        </div>
+              <img src="images/Pacman.gif"><br /><br /><br /> </div>
 
 
-      </section><!-- #about -->
-
-
-
-      <!-- Ejemplo comparativo con tres lenguajes -->
-      <section id="ejemploComparativo" style="margin-top: 50px;">
-        <div class="container">
-          <div class="text_cell_render border-box-sizing rendered_html">
-            <h2 class="title"><strong>Ejemplo Comparativo</strong></h2>
+                <!-- Ejemplo Comparativo -->
+                <div id="ejemploComparativo" class="language-content" style="display: none;">
+                    <h2 class="title"><strong>Ejemplo Comparativo</strong></h2>
             
             <h2>Suma concurrente</h2>
             <p>
@@ -2116,10 +2251,16 @@ DURACIÓN TOTAL DEL PROGRAMA: 29.79427011s
                     </tr>
                   </tbody>
                 </table>
-              </div>
+                </div>
             </div>
-          </section>
-      <!-- #about -->
+        </div>
+      </section>
+
+      <!-- Botón flotante para volver al inicio -->
+      <button class="back-to-top-btn" id="backToTopBtn" title="Volver al inicio">
+        <i class="fa fa-arrow-up"></i>
+      </button>
+
     </main>
 
 
@@ -2159,6 +2300,187 @@ DURACIÓN TOTAL DEL PROGRAMA: 29.79427011s
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         prettyPrint();
+      });
+    </script>
+
+    <!-- Language Tabs JavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Elementos
+        const tabs = document.querySelectorAll('.language-tab');
+        const contents = document.querySelectorAll('.language-content');
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        const tabsContainer = document.getElementById('tabsContainer');
+
+        // INICIALIZACIÓN: Ocultar todos los contenidos excepto Ada
+        console.log('Inicializando tabs...');
+        contents.forEach((content, index) => {
+          if (content.id === 'ada') {
+            content.classList.add('active');
+            content.style.display = 'block';
+            console.log('Mostrando:', content.id);
+          } else {
+            content.classList.remove('active');
+            content.style.display = 'none';
+            console.log('Ocultando:', content.id);
+          }
+        });
+
+        // Función para cambiar de pestaña
+        function switchTab(langId) {
+          console.log('Cambiando a:', langId);
+          // Remover clase active de todas las pestañas y ocultar todos los contenidos
+          tabs.forEach(tab => tab.classList.remove('active'));
+          contents.forEach(content => {
+            content.classList.remove('active');
+            content.style.display = 'none';
+          });
+
+          // Agregar clase active a la pestaña y mostrar contenido seleccionado
+          const selectedTab = document.querySelector(`[data-lang="${langId}"]`);
+          const selectedContent = document.getElementById(langId);
+          
+          if (selectedTab && selectedContent) {
+            selectedTab.classList.add('active');
+            selectedContent.classList.add('active');
+            selectedContent.style.display = 'block';
+            
+            // Scroll suave al inicio de la sección de lenguajes
+            const lenguajesSection = document.getElementById('lenguajes');
+            if (lenguajesSection) {
+              lenguajesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        }
+
+        // Event listeners para las pestañas
+        tabs.forEach(tab => {
+          tab.addEventListener('click', function() {
+            const langId = this.getAttribute('data-lang');
+            switchTab(langId);
+          });
+        });
+
+        // Botón volver al inicio
+        backToTopBtn.addEventListener('click', function() {
+          // Scroll al contenedor de tabs
+          tabsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // Mostrar/ocultar botón según scroll
+        window.addEventListener('scroll', function() {
+          const lenguajesSection = document.getElementById('lenguajes');
+          if (lenguajesSection) {
+            const rect = lenguajesSection.getBoundingClientRect();
+            const tabsRect = tabsContainer.getBoundingClientRect();
+            
+            // Mostrar botón si el usuario ha bajado más allá de las tabs
+            if (tabsRect.bottom < 0) {
+              backToTopBtn.classList.add('show');
+            } else {
+              backToTopBtn.classList.remove('show');
+            }
+          }
+        });
+
+        // Manejar enlaces del menú de navegación
+        const navLinks = document.querySelectorAll('a[href^="lenguajes.html#"]');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            const langId = href.split('#')[1];
+            
+            // Si es un lenguaje válido, cambiar a esa pestaña
+            const validLangs = ['ada', 'haskell', 'erlang', 'elixir', 'rust', 'go', 'crystal', 'java', 'python', 'c', 'cpp', 'ejemplosLenguajes', 'ejemploComparativo'];
+            if (validLangs.includes(langId)) {
+              e.preventDefault();
+              switchTab(langId);
+            }
+          });
+        });
+      });
+
+
+      let lastScrollTop = 0;
+      let isClickingTab = false;
+
+      const tabsContainer = document.getElementById("tabsContainer");
+      const tabs = document.querySelectorAll(".language-tab");
+
+      // Detectar click en tabs
+      tabs.forEach(tab => {
+          tab.addEventListener("click", () => {
+              isClickingTab = true;
+
+              // evitar ocultar por un momento
+              setTimeout(() => {
+                  isClickingTab = false;
+              }, 300);
+          });
+      });
+
+      window.addEventListener("scroll", function () {
+
+          // Ignorar scroll causado por tabs
+          if (isClickingTab) return;
+
+          let currentScroll =
+              window.pageYOffset || document.documentElement.scrollTop;
+
+          // bajar
+          if (currentScroll > lastScrollTop) {
+              tabsContainer.classList.add("hide");
+          }
+          // subir
+          else {
+              tabsContainer.classList.remove("hide");
+          }
+
+          lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+
+          const hash = window.location.hash;
+
+          if (hash) {
+
+              // Buscar tab correspondiente
+              const targetTab = document.querySelector(
+                  `.language-tab[data-lang="${hash.substring(1)}"]`
+              );
+
+              const targetContent = document.querySelector(hash);
+
+              if (targetTab && targetContent) {
+
+                  // quitar activos actuales
+                  document.querySelectorAll(".language-tab").forEach(tab => {
+                      tab.classList.remove("active");
+                  });
+
+                  document.querySelectorAll(".language-content").forEach(content => {
+                      content.classList.remove("active");
+                      content.style.display = "none";
+                  });
+
+                  // activar rust
+                  targetTab.classList.add("active");
+
+                  targetContent.classList.add("active");
+                  targetContent.style.display = "block";
+
+                  // scroll suave
+                  
+                  const yOffset = -120; 
+                  const y = targetContent.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+                  window.scrollTo({
+                      top: y,
+                      behavior: "smooth"
+                  });
+              }
+          }
       });
     </script>
     
