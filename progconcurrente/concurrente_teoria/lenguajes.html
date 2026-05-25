@@ -1,48 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Programación Concurrente UNAL</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="" name="keywords" />
-    <meta content="" name="description" />
 
-    <!-- Favicons -->
-    <link href="images/favicon.ico" rel="icon" />
+<head>
+  <meta charset="utf-8" />
+  <title>Programación Concurrente UNAL</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="" name="keywords" />
+  <meta content="" name="description" />
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
-      rel="stylesheet"
-    />
+  <!-- Favicons -->
+  <link href="images/favicon.ico" rel="icon" />
 
-    <!-- Bootstrap CSS File -->
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+    rel="stylesheet" />
 
-    <!-- Libraries CSS Files -->
-    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Main Stylesheet File -->
-    <link href="stylesheets/style.css" rel="stylesheet" />
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="lib/animate/animate.min.css" rel="stylesheet" />
 
-    <!-- PrettyPrint CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css" rel="stylesheet">
+  <!-- Main Stylesheet File -->
+  <link href="stylesheets/style.css" rel="stylesheet" />
 
-    <!-- PrettyPrint JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+  <!-- PrettyPrint CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css" rel="stylesheet">
 
     <!-- Prism CSS -->
     <link rel="stylesheet" href="stylesheets/prism.css" />
 
   </head>
 
-  <body>
-    <header id="header">
-      <div class="container">
-        <div id="logo" class="pull-left">
-          <a><img src="images/logo.png" class="resize" /></a>
-        </div>
+</head>
 
         <nav id="nav-menu-container">
           <ul class="nav-menu">
@@ -87,6 +78,10 @@
                   <li><a href="references.html#integrantes">Integrantes</a></li>
                   <li><a href="references.html#presentacion">Presentaciones</a></li>
                 </ul>
+              </li>
+              <li><a href="index.html#ventajas">Ventajas</a></li>
+              <li><a href="index.html#desventajas">Desventajas</a></li>
+            </ul>
           </li>
           </ul>
         </nav><!-- #nav-menu-container -->
@@ -1118,31 +1113,31 @@ salida= Mensaje recibido:Hola
               <pre class="prettyprint">
       go run main.go url1 url2 .. urln
     </pre>
-              Donde url1 a urln se reemplazan por urls a las cuales queremos hacer la petición Get.
-              Los resultados de esto deberían ser los siguientes, en el caso de haber usado las urls de google, youtube y
-              facebook:
-              </p>
-              <pre class="prettyprint">
+          Donde url1 a urln se reemplazan por urls a las cuales queremos hacer la petición Get.
+          Los resultados de esto deberían ser los siguientes, en el caso de haber usado las urls de google, youtube y
+          facebook:
+          </p>
+          <pre class="prettyprint">
   Estado: 200 URL: https://facebook.com
   Estado: 200 URL: https://youtube.com
   Estado: 200 URL: https://google.com
   </pre>
-              <p>
-                Para medir el tiempo de ejecución se debe usar el siguiente comando:
-              </p>
-              <p>
-                Para Windows:
-              <pre class="prettyprint">
+          <p>
+            Para medir el tiempo de ejecución se debe usar el siguiente comando:
+          </p>
+          <p>
+            Para Windows:
+          <pre class="prettyprint">
       Measure-Command {go run main.go url1 url2 .. urln}
       </pre>
-              Para Linux:
-              <pre class="prettyprint">
+          Para Linux:
+          <pre class="prettyprint">
       time go run main.go url1 url2 .. urln
       </pre>
-              Este tiempo de ejecución es importante para comparar el antes y el después de usar concurrencia. Haciendo
-              uso del comando de Windows, obtuvimos como resultado:
-              </p>
-              <pre class="prettyprint">
+          Este tiempo de ejecución es importante para comparar el antes y el después de usar concurrencia. Haciendo
+          uso del comando de Windows, obtuvimos como resultado:
+          </p>
+          <pre class="prettyprint">
   Days              : 0
   Hours             : 0
   Minutes           : 0
@@ -1250,11 +1245,11 @@ salida= Mensaje recibido:Hola
       Estado: 200 URL: https://youtube.com
       Estado: 200 URL: https://google.com
     </pre>
-              <p>
-                Es posible que las goroutines se mezclen en consola, debido a que pueden terminar al mismo tiempo. Dando
-                como resultado:
-              </p>
-              <pre class="prettyprint">
+          <p>
+            Es posible que las goroutines se mezclen en consola, debido a que pueden terminar al mismo tiempo. Dando
+            como resultado:
+          </p>
+          <pre class="prettyprint">
       Estado: 200 URL: Estado: 200 URL: https://youtube.comhttps://facebook.com
       Estado: 200 URL: https://google.com
     </pre>
@@ -2263,13 +2258,15 @@ DURACIÓN TOTAL DEL PROGRAMA: 29.79427011s
 
     </main>
 
+    <!-- #about -->
+  </main>
 
-    <footer id="footer">
-      <div class="container">
-        <div class="credits">
-          Creado por estudiantes del curso Lenguajes de Programación de la
-          Universidad Nacional de Colombia.
-        </div>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="credits">
+        Creado por estudiantes del curso Lenguajes de Programación de la
+        Universidad Nacional de Colombia.
       </div>
     </footer>
     <!-- #footer -->
