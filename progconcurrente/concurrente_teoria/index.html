@@ -104,7 +104,75 @@
     </div>
   </section><!-- #hero -->
 
-  <main id="main">
+  <!--==========================
+    Breadcrumbs
+  ============================-->
+  <section class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="../../index.html">Inicio</a></li>
+        <li><a href="../../index.html#paradigmas">Paradigmas</a></li>
+        <li class="active">Programación Concurrente</li>
+      </ol>
+    </div>
+  </section>
+
+  <!--==========================
+    Sidebar Overlay
+  ============================-->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <!--==========================
+    Sidebar Table of Contents
+  ============================-->
+  <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">
+    <i class="fa fa-bars"></i>
+    <i class="fa fa-times"></i>
+  </button>
+
+  <aside class="sidebar-toc" id="sidebarToc">
+    <h3><i class="fa fa-list"></i> Contenido</h3>
+    <ul>
+      <li><a href="#definicion" data-section="definicion">
+        <i class="fa fa-circle"></i> ¿Qué es?
+      </a></li>
+      <li><a href="#filosofia" data-section="filosofia">
+        <i class="fa fa-circle"></i> Filosofía
+      </a></li>
+      <li><a href="#historia" data-section="historia">
+        <i class="fa fa-circle"></i> Historia
+      </a></li>
+      <li><a href="#concurvsparal" data-section="concurvsparal">
+        <i class="fa fa-circle"></i> Concurrencia vs Paralelismo
+      </a></li>
+      <li><a href="#conceptos" data-section="conceptos">
+        <i class="fa fa-circle"></i> Conceptos
+      </a></li>
+      <li><a href="#ventajas" data-section="ventajas">
+        <i class="fa fa-circle"></i> Ventajas
+      </a></li>
+      <li><a href="#desventajas" data-section="desventajas">
+        <i class="fa fa-circle"></i> Desventajas
+      </a></li>
+      <li><a href="#aplicaciones" data-section="aplicaciones">
+        <i class="fa fa-circle"></i> Aplicaciones
+      </a></li>
+      <li><a href="#aplicacionesReales" data-section="aplicacionesReales">
+        <i class="fa fa-circle"></i> Aplicaciones Reales
+      </a></li>
+      <li><a href="lenguajes.html">
+        <i class="fa fa-code"></i> Lenguajes
+      </a></li>
+      <li><a href="quiz/index.html">
+        <i class="fa fa-question-circle"></i> Quiz
+      </a></li>
+      <li><a href="references.html">
+        <i class="fa fa-book"></i> Referencias
+      </a></li>
+    </ul>
+  </aside>
+
+  <main id="main" class="content-with-sidebar">
 
     <section id="definicion" style="margin-top:50px;">
       <div class="container">
@@ -2266,71 +2334,112 @@ int main() {
     
     
     </pre>
+    
+                <p>Los métodos de sincronización y comunicación se explican de mejor forma mediante el uso del notebook,
+                  pues los temas se explican con el uso python y C++.</p>
+    
+                <a id="notebook"></a>
+                <h3><a
+                    href="http://nbviewer.jupyter.org/url/ferestrepoca.github.io/paradigmas-de-programacion/progconcurrente/concurrente_teoria/notebook/ProgConcurrente.ipynb">Notebook</a>
+                </h3>
+                <h3>Herramientas de verificación de sistemas concurrentes</h3>
+                <h3>Redes de Petri</h3>
+                Es un modelo gráfico para describir sistemas concurrentes, se puede ver como un grafo dirigido y bipartido
+                donde las dos clases de vértices se denominan lugares y transiciones, se permiten lados paralelos en estas
+                redes.
+                Al modelar una red de Petri, los lugares representan condiciones, las transiciones representan eventos y la
+                presencia de por lo menos una ficha en un lugar indica que la condición se cumple. En una red de Petri (P)
+                es un lugar de entrada para la transición T,
+                si existe un lado dirigido que va desde el lugar P hasta la transmisión T. De igual forma se define un lugar
+                de salida. Si todo lugar de entrada para una transmisión T tiene al menos una ficha, se dirá que T es
+                permitida. Una transición permitida que quita una ficha a cada lugar de entrada y agrega una ficha a cada de
+                salida se llama descarga.<br>
+                Una marca M para una red de Petri esta viva si al empezar en M es posible descargar cualquier transición
+                dada a través de una sucesión adicional de descarga, sin importar que la sucesión de descarga ya haya
+                sucedido. <br>
+                Una marca en una red de Petri es acotada si existe un entero positivo N que tiene la propiedad de que en
+                cualquier sucesión de descarga ningún lugar recibe mas de N fichas. Ahora si una marca M esta acotada y en
+                cualquier sucesión de descarga ningún lugar recibe mas de una ficha, se dice que M es una marca segura.
+                <center><img src="images/petri.png" width="100%" height="400px"></center>
+                <strong><i>Ejemplo en el cual se simula la llegada de material, para luego bifurcarla paralelamente, en dos
+                    máquinas, y luego unirlos en la salida.</i></strong><br><br>
+                <h3>CSP (Communicating Sequential Processes)</h3>
+                Es una teoría matemática para especificar y verificar patrones de comportamiento como abrazos mortales o
+                Livelocks que se dan durante al interacción de objetos concurrentes. Su semántica formal y composicional
+                esta completamente ligada con nuestra intuición natural sobre las formas en que las cosas funcionan. Podemos
+                ver el modelo como un grupo de componentes organizados en una capa y comunicándose con otra capa de
+                componentes a través de canales unidireccionales. Este modelo nació debido a la necesidad de encapsular la
+                información de tal manera que esta permanezca correcta, facilitar el diseño y poder detectar fallas antes de
+                que estas ocurran. Entre muchas de las ventajas que este modelo brindan esta su semántica sencilla y por
+                ende su facilidad de aplicar, sus kernel tan liviano mejorando así el rendimiento de las máquinas y el que
+                haya software del tipo de FDR que permita verificar sí el modelo esta correcto o no.
+                El enfoque de sincronización que utiliza CSP es el de rende Vuez, que no permite que un proceso escriba si
+                al mismo tiempo el otro proceso esta haciendo un leer y viceversa, como estas acciones en teoría se deben
+                realizar en paralelo estas deberían ser no bloqueantes.
+                <h3> FDR (Failures-Divergence Refinement)</h3>
+                Permite la verificación de muchas de las propiedades de sistemas de estados finitos y la investigación de
+                sistemas que no pasan ese tipo de verificaciones. Esta basado en la teoría de CSP. Fue desarrollado en la
+                universidad de Oxford.
+                Su método de probar si una propiedad se cumple es el de probar el refinamiento de un sistema de transición
+                que captura la propiedad a través de la máquina candidato.
+                También permite verificar el determinismo de una máquina de estados y esto es usado primordialmente para
+                corroborar propiedades de seguridad.
+                <h3>JCSP (Java communicating sequential processes)</h3>
+                Java también desarrolla su propia implementación basada en el álgebra de CSP, orientada a la concurrencia de
+                procesos. No se requiere conocimientos avanzados en matemáticas para usar esta herramienta. Al contrario
+                permite una simplificación en el diseño que la concurrencia genera.
+    
+                JCSP brinda la capacidad a través de bibliotecas completas de desarrollar programas de funcionalidad
+                compleja sobre capas de procesos de comunicación. Con esta implementación el modelo CSP aparece soportado
+                por las aplicaciones multihilo de Java.
+                Los Procesos interactuan solamente a través de la primitivas de sincronización de CSP como channels, CALL
+                channels, timers, crews, barriers, buckets o otros modos bien definidos de accesos a objetos pasivos. Dos
+                procesos no invocan procesos de si mismos. Estos procesos pueden corren en forma secuencial o paralela.
+    
+                Existen también en el mercado aplicaciones que nos permiten verificar computacionalmente modelos
+                especificados con CSP y una de las más sobresalientes es FDR.
+    
+                <h3>Mecanismos de concurrencia: Cola de mensajes (Channels)</h3>
+                
+                <p>
+                    En Rust, los channels son mecanismos de comunicación entre hilos que permiten enviar y recibir datos
+                    de forma segura en entornos concurrentes, evitando la necesidad de usar Mutex<T> para compartir memoria.
+                </p>
 
-          <p>Los métodos de sincronización y comunicación se explican de mejor forma mediante el uso del notebook,
-            pues los temas se explican con el uso python y C++.</p>
+                <p><strong>Sintaxis:</strong></p>
+                <ul>
+                    <li>Importar la librería estándar: <code>use std::sync::mpsc;</code></li>
+                    <li>Crear un canal de comunicación: <code>mpsc::channel()</code></li>
+                    <li>Enviar datos por el canal: <code>send(T)</code></li>
+                    <li>Recibir datos del canal: <code>recv()</code></li>
+                </ul>
+                <p>
+                    <strong>Nota:</strong> Es importante tener en cuenta que, al crear el canal, se retornan dos variables.
+                    Uno para la transmisión y otro para la recepción.
+                </p>
 
-          <a id="notebook"></a>
-          <h3><a
-              href="http://nbviewer.jupyter.org/url/ferestrepoca.github.io/paradigmas-de-programacion/progconcurrente/concurrente_teoria/notebook/ProgConcurrente.ipynb">Notebook</a>
-          </h3>
-          <h3>Herramientas de verificación de sistemas concurrentes</h3>
-          <h3>Redes de Petri</h3>
-          Es un modelo gráfico para describir sistemas concurrentes, se puede ver como un grafo dirigido y bipartido
-          donde las dos clases de vértices se denominan lugares y transiciones, se permiten lados paralelos en estas
-          redes.
-          Al modelar una red de Petri, los lugares representan condiciones, las transiciones representan eventos y la
-          presencia de por lo menos una ficha en un lugar indica que la condición se cumple. En una red de Petri (P)
-          es un lugar de entrada para la transición T,
-          si existe un lado dirigido que va desde el lugar P hasta la transmisión T. De igual forma se define un lugar
-          de salida. Si todo lugar de entrada para una transmisión T tiene al menos una ficha, se dirá que T es
-          permitida. Una transición permitida que quita una ficha a cada lugar de entrada y agrega una ficha a cada de
-          salida se llama descarga.<br>
-          Una marca M para una red de Petri esta viva si al empezar en M es posible descargar cualquier transición
-          dada a través de una sucesión adicional de descarga, sin importar que la sucesión de descarga ya haya
-          sucedido. <br>
-          Una marca en una red de Petri es acotada si existe un entero positivo N que tiene la propiedad de que en
-          cualquier sucesión de descarga ningún lugar recibe mas de N fichas. Ahora si una marca M esta acotada y en
-          cualquier sucesión de descarga ningún lugar recibe mas de una ficha, se dice que M es una marca segura.
-          <center><img src="images/petri.png" width="100%" height="400px"></center>
-          <strong><i>Ejemplo en el cual se simula la llegada de material, para luego bifurcarla paralelamente, en dos
-              máquinas, y luego unirlos en la salida.</i></strong><br><br>
-          <h3>CSP (Communicating Sequential Processes)</h3>
-          Es una teoría matemática para especificar y verificar patrones de comportamiento como abrazos mortales o
-          Livelocks que se dan durante al interacción de objetos concurrentes. Su semántica formal y composicional
-          esta completamente ligada con nuestra intuición natural sobre las formas en que las cosas funcionan. Podemos
-          ver el modelo como un grupo de componentes organizados en una capa y comunicándose con otra capa de
-          componentes a través de canales unidireccionales. Este modelo nació debido a la necesidad de encapsular la
-          información de tal manera que esta permanezca correcta, facilitar el diseño y poder detectar fallas antes de
-          que estas ocurran. Entre muchas de las ventajas que este modelo brindan esta su semántica sencilla y por
-          ende su facilidad de aplicar, sus kernel tan liviano mejorando así el rendimiento de las máquinas y el que
-          haya software del tipo de FDR que permita verificar sí el modelo esta correcto o no.
-          El enfoque de sincronización que utiliza CSP es el de rende Vuez, que no permite que un proceso escriba si
-          al mismo tiempo el otro proceso esta haciendo un leer y viceversa, como estas acciones en teoría se deben
-          realizar en paralelo estas deberían ser no bloqueantes.
-          <h3> FDR (Failures-Divergence Refinement)</h3>
-          Permite la verificación de muchas de las propiedades de sistemas de estados finitos y la investigación de
-          sistemas que no pasan ese tipo de verificaciones. Esta basado en la teoría de CSP. Fue desarrollado en la
-          universidad de Oxford.
-          Su método de probar si una propiedad se cumple es el de probar el refinamiento de un sistema de transición
-          que captura la propiedad a través de la máquina candidato.
-          También permite verificar el determinismo de una máquina de estados y esto es usado primordialmente para
-          corroborar propiedades de seguridad.
-          <h3>JCSP (Java communicating sequential processes)</h3>
-          Java también desarrolla su propia implementación basada en el álgebra de CSP, orientada a la concurrencia de
-          procesos. No se requiere conocimientos avanzados en matemáticas para usar esta herramienta. Al contrario
-          permite una simplificación en el diseño que la concurrencia genera.
+                <center>
+                    <img src="images/Channels.png" alt="Diagrama de Channels" style="max-width: 100%; height: auto; margin: 20px 0;">
+                </center>
 
-          JCSP brinda la capacidad a través de bibliotecas completas de desarrollar programas de funcionalidad
-          compleja sobre capas de procesos de comunicación. Con esta implementación el modelo CSP aparece soportado
-          por las aplicaciones multihilo de Java.
-          Los Procesos interactuan solamente a través de la primitivas de sincronización de CSP como channels, CALL
-          channels, timers, crews, barriers, buckets o otros modos bien definidos de accesos a objetos pasivos. Dos
-          procesos no invocan procesos de si mismos. Estos procesos pueden corren en forma secuencial o paralela.
+                <p>
+                    El hilo principal crea dos hilos concurrentes encargados de ejecutar continuamente tareas de sensado.
+                    Cada vez que uno de los hilos captura un nuevo dato, este es mostrado en consola y posteriormente enviado
+                    al hilo principal mediante un channel, permitiendo la comunicación segura entre hilos sin necesidad de
+                    compartir memoria directamente.
+                </p>
 
-          Existen también en el mercado aplicaciones que nos permiten verificar computacionalmente modelos
-          especificados con CSP y una de las más sobresalientes es FDR.
+                <center>
+                    <img src="images/Sensores.png" alt="Sistema de Sensores" style="max-width: 100%; height: auto; margin: 20px 0;">
+                </center>
 
+                <p>
+                    Para ver la implementación completa en Rust con código ejecutable, visita la sección de
+                    <b><a href="lenguajes.html#rust">Lenguajes → Rust</a>.</b>
+                </p>
+    
+              </div>
+          </div>
         </div>
       </div>
       </div>
@@ -2703,6 +2812,128 @@ int main() {
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
+
+  <!-- Sidebar and Navigation Enhancement Script -->
+  <script>
+    // Toggle sidebar visibility
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebarToc');
+      const toggle = document.getElementById('sidebarToggle');
+      const overlay = document.getElementById('sidebarOverlay');
+      
+      sidebar.classList.toggle('show');
+      toggle.classList.toggle('active');
+      overlay.classList.toggle('show');
+      
+      // Prevent body scroll when sidebar is open
+      if (sidebar.classList.contains('show')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggle = document.getElementById('sidebarToggle');
+      const heroSection = document.getElementById('hero');
+      const header = document.getElementById('header');
+      const breadcrumbs = document.querySelector('.breadcrumbs');
+      
+      // Manage header and breadcrumbs visibility on scroll
+      function manageNavigationVisibility() {
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        const scrollPosition = window.pageYOffset;
+        
+        if (scrollPosition > heroBottom - 100) {
+          // Past hero section
+          toggle.classList.add('visible');
+          header.classList.add('hidden');
+          breadcrumbs.classList.add('visible');
+        } else {
+          // Still in hero section
+          toggle.classList.remove('visible');
+          header.classList.remove('hidden');
+          breadcrumbs.classList.remove('visible');
+        }
+      }
+      
+      window.addEventListener('scroll', manageNavigationVisibility);
+      manageNavigationVisibility(); // Initial check
+      
+      // Highlight active section on scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.sidebar-toc a[data-section]');
+      
+      function highlightActiveSection() {
+        let current = '';
+        const scrollPosition = window.pageYOffset + 200;
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('data-section') === current) {
+            link.classList.add('active');
+          }
+        });
+      }
+      
+      // Update active section on scroll
+      window.addEventListener('scroll', highlightActiveSection);
+      highlightActiveSection(); // Initial call
+      
+      // Smooth scroll for sidebar links
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetSection = document.querySelector(targetId);
+          
+          if (targetSection) {
+            // Close sidebar first
+            toggleSidebar();
+            
+            // Then scroll to section
+            setTimeout(() => {
+              const offsetTop = targetSection.offsetTop - 100;
+              window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+              });
+            }, 300);
+          }
+        });
+      });
+    });
+
+    // Update breadcrumb active state based on scroll
+    window.addEventListener('scroll', function() {
+      const breadcrumbActive = document.querySelector('.breadcrumbs .active');
+      const sections = document.querySelectorAll('section[id]');
+      let currentSection = 'Programación Concurrente';
+      
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 200 && rect.bottom >= 200) {
+          const sectionTitle = section.querySelector('h2');
+          if (sectionTitle) {
+            currentSection = sectionTitle.textContent.trim();
+          }
+        }
+      });
+      
+      if (breadcrumbActive && currentSection !== 'Programación Concurrente') {
+        breadcrumbActive.textContent = currentSection;
+      }
+    });
+  </script>
 
 </body>
 
