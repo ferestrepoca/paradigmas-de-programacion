@@ -235,6 +235,98 @@
 			</center>
 
 		</ul>
+
+		<h2>AOP en perspectiva: comparación con otros paradigmas</h2>
+		<p align="justify">
+			Entender las ventajas y desventajas de AOP de forma aislada es útil, pero resulta más claro
+			situarlo frente a los paradigmas con los que convive en la práctica.
+		</p>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Dimensión</th>
+					<th>POO</th>
+					<th>Programación Funcional</th>
+					<th>AOP</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Incumbencias transversales</td>
+					<td>Débil</td>
+					<td>Moderada</td>
+					<td>Fuerte</td>
+				</tr>
+				<tr>
+					<td>Depuración</td>
+					<td>Clara</td>
+					<td>Clara</td>
+					<td>Difícil</td>
+				</tr>
+				<tr>
+					<td>Curva de aprendizaje</td>
+					<td>Baja</td>
+					<td>Alta</td>
+					<td>Media-alta</td>
+				</tr>
+				<tr>
+					<td>Madurez del ecosistema</td>
+					<td>Muy alta</td>
+					<td>Alta</td>
+					<td>Media</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3>AOP frente a la Programación Orientada a Objetos</h3>
+		<p align="justify">
+			POO y AOP no son paradigmas en competencia: en la práctica, AOP se implementa casi siempre
+			sobre una base orientada a objetos, añadiendo una dimensión de modularización que POO sola no
+			puede cubrir de forma limpia. El límite de POO aparece con las incumbencias transversales:
+			funcionalidades como el logging, la seguridad o las transacciones no pertenecen a ningún
+			objeto en particular, pero todos los objetos las necesitan. La solución habitual en POO —
+			duplicar ese código en cada clase, o forzar jerarquías de herencia para compartirlo —
+			genera exactamente los problemas que el paradigma intentaba resolver: acoplamiento alto,
+			código repetido y módulos que mezclan responsabilidades distintas. AOP resuelve esto de raíz
+			al permitir encapsular esas responsabilidades en un aspecto independiente que se aplica de
+			forma declarativa, sin tocar el código de las clases afectadas. La desventaja real frente a
+			POO es la transparencia: en un sistema orientado a objetos el comportamiento de un método es
+			visible en su definición, mientras que en AOP puede haber advice aplicándose sobre ese método
+			sin que ninguna línea de su código lo indique. Esto no es un defecto de diseño sino una
+			consecuencia inevitable del modelo, y es el motivo por el que AOP exige disciplina adicional
+			en documentación y en el uso de herramientas que visualicen qué aspectos afectan a qué puntos
+			del programa.
+		</p>
+
+		<h3>AOP frente a la Programación Funcional</h3>
+		<p align="justify">
+			La comparación con programación funcional es más interesante de lo que parece, porque ambos
+			paradigmas atacan el problema del código mezclado desde ángulos distintos. La programación
+			funcional lo hace apostando por funciones puras sin efectos secundarios: si cada función solo
+			depende de sus argumentos y no modifica estado externo, las incumbencias transversales tienden
+			a concentrarse en los bordes del sistema —entrada/salida, manejo de efectos— y no a
+			dispersarse por todo el código. Herramientas como las mónadas permiten componer
+			comportamientos transversales de forma explícita y tipada. La ventaja de este enfoque sobre
+			AOP es precisamente esa explicitez: el flujo de ejecución es siempre predecible y rastreable,
+			los efectos están declarados en los tipos, y depurar un sistema funcional es
+			considerablemente más sencillo que depurar uno con aspectos aplicados en runtime. Sin embargo,
+			la programación funcional no elimina las incumbencias transversales, las reubica y las hace
+			más manejables, pero en sistemas con estado complejo o con muchos efectos secundarios
+			inevitables —como la mayoría de aplicaciones empresariales— la solución funcional puede
+			volverse verbosa o requerir abstracciones avanzadas que tienen su propia curva de aprendizaje.
+			AOP en esos contextos ofrece una solución más directa aunque menos predecible en su
+			comportamiento dinámico. En la práctica, los sistemas que mejor aprovechan las fortalezas de
+			ambos enfoques suelen combinarlos: lógica de negocio modelada con principios funcionales, e
+			incumbencias transversales de infraestructura gestionadas con aspectos.
+		</p>
+
+		<h2>Referencias (aporte 2026-1)</h2>
+		<ul>
+			<li>Kiczales, G., Lamping, J., Mendhekar, A., Maeda, C., Lopes, C., Loingtier, J. M., &amp; Irwin, J. (1997). <em>Aspect-oriented programming</em>. ECOOP. Springer.</li>
+			<li>Filman, R. E., Elrad, T., Clarke, S., &amp; Akşit, M. (Eds.). (2004). <em>Aspect-Oriented Software Development</em>. Addison-Wesley.</li>
+		</ul>
+
 		<div >
 			<button class="up-button" onclick="scrollToTop()">
 			  <img
@@ -259,6 +351,8 @@
 			<br>
 			<span class="site-footer-credits">This page was modified(2023-1) by Miguel Puentes, Jhonatan Rodríguez,
 				Paula Velosa & Edgar González</span>
+			<br>
+			<span class="site-footer-credits">This page was edited (2026-1) by Julian Esteban Cadena Rojas, Daniel Alonso Gracia Pinto, Pablo Felipe Sandoval Menjura, Juan Diego Velasquez Pinzon and Juan Camilo Vergara Tao.</span>
 		</footer>
 	</section>
 	<script src="/javascripts/main.js"></script>
