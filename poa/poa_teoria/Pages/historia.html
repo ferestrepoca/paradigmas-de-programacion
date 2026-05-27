@@ -181,6 +181,80 @@
         En la actualidad AspecJ, creado en 2001, ha recibido una gran acogida por la comunidad del 
         desarrollo de software, en especial en frameworks de Java como lo son Spring o Spring Boot. 
       </p>
+
+      <h2>La consolidación industrial de AOP (2003–2013)</h2>
+      <p>
+        En 2003, Xerox PARC donó el proyecto AspectJ a la Fundación Eclipse, que asumió su mantenimiento
+        bajo el nombre Eclipse AspectJ. Este cambio fue determinante: AOP dejó de ser exclusivamente un
+        proyecto de investigación académica y ganó soporte industrial y ciclos de versiones gestionados.
+        Ese mismo año, el recién nacido Spring Framework integró soporte AOP como uno de sus pilares
+        fundamentales, exponiéndolo a la industria empresarial Java por primera vez a gran escala.
+      </p>
+      <p>
+        Durante los años siguientes, la adopción de AOP enfrentó una barrera práctica: configurarlo
+        requería archivos XML extensos. La adopción de anotaciones (AspectJ 5, 2005) y su integración
+        con Spring simplificó drásticamente la configuración basada en XML, permitiendo definir aspectos
+        directamente en Java mediante anotaciones como <code>@Aspect</code>, <code>@Before</code> y
+        <code>@Around</code>. Ese mismo año, Java EE 5 estandarizó los interceptores en la especificación
+        EJB 3.0, y más tarde CDI 1.0 en 2009 los consolidó como parte central de la plataforma. Aunque el
+        vocabulario era distinto, el modelo conceptual era el mismo que el de AOP: interceptar puntos de
+        ejecución para insertar comportamiento transversal sin modificar el código base.
+      </p>
+      <p>
+        Para 2011, anotaciones como <code>@Cacheable</code>, <code>@Async</code> y
+        <code>@PreAuthorize</code> eran de uso cotidiano en millones de líneas de código en producción,
+        todas implementadas internamente como aspectos de Spring. La mayoría de los desarrolladores que
+        las usaban no las identificaban como AOP.
+      </p>
+
+      <h2>Spring Boot y la invisibilización de AOP (2014–2018)</h2>
+      <p>
+        El lanzamiento de Spring Boot 1.0 en abril de 2014 profundizó esta tendencia. Al automatizar la
+        configuración del framework, Spring Boot hizo que los aspectos se activaran solos según las
+        dependencias presentes en el proyecto. Esto democratizó el paradigma de forma masiva, aunque al
+        costo de que sus mecanismos internos se volvieran cada vez más opacos para quienes lo usaban a
+        diario.
+      </p>
+
+      <h2>GraalVM y el retorno al weaving en compilación (2018–2024)</h2>
+      <p>
+        El desafío más significativo de los años siguientes llegó con GraalVM Native Image, anunciado por
+        Oracle en 2018, que permite compilar aplicaciones Java a binarios nativos con tiempos de arranque
+        de milisegundos. El problema es que esta compilación es incompatible con el runtime weaving
+        tradicional de AOP: la generación dinámica de proxies y la reflexión sin declaración explícita son
+        técnicas que GraalVM no puede procesar estáticamente. Dos frameworks respondieron apostando por
+        trasladar el weaving al tiempo de compilación: Micronaut en 2018 y Quarkus en 2019. Ambos
+        resuelven sus aspectos durante el build mediante procesadores de anotaciones de Java, minimizando
+        o evitando la necesidad de reflexión y proxies dinámicos en ejecución para las capacidades
+        transversales principales, y logrando plena compatibilidad con GraalVM sin sacrificar las
+        capacidades transversales del paradigma.
+      </p>
+      <p>
+        Spring siguió un camino propio. Con el lanzamiento de Spring Framework 6.0 y Spring Boot 3.0 en
+        noviembre de 2022, el framework introdujo un sistema de procesamiento en tiempo de compilación
+        llamado AOT (<em>Ahead-Of-Time</em>), que analiza los aspectos durante el build y genera las
+        configuraciones necesarias para que funcionen correctamente en imágenes nativas. Por primera vez,
+        aplicaciones Spring con gestión transaccional y seguridad basadas en aspectos podían compilarse a
+        binarios nativos de forma oficial.
+      </p>
+      <p>
+        En paralelo, la proliferación de arquitecturas de microservicios trajo consigo una nueva categoría
+        de incumbencias transversales: la observabilidad distribuida. OpenTelemetry, estándar abierto
+        formado en 2019, instrumenta automáticamente aplicaciones Java mediante un agente que aplica
+        <em>load-time weaving</em> usando la biblioteca Byte Buddy. El agente intercepta, en el momento de
+        carga de clases, los puntos de entrada y salida de más de ochenta bibliotecas populares —JDBC,
+        clientes HTTP, Kafka, gRPC— e inyecta código de rastreo sin que el desarrollador modifique una
+        sola línea de su aplicación. Es uno de los ejemplos más concretos de AOP operando a escala global
+        en producción.
+      </p>
+      <p>
+        Hoy AOP es un paradigma omnipresente pero frecuentemente invisible. Según el informe
+        <em>State of Developer Ecosystem 2023</em> de JetBrains, Spring Boot es utilizado por más del 62%
+        de los desarrolladores Java a nivel mundial, lo que convierte a AOP en uno de los paradigmas con
+        mayor presencia efectiva en la industria, aunque raramente sea nombrado como tal por quienes lo
+        usan a diario.
+      </p>
+
       <br>
       <p>
         Cristina Lopes comenzó a trabajar con Kickzales y su grupo,
@@ -215,8 +289,15 @@
         ingeniería de software.
       </p>
 
+      <h2>Referencias (aporte 2026-1)</h2>
+      <ul>
+        <li>Eclipse Foundation. (2003). <em>Eclipse AspectJ project</em>. https://eclipse.org/aspectj</li>
+        <li>JetBrains. (2023). <em>State of Developer Ecosystem 2023: Java</em>. https://www.jetbrains.com/lp/devecosystem-2023/java/</li>
+        <li>OpenTelemetry. (2023). <em>Java Agent: Supported libraries and frameworks</em>. https://opentelemetry.io/docs/instrumentation/java/automatic/</li>
+        <li>Spring Team. (2022). <em>Spring Boot 3.0 release notes</em>. https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.0-Release-Notes</li>
+        <li>Walls, C. (2016). <em>Spring Boot in Action</em>. Manning Publications.</li>
+      </ul>
       
-
       <p align="center">
         <img
           src="https://raw.githubusercontent.com/anfmorenoso/Archivos/master/aspc.png"
@@ -245,6 +326,8 @@
           <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a>
           by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span
         >
+        <br>
+        <span class="site-footer-credits">This page was edited (2026-1) by Julian Esteban Cadena Rojas, Daniel Alonso Gracia Pinto, Pablo Felipe Sandoval Menjura, Juan Diego Velasquez Pinzon and Juan Camilo Vergara Tao.</span>
       </footer>
     </section>
     <script src="/javascripts/main.js"></script>
