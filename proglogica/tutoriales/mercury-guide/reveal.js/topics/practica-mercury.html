@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Práctica · Mercury</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../global.css">
+  <style>
+    .practice-layout {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 28px;
+      align-items: start;
+      text-align: left;
+    }
+    .practice-card {
+      padding: 22px;
+      border: 1px solid var(--card-border);
+      border-left: 5px solid var(--accent, var(--cyan));
+      border-radius: 16px;
+      background: var(--card);
+    }
+    .practice-card h3 { margin: 0 0 12px; }
+    .practice-card p, .practice-card li { font-size: 0.56em; }
+    .practice-card code { color: var(--amber); }
+    .code-editor {
+      width: 100%;
+      min-height: 270px;
+      box-sizing: border-box;
+      resize: vertical;
+      padding: 18px;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      outline: none;
+      background: rgba(8, 8, 24, 0.92);
+      color: #e6e4ff;
+      font-family: var(--r-code-font);
+      font-size: 16px;
+      line-height: 1.55;
+      tab-size: 2;
+    }
+    .code-editor:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.12); }
+    .exercise-actions { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
+    .submit-code {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      color: var(--ink);
+      font-family: var(--r-main-font);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .submit-code:hover { filter: brightness(1.12); }
+    .feedback {
+      min-height: 24px;
+      margin: 10px 0 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .feedback.success { color: var(--green); }
+    .feedback.error { color: var(--pink); }
+  </style>
+</head>
+<body>
+<a class="back-to-index" href="../index.html" aria-label="Volver al temario" title="Volver al temario"><span class="arrow" aria-hidden="true">←</span><span>Temario</span></a>
+<div class="reveal">
+  <div class="slides">
+
+    <section data-transition="fade">
+      <span class="kicker">Parte práctica · Ejercicio 1</span>
+      <h2>Hecho y regla</h2>
+      <div class="practice-layout">
+        <div class="practice-card c-cyan">
+          <h3>Problema</h3>
+          <p>Completa una regla que indique si una persona tiene la edad mínima para participar.</p>
+          <ul>
+            <li>El predicado recibe una edad entera.</li>
+            <li>Debe tener resultado <code>semidet</code>.</li>
+            <li>La condición mínima es <code>18</code>.</li>
+          </ul>
+        </div>
+        <div>
+          <textarea class="code-editor" id="exercise-1" spellcheck="false">:- pred puede_participar(int::in) is __MODO__. 
+
+puede_participar(Edad) :-
+    __CONDICION__.</textarea>
+          <div class="exercise-actions">
+            <button class="submit-code" type="button" data-exercise="exercise-1">Enviar respuesta</button>
+            <span class="feedback" id="feedback-1" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">
+        Primer ejercicio. Que el público complete dos huecos. Respuesta: el modo es semidet, y la condición es Edad >= 18. Pregunta para ellos: ¿por qué semidet y no det? Porque con 15 la regla falla.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Parte práctica · Ejercicio 2</span>
+      <h2>Suma recursiva</h2>
+      <div class="practice-layout">
+        <div class="practice-card c-pink">
+          <h3>Problema</h3>
+          <p>Completa la relación que suma todos los enteros de una lista.</p>
+          <ul>
+            <li>La lista vacía suma <code>0</code>.</li>
+            <li>En una lista no vacía, suma la cabeza y el resto.</li>
+            <li>El resultado debe salir por el argumento <code>out</code>.</li>
+          </ul>
+        </div>
+        <div>
+          <textarea class="code-editor" id="exercise-2" spellcheck="false">:- pred suma_lista(list(int)::in, int::out) is det.
+
+suma_lista([], __BASE__).
+suma_lista([Cabeza | Resto], Total) :-
+    suma_lista(Resto, SumaResto),
+    __RESULTADO__.</textarea>
+          <div class="exercise-actions">
+            <button class="submit-code" type="button" data-exercise="exercise-2">Enviar respuesta</button>
+            <span class="feedback" id="feedback-2" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">
+        Segundo ejercicio, recursión sobre listas. Caso base: la lista vacía suma 0. Caso recursivo: Total = Cabeza + SumaResto. Destacar que el compilador acepta det porque cubre los dos casos de la lista: vacía y no vacía.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Parte práctica · Ejercicio 3</span>
+      <h2>Factorial con modos</h2>
+      <div class="practice-layout">
+        <div class="practice-card c-amber">
+          <h3>Problema</h3>
+          <p>Completa el caso base y la llamada recursiva de <code>factorial</code>.</p>
+          <ul>
+            <li>Si <code>N =&lt; 0</code>, el resultado es <code>1</code>.</li>
+            <li>Si no, resta uno y calcula el factorial del resto.</li>
+            <li>Finalmente multiplica ambos resultados.</li>
+          </ul>
+        </div>
+        <div>
+          <textarea class="code-editor" id="exercise-3" spellcheck="false">:- pred factorial(int::in, int::out) is det.
+
+factorial(N, Resultado) :-
+    ( if N =&lt; 0 then
+        Resultado = __BASE__
+    else
+        N1 = N - 1,
+        factorial(__LLAMADA__, Subresultado),
+        __RESULTADO__
+    ).</textarea>
+          <div class="exercise-actions">
+            <button class="submit-code" type="button" data-exercise="exercise-3">Enviar respuesta</button>
+            <span class="feedback" id="feedback-3" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">
+        Tercer ejercicio. Respuestas: el caso base es 1, la llamada es factorial(N1, Subresultado) y el resultado es Resultado = N * Subresultado. Punto clave: usamos if-then-else para que el compilador acepte det, porque cubre todos los enteros, incluso los negativos. Con dos cláusulas sueltas, factorial(0, 1) y otra con N > 0, Mercury no podría garantizar una solución para N negativo.
+      </aside>
+    </section>
+
+  </div>
+</div>
+
+<script src="../dist/reveal.js"></script>
+<script src="../dist/plugin/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'slide',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    progress: true,
+    keyboard: true,
+    plugins: [ RevealNotes ]
+  });
+
+  const exercises = {
+    'exercise-1': {
+      feedback: 'feedback-1',
+      check(code) {
+        const compact = code.toLowerCase().replace(/\s+/g, '');
+        return compact.includes('issemidet') &&
+          (compact.includes('edad>=18') || compact.includes('edad>18'));
+      },
+      success: '¡Correcto! La regla usa un modo semidet y compara la edad.',
+      error: 'Revisa el modo (semidet) y usa una condición con Edad >= 18.'
+    },
+    'exercise-2': {
+      feedback: 'feedback-2',
+      check(code) {
+        const compact = code.toLowerCase().replace(/\s+/g, '');
+        return compact.includes('suma_lista([],0)') &&
+          /total=cabeza\+sumaresto/.test(compact);
+      },
+      success: '¡Correcto! Cubriste el caso base y el paso recursivo.',
+      error: 'Revisa el caso base (0) y asigna Total = Cabeza + SumaResto.'
+    },
+    'exercise-3': {
+      feedback: 'feedback-3',
+      check(code) {
+        const compact = code.toLowerCase().replace(/\s+/g, '');
+        return /thenresultado=1else/.test(compact) &&
+          /factorial\(n1,subresultado\)/.test(compact) &&
+          /resultado=n\*subresultado/.test(compact);
+      },
+      success: '¡Correcto! El caso base y la recursión usan los modos adecuados.',
+      error: 'Faltan detalles: el caso base es 1, la llamada es factorial(N1, Subresultado) y Resultado = N * Subresultado.'
+    }
+  };
+
+  document.querySelectorAll('.submit-code').forEach((button) => {
+    button.addEventListener('click', () => {
+      const exerciseId = button.dataset.exercise;
+      const exercise = exercises[exerciseId];
+      const code = document.getElementById(exerciseId).value;
+      const feedback = document.getElementById(exercise.feedback);
+      const isCorrect = exercise.check(code);
+
+      feedback.textContent = isCorrect ? exercise.success : exercise.error;
+      feedback.className = 'feedback ' + (isCorrect ? 'success' : 'error');
+    });
+  });
+
+  document.querySelectorAll('.code-editor').forEach((editor) => {
+    editor.addEventListener('keydown', (event) => {
+      if (event.key === 'Tab') {
+        event.preventDefault();
+        const start = editor.selectionStart;
+        const end = editor.selectionEnd;
+        editor.setRangeText('  ', start, end, 'end');
+      }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Temas · Lenguajes de programación</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="global.css">
+  <style>
+    .topic-index {
+      min-height: 100vh;
+      box-sizing: border-box;
+      display: grid;
+      align-content: center;
+      padding: 48px;
+      color: var(--ink);
+    }
+
+    .topic-index h1 {
+      margin: 0 0 0.12em;
+      font-size: clamp(56px, 8vw, 112px);
+      line-height: 0.95;
+    }
+
+    .topic-index .intro {
+      max-width: 760px;
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 22px);
+    }
+
+    .team-block {
+      max-width: 1120px;
+      margin: 0 0 24px;
+      padding: 14px 18px;
+      border: 1px solid var(--card-border);
+      border-left: 4px solid var(--cyan);
+      border-radius: 12px;
+      background: rgba(8, 8, 24, 0.32);
+    }
+
+    .team-block .university {
+      margin: 0 0 10px;
+      color: var(--amber);
+      font-family: var(--r-code-font);
+      font-size: clamp(12px, 1.2vw, 15px);
+      letter-spacing: 0.03em;
+    }
+
+    .team-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px 18px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .team-list li {
+      opacity: 0;
+      transform: translateY(10px);
+      color: var(--ink);
+      font-size: clamp(11px, 1.05vw, 14px);
+      animation: team-enter 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .team-list li:nth-child(1) { animation-delay: 120ms; }
+    .team-list li:nth-child(2) { animation-delay: 260ms; }
+    .team-list li:nth-child(3) { animation-delay: 400ms; }
+    .team-list li:nth-child(4) { animation-delay: 540ms; }
+    .team-list li:nth-child(5) { animation-delay: 680ms; }
+    .team-list li:nth-child(6) { animation-delay: 820ms; }
+
+    @keyframes team-enter {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      max-width: 1120px;
+    }
+
+    .topic-card {
+      min-height: 210px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px;
+      color: var(--ink);
+      text-decoration: none;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-top: 5px solid var(--accent);
+      border-radius: 18px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .topic-card:hover,
+    .topic-card:focus-visible {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    .topic-card small {
+      color: var(--muted);
+      font-family: var(--r-code-font);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .topic-card h2 {
+      margin: 16px 0 8px;
+      color: var(--accent);
+      font-size: clamp(28px, 4vw, 46px);
+    }
+
+    .topic-card p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .topic-card .open {
+      margin-top: 24px;
+      color: var(--accent);
+      font-family: var(--r-code-font);
+      font-size: 14px;
+    }
+
+    .topic-card.available {
+      --accent: var(--cyan);
+    }
+
+    .topic-card.pending {
+      --accent: var(--muted);
+      opacity: 0.72;
+      pointer-events: none;
+    }
+
+    @media (max-width: 900px) {
+      .topic-index {
+        align-content: start;
+        padding: 32px 24px;
+      }
+
+      .team-list {
+        grid-template-columns: 1fr;
+      }
+
+      .topic-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .topic-card {
+        transition: none;
+      }
+
+      .team-list li {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+<main class="topic-index">
+  <span class="kicker">Lenguajes de programación</span>
+  <h1 class="grad">Temario</h1>
+  <p class="intro">Selecciona un tema para abrir su presentación.</p>
+
+  <div class="team-block">
+    <p class="university">Universidad Nacional de Colombia · 2026</p>
+    <ul class="team-list" aria-label="Integrantes">
+      <li>Maria Luisa Bautista Arango</li>
+      <li>Misael Jesus Florez Anave</li>
+      <li>Andres Felipe Ramirez Montaña</li>
+      <li>Julian Esteban Mendoza Wilches</li>
+      <li>Juan Camilo Rosero Santisteban</li>
+      <li>Miguel Angel Suarez Cortes</li>
+    </ul>
+  </div>
+
+  <div class="topic-grid">
+
+    <a class="topic-card available" href="topics/fundamentos-mercury.html">
+      <small>Tema 01 · Disponible</small>
+      <div>
+        <h2>Fundamentos</h2>
+        <p>Hechos, reglas, unificación, tipos, modos y determinismo.</p>
+      </div>
+      <span class="open">Abrir presentación →</span>
+    </a>
+
+    <a class="topic-card available" href="topics/mercury.html">
+      <small>Tema 02 · Disponible</small>
+      <div>
+        <h2>Mercury</h2>
+        <p>Programación lógica y funcional con tipos y modos.</p>
+      </div>
+      <span class="open">Abrir presentación →</span>
+    </a>
+
+    <a class="topic-card available" href="topics/practica-mercury.html">
+      <small>Tema 03 · Disponible</small>
+      <div>
+        <h2>Práctica</h2>
+        <p>Tres ejercicios interactivos para completar código Mercury y recibir retroalimentación.</p>
+      </div>
+      <span class="open">Abrir ejercicios →</span>
+    </a>
+  </div>
+</main>
+</body>
+</html>

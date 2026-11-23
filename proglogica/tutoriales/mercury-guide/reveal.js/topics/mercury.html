@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Mercury — Programación lógica con garantías</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../global.css">
+  <link rel="stylesheet" href="../dist/plugin/highlight/monokai.css">
+</head>
+<body>
+<a class="back-to-index" href="../index.html" aria-label="Volver al temario" title="Volver al temario"><span class="arrow" aria-hidden="true">←</span><span>Temario</span></a>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- Portada -->
+    <section data-transition="fade">
+      <div class="orb" style="width:220px;height:220px;left:-60px;top:40px;background:radial-gradient(circle at 30% 30%,#c4b5fd,#8b5cf6 60%,transparent 70%)"></div>
+      <div class="orb" style="width:140px;height:140px;right:20px;bottom:30px;background:radial-gradient(circle at 30% 30%,#a5f3fc,#22d3ee 60%,transparent 70%)"></div>
+      <span class="kicker">Lenguajes de programación</span>
+      <h1 class="grad">Mercury</h1>
+      <p style="font-size:0.9em">Programación lógica y funcional,<br><strong>con el compilador de tu lado</strong></p>
+      <aside class="notes">
+        Ahora la parte práctica: Mercury, programación lógica y funcional con el compilador de nuestro lado.
+      </aside>
+    </section>
+
+    <!-- Qué es -->
+    <section>
+      <span class="kicker">Introducción</span>
+      <h2>¿Qué es <span class="grad">Mercury</span>?</h2>
+      <div class="grid cols-3" style="margin-top:1em">
+        <div class="card c-violet"><span class="big">λ</span><h3>Lógico-funcional</h3><p>Lo mejor de Prolog y de los lenguajes funcionales, sin efectos ocultos.</p></div>
+        <div class="card c-cyan"><span class="big">🏛</span><h3>Origen académico</h3><p>Creado en la Universidad de Melbourne a mediados de los 90.</p></div>
+        <div class="card c-pink"><span class="big">⚡</span><h3>Compila a código eficiente</h3><p>Pensado para sistemas grandes, rápidos y mantenibles.</p></div>
+      </div>
+      <aside class="notes">
+        Mercury toma lo mejor de Prolog y de los lenguajes funcionales, sin efectos ocultos. Nació en la Universidad de Melbourne a mediados de los 90 y compila a código eficiente, pensado para sistemas grandes y mantenibles.
+      </aside>
+    </section>
+
+    <!-- ===== SECCIÓN: Primeros pasos — instalación y ejecución ===== -->
+
+    <!-- Ruta -->
+    <section data-transition="zoom">
+      <span class="kicker">Parte práctica</span>
+      <h2>Primeros <span class="grad">pasos</span></h2>
+      <p class="muted" style="font-size:0.75em">De cero a tu primer programa en cuatro pasos</p>
+      <div class="steps">
+        <div class="step fragment"><span class="n">1</span><b>Instalar</b><small>mmc</small></div>
+        <div class="step fragment"><span class="n">2</span><b>Crear el archivo</b><small>hola.m</small></div>
+        <div class="step fragment"><span class="n">3</span><b>Escribir</b><small>Hola, Mercury</small></div>
+        <div class="step fragment"><span class="n">4</span><b>Compilar y correr</b><small>mmc --make</small></div>
+      </div>
+      <aside class="notes">
+        Para llegar a nuestro primer programa son cuatro pasos: instalar el compilador, crear el archivo, escribir el código y compilarlo.
+      </aside>
+    </section>
+
+    <!-- Instalación: opciones -->
+    <section>
+      <span class="kicker">Paso 1 · Instalación</span>
+      <h2>¿Dónde instalo Mercury?</h2>
+      <div class="grid cols-3" style="margin-top:1em">
+        <div class="card c-green fragment"><span class="big">🐧</span><h3>Ubuntu / Debian</h3><p>Paquetes oficiales con <code>apt</code>: se instala <code>mercury-recommended</code>.</p></div>
+        <div class="card c-cyan fragment"><span class="big">🪟</span><h3>Windows</h3><p>Mercury tiene soporte para Windows 10 y 11. Una opción práctica: <strong>Ubuntu en WSL</strong>.</p></div>
+        <div class="card c-violet fragment"><span class="big">🧩</span><h3>Código fuente</h3><p>Para otras distribuciones: descargar el tarball y compilar con <code>configure</code> y <code>make</code>.</p></div>
+      </div>
+      <p class="muted">Descargas oficiales: dl.mercurylang.org</p>
+      <aside class="notes">
+        En Ubuntu o Debian hay paquetes oficiales. En Windows hay soporte, pero lo más práctico es usar Ubuntu en WSL. En otras distribuciones se compila desde el código fuente.
+      </aside>
+    </section>
+
+    <!-- Instalación: comandos -->
+    <section>
+      <span class="kicker">Paso 1 · Instalación</span>
+      <h2>Instalar con apt (Ubuntu 24.04 / WSL)</h2>
+      <pre class="term"><code class="mercury"><span class="c"># 1. Clave del repositorio oficial</span>
+<span class="pr">$</span> sudo apt install wget ca-certificates
+<span class="pr">$</span> wget -O /tmp/paul.asc https://paul.bone.id.au/paul.asc
+<span class="pr">$</span> sudo cp /tmp/paul.asc /etc/apt/trusted.gpg.d/paulbone.asc
+
+<span class="c"># 2. Agregar el repositorio de Mercury</span>
+<span class="pr">$</span> echo "deb http://dl.mercurylang.org/deb/ noble main" | sudo tee /etc/apt/sources.list.d/mercury.list
+
+<span class="c"># 3. Instalar y comprobar</span>
+<span class="pr">$</span> sudo apt update &amp;&amp; sudo apt install mercury-recommended
+<span class="pr">$</span> mmc --version</code></pre>
+      <p class="muted">Para Debian 12 cambia <code>noble</code> por <code>bookworm</code>. En Ubuntu debe estar activo el repositorio <code>universe</code>.</p>
+      <aside class="notes">
+        Son tres cosas: agregar la clave del repositorio oficial, agregar el repositorio e instalar mercury-recommended. Para comprobar, mmc --version. No hace falta leer cada comando: queda en las diapositivas.
+      </aside>
+    </section>
+
+    <!-- Advertencia mmc en Windows -->
+    <section>
+      <span class="kicker">Ojo en Windows</span>
+      <h2>Dos programas llamados <span style="color:var(--amber)">mmc</span></h2>
+      <div class="grid cols-2" style="margin-top:1em">
+        <div class="card c-amber"><h3>Microsoft Management Console</h3><p>Windows ya trae un <code>mmc</code>. Si lo escribes en CMD o PowerShell, abre esa consola.</p></div>
+        <div class="card c-green"><h3>Melbourne Mercury Compiler</h3><p>El nuestro. Instálalo en WSL, o pon la carpeta <code>bin</code> de Mercury <strong>antes</strong> que la de Windows en el PATH.</p></div>
+      </div>
+      <aside class="notes">
+        Un detalle que nos puede pasar: Windows ya trae un programa llamado mmc, la Microsoft Management Console. Si escriben mmc en CMD se abre esa consola, no el compilador. Solución: usar WSL, o poner la carpeta de Mercury primero en el PATH.
+      </aside>
+    </section>
+
+    <!-- El archivo -->
+    <section data-transition="fade">
+      <span class="kicker">Paso 2 · El archivo</span>
+      <h2>Un programa, un archivo <code style="color:var(--pink)">.m</code></h2>
+      <div class="filechip"><span class="nm">hola</span><span class="ext">.m</span></div>
+      <div class="grid cols-2" style="margin-top:0.6em">
+        <div class="card c-pink fragment"><h3>Extensión</h3><p>El código fuente de Mercury siempre termina en <code>.m</code>.</p></div>
+        <div class="card c-green fragment"><h3>Nombre = módulo</h3><p>Si el módulo se llama <code>hola</code>, el archivo debe llamarse <code>hola.m</code>.</p></div>
+      </div>
+      <aside class="notes">
+        El código va en un archivo .m, y el nombre del archivo tiene que ser igual al del módulo: si el módulo se llama hola, el archivo es hola.m.
+      </aside>
+    </section>
+
+    <!-- Hola mundo -->
+    <section>
+      <span class="kicker">Paso 3 · Primer programa</span>
+      <h2>Hola, Mercury</h2>
+      <pre><code class="mercury"><span class="c">% hola.m</span>
+<span class="k">:- module</span> <span class="p">hola</span>.
+<span class="k">:- interface</span>.
+<span class="k">:- import_module</span> <span class="t">io</span>.
+
+<span class="k">:- pred</span> <span class="p">main</span>(<span class="t">io</span>::<span class="m">di</span>, <span class="t">io</span>::<span class="m">uo</span>) <span class="k">is</span> <span class="m">det</span>.
+
+<span class="k">:- implementation</span>.
+
+<span class="p">main</span>(!IO) :-
+    io.write_string(<span class="s">"¡Hola, Mercury!\n"</span>, !IO).</code></pre>
+      <p><a class="pill c-cyan" href="https://glot.io/new/mercury" target="_blank" rel="noopener">▶ Pruébalo en glot.io</a></p>
+      <aside class="notes">
+        Este es el programa completo. Se puede probar sin instalar nada en glot.io, con el botón de abajo. Clic solo si hay internet; si no, seguir.
+      </aside>
+    </section>
+
+    <!-- Hola mundo: explicación -->
+    <section>
+      <span class="kicker">Paso 3 · Qué hace cada parte</span>
+      <h2>Anatomía del programa</h2>
+      <p class="muted" style="margin:0">Avanza con ↓ y retrocede con ↑: se resalta una línea a la vez</p>
+      <pre class="steps-code"><code class="mercury"><span class="ln fragment custom" data-fragment-index="1"><span class="k">:- module</span> <span class="p">hola</span>.</span><span class="ln-gap"></span><span class="ln fragment custom" data-fragment-index="2"><span class="k">:- interface</span>.</span><span class="ln fragment custom" data-fragment-index="3"><span class="k">:- import_module</span> <span class="t">io</span>.</span><span class="ln fragment custom" data-fragment-index="4"><span class="k">:- pred</span> <span class="p">main</span>(<span class="t">io</span>::<span class="m">di</span>, <span class="t">io</span>::<span class="m">uo</span>) <span class="k">is</span> <span class="m">det</span>.</span><span class="ln-gap"></span><span class="ln fragment custom" data-fragment-index="5"><span class="k">:- implementation</span>.</span><span class="ln-gap"></span><span class="ln fragment custom" data-fragment-index="6"><span class="p">main</span>(!IO) :-</span><span class="ln fragment custom" data-fragment-index="7">    io.write_string(<span class="s">"¡Hola, Mercury!\n"</span>, !IO).</span></code></pre>
+      <div class="cap-wrap">
+        <div class="cap c-pink fragment fade-in-then-out" data-fragment-index="1"><b>Módulo.</b> Su nombre debe coincidir con el del archivo: <code>hola.m</code>.</div>
+        <div class="cap c-cyan fragment fade-in-then-out" data-fragment-index="2"><b>Interfaz.</b> Lo que el módulo muestra hacia afuera. Cada declaración termina en punto.</div>
+        <div class="cap c-violet fragment fade-in-then-out" data-fragment-index="3"><b>Importación.</b> Trae la biblioteca de entrada y salida, <code>io</code>.</div>
+        <div class="cap c-amber fragment fade-in-then-out" data-fragment-index="4"><b>Declaración de main.</b> Recibe y devuelve el estado del mundo (<code>di</code>, <code>uo</code>); <code>det</code>: siempre da una solución.</div>
+        <div class="cap c-cyan fragment fade-in-then-out" data-fragment-index="5"><b>Implementación.</b> Aquí empieza la lógica del módulo.</div>
+        <div class="cap c-pink fragment fade-in-then-out" data-fragment-index="6"><b>Definición de main.</b> El punto de entrada del programa. <code>!IO</code> representa el estado del mundo.</div>
+        <div class="cap c-green fragment fade-in-then-out" data-fragment-index="7"><b>Imprime el texto</b> y pasa el estado al siguiente paso.</div>
+      </div>
+      <aside class="notes">
+        Recorremos línea por línea con la flecha abajo. module le da nombre. interface es lo que el módulo muestra afuera. Importamos io para imprimir. Declaramos main: recibe el estado del mundo y lo devuelve, con di y uo, y es det. En implementation va la lógica, y !IO es ese estado pasando de paso en paso.
+      </aside>
+    </section>
+
+    <!-- Compilar y ejecutar -->
+    <section>
+      <span class="kicker">Paso 4 · Compilar y ejecutar</span>
+      <h2>Del <code style="color:var(--pink)">.m</code> al ejecutable</h2>
+      <pre class="term"><code class="mercury"><span class="c"># Compilar (sin la extensión .m)</span>
+<span class="pr">$</span> mmc --make hola
+
+<span class="fragment"><span class="c"># Ejecutar</span>
+<span class="pr">$</span> ./hola
+<span class="out">¡Hola, Mercury!</span></span></code></pre>
+      <p class="muted">En Windows nativo el ejecutable es <code>hola.exe</code>.</p>
+      <aside class="notes">
+        Compilamos con mmc --make hola, sin la extensión, y ejecutamos ./hola. En Windows nativo sería hola.exe. Ya tenemos nuestro primer programa. Ahora Luisa nos lleva por el lenguaje.
+      </aside>
+    </section>
+
+
+    <!-- ===== FIN SECCIÓN: Primeros pasos ===== -->
+
+    <!-- ===== SECCIÓN: Tour por Mercury  (Maria Luisa Bautista) ===== -->
+
+    <section data-transition="fade">
+      <span class="kicker">Información general</span>
+      <h2><span class="grad">Tour por Mercury</span></h2>
+      <table>
+        <thead>
+          <tr><th>Sección</th><th>Descripción</th></tr>
+        </thead>
+        <tbody>
+          <tr class="fragment"><td>Sección 1</td><td>Sintaxis básica</td></tr>
+          <tr class="fragment"><td>Sección 2</td><td>Variables y tipos</td></tr>
+          <tr class="fragment"><td>Sección 3</td><td>Estructuras de datos</td></tr>
+          <tr class="fragment"><td>Sección 4</td><td>Operadores y condiciones</td></tr>
+          <tr class="fragment"><td>Sección 5</td><td>Funciones y predicados</td></tr>
+        </tbody>
+      </table>
+      <aside class="notes">
+        Este es el recorrido del tour en cinco secciones: sintaxis, variables y tipos, estructuras de datos, operadores y condiciones, y funciones y predicados.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Sección 1</span>
+      <h2>Sintaxis</h2>
+      <p class="muted" style="margin:0">Avanza con ↓ y retrocede con ↑: se resalta una línea a la vez</p>
+
+      <pre class="steps-code"><code class="mercury"><span class="ln fragment custom" data-fragment-index="1"><span class="c">% Comprobar si una persona es mayor de edad</span></span><span class="ln-gap"></span><span class="ln fragment custom" data-fragment-index="2"><span class="k">:- pred</span> <span class="f">mayor_edad</span>(<span class="t">int</span>::<span class="k">in</span>) <span class="k">is</span> <span class="k">semidet</span>.</span><span class="ln-gap"></span><span class="ln fragment custom" data-fragment-index="3"><span class="f">mayor_edad</span>(<span class="v">Edad</span>) <span class="k">:-</span></span><span class="ln fragment custom" data-fragment-index="4">    <span class="v">Edad</span> <span class="o">&gt;=</span> <span class="n">18</span>.</span></code></pre>
+
+      <div class="cap-wrap">
+        <div class="cap c-pink fragment fade-in-then-out" data-fragment-index="1"><b>Comentarios.</b> Comienzan con <code>%</code>.</div>
+        <div class="cap c-violet fragment fade-in-then-out" data-fragment-index="2"><b>Declaraciones.</b> <code>:-</code> introduce reglas y declaraciones. Terminan en punto (<code>.</code>).</div>
+        <div class="cap c-cyan fragment fade-in-then-out" data-fragment-index="3"><b>Predicados y variables.</b> <code>mayor_edad</code> (minúscula) es un predicado; <code>Edad</code> (mayúscula) es una variable.</div>
+        <div class="cap c-green fragment fade-in-then-out" data-fragment-index="4"><b>Cláusulas.</b> Terminan en punto (<code>.</code>).</div>
+      </div>
+      <aside class="notes">
+        Sintaxis. Los comentarios empiezan con porcentaje. Las declaraciones empiezan con dos puntos guion. Los predicados van en minúscula y las variables en mayúscula, como Edad. Y todo termina en punto: es el error más común al empezar.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Sección 2</span>
+      <h2>Variables</h2>
+      <table>
+        <thead>
+        <tr><th>Tipo</th><th>Ejemplo</th></tr>
+        </thead>
+        <tbody>
+        <tr class="fragment"><td>int</td><td>25</td></tr>
+        <tr class="fragment"><td>float</td><td>3.14</td></tr>
+        <tr class="fragment"><td>string</td><td>"Hola"</td></tr>
+        <tr class="fragment"><td>char</td><td>'A'</td></tr>
+        <tr class="fragment"><td>bool</td><td>yes, no</td></tr>
+        </tbody>
+      </table>
+      <p class="muted"><code>*</code> Una vez vinculada a un valor, una variable no puede modificarse.</p>
+      <p class="muted"><code>*</code> Mercury utiliza tipado estático: los tipos se verifican durante la compilación.</p>
+      <aside class="notes">
+        Tipos básicos: int, float, string, char y bool. Dos ideas clave: una variable, una vez tiene valor, no cambia; y los tipos se revisan al compilar, no al ejecutar.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Sección 3</span>
+      <h2>Organizar datos</h2>
+      <p class="muted" style="margin:0">Avanza con → y retrocede con ←</p>
+
+      <div class="paso-wrap">
+
+        <!-- Código 1: listas -->
+        <div class="paso fragment fade-in-then-out" data-fragment-index="1">
+      <pre class="steps-code"><code class="mercury"><span class="k">:- import_module</span> <span class="t">list</span>.
+
+<span class="k">:- func</span> <span class="f">numeros</span> = <span class="t">list</span>(<span class="t">int</span>).
+
+<span class="f">numeros</span> = [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>].</code></pre>
+          <div class="cap-wrap">
+            <div class="cap c-cyan"><b>Listas:</b> colecciones de elementos del mismo tipo.</div>
+          </div>
+        </div>
+
+        <!-- Código 2: tipo enumerado -->
+        <div class="paso fragment fade-in-then-out" data-fragment-index="2">
+      <pre class="steps-code"><code class="mercury"><span class="k">:- type</span> <span class="t">dia</span>
+    <span class="k">---&gt;</span> <span class="f">lunes</span>
+    <span class="k">;</span>    <span class="f">martes</span>
+    <span class="k">;</span>    <span class="f">miercoles</span>
+    <span class="k">;</span>    <span class="f">jueves</span>
+    <span class="k">;</span>    <span class="f">viernes</span>.</code></pre>
+          <div class="cap-wrap">
+            <div class="cap c-violet"><b>Tipos personalizados:</b> permiten definir estructuras con valores propios.</div>
+          </div>
+        </div>
+
+      </div>
+      <aside class="notes">
+        Para organizar datos: las listas, con elementos del mismo tipo, como la lista del uno al cinco. Y tipos propios, como dia, que solo puede ser lunes a viernes. Si escribimos sabado, el compilador lo rechaza.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Sección 4</span>
+      <h2>Operadores y condiciones</h2>
+      <table>
+        <thead>
+        <tr><th>Categoría</th><th>Operadores</th><th>Uso</th></tr>
+        </thead>
+        <tbody>
+        <tr class="fragment"><td>Aritméticos</td><td>+, -, *, /, mod</td><td>Operaciones matemáticas</td></tr>
+        <tr class="fragment"><td>Comparación</td><td>=, \=, &lt;, &gt;, =&lt;, &gt;=</td><td>Comparar valores</td></tr>
+        <tr class="fragment"><td>Lógicos</td><td>,, ;</td><td>AND y OR</td></tr>
+        </tbody>
+
+      </table>
+
+      <p class="muted"><code>*</code> Ejemplo de uso con condicional</p>
+      <pre class="steps-code"><code class="mercury"><span class="k">:- pred</span> <span class="f">clasificar</span>(<span class="t">int</span>::<span class="k">in</span>, <span class="t">string</span>::<span class="k">out</span>) <span class="k">is</span> <span class="k">det</span>.
+
+<span class="f">clasificar</span>(<span class="v">Edad</span>, <span class="v">Resultado</span>) <span class="k">:-</span>
+    ( <span class="k">if</span> <span class="v">Edad</span> <span class="o">&gt;=</span> <span class="n">18</span> <span class="k">then</span>
+        <span class="v">Resultado</span> = <span class="s">"Mayor de edad"</span>
+    <span class="k">else</span>
+        <span class="v">Resultado</span> = <span class="s">"Menor de edad"</span>
+    ).</code></pre>
+      <aside class="notes">
+        Operadores aritméticos, de comparación y lógicos: la coma es Y, el punto y coma es O. Y el if-then-else: clasificar recibe una edad y devuelve mayor o menor de edad. Como siempre da una respuesta, es det.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Sección 5</span>
+      <h2>Funciones y predicados</h2>
+      <p class="muted" style="margin:0">Avanza con → y retrocede con ←</p>
+
+      <div class="paso-wrap">
+
+        <!-- Predicados -->
+        <div class="paso fragment fade-in-then-out" data-fragment-index="1">
+      <pre class="steps-code"><code class="mercury"><span class="k">:- pred</span> <span class="f">es_par</span>(<span class="t">int</span>::<span class="k">in</span>) <span class="k">is</span> <span class="k">semidet</span>.
+
+<span class="f">es_par</span>(<span class="v">N</span>) <span class="k">:-</span>
+    <span class="v">N</span> <span class="k">mod</span> <span class="n">2</span> <span class="o">=</span> <span class="n">0</span>.</code></pre>
+          <div class="cap-wrap">
+            <div class="cap c-cyan">
+              <b>Predicados.</b> Representan relaciones entre valores. Pueden tener éxito o fallar. Se utilizan para comprobar condiciones o establecer relaciones.
+            </div>
+          </div>
+        </div>
+
+        <!-- Funciones -->
+        <div class="paso fragment fade-in-then-out" data-fragment-index="2">
+      <pre class="steps-code"><code class="mercury"><span class="k">:- func</span> <span class="f">cuadrado</span>(<span class="t">int</span>) = <span class="t">int</span>.
+
+<span class="f">cuadrado</span>(<span class="v">N</span>) = <span class="v">N</span> <span class="o">*</span> <span class="v">N</span>.</code></pre>
+          <div class="cap-wrap">
+            <div class="cap c-violet">
+              <b>Funciones.</b> Reciben argumentos y producen un valor como resultado. Se utilizan para realizar cálculos y transformaciones.
+            </div>
+          </div>
+        </div>
+
+        <!-- Diferencia -->
+        <div class="paso fragment fade-in-then-out" data-fragment-index="3">
+          <div class="cap-wrap">
+            <div class="cap c-green">
+              <b>Diferencia principal.</b> Un predicado determina si una relación se cumple; una función calcula y devuelve un valor.
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <aside class="notes">
+        La diferencia entre predicados y funciones. Un predicado dice si una relación se cumple, como es_par, que puede fallar. Una función calcula un valor, como cuadrado. Con esto, Juan Camilo nos muestra lo que hace distinto a Mercury.
+      </aside>
+    </section>
+    <!-- ===== FIN SECCIÓN (Maria Luisa Bautista) : Tour por Mercury ===== -->
+
+    <!-- ===== SECCIÓN: Particularidades de Mercury (Juan Camilo Rosero) ===== -->
+
+    <section data-transition="fade" class="mx-divider">
+      <span class="mx-num">01</span>
+      <span class="kicker">Particularidades de Mercury</span>
+      <h2><span class="grad">La idea raíz</span></h2>
+      <aside class="notes">
+        Hasta aquí vimos cómo arrancar. Ahora les cuento qué hace a Mercury distinto.
+        Si solo enseñamos hechos, reglas y predicados, eso es programación lógica en general,
+        no Mercury. Lo propio de Mercury cabe en una sola idea.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <div class="mx-vs">
+        <div class="mx-side c-amber fragment"><span class="mx-tag">Prolog</span><b>Lo descubre ejecutando</b></div>
+        <span class="mx-arrow fragment">→</span>
+        <div class="mx-side c-green fragment"><span class="mx-tag">Mercury</span><b>Lo declara y verifica compilando</b></div>
+      </div>
+      <aside class="notes">
+        La idea es esta. En Prolog, muchas cosas se descubren mientras el programa corre.
+        Mercury, en cambio, te pide declararlas antes, y el compilador las verifica
+        antes de que exista el ejecutable. Si algo no cuadra, el error sale en compilación,
+        no en la cara del usuario.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">¿Qué se declara?</span>
+      <div class="mx-pills">
+        <span class="mx-chip c-cyan fragment">tipos</span>
+        <span class="mx-chip c-violet fragment">modos</span>
+        <span class="mx-chip c-pink fragment">determinismo</span>
+      </div>
+      <aside class="notes">
+        ¿Y qué es eso que se declara? Tres cosas.
+        Los tipos: qué clase de dato es cada argumento.
+        Los modos: cómo fluye la información, si un argumento entra con valor o sale con valor.
+        Y el determinismo: cuántas soluciones puede dar un predicado y si puede fallar.
+        Todo lo que viene ahora se apoya en estas tres declaraciones.
+      </aside>
+    </section>
+
+    <section data-transition="fade" class="mx-divider">
+      <span class="mx-num">02</span>
+      <span class="kicker">Particularidades de Mercury</span>
+      <h2><span class="grad">Módulos y encapsulamiento</span></h2>
+      <aside class="notes">
+        Primer rasgo concreto: cómo organiza Mercury el código.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Un módulo, dos partes</span>
+      <div class="grid cols-2 mx-gap">
+        <div class="card c-cyan fragment"><h3><code>:- interface</code></h3><p class="mx-card-line">Pública: qué expone</p></div>
+        <div class="card c-violet fragment"><h3><code>:- implementation</code></h3><p class="mx-card-line">Privada: cómo funciona</p></div>
+      </div>
+      <aside class="notes">
+        Mercury organiza el código en módulos, y cada módulo tiene dos partes.
+        La interfaz, que se abre con dos puntos guion interface, es la parte pública:
+        declara qué expone el módulo, tipos, predicados y funciones, y no puede contener cláusulas.
+        La implementación es la parte privada: ahí van las cláusulas y todo lo que debe quedar oculto.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Tipo abstracto</span>
+      <pre class="mx-code"><code class="mercury" data-trim data-line-numbers="1-9|2-6|3|7-9|9">
+:- module cola.
+:- interface.
+:- type cola(T).                 % tipo abstracto: solo se exporta el nombre
+:- func cola_vacia = cola(T).
+:- pred encolar(T::in, cola(T)::in, cola(T)::out) is det.
+:- pred desencolar(T::out, cola(T)::in, cola(T)::out) is semidet.
+:- implementation.
+:- import_module list.
+:- type cola(T) == list(T).      % la representación queda oculta aquí
+      </code></pre>
+      <aside class="notes">
+        Miren este módulo de una cola.
+        Primero, la interfaz: esto es todo lo que ve quien lo importa, el tipo y sus operaciones.
+        Ahora esta línea: se exporta solo el nombre, cola de T, sin decir cómo está construida.
+        Eso es un tipo abstracto, y es justo lo que separa a Mercury de Prolog en este punto.
+        Bajamos a la implementación: aquí vive la definición real.
+        Y aquí está el secreto: por dentro es una lista. Desde afuera, nadie lo sabe.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <p class="mx-statement">Cambia la representación, <em>no el cliente</em></p>
+      <aside class="notes">
+        ¿Por qué importa esto? Si después cambio esa lista por otra estructura,
+        el código que usa el módulo sigue funcionando sin tocarse.
+        En Prolog, una vez cargado un archivo, sus predicados quedan visibles desde cualquier otro,
+        y no hay forma de ocultar la estructura de un dato.
+        El sistema de módulos de Mercury existe para evitar choques de nombres y forzar el encapsulamiento,
+        y eso es lo que sostiene programas grandes donde una parte no debe depender de los detalles de otra.
+      </aside>
+    </section>
+
+    <section data-transition="fade" class="mx-divider">
+      <span class="mx-num">03</span>
+      <span class="kicker">Particularidades de Mercury</span>
+      <h2><span class="grad">Compilación y rendimiento</span></h2>
+      <aside class="notes">
+        Segundo rasgo: Mercury es un lenguaje compilado.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">De <code>.m</code> a binario</span>
+      <div class="mx-flow">
+        <span class="mx-node fragment">archivo.m</span>
+        <span class="mx-arrow fragment" data-fragment-index="1">→</span>
+        <span class="mx-node c-pink fragment" data-fragment-index="1">mmc</span>
+        <span class="mx-arrow fragment" data-fragment-index="2">→</span>
+        <span class="mx-stack fragment" data-fragment-index="2">
+          <span class="mx-node c-green">C</span>
+          <span class="mx-node c-amber">Java</span>
+          <span class="mx-node c-violet">C#</span>
+        </span>
+        <span class="mx-arrow fragment" data-fragment-index="3">→</span>
+        <span class="mx-node c-cyan fragment" data-fragment-index="3">binario nativo</span>
+      </div>
+      <aside class="notes">
+        El compilador se llama mmc. Toma los archivos punto m y los traduce a un lenguaje intermedio,
+        y de ahí a un ejecutable.
+        El backend original genera C de bajo nivel y se lo pasa a gcc o a clang.
+        También existen backends que producen C de alto nivel, Java y C#.
+        El producto final es un binario nativo, no un programa interpretado.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Memoria automática</span>
+      <div class="grid cols-2 mx-gap">
+        <div class="card c-green fragment"><h3>Backend C</h3><p class="mx-card-line">Recolector Boehm-Demers-Weiser</p></div>
+        <div class="card c-amber fragment"><h3>Java y C#</h3><p class="mx-card-line">Recolector de la plataforma</p></div>
+      </div>
+      <aside class="notes">
+        La memoria se maneja sola.
+        Con el backend de C, Mercury usa el recolector de basura conservador de Boehm-Demers-Weiser.
+        Con Java y C#, usa el recolector de cada plataforma.
+        En ningún caso el programador reserva ni libera memoria a mano.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">¿Por qué es rápido?</span>
+      <div class="mx-flow">
+        <span class="mx-node c-violet fragment">tipos + modos + determinismo</span>
+        <span class="mx-arrow fragment" data-fragment-index="1">→</span>
+        <span class="mx-node c-green fragment" data-fragment-index="1">código especializado</span>
+      </div>
+      <aside class="notes">
+        ¿Y por qué es rápido? Otra vez por la idea raíz.
+        Como el compilador ya conoce los tipos, los modos y el determinismo de cada predicado,
+        puede generar código especializado y aplicar optimizaciones que un Prolog no alcanza,
+        porque Prolog descubre esa información mientras ejecuta.
+        Quiero ser honesto con las cifras: no les voy a dar un "diez veces más rápido",
+        porque no tengo una medición propia que lo respalde.
+        Lo que dice la fuente es que el mismo programa suele correr mucho más rápido en Mercury que en Prolog,
+        y que sus autores lo describen como el lenguaje lógico más rápido disponible.
+        Esa es la afirmación de ellos, no un benchmark que yo haya corrido.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Varios núcleos</span>
+      <p class="mx-statement">Grados con <em>hilos y paralelismo</em></p>
+      <aside class="notes">
+        Y un detalle que nos toca de cerca en este curso:
+        para aprovechar varios núcleos, Mercury ofrece grados de compilación con soporte
+        para hilos y paralelismo.
+      </aside>
+    </section>
+
+    <section data-transition="fade" class="mx-divider">
+      <span class="mx-num">04</span>
+      <span class="kicker">Particularidades de Mercury</span>
+      <h2><span class="grad">Mercury vs Prolog</span></h2>
+      <aside class="notes">
+        Ahora sí, la comparación directa con Prolog.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <div class="grid cols-2 mx-gap">
+        <div class="card c-cyan fragment"><h3>Hereda</h3><p class="mx-card-line">Sintaxis y resolución SLD</p></div>
+        <div class="card c-pink fragment"><h3>Quita</h3><p class="mx-card-line"><code>assert</code>, <code>retract</code>, E/S oculta</p></div>
+      </div>
+      <aside class="notes">
+        Mercury no sale de la nada: hereda de Prolog la sintaxis y el mecanismo de resolución SLD.
+        Se puede ver como un subconjunto puro de Prolog con tipos y modos encima.
+        Pero lo interesante es lo que quitó.
+        Prolog tiene predicados como assert y retract, que modifican la base de hechos en plena ejecución,
+        y una entrada y salida que ocurre como efecto colateral.
+        Mercury eliminó esos predicados no lógicos: para guardar datos se usan estructuras de la librería,
+        como conjuntos y mapas, y la entrada y salida se maneja pasando el estado del mundo.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Resultado</span>
+      <p class="mx-statement">Un lenguaje <em>puro</em></p>
+      <aside class="notes">
+        Con eso el lenguaje queda puro.
+        Puro quiere decir esto: una llamada con los mismos argumentos siempre da el mismo resultado.
+        No hay nada escondido que cambie por debajo.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Frente a frente</span>
+      <table class="mx-table">
+        <thead>
+          <tr><th>Característica</th><th>Mercury</th><th>Prolog</th></tr>
+        </thead>
+        <tbody>
+          <tr class="fragment"><td>Tipos</td><td>Estáticos, verificados en compilación</td><td>Dinámicos, en ejecución</td></tr>
+          <tr class="fragment"><td>Modos</td><td>Declarados y verificados</td><td>Implícitos</td></tr>
+          <tr class="fragment"><td>Determinismo</td><td>Declarado y verificado</td><td>Implícito</td></tr>
+          <tr class="fragment"><td>Entrada/salida</td><td>Estado explícito, puro</td><td>Efecto colateral</td></tr>
+          <tr class="fragment"><td>Modificar la base en ejecución</td><td>No, se quitó assert/retract</td><td>Sí</td></tr>
+          <tr class="fragment"><td>Ejecución</td><td>Compilado a código nativo</td><td>Normalmente interpretado</td></tr>
+          <tr class="fragment"><td>Errores de tipo y modo</td><td>Antes de ejecutar</td><td>Durante la ejecución</td></tr>
+        </tbody>
+      </table>
+      <aside class="notes">
+        Lo resumo en una tabla, fila por fila.
+        Tipos: en Mercury son estáticos y se verifican al compilar; en Prolog son dinámicos.
+        Modos: Mercury los declara y los verifica; en Prolog son implícitos.
+        Determinismo: igual, declarado y verificado contra implícito.
+        Entrada y salida: estado explícito y puro, frente a efecto colateral.
+        Modificar la base en ejecución: Mercury no lo permite, porque quitó assert y retract; Prolog sí.
+        Ejecución: Mercury compila a código nativo; Prolog normalmente se interpreta.
+        Y la fila que resume todo: los errores de tipo y de modo, Mercury los muestra antes de ejecutar,
+        Prolog durante la ejecución.
+      </aside>
+    </section>
+
+    <section data-transition="fade" class="mx-divider">
+      <span class="mx-num">05</span>
+      <span class="kicker">Particularidades de Mercury</span>
+      <h2><span class="grad">Ejemplo: una pila</span></h2>
+      <aside class="notes">
+        Para aterrizar todo esto, un ejemplo que lo junta en una sola pieza: una pila genérica.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Módulo <code>pila</code></span>
+      <pre class="mx-code"><code class="mercury" data-trim data-line-numbers="1-14|3|5|6|10|12-13">
+:- module pila.
+:- interface.
+:- type pila(T).                           % tipo abstracto
+:- func vacia = pila(T).
+:- pred apilar(T::in, pila(T)::in, pila(T)::out) is det.
+:- pred desapilar(T::out, pila(T)::in, pila(T)::out) is semidet.
+:- pred es_vacia(pila(T)::in) is semidet.
+:- implementation.
+:- import_module list.
+:- type pila(T) == list(T).                % representación interna
+vacia = [].
+apilar(X, Pila, [X | Pila]).
+desapilar(X, [X | Resto], Resto).
+es_vacia([]).
+      </code></pre>
+      <aside class="notes">
+        Este es el módulo pila completo.
+        Primero, el tipo: pila de T, abstracto, igual que la cola de hace un momento.
+        Ahora apilar: recibe un elemento y una pila, y devuelve una pila nueva. Es det,
+        porque siempre produce exactamente una pila.
+        Desapilar: saca el tope. Fíjense en los modos, T sale con out. Y es semidet,
+        porque puede fallar: si la pila está vacía, no hay nada que sacar.
+        Bajamos a la implementación: por dentro, la pila es una lista.
+        Y las cláusulas son mínimas: apilar pone X al frente; desapilar solo unifica si hay un primer elemento.
+        Con una pila vacía, esa unificación falla, y por eso es semidet.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <div class="grid cols-2 mx-gap">
+        <div class="card c-green fragment"><h3><code>apilar</code> · det</h3><p class="mx-card-line">Siempre una pila nueva</p></div>
+        <div class="card c-amber fragment"><h3><code>desapilar</code> · semidet</h3><p class="mx-card-line">Falla si está vacía</p></div>
+      </div>
+      <aside class="notes">
+        Lo dejo en dos frases.
+        Apilar es det, porque siempre produce una pila nueva.
+        Desapilar es semidet, porque falla cuando la pila está vacía.
+        Y desde otro módulo solo se ven el tipo pila de T y estos predicados; que por dentro sea una lista, no se nota.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Módulo <code>demo_pila</code></span>
+      <pre class="mx-code"><code class="mercury" data-trim data-line-numbers="1-14|4|6|8-9|10-11|12-13">
+:- module demo_pila.
+:- interface.
+:- import_module io.
+:- pred main(io::di, io::uo) is det.
+:- implementation.
+:- import_module pila, int, list.
+main(!IO) :-
+    apilar(1, vacia, P1),
+    apilar(2, P1, P2),
+    ( if desapilar(Tope, P2, _) then
+        io.format("Tope: %d\n", [i(Tope)], !IO)
+    else
+        io.write_string("Pila vacia\n", !IO)
+    ).
+      </code></pre>
+      <aside class="notes">
+        Ahora lo usamos desde otro módulo.
+        El main de siempre, det, con el estado del mundo entrando y saliendo.
+        Importamos nuestro módulo pila.
+        Apilamos un 1 sobre la pila vacía, y luego un 2.
+        Como desapilar es semidet, el compilador nos obliga a contemplar que falle,
+        por eso va dentro de un if: si tiene éxito, imprimimos el tope.
+        Y si fallara, imprimiríamos "Pila vacia". El caso de falla está cubierto por diseño.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Compilar y ejecutar</span>
+      <pre class="term"><code class="mercury"><span class="pr">$</span> mmc --make demo_pila
+<span class="pr">$</span> ./demo_pila
+<span class="fragment"><span class="out">Tope: 2</span></span></code></pre>
+      <aside class="notes">
+        Compilamos con mmc guion guion make demo_pila, y lo ejecutamos.
+        Resultado: Tope: 2. El último que entró es el primero que sale.
+        En una sola pieza vimos el tipo abstracto, los modos in y out, det y semidet,
+        el módulo que oculta su representación y la entrada y salida con el estado del mundo.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Ejemplo interactivo · Consulta con el depurador</span>
+      <h2>¿Qué pasa con <span class="grad">la pila</span>?</h2>
+      <div class="grid cols-2 mx-gap">
+        <div>
+          <span class="mx-tag c-violet" style="display:block;margin-bottom:0.35em">Consulta: resuelvan primero</span>
+          <pre class="mx-code"><code class="mercury" data-trim>
+apilar(1, vacia, P1),
+apilar(2, P1, P2),
+desapilar(Tope, P2, Resto).
+          </code></pre>
+          <div class="card c-amber fragment" data-fragment-index="1" style="margin-top:0.55em">
+            <p><strong>Predecir:</strong> ¿qué valor tienen <code>P1</code>, <code>P2</code>, <code>Tope</code> y <code>Resto</code>?</p>
+          </div>
+        </div>
+        <div>
+          <span class="mx-tag c-cyan" style="display:block;margin-bottom:0.35em">Terminal + mdb</span>
+          <pre class="term"><code class="mercury"><span class="pr">$</span> mmc --make demo_pila
+<span class="pr">$</span> mdb ./demo_pila
+
+<span class="out">mdb&gt;</span> query pila
+<span class="out">?-</span> apilar(1, vacia, P1),
+    apilar(2, P1, P2),
+    desapilar(Tope, P2, Resto).
+<span class="fragment" data-fragment-index="2"><span class="s">P1 = [1]</span></span>
+<span class="fragment" data-fragment-index="3"><span class="s">P2 = [2, 1]</span></span>
+<span class="fragment" data-fragment-index="4"><span class="s">Tope = 2</span></span>
+<span class="fragment" data-fragment-index="5"><span class="s">Resto = [1]</span></span></code></pre>
+        </div>
+      </div>
+      <div class="card c-green fragment" data-fragment-index="6" style="margin-top:0.55em">
+        <p><strong>Resultado final:</strong> <code>P1 = [1]</code> · <code>P2 = [2, 1]</code> · <code>Tope = 2</code> · <code>Resto = [1]</code></p>
+      </div>
+      <aside class="notes">
+        Primero deja que los estudiantes predigan los cuatro valores.
+        Revela P1: apilar uno sobre la pila vacía produce una lista con uno.
+        Revela P2: al apilar dos sobre P1, el dos queda al frente.
+        Revela Tope: al desapilar P2, el elemento de la cima es dos.
+        Revela Resto: después de desapilar, queda la pila con uno.
+        Al final muestra el resultado completo. Recuerda que mdb compila la consulta sobre la marcha,
+        pero la ejecución sigue siendo nativa y Mercury sigue siendo un lenguaje compilado.
+      </aside>
+    </section>
+
+    <section data-transition="fade" class="mx-divider">
+      <span class="mx-num">06</span>
+      <span class="kicker">Particularidades de Mercury</span>
+      <h2><span class="grad">Cierre</span></h2>
+      <aside class="notes">
+        Para cerrar, un balance rápido: una ventaja, una limitación y dónde se usa de verdad.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker" style="color:var(--green)">Ventaja</span>
+      <p class="mx-statement">Errores <em>antes de ejecutar</em></p>
+      <aside class="notes">
+        La ventaja principal: los errores de tipo, de modo y de determinismo aparecen al compilar,
+        antes de ejecutar. Es la idea raíz convertida en beneficio.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker" style="color:var(--pink)">Limitación</span>
+      <p class="mx-statement">Curva de aprendizaje <em>mayor</em></p>
+      <aside class="notes">
+        Y la limitación es la otra cara de la misma moneda: la curva de aprendizaje es mayor,
+        porque declarar modos y determinismo es obligatorio, y eso también significa más código
+        por la cantidad de declaraciones. A eso se suma que la comunidad y las librerías son más pequeñas que las de Prolog.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Usos reales</span>
+      <div class="grid cols-3 mx-gap">
+        <div class="card c-violet fragment"><h3>Prince</h3><p class="mx-card-line">HTML y XML a PDF</p></div>
+        <div class="card c-cyan fragment"><h3>ODASE</h3><p class="mx-card-line">Aplicaciones basadas en ontologías</p></div>
+        <div class="card c-green fragment"><h3><code>mmc</code></h3><p class="mx-card-line">Escrito en Mercury</p></div>
+      </div>
+      <aside class="notes">
+        Y no es solo académico.
+        Prince, antes Prince XML, de la empresa YesLogic, convierte HTML y XML en PDF aplicando reglas CSS,
+        y está escrito en Mercury.
+        ODASE, de Mission Critical IT, en Bélgica, desarrolla aplicaciones de negocio basadas en ontologías;
+        se ha usado en proyectos comerciales, por ejemplo soluciones de precios para el ferrocarril belga.
+        Y el propio compilador de Mercury está escrito en Mercury.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <p class="mx-statement">Lo declaras, <em>el compilador lo verifica</em></p>
+      <aside class="notes">
+        Si se quedan con una sola idea, que sea esta: lo que Prolog descubre en ejecución,
+        Mercury lo declara y lo verifica en compilación. Gracias.
+      </aside>
+    </section>
+
+    <!-- ===== FIN SECCIÓN: Particularidades de Mercury ===== -->
+
+    <!-- Cierre -->
+    <section data-transition="fade">
+      <h1 class="grad">Fin</h1>
+      <p>Consulta la documentación oficial de Mercury.</p>
+      <p>
+        <a class="pill c-cyan" href="https://mercurylang.org/" target="_blank" rel="noopener">Ir a mercurylang.org →</a>
+      </p>
+      <p class="muted">
+        <a href="../index.html">← Volver al temario</a>
+      </p>
+      <aside class="notes">
+        Gracias. Si hay preguntas, las respondemos ahora. La documentación oficial está en mercurylang.org.
+      </aside>
+    </section>
+
+  </div>
+</div>
+
+<script src="../dist/reveal.js"></script>
+<script src="../dist/plugin/notes.js"></script>
+<script src="../dist/plugin/highlight.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'slide',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    progress: true,
+    keyboard: true,
+    plugins: [ RevealNotes, RevealHighlight ],
+    highlight: {
+      highlightOnLoad: false,
+      escapeHTML: false,
+      beforeHighlight: function () {
+        var highlighter = Reveal.getPlugin('highlight');
+        document.querySelectorAll('.reveal pre.mx-code code').forEach(function (block) {
+          highlighter.highlightBlock(block);
+        });
+      }
+    }
+  });
+</script>
+</body>
+</html>
