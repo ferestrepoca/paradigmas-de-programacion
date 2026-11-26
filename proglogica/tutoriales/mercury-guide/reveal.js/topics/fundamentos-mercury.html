@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Fundamentos de Mercury</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../global.css">
+</head>
+<body>
+<a class="back-to-index" href="../index.html" aria-label="Volver al temario" title="Volver al temario"><span class="arrow" aria-hidden="true">←</span><span>Temario</span></a>
+<div class="reveal">
+  <div class="slides">
+
+    <section data-transition="fade">
+      <div class="orb" style="width:220px;height:220px;left:-60px;top:40px;background:radial-gradient(circle at 30% 30%,#c4b5fd,#8b5cf6 60%,transparent 70%)"></div>
+      <div class="orb" style="width:140px;height:140px;right:20px;bottom:30px;background:radial-gradient(circle at 30% 30%,#a5f3fc,#22d3ee 60%,transparent 70%)"></div>
+      <span class="kicker">Tutorial de Mercury</span>
+      <h1 class="grad">Fundamentos</h1>
+      <p style="font-size:0.9em">Hechos, reglas y relaciones<br><strong>sin indicarle al computador cada paso</strong></p>
+      <aside class="notes">
+        Buenas. Antes del tutorial, un repaso corto de la idea que hay detrás de Mercury: describir hechos, reglas y relaciones, en vez de decirle al computador cada paso.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Dos formas de resolver</span>
+      <h2>Imperativo <span style="color:var(--muted)">vs.</span> <span class="grad">declarativo</span></h2>
+      <div class="grid cols-2 compare-grid" style="margin-top:0.8em">
+        <div class="card c-pink compare-card">
+          <h3>Java · imperativo</h3>
+          <pre><code><span class="k">int</span> suma = <span class="s">0</span>;
+
+<span class="k">for</span> (<span class="k">int</span> i = <span class="s">1</span>; i &lt;= <span class="s">5</span>; i++) {
+    suma += i;
+}
+<span class="p">System</span>.out.println(suma);</code></pre>
+        </div>
+        <div class="card c-cyan compare-card">
+          <h3>Mercury · declarativo</h3>
+          <pre><code><span class="k">:- pred</span> <span class="p">puede_participar</span>(<span class="t">string</span>::<span class="m">in</span>) <span class="k">is</span> <span class="m">semidet</span>.
+
+<span class="p">puede_participar</span>(Persona) :-
+    estudiante(Persona),
+    sabe(Persona, <span class="s">"python"</span>).</code></pre>
+        </div>
+      </div>
+      <aside class="notes">
+        Miren el mismo problema de dos formas. En Java decimos cómo: un contador, un ciclo, una suma paso a paso. En Mercury decimos qué debe ser verdad: alguien puede participar si es estudiante y sabe Python. No hay ciclo, hay una relación.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">La diferencia</span>
+      <h2>Qué cambia al describir el problema</h2>
+      <table>
+        <thead><tr><th>Paradigma imperativo</th><th>Paradigma lógico</th></tr></thead>
+        <tbody>
+          <tr><td>Indica cómo ejecutar la tarea</td><td>Indica qué relación debe ser verdadera</td></tr>
+          <tr><td>Usa secuencias e instrucciones</td><td>Usa hechos y reglas</td></tr>
+          <tr><td>Modifica variables y estados</td><td>Busca asignaciones compatibles</td></tr>
+          <tr><td>Control explícito del recorrido</td><td>El motor aplica la resolución</td></tr>
+        </tbody>
+      </table>
+      <p class="muted" style="margin-top:1em">Mercury representa problemas mediante relaciones: el compilador ayuda a verificar cómo se usan.</p>
+      <aside class="notes">
+        Esa es la diferencia de fondo. Lo imperativo da instrucciones, cambia variables y controla el recorrido. Lo lógico declara hechos y reglas, y el motor busca qué valores las hacen verdaderas. Mercury agrega algo: el compilador verifica cómo se usan esas relaciones.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Problema guía</span>
+      <h2>¿Quién puede participar?</h2>
+      <div class="card c-amber" style="margin:0.7em 0">
+        <p style="margin:0;font-size:0.72em"><strong>Condición:</strong> una persona participa si es estudiante y sabe programar en Python.</p>
+      </div>
+      <table>
+        <thead><tr><th>Candidata/o</th><th>Estudiante</th><th>Lenguaje conocido</th></tr></thead>
+        <tbody>
+          <tr><td>Ana</td><td style="color:var(--green)">Sí</td><td style="color:var(--cyan)">Python</td></tr>
+          <tr><td>Carlos</td><td style="color:var(--green)">Sí</td><td>Java</td></tr>
+          <tr><td>Daniel</td><td style="color:var(--green)">Sí</td><td style="color:var(--cyan)">Python</td></tr>
+        </tbody>
+      </table>
+      <aside class="notes">
+        Vamos a usar un problema guía en todo el bloque: quién puede participar. Una persona participa si es estudiante y sabe Python. Fíjense en Daniel: más adelante va a dar una sorpresa.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Hechos</span>
+      <h2>Información considerada verdadera</h2>
+      <div class="grid cols-2 code-grid" style="margin-top:0.6em">
+        <div>
+          <pre><code class="mercury"><span class="c">% quiénes son estudiantes</span>
+<span class="p">estudiante</span>(<span class="s">"Ana"</span>).
+<span class="p">estudiante</span>(<span class="s">"Carlos"</span>).
+<span class="p">estudiante</span>(<span class="s">"Daniel"</span>).</code></pre>
+        </div>
+        <div>
+          <pre><code class="mercury"><span class="c">% qué sabe cada persona</span>
+<span class="p">sabe</span>(<span class="s">"Ana"</span>, <span class="s">"python"</span>).
+<span class="p">sabe</span>(<span class="s">"Carlos"</span>, <span class="s">"java"</span>).
+<span class="p">sabe</span>(<span class="s">"Daniel"</span>, <span class="s">"Python"</span>). </code></pre>
+        </div>
+      </div>
+      <p class="muted fragment">Un hecho afirma una relación: termina en punto y se considera verdadero dentro del programa.</p>
+      <aside class="notes">
+        Primero los hechos: lo que damos por cierto. Cada línea afirma una relación y termina en punto. Ana, Carlos y Daniel son estudiantes, y cada uno sabe un lenguaje. Ojo: a Daniel le escribimos Python con mayúscula.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Reglas y predicados</span>
+      <h2>Combinar relaciones</h2>
+      <p class="muted" style="margin:0">Avanza para analizar cada elemento de la regla</p>
+      <pre class="steps-code"><code class="mercury"><span class="ln fragment custom" data-fragment-index="1"><span class="k">:- pred</span> <span class="p">puede_participar</span>(<span class="t">string</span>::<span class="m">in</span>) <span class="k">is</span> <span class="m">semidet</span>.</span><span class="ln-gap"></span><span class="ln fragment custom" data-fragment-index="2"><span class="p">puede_participar</span>(Persona) :-</span><span class="ln fragment custom" data-fragment-index="3">    estudiante(Persona),</span><span class="ln fragment custom" data-fragment-index="4">    sabe(Persona, <span class="s">"python"</span>).</span></code></pre>
+      <div class="cap-wrap">
+        <div class="cap c-violet fragment fade-in-then-out" data-fragment-index="1"><b>Firma.</b> Declara el predicado, el tipo de entrada y su determinismo.</div>
+        <div class="cap c-pink fragment fade-in-then-out" data-fragment-index="2"><b>Cabecera.</b> Define qué información recibe el predicado <code>puede_participar/1</code>.</div>
+        <div class="cap c-cyan fragment fade-in-then-out" data-fragment-index="3"><b>Primera condición.</b> La persona debe aparecer como estudiante. La coma representa una conjunción lógica.</div>
+        <div class="cap c-green fragment fade-in-then-out" data-fragment-index="4"><b>Segunda condición.</b> Debe saber exactamente <code>"python"</code>. El punto finaliza la cláusula.</div>
+      </div>
+      <aside class="notes">
+        Ahora la regla. La primera línea es la firma: recibe un string de entrada y es semidet, o sea que puede cumplirse o no. Después la cabecera, y el cuerpo con dos condiciones separadas por coma, que es un Y lógico. El punto cierra la regla.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Predicado explicado</span>
+      <h2>Tabla de elementos</h2>
+      <table>
+        <thead><tr><th>Elemento</th><th>Significado</th><th>Efecto</th></tr></thead>
+        <tbody>
+          <tr><td><code>:- pred</code></td><td>Declara un predicado</td><td>Define su contrato</td></tr>
+          <tr><td><code>string</code></td><td>Tipo cadena</td><td>Restringe los valores</td></tr>
+          <tr><td><code>in</code></td><td>Argumento de entrada</td><td>Debe llegar instanciado</td></tr>
+          <tr><td><code>semidet</code></td><td>Cero o una solución</td><td>Puede tener éxito o fallar</td></tr>
+          <tr><td><code>:-</code></td><td>Introducción de la regla</td><td>Se lee como “si”</td></tr>
+          <tr><td><code>,</code></td><td>Conjunción AND</td><td>Todas las condiciones deben cumplirse</td></tr>
+          <tr><td><code>.</code></td><td>Fin de cláusula</td><td>Cierra el hecho o la regla</td></tr>
+        </tbody>
+      </table>
+      <aside class="notes">
+        Esta tabla resume cada símbolo. Los más importantes: in, que el dato llega con valor; semidet, cero o una solución; el dos puntos guion, que se lee como si; y la coma, que es un Y.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Resultado lógico</span>
+      <h2>Una regla expresa equivalencia</h2>
+      <div class="card c-violet" style="margin:0.9em 0">
+        <p style="font-size:0.8em;text-align:center;margin:0">
+          <strong>PuedeParticipar(X)</strong> ⇔ <em>Estudiante(X)</em> ∧ <em>Sabe(X, Python)</em>
+        </p>
+      </div>
+      <table>
+        <thead><tr><th>Persona</th><th>Estudiante</th><th>Sabe Python</th><th>Puede participar</th></tr></thead>
+        <tbody>
+          <tr><td>Ana</td><td style="color:var(--green)">true</td><td style="color:var(--green)">true</td><td style="color:var(--cyan)">Sí</td></tr>
+          <tr><td>Carlos</td><td style="color:var(--green)">true</td><td style="color:var(--pink)">false</td><td style="color:var(--pink)">No</td></tr>
+          <tr><td>Daniel</td><td style="color:var(--green)">true</td><td style="color:var(--amber)">"python"</td><td style="color:var(--pink)">No por diferencia</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">Mercury distingue mayúsculas y minúsculas. Es útil normalizar los datos.</p>
+      <aside class="notes">
+        La regla es una equivalencia lógica: participa si y solo si es estudiante y sabe python. Ana cumple. Carlos no, sabe Java. Y Daniel tampoco, aunque sepa Python: lo escribimos con mayúscula, y para Mercury son textos distintos. Por eso conviene normalizar los datos.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Unificación</span>
+      <h2>Encontrar asignaciones compatibles</h2>
+      <div class="grid cols-2 code-grid">
+        <div class="code-grid-item">
+          <pre><code class="mercury"><span class="p">estudiante</span>(<span class="s">"Ana"</span>).
+<span class="p">estudiante</span>(<span class="s">"Carlos"</span>).
+<span class="p">estudiante</span>(<span class="s">"Daniel"</span>).
+
+<span class="c">% consultar</span>
+<span class="p">estudiante</span>(Persona).</code></pre>
+        </div>
+        <div class="card c-cyan">
+          <h3>Asignaciones posibles</h3>
+          <p class="fragment">Persona = “Ana”</p>
+          <p class="fragment">Persona = “Carlos”</p>
+          <p class="fragment">Persona = “Daniel”</p>
+        </div>
+      </div>
+      <p class="muted">Unificar significa hacer compatibles dos términos, creando o comprobando una asociación de variables.</p>
+      <aside class="notes">
+        La unificación es cómo el motor encuentra respuestas: hace compatibles dos términos. Si consultamos estudiante de Persona, sin valor, Persona se puede asociar con Ana, con Carlos o con Daniel.
+      </aside>
+    </section>
+
+
+
+    <section>
+      <span class="kicker">Características de Mercury</span>
+      <h2>Predicados con más garantías</h2>
+      <div class="grid cols-3" style="margin-top:0.8em">
+        <div class="card c-violet fragment"><h3>Tipos</h3><p>El compilador valida los datos antes de ejecutar.</p></div>
+        <div class="card c-cyan fragment"><h3>Modos</h3><p>Indican qué argumentos entran y cuáles salen.</p></div>
+        <div class="card c-pink fragment"><h3>Determinismo</h3><p>Indica cuántas soluciones puede producir.</p></div>
+      </div>
+      <aside class="notes">
+        Hasta aquí es programación lógica en general. Lo propio de Mercury son tres garantías: tipos, modos y determinismo. Las vemos una por una.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Sistema de tipos estático</span>
+      <h2>Valores que pertenecen a un tipo</h2>
+      <pre class="normal-code code-centered"><code class="mercury"><span class="k">:- type</span> <span class="t">lenguaje</span>
+    <span class="k">---&gt;</span> <span class="m">python</span>
+    <span class="k">;    java</span>
+    <span class="k">;    mercury</span>.
+
+<span class="k">:- pred</span> <span class="p">utiliza</span>(<span class="t">string</span>::<span class="m">in</span>, <span class="t">lenguaje</span>::<span class="m">out</span>) <span class="k">is</span> <span class="m">det</span>.
+
+<span class="p">utiliza</span>(<span class="s">"Ana"</span>, python).
+<span class="p">utiliza</span>(<span class="s">"Carlos"</span>, java).</code></pre>
+      <p class="muted">Si se usa otro valor, el compilador puede detectarlo antes de ejecutar.</p>
+      <aside class="notes">
+        Tipos: definimos el tipo lenguaje con tres valores posibles. Si alguien usa un valor que no existe, el compilador lo detecta antes de ejecutar. En Prolog ese error aparecería en ejecución.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Sistema de modos</span>
+      <h2>El flujo de información debe ser explícito</h2>
+      <table>
+        <thead><tr><th>Modo</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--cyan)">in</td><td>El argumento entra instanciado</td><td>Ya tiene un valor conocido</td></tr>
+          <tr><td style="color:var(--pink)">out</td><td>El argumento debe salir instanciado</td><td>El predicado calcula su valor</td></tr>
+        </tbody>
+      </table>
+      <pre class="normal-code code-centered code-after-table"><code class="mercury"><span class="k">:- pred</span> <span class="p">duplicar</span>(<span class="t">int</span>::<span class="m">in</span>, <span class="t">int</span>::<span class="m">out</span>) <span class="k">is</span> <span class="m">det</span>.
+
+<span class="p">duplicar</span>(X, Y) :-
+    Y = X * <span class="s">2</span>.</code></pre>
+      <aside class="notes">
+        Modos: indican hacia dónde fluye la información. In es un dato que entra con valor; out, un dato que el predicado calcula. Duplicar recibe X y produce Y igual a X por dos.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Ejemplo de flujo</span>
+      <h2>Entrada conocida, salida calculada</h2>
+      <div class="grid cols-2" style="align-items:stretch">
+        <div class="card c-cyan">
+          <h3>IN</h3>
+          <span class="big">X = 5</span>
+          <p>El valor llega al predicado.</p>
+        </div>
+        <div class="card c-pink">
+          <h3>OUT</h3>
+          <span class="big">Y = 10</span>
+          <p>El predicado calcula el resultado.</p>
+        </div>
+      </div>
+      <p style="margin-top:1em">En otros lenguajes parece que un método recibe y devuelve valores. En Mercury, los modos hacen explícito ese flujo.</p>
+      <aside class="notes">
+        En la práctica: entra X igual a 5 y sale Y igual a 10. En otros lenguajes eso es una función que devuelve algo; en Mercury el flujo queda escrito en la declaración y el compilador lo revisa.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Sistema de determinismo</span>
+      <h2>Cuántas soluciones puede producir</h2>
+      <table>
+        <thead><tr><th>Categoría</th><th>Soluciones posibles</th><th>¿Puede fallar?</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--cyan)">det</td><td>Exactamente una</td><td>No</td></tr>
+          <tr><td style="color:var(--green)">semidet</td><td>Cero o una</td><td>Puede</td></tr>
+          <tr><td style="color:var(--amber)">multi</td><td>Una o más</td><td>No</td></tr>
+          <tr><td style="color:var(--pink)">nondet</td><td>Cero o más</td><td>Puede</td></tr>
+        </tbody>
+      </table>
+      <aside class="notes">
+        Determinismo: cuántas soluciones puede dar un predicado. Det, exactamente una. Semidet, cero o una. Multi, una o más. Nondet, cero o más. Declararlo permite al compilador generar código más rápido y avisar si nos equivocamos.
+      </aside>
+    </section>
+
+    <section>
+      <span class="kicker">Ejemplo: semidet</span>
+      <h2>¿Un número es par?</h2>
+      <p class="muted" style="margin:0">Avanza para ver cómo funciona el contrato</p>
+      <pre class="steps-code"><code class="mercury"><span class="ln fragment custom" data-fragment-index="1"><span class="k">:- pred</span> <span class="p">es_par</span>(<span class="t">int</span>::<span class="m">in</span>) <span class="k">is</span> <span class="m">semidet</span>.</span><span class="ln-gap"></span><span class="ln fragment custom" data-fragment-index="2"><span class="p">es_par</span>(N) :-</span><span class="ln fragment custom" data-fragment-index="3">    N mod <span class="s">2</span> = <span class="s">0</span>.</span></code></pre>
+      <div class="cap-wrap">
+        <div class="cap c-violet fragment fade-in-then-out" data-fragment-index="1"><b>semidet.</b> El predicado puede tener éxito o fallar, pero nunca producir dos soluciones distintas.</div>
+        <div class="cap c-pink fragment fade-in-then-out" data-fragment-index="2"><b>Entrada obligatoria.</b> <code>N</code> debe conocer su entero antes de evaluar la regla.</div>
+        <div class="cap c-green fragment fade-in-then-out" data-fragment-index="3"><b>Condición aritmética.</b> El resto al dividir por dos debe ser cero.</div>
+      </div>
+      <div class="grid cols-2" style="margin-top:0.7em">
+        <div class="card c-green fragment"><h3>es_par(4)</h3><p>Éxito: 4 modulo 2 es 0.</p></div>
+        <div class="card c-pink fragment"><h3>es_par(5)</h3><p>Falla: 5 modulo 2 es 1.</p></div>
+      </div>
+      <aside class="notes">
+        Un ejemplo semidet: es_par. Recibe un entero conocido y se cumple si el residuo al dividir por dos es cero. Con 4 tiene éxito; con 5 falla. Nunca da dos respuestas.
+      </aside>
+    </section>
+
+    <section data-transition="fade">
+      <span class="kicker">Síntesis</span>
+      <h1 class="grad">Mercury verifica</h1>
+      <div class="grid cols-3" style="margin-top:0.8em">
+        <div class="card c-violet"><h3>Hechos</h3><p>Afirman relaciones conocidas.</p></div>
+        <div class="card c-cyan"><h3>Reglas</h3><p>Derivan relaciones nuevas.</p></div>
+        <div class="card c-pink"><h3>Contratos</h3><p>Tipos, modos y determinismo.</p></div>
+      </div>
+      <p style="margin-top:1em">El programa describe <strong>qué</strong> debe ser verdadero; el compilador ayuda a comprobar <strong>cómo puede resolverse</strong>.</p>
+      <p class="muted"><a href="../index.html" style="color:var(--cyan)">Volver al temario</a></p>
+      <aside class="notes">
+        Para cerrar: los hechos afirman, las reglas derivan, y los contratos de tipos, modos y determinismo dejan que el compilador verifique. Con eso claro, pasamos al tutorial práctico.
+      </aside>
+    </section>
+
+  </div>
+</div>
+
+<script src="../dist/reveal.js"></script>
+<script src="../dist/plugin/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'slide',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    plugins: [ RevealNotes ]
+  });
+</script>
+</body>
+</html>

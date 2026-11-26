@@ -1,0 +1,325 @@
+import { isAndroid } from '../utils/device'
+import { matches } from '../utils/util'
+
+const SWIPE_THRESHOLD = 40;
+const ZOOM_GESTURE_THRESHOLD = 1.03;
+
+/**
+ * Controls all touch interactions and navigations for
+ * a presentation.
+ */
+export default class Touch {
+
+	constructor( Reveal ) {
+
+		this.Reveal = Reveal;
+
+		// Holds information about the currently ongoing touch interaction
+		this.touchStartX = 0;
+		this.touchStartY = 0;
+		this.touchStartCount = 0;
+		this.touchCaptured = false;
+		this.activePointers = new Map();
+
+		this.onPointerDown = this.onPointerDown.bind( this );
+		this.onPointerMove = this.onPointerMove.bind( this );
+		this.onPointerUp = this.onPointerUp.bind( this );
+		this.onPointerCancel = this.onPointerCancel.bind( this );
+		this.onTouchStart = this.onTouchStart.bind( this );
+		this.onTouchMove = this.onTouchMove.bind( this );
+		this.onTouchEnd = this.onTouchEnd.bind( this );
+
+	}
+
+	/**
+	 *
+	 */
+	bind() {
+
+		let revealElement = this.Reveal.getRevealElement();
+
+		if( 'onpointerdown' in window ) {
+			revealElement.addEventListener( 'pointerdown', this.onPointerDown, false );
+			revealElement.addEventListener( 'pointermove', this.onPointerMove, false );
+			revealElement.addEventListener( 'pointerup', this.onPointerUp, false );
+			revealElement.addEventListener( 'pointercancel', this.onPointerCancel, false );
+		}
+		// Fall back to touch events
+		else {
+			revealElement.addEventListener( 'touchstart', this.onTouchStart, false );
+			revealElement.addEventListener( 'touchmove', this.onTouchMove, false );
+			revealElement.addEventListener( 'touchend', this.onTouchEnd, false );
+		}
+
+	}
+
+	/**
+	 *
+	 */
+	unbind() {
+
+		let revealElement = this.Reveal.getRevealElement();
+
+		revealElement.removeEventListener( 'pointerdown', this.onPointerDown, false );
+		revealElement.removeEventListener( 'pointermove', this.onPointerMove, false );
+		revealElement.removeEventListener( 'pointerup', this.onPointerUp, false );
+		revealElement.removeEventListener( 'pointercancel', this.onPointerCancel, false );
+
+		revealElement.removeEventListener( 'touchstart', this.onTouchStart, false );
+		revealElement.removeEventListener( 'touchmove', this.onTouchMove, false );
+		revealElement.removeEventListener( 'touchend', this.onTouchEnd, false );
+
+	}
+
+	/**
+	 * Checks if the target element prevents the triggering of
+	 * swipe navigation.
+	 */
+	isSwipePrevented( target ) {
+
+		// Prevent accidental swipes when scrubbing timelines
+		if( matches( target, 'video[controls], audio[controls]' ) ) return true;
+
+		while( target && typeof target.hasAttribute === 'function' ) {
+			if( target.hasAttribute( 'data-prevent-swipe' ) ) return true;
+			target = target.parentNode;
+		}
+
+		return false;
+
+	}
+
+	/**
+	 * Returns true when browser-level zoom is active enough that
+	 * we should not trigger reveal.js touch gestures.
+	 */
+	isViewportZoomed() {
+
+		if( !window.visualViewport || typeof window.visualViewport.scale !== 'number' ) {
+			return false;
+		}
+
+		const currentScale = window.visualViewport.scale;
+
+		// Fixed-width viewport configurations may start below 1.
+		// Compare against the smallest observed "resting" scale.
+		if( typeof this.visualViewportBaseScale === 'undefined' ) {
+			this.visualViewportBaseScale = currentScale;
+		} else {
+			this.visualViewportBaseScale = Math.min( this.visualViewportBaseScale, currentScale );
+		}
+
+		return ( currentScale / this.visualViewportBaseScale ) > ZOOM_GESTURE_THRESHOLD;
+
+	}
+
+	/**
+	 * Handler for the 'touchstart' event, enables support for
+	 * swipe and pinch gestures.
+	 *
+	 * @param {object} event
+	 */
+	onTouchStart( event ) {
+
+		this.touchCaptured = false;
+
+		// if( this.isViewportZoomed() ) return true;
+		if( this.isSwipePrevented( event.target ) ) return true;
+
+		this.touchStartX = event.touches[0].clientX;
+		this.touchStartY = event.touches[0].clientY;
+		this.touchStartCount = event.touches.length;
+
+	}
+
+	/**
+	 * Handler for the 'touchmove' event.
+	 *
+	 * @param {object} event
+	 */
+	onTouchMove( event ) {
+
+		// if( this.isViewportZoomed() ) return true;
+		if( this.isSwipePrevented( event.target ) ) return true;
+
+		let config = this.Reveal.getConfig();
+
+		// Each touch should only trigger one action
+		if( !this.touchCaptured ) {
+			this.Reveal.onUserInput( event );
+
+			let currentX = event.touches[0].clientX;
+			let currentY = event.touches[0].clientY;
+
+			// There was only one touch point, look for a swipe
+			if( event.touches.length === 1 && this.touchStartCount !== 2 ) {
+
+				let availableRoutes = this.Reveal.availableRoutes({ includeFragments: true });
+
+				let deltaX = currentX - this.touchStartX,
+					deltaY = currentY - this.touchStartY;
+
+				if( deltaX > SWIPE_THRESHOLD && Math.abs( deltaX ) > Math.abs( deltaY ) ) {
+					this.touchCaptured = true;
+					if( config.navigationMode === 'linear' ) {
+						if( config.rtl ) {
+							this.Reveal.next();
+						}
+						else {
+							this.Reveal.prev();
+						}
+					}
+					else {
+						this.Reveal.left();
+					}
+				}
+				else if( deltaX < -SWIPE_THRESHOLD && Math.abs( deltaX ) > Math.abs( deltaY ) ) {
+					this.touchCaptured = true;
+					if( config.navigationMode === 'linear' ) {
+						if( config.rtl ) {
+							this.Reveal.prev();
+						}
+						else {
+							this.Reveal.next();
+						}
+					}
+					else {
+						this.Reveal.right();
+					}
+				}
+				else if( deltaY > SWIPE_THRESHOLD && availableRoutes.up ) {
+					this.touchCaptured = true;
+					if( config.navigationMode === 'linear' ) {
+						this.Reveal.prev();
+					}
+					else {
+						this.Reveal.up();
+					}
+				}
+				else if( deltaY < -SWIPE_THRESHOLD && availableRoutes.down ) {
+					this.touchCaptured = true;
+					if( config.navigationMode === 'linear' ) {
+						this.Reveal.next();
+					}
+					else {
+						this.Reveal.down();
+					}
+				}
+
+				// If we're embedded, only block touch events if they have
+				// triggered an action
+				if( config.embedded ) {
+					if( this.touchCaptured || this.Reveal.isVerticalSlide() ) {
+						event.preventDefault();
+					}
+				}
+				// Not embedded? Block them all to avoid needless tossing
+				// around of the viewport in iOS
+				else {
+					event.preventDefault();
+				}
+
+			}
+		}
+		// There's a bug with swiping on some Android devices unless
+		// the default action is always prevented
+		else if( isAndroid ) {
+			event.preventDefault();
+		}
+
+	}
+
+	/**
+	 * Handler for the 'touchend' event.
+	 *
+	 * @param {object} event
+	 */
+	onTouchEnd( event ) {
+
+		// Media playback is only allowed as a direct result of a
+		// user interaction. Some mobile devices do not consider a
+		// 'touchmove' to be a direct user action. If this is the
+		// case, we fall back to starting playback here instead.
+		if( this.touchCaptured && !this.Reveal.slideContent.isAllowedToPlayAudio() ) {
+			this.Reveal.startEmbeddedContent( this.Reveal.getCurrentSlide() );
+		}
+
+		this.touchCaptured = false;
+
+	}
+
+	/**
+	 * Returns all active touch pointers in touch-like format.
+	 *
+	 * @return {Array}
+	 */
+	getActiveTouches() {
+
+		return Array.from( this.activePointers.values(), pointer => ({
+			clientX: pointer.clientX,
+			clientY: pointer.clientY
+		}) );
+
+	}
+
+	/**
+	 * Convert pointer down to touch start.
+	 *
+	 * @param {object} event
+	 */
+	onPointerDown( event ) {
+
+		if( event.pointerType === "touch" ) {
+			this.activePointers.set( event.pointerId, event );
+			event.touches = this.getActiveTouches();
+			this.onTouchStart( event );
+		}
+
+	}
+
+	/**
+	 * Convert pointer move to touch move.
+	 *
+	 * @param {object} event
+	 */
+	onPointerMove( event ) {
+
+		if( event.pointerType === "touch" )  {
+			this.activePointers.set( event.pointerId, event );
+			event.touches = this.getActiveTouches();
+			this.onTouchMove( event );
+		}
+
+	}
+
+	/**
+	 * Convert pointer up to touch end.
+	 *
+	 * @param {object} event
+	 */
+	onPointerUp( event ) {
+
+		if( event.pointerType === "touch" )  {
+			this.activePointers.delete( event.pointerId );
+			event.touches = this.getActiveTouches();
+			this.onTouchEnd( event );
+		}
+
+	}
+
+	/**
+	 * Convert pointer cancel to touch end.
+	 *
+	 * @param {object} event
+	 */
+	onPointerCancel( event ) {
+
+		if( event.pointerType === "touch" ) {
+			this.activePointers.delete( event.pointerId );
+			event.touches = this.getActiveTouches();
+			this.onTouchEnd( event );
+		}
+
+	}
+
+}
